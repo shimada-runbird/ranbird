@@ -48,7 +48,7 @@ p {
 }
 
 .hero {
-  padding: 18px 24px 86px;
+  padding: 108px 24px 86px;
   overflow: hidden;
   background:
     radial-gradient(circle at 12% 18%, rgba(37, 99, 235, 0.18), transparent 30%),
@@ -57,20 +57,22 @@ p {
 }
 
 .topbar {
-  position: sticky;
-  top: 16px;
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 10;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   justify-content: center;
-  width: min(1120px, 100%);
-  margin: 0 auto 76px;
+  width: min(1120px, calc(100% - 48px));
+  margin: 0;
   padding: 10px;
   border: 1px solid rgba(219, 227, 239, 0.9);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.88);
-  box-shadow: 0 12px 40px rgba(20, 33, 61, 0.08);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 16px 50px rgba(20, 33, 61, 0.12);
   backdrop-filter: blur(16px);
 }
 
@@ -562,14 +564,21 @@ h3 {
 
 @media (max-width: 680px) {
   .hero {
-    padding: 14px 16px 58px;
+    padding: 98px 16px 58px;
   }
 
   .topbar {
-    position: static;
+    position: fixed;
+    top: 10px;
+    left: 14px;
+    right: 14px;
+    transform: none;
     justify-content: flex-start;
-    margin-bottom: 46px;
+    width: auto;
+    margin: 0;
     border-radius: 22px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
   }
 
   .section {
