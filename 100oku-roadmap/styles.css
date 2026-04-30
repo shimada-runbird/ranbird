@@ -25,6 +25,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 118px;
 }
 
 body {
@@ -225,7 +226,7 @@ h3 {
   width: min(1120px, calc(100% - 48px));
   margin: 0 auto;
   padding: 78px 0;
-  scroll-margin-top: 92px;
+  scroll-margin-top: 118px;
 }
 
 .section-heading {
@@ -563,6 +564,10 @@ h3 {
 }
 
 @media (max-width: 680px) {
+  html {
+    scroll-padding-top: 112px;
+  }
+
   .hero {
     padding: 98px 16px 58px;
   }
@@ -584,6 +589,7 @@ h3 {
   .section {
     width: min(100% - 28px, 1120px);
     padding: 54px 0;
+    scroll-margin-top: 112px;
   }
 
   .strategy-map,
