@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI開発コスト削減 営業ブック | Cursor導入支援</title>
+    <meta name="description" content="Cursor導入による開発コスト削減を提案するための営業ブックです。会社説明、時代背景、活用例、支援フロー、料金表を図解で整理しています。">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="deck">
+      <header class="topbar">
+        <a class="brand" href="../">RANBIRD AI SALES BOOK</a>
+        <nav class="nav" aria-label="目次">
+          <a href="#background">時代背景</a>
+          <a href="#use-cases">できること</a>
+          <a href="#flow">支援フロー</a>
+          <a href="#price">料金</a>
+          <a href="#hearing">ヒアリング</a>
+        </nav>
+      </header>
+
+      <section class="slide hero" id="cover">
+        <div class="hero-copy">
+          <span class="eyebrow">AI Development Cost Reduction</span>
+          <h1>AIで、<br>開発コストを下げる。</h1>
+          <p class="lead">
+            Cursor導入を起点に、開発現場の調査・実装・レビュー・テスト・ドキュメント作成を効率化する営業提案資料です。
+          </p>
+          <div class="pill-row">
+            <span class="pill">Cursor導入支援</span>
+            <span class="pill">AI開発研修</span>
+            <span class="pill">コスト削減</span>
+          </div>
+        </div>
+        <aside class="hero-visual" aria-label="資料の主要メッセージ">
+          <div class="mock-window">
+            <div class="window-dots"><span></span><span></span><span></span></div>
+            <div class="code-line wide"></div>
+            <div class="code-line"></div>
+            <div class="code-line short"></div>
+            <div class="ai-bubble">AIがコード理解・修正案・テスト作成を支援</div>
+          </div>
+          <div class="impact-card">
+            <span>Sales Message</span>
+            <strong>エンジニアを1人採用するより安く、今のチームの生産性を上げる。</strong>
+          </div>
+        </aside>
+      </section>
+
+      <section class="slide" id="company">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Company</span>
+            <h2>私たちが提供するもの</h2>
+          </div>
+          <p>単なるツール導入ではなく、開発現場で実際に使われるAI活用まで伴走します。</p>
+        </div>
+        <div class="split">
+          <div class="photo-card engineer-photo">
+            <div class="photo-overlay">
+              <span>AI Consulting Team</span>
+              <strong>現場に定着するAI導入</strong>
+            </div>
+          </div>
+          <div class="service-grid">
+            <article class="service-card">
+              <span class="icon">AI</span>
+              <h3>Cursor導入</h3>
+              <p>初期設定、推奨設定、チーム利用ルールを整備。</p>
+            </article>
+            <article class="service-card">
+              <span class="icon">EDU</span>
+              <h3>AI開発研修</h3>
+              <p>実際の業務に近い形で、使い方を体験してもらう。</p>
+            </article>
+            <article class="service-card">
+              <span class="icon">OPS</span>
+              <h3>運用設計</h3>
+              <p>セキュリティ、禁止事項、活用範囲を明文化。</p>
+            </article>
+            <article class="service-card">
+              <span class="icon">KPI</span>
+              <h3>効果測定</h3>
+              <p>削減できる工数、利用状況、改善余地をレポート化。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide dark" id="background">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow light">Market Background</span>
+            <h2>開発現場は、人手不足とコスト増に直面しています。</h2>
+          </div>
+          <p>採用・外注・レビュー・保守の負担が増える一方で、AI活用の有無が開発スピードの差になり始めています。</p>
+        </div>
+        <div class="problem-grid">
+          <article><span>01</span><h3>エンジニア不足</h3><p>採用難により、開発キャパシティを増やしにくい。</p></article>
+          <article><span>02</span><h3>採用コスト増</h3><p>採用費、教育費、定着リスクが経営負担になる。</p></article>
+          <article><span>03</span><h3>外注費の高騰</h3><p>開発委託が増えるほど、利益を圧迫しやすい。</p></article>
+          <article><span>04</span><h3>レビュー負担</h3><p>シニアエンジニアが細かい確認に追われる。</p></article>
+          <article><span>05</span><h3>属人化</h3><p>特定の人しか分からないコードが保守を重くする。</p></article>
+          <article><span>06</span><h3>ドキュメント不足</h3><p>引き継ぎや仕様確認に時間がかかる。</p></article>
+        </div>
+      </section>
+
+      <section class="slide" id="why-ai">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Why AI Now</span>
+            <h2>AIを使う会社と、使わない会社で差が広がります。</h2>
+          </div>
+          <p>AIは開発者の代わりではなく、開発者の調査・判断・実装を速くするアシスタントです。</p>
+        </div>
+        <div class="compare-table">
+          <div class="table-row table-head">
+            <div>項目</div>
+            <div>AI未導入</div>
+            <div>AI活用企業</div>
+          </div>
+          <div class="table-row"><div>コード作成</div><div>人がゼロから作成</div><div>AIがたたき台を作成</div></div>
+          <div class="table-row"><div>調査</div><div>検索と目視確認に時間がかかる</div><div>AIがコードを読み解く</div></div>
+          <div class="table-row"><div>レビュー</div><div>人間が最初から細かく確認</div><div>AIが事前チェック</div></div>
+          <div class="table-row"><div>テスト</div><div>後回しになりやすい</div><div>AIがテスト案を作成</div></div>
+          <div class="table-row"><div>教育</div><div>先輩への質問に依存</div><div>AIが学習を補助</div></div>
+        </div>
+      </section>
+
+      <section class="slide" id="cursor">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">About Cursor</span>
+            <h2>Cursorは、AIを搭載した開発エディタです。</h2>
+          </div>
+          <p>コードベースを理解しながら、開発者の作業を横断的にサポートできます。</p>
+        </div>
+        <div class="orbit">
+          <div class="orbit-center">Cursor</div>
+          <div class="orbit-item item-1">コード生成</div>
+          <div class="orbit-item item-2">バグ調査</div>
+          <div class="orbit-item item-3">テスト作成</div>
+          <div class="orbit-item item-4">レビュー補助</div>
+          <div class="orbit-item item-5">ドキュメント</div>
+          <div class="orbit-item item-6">リファクタリング</div>
+        </div>
+        <div class="metric-row">
+          <div><strong>実装</strong><span>たたき台作成</span></div>
+          <div><strong>調査</strong><span>原因特定を支援</span></div>
+          <div><strong>品質</strong><span>事前チェック</span></div>
+          <div><strong>教育</strong><span>若手の自走支援</span></div>
+        </div>
+      </section>
+
+      <section class="slide" id="use-cases">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Use Cases</span>
+            <h2>こんなことができます集</h2>
+          </div>
+          <p>営業現場では、相手の課題に合わせて該当カードを見せると伝わりやすくなります。</p>
+        </div>
+        <div class="use-case-grid">
+          <article class="use-card">
+            <div class="use-icon code"></div>
+            <h3>コード作成を効率化</h3>
+            <p>API、管理画面、バッチ、フォーム処理などのたたき台を作成。</p>
+            <div class="before-after"><span>Before: ゼロから実装</span><strong>After: AIが下書き</strong></div>
+          </article>
+          <article class="use-card">
+            <div class="use-icon bug"></div>
+            <h3>バグ修正を効率化</h3>
+            <p>エラー内容とコードから、原因候補と修正案を整理。</p>
+            <div class="before-after"><span>Before: 調査が長い</span><strong>After: 原因特定を短縮</strong></div>
+          </article>
+          <article class="use-card">
+            <div class="use-icon review"></div>
+            <h3>コードレビューを効率化</h3>
+            <p>レビュー前に、初歩的なミスやテスト不足をセルフチェック。</p>
+            <div class="before-after"><span>Before: 指摘が多い</span><strong>After: 重要論点に集中</strong></div>
+          </article>
+          <article class="use-card">
+            <div class="use-icon test"></div>
+            <h3>テスト作成を効率化</h3>
+            <p>正常系、異常系、境界値、APIテストの案を作成。</p>
+            <div class="before-after"><span>Before: 後回し</span><strong>After: 網羅観点を補助</strong></div>
+          </article>
+          <article class="use-card">
+            <div class="use-icon doc"></div>
+            <h3>ドキュメント作成</h3>
+            <p>README、仕様説明、引き継ぎ資料の下書きを作成。</p>
+            <div class="before-after"><span>Before: 属人化</span><strong>After: コードから説明文</strong></div>
+          </article>
+          <article class="use-card">
+            <div class="use-icon junior"></div>
+            <h3>若手育成を支援</h3>
+            <p>コードの意味、エラー原因、より良い書き方をAIに相談。</p>
+            <div class="before-after"><span>Before: 先輩に依存</span><strong>After: 自己解決力アップ</strong></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="slide" id="effect">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Expected Impact</span>
+            <h2>開発現場のさまざまな工数を削減できます。</h2>
+          </div>
+          <p>最初は診断で削減余地を見える化し、効果が出る業務から導入します。</p>
+        </div>
+        <div class="impact-layout">
+          <div class="chart-card">
+            <div class="bar"><span style="height: 82%"></span><strong>実装</strong></div>
+            <div class="bar"><span style="height: 68%"></span><strong>調査</strong></div>
+            <div class="bar"><span style="height: 58%"></span><strong>レビュー</strong></div>
+            <div class="bar"><span style="height: 72%"></span><strong>テスト</strong></div>
+            <div class="bar"><span style="height: 64%"></span><strong>資料</strong></div>
+          </div>
+          <div class="effect-list">
+            <div><span>削減</span><p>コード作成、レビュー、テスト、ドキュメント作成の工数を削減。</p></div>
+            <div><span>短縮</span><p>エラー調査、既存コード理解、仕様確認にかかる時間を短縮。</p></div>
+            <div><span>育成</span><p>若手がAIに質問しながら進められるため、立ち上がりを支援。</p></div>
+            <div><span>内製化</span><p>外注に出していた軽微な改修を社内で対応しやすくする。</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide warning" id="failures">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Common Failures</span>
+            <h2>AIツールは、入れるだけでは定着しません。</h2>
+          </div>
+          <p>導入で終わらせず、ルール・教育・活用シーン・測定方法まで設計する必要があります。</p>
+        </div>
+        <div class="failure-table">
+          <div><strong>一部の人しか使わない</strong><span>使い方が共有されていない</span></div>
+          <div><strong>効果が分からない</strong><span>測定項目がない</span></div>
+          <div><strong>セキュリティが不安</strong><span>社内ルールがない</span></div>
+          <div><strong>現場で使えない</strong><span>実務に合っていない</span></div>
+          <div><strong>すぐ使われなくなる</strong><span>定着支援がない</span></div>
+        </div>
+        <div class="callout">だからこそ、導入設計・研修・定着支援までセットで提案します。</div>
+      </section>
+
+      <section class="slide" id="flow">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Support Flow</span>
+            <h2>診断から定着まで、一気通貫で支援します。</h2>
+          </div>
+          <p>営業では「まず小さく診断し、効果が見えるところから導入する」と伝えると合意を取りやすくなります。</p>
+        </div>
+        <div class="flow">
+          <article><span>1</span><h3>現状診断</h3><p>開発課題、工数、AI活用状況を確認。</p></article>
+          <article><span>2</span><h3>導入設計</h3><p>Cursorの活用範囲と利用ルールを設計。</p></article>
+          <article><span>3</span><h3>初期設定</h3><p>推奨設定、ルール、テンプレートを整備。</p></article>
+          <article><span>4</span><h3>研修</h3><p>エンジニア向けに実践形式で研修。</p></article>
+          <article><span>5</span><h3>定着支援</h3><p>活用状況を見ながら改善。</p></article>
+          <article><span>6</span><h3>効果測定</h3><p>削減効果をレポート化。</p></article>
+        </div>
+      </section>
+
+      <section class="slide" id="price">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Pricing</span>
+            <h2>料金プラン</h2>
+          </div>
+          <p>最初に売りやすいのは、100万円のスタンダードプランです。</p>
+        </div>
+        <div class="pricing">
+          <article class="price-card">
+            <span class="plan">ライト</span>
+            <strong class="price">30万円</strong>
+            <p>小規模チーム・試験導入向け</p>
+            <ul>
+              <li>Cursor導入支援</li>
+              <li>初期設定サポート</li>
+              <li>基本研修1回</li>
+              <li>基本プロンプト提供</li>
+              <li>簡易利用ルール作成</li>
+            </ul>
+          </article>
+          <article class="price-card recommended">
+            <span class="badge">おすすめ</span>
+            <span class="plan">スタンダード</span>
+            <strong class="price">100万円</strong>
+            <p>チーム全体の本格導入向け</p>
+            <ul>
+              <li>現状診断</li>
+              <li>Cursor導入設計</li>
+              <li>研修2〜3回</li>
+              <li>プロンプトテンプレート作成</li>
+              <li>社内利用ルール作成</li>
+              <li>効果測定レポート</li>
+            </ul>
+          </article>
+          <article class="price-card">
+            <span class="plan">エンタープライズ</span>
+            <strong class="price">300万円〜</strong>
+            <p>複数部署・大企業向け</p>
+            <ul>
+              <li>全社導入設計</li>
+              <li>複数チーム展開</li>
+              <li>セキュリティルール策定</li>
+              <li>管理職向け説明会</li>
+              <li>活用ガイドライン作成</li>
+              <li>継続改善支援</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="slide" id="monthly">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Monthly Support</span>
+            <h2>導入後の月額支援</h2>
+          </div>
+          <p>導入後の定着・改善・効果測定を継続支援します。</p>
+        </div>
+        <div class="monthly-table">
+          <div class="monthly-row head"><div>プラン</div><div>ライト</div><div>スタンダード</div><div>プレミアム</div></div>
+          <div class="monthly-row"><div>月額</div><div>10万円〜</div><div>30万円〜</div><div>80万円〜</div></div>
+          <div class="monthly-row"><div>定例MTG</div><div>月1回</div><div>月2回</div><div>月4回</div></div>
+          <div class="monthly-row"><div>活用相談</div><div>あり</div><div>あり</div><div>あり</div></div>
+          <div class="monthly-row"><div>プロンプト改善</div><div>簡易</div><div>あり</div><div>あり</div></div>
+          <div class="monthly-row"><div>効果測定</div><div>簡易</div><div>詳細</div><div>詳細</div></div>
+          <div class="monthly-row"><div>管理職報告</div><div>なし</div><div>相談可</div><div>あり</div></div>
+        </div>
+      </section>
+
+      <section class="slide" id="hearing">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Sales Sheet</span>
+            <h2>営業ヒアリングシート</h2>
+          </div>
+          <p>商談では、相手の痛みを「採用・外注・レビュー・教育・品質」のどこにあるか確認します。</p>
+        </div>
+        <div class="hearing-list">
+          <label><span></span>開発チームは何名ですか？</label>
+          <label><span></span>エンジニア採用に課題はありますか？</label>
+          <label><span></span>外注費は増えていますか？</label>
+          <label><span></span>コードレビューに時間はかかっていますか？</label>
+          <label><span></span>テスト作成は十分にできていますか？</label>
+          <label><span></span>ドキュメント作成に負担はありますか？</label>
+          <label><span></span>ChatGPTやCursorはすでに使っていますか？</label>
+          <label><span></span>AI利用の社内ルールはありますか？</label>
+        </div>
+        <div class="talk-box">
+          <strong>営業で刺さる一言</strong>
+          <p>Cursorを導入するだけではなく、御社の開発現場で実際に使われる状態まで支援します。</p>
+        </div>
+      </section>
+
+      <section class="slide" id="faq">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">FAQ</span>
+            <h2>よくある質問</h2>
+          </div>
+          <p>不安を解消し、まず診断へ進めるための回答例です。</p>
+        </div>
+        <div class="faq">
+          <details open>
+            <summary>Cursorを入れるだけではダメですか？</summary>
+            <p>ツールを入れるだけでは、使う人と使わない人に分かれやすいです。効果を出すには、ルール設計、研修、活用シーンの整理が必要です。</p>
+          </details>
+          <details>
+            <summary>セキュリティは大丈夫ですか？</summary>
+            <p>入力してよい情報、禁止情報、利用範囲を整理して運用します。必要に応じて機密情報を扱わない運用設計も行います。</p>
+          </details>
+          <details>
+            <summary>本当にコスト削減できますか？</summary>
+            <p>業務内容によって効果は変わります。そのため、まず現状診断で削減余地を確認し、効果が見込める業務から導入します。</p>
+          </details>
+          <details>
+            <summary>エンジニアが嫌がりませんか？</summary>
+            <p>押し付けではなく、調査、レビュー、テスト、ドキュメント作成など、負担の大きい業務から導入すると定着しやすくなります。</p>
+          </details>
+        </div>
+      </section>
+
+      <section class="slide closing" id="closing">
+        <div>
+          <span class="eyebrow light">Closing</span>
+          <h2>まずは、AI開発診断から始めませんか？</h2>
+          <p>
+            御社の開発現場で、どの業務にAIを活用できるかを診断します。最初から大きく導入する必要はありません。
+            小さく始めて、効果が出る部分から広げていきます。
+          </p>
+        </div>
+        <div class="closing-card">
+          <span>診断後に提示する内容</span>
+          <ul>
+            <li>Cursorを活用できる業務</li>
+            <li>削減できる可能性がある工数</li>
+            <li>必要な設定・研修内容</li>
+            <li>導入プラン・お見積もり</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
