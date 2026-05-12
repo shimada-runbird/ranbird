@@ -46,15 +46,15 @@
         display: grid;
         min-height: 100vh;
         place-items: center;
-        padding: 24px;
+        padding: 0;
       }
 
       .sheet {
         position: relative;
         overflow: hidden;
-        width: min(1440px, calc(100vw - 48px));
+        width: min(1440px, 100vw);
         aspect-ratio: 16 / 9;
-        padding: 34px 42px 30px;
+        padding: 30px 38px 26px;
         border: 1px solid rgba(212, 219, 230, 0.78);
         border-radius: 36px;
         background:
@@ -91,7 +91,7 @@
         display: grid;
         grid-template-rows: auto 1fr auto;
         height: 100%;
-        gap: 18px;
+        gap: 14px;
       }
 
       .hero {
@@ -171,9 +171,9 @@
 
       .main-grid {
         display: grid;
-        grid-template-columns: 1.02fr 1.48fr 1fr;
-        grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
-        gap: 14px;
+        grid-template-columns: 0.96fr 1.46fr 0.98fr;
+        grid-template-rows: repeat(3, minmax(0, 1fr));
+        gap: 12px;
         min-height: 0;
       }
 
@@ -181,7 +181,7 @@
         display: flex;
         min-height: 0;
         flex-direction: column;
-        padding: 17px;
+        padding: 14px;
         border: 1px solid var(--line);
         border-radius: 24px;
         background: rgba(255, 255, 255, 0.83);
@@ -201,12 +201,12 @@
         align-items: center;
         justify-content: space-between;
         gap: 12px;
-        margin-bottom: 12px;
+        margin-bottom: 9px;
       }
 
       .card-title h2 {
         color: var(--navy);
-        font-size: 18px;
+        font-size: 17px;
         line-height: 1.25;
         letter-spacing: -0.04em;
       }
@@ -236,13 +236,13 @@
       .two-lists {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 10px;
+        gap: 8px;
       }
 
       .mini-box {
         min-height: 0;
-        padding: 12px;
-        border-radius: 18px;
+        padding: 10px;
+        border-radius: 16px;
         background: #f8fafc;
       }
 
@@ -253,7 +253,7 @@
       .mini-box strong,
       .mini-list strong {
         display: block;
-        margin-bottom: 7px;
+        margin-bottom: 5px;
         color: var(--navy);
         font-size: 13px;
       }
@@ -261,7 +261,7 @@
       .mini-box ul,
       .mini-list ul {
         display: grid;
-        gap: 4px;
+        gap: 3px;
         margin: 0;
         padding: 0;
         list-style: none;
@@ -270,7 +270,7 @@
       .mini-box li,
       .mini-list li {
         color: var(--muted);
-        font-size: 12px;
+        font-size: 11px;
         font-weight: 700;
       }
 
@@ -281,14 +281,14 @@
       }
 
       .search-card {
-        gap: 9px;
+        gap: 7px;
       }
 
       .search-bar {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 11px 13px;
+        padding: 9px 12px;
         border: 1px solid var(--line);
         border-radius: 999px;
         background: #ffffff;
@@ -307,9 +307,9 @@
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         align-items: end;
-        height: 76px;
+        height: 58px;
         gap: 8px;
-        padding: 10px 12px 0;
+        padding: 8px 12px 0;
         border-radius: 18px;
         background: linear-gradient(180deg, #f8fafc, #ffffff);
       }
@@ -344,7 +344,7 @@
       }
 
       .insight {
-        padding: 10px 12px;
+        padding: 9px 11px;
         border-left: 4px solid var(--orange);
         border-radius: 14px;
         background: var(--orange-soft);
@@ -354,17 +354,17 @@
       }
 
       .comparison {
-        grid-row: 1 / 3;
+        grid-row: 1 / 4;
         grid-column: 2;
-        padding: 18px;
+        padding: 16px;
       }
 
       .comparison .card-title {
-        margin-bottom: 10px;
+        margin-bottom: 8px;
       }
 
       .comparison-note {
-        margin: -4px 0 12px;
+        margin: -3px 0 9px;
         color: rgba(255, 255, 255, 0.72);
         font-size: 12px;
         font-weight: 700;
@@ -382,7 +382,7 @@
 
       th,
       td {
-        padding: 9px 10px;
+        padding: 7px 9px;
         border-bottom: 1px solid rgba(255, 255, 255, 0.12);
         text-align: center;
         white-space: nowrap;
@@ -441,7 +441,7 @@
         display: flex;
         flex-wrap: wrap;
         gap: 8px;
-        margin-top: 12px;
+        margin-top: 9px;
       }
 
       .legend span {
@@ -451,6 +451,11 @@
         color: rgba(255, 255, 255, 0.78);
         font-size: 11px;
         font-weight: 800;
+      }
+
+      .support {
+        grid-row: 2 / 4;
+        grid-column: 3;
       }
 
       .support-grid {
@@ -463,8 +468,8 @@
         display: flex;
         align-items: center;
         gap: 8px;
-        min-height: 38px;
-        padding: 9px 10px;
+        min-height: 34px;
+        padding: 8px 10px;
         border-radius: 15px;
         background: #f8fafc;
         color: var(--navy);
@@ -488,47 +493,52 @@
 
       .future-line {
         display: grid;
-        gap: 10px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 7px;
       }
 
       .future-step {
-        display: grid;
-        grid-template-columns: 34px 1fr;
-        gap: 10px;
+        display: flex;
         align-items: center;
+        gap: 7px;
+        min-height: 28px;
+        padding: 7px 8px;
+        border-radius: 14px;
+        background: #f8fafc;
       }
 
       .future-step span {
         display: grid;
-        width: 34px;
-        height: 34px;
+        width: 20px;
+        height: 20px;
+        flex: 0 0 auto;
         place-items: center;
-        border-radius: 12px;
+        border-radius: 8px;
         color: #ffffff;
         background: var(--navy);
-        font-size: 12px;
+        font-size: 10px;
         font-weight: 900;
       }
 
       .future-step p {
-        color: var(--muted);
-        font-size: 12px;
-        font-weight: 800;
+        color: var(--navy);
+        font-size: 11px;
+        font-weight: 900;
       }
 
       .future-step strong {
-        display: block;
-        color: var(--navy);
-        font-size: 15px;
+        display: inline;
+        color: inherit;
+        font-size: inherit;
       }
 
       .future-message {
-        margin-top: 10px;
-        padding: 12px;
+        margin-top: 7px;
+        padding: 8px 10px;
         border-radius: 18px;
         background: var(--orange-soft);
         color: var(--warn);
-        font-size: 13px;
+        font-size: 11px;
         font-weight: 900;
       }
 
@@ -537,7 +547,7 @@
         grid-template-columns: 1fr auto auto;
         gap: 22px;
         align-items: center;
-        padding: 18px 22px;
+        padding: 15px 20px;
         border-radius: 26px;
         color: #ffffff;
         background:
@@ -548,7 +558,7 @@
 
       .cta h2 {
         margin-bottom: 3px;
-        font-size: 23px;
+        font-size: 21px;
         letter-spacing: -0.04em;
       }
 
@@ -816,7 +826,7 @@
               <p class="insight">検索されているのに、選ばれる導線が弱い可能性があります。</p>
             </article>
 
-            <article class="card">
+            <article class="card support">
               <div class="card-title">
                 <h2>当社がお手伝いできること</h2>
                 <span class="number">05</span>
@@ -842,15 +852,27 @@
                 <div class="future-line">
                   <div class="future-step">
                     <span>1</span>
-                    <p><strong>検索で見つかる</strong>競合比較で選ばれやすくなる</p>
+                    <p><strong>検索で見つかる</strong></p>
                   </div>
                   <div class="future-step">
                     <span>2</span>
-                    <p><strong>動画で伝わる</strong>魅力が短時間で伝わる</p>
+                    <p><strong>比較で選ばれる</strong></p>
                   </div>
                   <div class="future-step">
                     <span>3</span>
-                    <p><strong>問い合わせが増える</strong>営業・採用にも活用できる</p>
+                    <p><strong>動画で伝わる</strong></p>
+                  </div>
+                  <div class="future-step">
+                    <span>4</span>
+                    <p><strong>問い合わせが増える</strong></p>
+                  </div>
+                  <div class="future-step">
+                    <span>5</span>
+                    <p><strong>営業にも活用</strong></p>
+                  </div>
+                  <div class="future-step">
+                    <span>6</span>
+                    <p><strong>採用にも活用</strong></p>
                   </div>
                 </div>
               </div>
