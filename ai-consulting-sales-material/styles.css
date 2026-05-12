@@ -4,7 +4,7 @@
   --surface: #ffffff;
   --surface-soft: #f8fafc;
   --ink: #111827;
-  --muted: #64748b;
+  --muted: #4b5563;
   --line: #d9e0ea;
   --navy: #0f172a;
   --navy-soft: #1e293b;
@@ -221,18 +221,33 @@ h3 {
 .btn-white {
   color: var(--navy);
   background: #ffffff;
-  box-shadow: 0 14px 36px rgba(255, 255, 255, 0.14);
+  box-shadow: 0 12px 32px rgba(255, 255, 255, 0.18);
 }
 
 .btn-white:hover {
-  box-shadow: 0 18px 48px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 18px 42px rgba(255, 255, 255, 0.28);
+}
+
+.closing-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  margin-top: 24px;
+}
+
+.closing-cta-note {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  font-weight: 700;
 }
 
 .cta-note {
   max-width: 360px;
   color: var(--muted);
   font-size: 14px;
-  font-weight: 750;
+  font-weight: 700;
 }
 
 .hero-panel {
@@ -304,7 +319,7 @@ h3 {
 .comparison > div p,
 .rules p {
   color: var(--muted);
-  font-weight: 650;
+  font-weight: 600;
 }
 
 .status-grid,
@@ -492,7 +507,7 @@ h3 {
 .diagnosis-grid p {
   position: relative;
   z-index: 1;
-  font-weight: 650;
+  font-weight: 600;
 }
 
 .comparison {
@@ -636,7 +651,7 @@ h3 {
 
 .plans ul {
   color: var(--muted);
-  font-weight: 650;
+  font-weight: 600;
 }
 
 .plans .featured {
@@ -713,21 +728,6 @@ blockquote {
   border-radius: 22px;
 }
 
-.closing-cta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  align-items: center;
-  margin-top: 22px;
-}
-
-.closing-cta-note {
-  margin: 0;
-  color: rgba(255, 255, 255, 0.78);
-  font-size: 14px;
-  font-weight: 750;
-}
-
 .objection-grid {
   grid-template-columns: repeat(3, 1fr);
 }
@@ -770,6 +770,12 @@ blockquote {
     grid-template-columns: repeat(2, 1fr);
   }
 
+}
+
+@media (max-width: 860px) {
+  .section-head {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 680px) {
@@ -815,7 +821,8 @@ blockquote {
   }
 
   .hero-panel {
-    min-height: 310px;
+    min-height: auto;
+    padding: 28px;
   }
 
   .status-grid,
@@ -832,11 +839,12 @@ blockquote {
   }
 
   .row {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    font-size: 13px;
   }
 
-  .row span + span {
-    border-left: 0;
+  .row span {
+    padding: 10px 10px;
   }
 
   .flow article:not(:last-child)::after {
