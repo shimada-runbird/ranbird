@@ -8,603 +8,530 @@
   <meta name="robots" content="noindex, nofollow" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;900&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;900&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
       --navy: #1B2A4A;
       --navy-deep: #0f172a;
       --orange: #E8612A;
-      --surface: #f8fafc;
+      --orange-soft: #fff4ef;
+      --surface: #f4f6f9;
+      --surface-2: #e8ecf2;
       --text: #1e293b;
       --muted: #64748b;
       --border: #e2e8f0;
-      --yellow: #facc15;
-      --line-green: #06c755;
-      --nav-h: 52px;
-      --slide-h: calc(100vh - 52px);
+      --white: #ffffff;
+      --line: #06c755;
+      --google: #2563eb;
+      --warn: #facc15;
+      --nav-h: 48px;
+      --slide-h: calc(100vh - 48px);
+      --radius: 14px;
+      --shadow: 0 8px 32px rgba(15, 23, 42, 0.08);
+      --shadow-lg: 0 20px 50px rgba(15, 23, 42, 0.12);
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { height: 100%; overflow: hidden; }
     body {
       font-family: "Noto Sans JP", sans-serif;
       font-feature-settings: "palt" 1;
       color: var(--text);
-      line-height: 1.55;
+      line-height: 1.5;
       letter-spacing: 0.02em;
+      -webkit-font-smoothing: antialiased;
     }
+
+    /* ── Nav ── */
     .nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
       height: var(--nav-h);
-      display: flex; align-items: center; flex-wrap: wrap; gap: 0.35rem 0.6rem;
+      display: flex; align-items: center; gap: 0.25rem;
       padding: 0 0.75rem;
-      background: rgba(27, 42, 74, 0.97);
-      color: #fff;
-      font-size: 0.7rem;
-      backdrop-filter: blur(8px);
+      background: rgba(15, 23, 42, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
-    .nav a { color: #cbd5e1; text-decoration: none; white-space: nowrap; }
-    .nav a:hover { color: #fff; }
-    .nav .brand { font-weight: 700; color: var(--orange); margin-right: auto; font-size: 0.78rem; }
+    .nav .brand {
+      font-weight: 700; font-size: 0.72rem; color: var(--orange);
+      margin-right: auto; white-space: nowrap; letter-spacing: 0.04em;
+    }
+    .nav a {
+      color: #94a3b8; text-decoration: none; font-size: 0.65rem;
+      font-weight: 600; padding: 0.2rem 0.35rem; border-radius: 4px;
+      transition: color 0.15s, background 0.15s;
+    }
+    .nav a:hover { color: #fff; background: rgba(255,255,255,0.08); }
+
+    /* ── Deck ── */
     .deck-scroll {
-      position: fixed;
-      top: var(--nav-h); left: 0; right: 0; bottom: 0;
-      overflow-y: auto;
-      scroll-snap-type: y mandatory;
+      position: fixed; top: var(--nav-h); left: 0; right: 0; bottom: 0;
+      overflow-y: auto; scroll-snap-type: y mandatory;
     }
-    .deck { max-width: 1100px; margin: 0 auto; padding: 0 0.75rem; }
+    .deck { max-width: 1200px; margin: 0 auto; padding: 0.5rem 0.75rem 1rem; }
+
+    /* ── Slide shell ── */
     .slide {
-      scroll-snap-align: start;
-      scroll-snap-stop: always;
-      page-break-after: always;
-      min-height: var(--slide-h);
-      height: var(--slide-h);
-      padding: 1.75rem 2rem;
-      border-radius: 12px;
+      scroll-snap-align: start; scroll-snap-stop: always;
+      min-height: var(--slide-h); height: var(--slide-h);
+      padding: 1.5rem 2.25rem 1.25rem;
+      margin-bottom: 0.5rem;
+      border-radius: 16px;
+      background: var(--white);
       border: 1px solid var(--border);
-      background: linear-gradient(165deg, #fff 0%, var(--surface) 100%);
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column;
+      page-break-after: always;
     }
-    .slide::before {
-      content: "";
-      position: absolute;
-      top: 0; right: 0;
-      width: 42%; height: 100%;
-      background: radial-gradient(ellipse at 100% 0%, rgba(232, 97, 42, 0.07), transparent 55%);
-      pointer-events: none;
-    }
-    .slide > * { position: relative; z-index: 1; }
-    .slide-num {
-      position: absolute;
-      top: 0.6rem; right: 0.85rem;
-      font-size: 0.68rem;
-      color: var(--muted);
-      font-weight: 600;
-    }
-    .slide.cover {
-      background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 55%, #2d4a7c 100%);
-      color: #fff;
-      justify-content: center;
-      text-align: center;
-    }
-    .slide.cover::before {
+    .slide-deco {
+      position: absolute; inset: 0; pointer-events: none; z-index: 0;
       background:
-        radial-gradient(circle at 15% 85%, rgba(232, 97, 42, 0.3), transparent 45%),
-        radial-gradient(circle at 90% 15%, rgba(250, 204, 21, 0.15), transparent 40%);
+        radial-gradient(circle at 100% 0%, rgba(232, 97, 42, 0.06), transparent 42%),
+        radial-gradient(circle at 0% 100%, rgba(27, 42, 74, 0.04), transparent 38%);
+    }
+    .slide-deco::before {
+      content: ""; position: absolute; top: -80px; right: -80px;
+      width: 280px; height: 280px; border-radius: 50%;
+      border: 1px solid rgba(27, 42, 74, 0.06);
+    }
+    .slide-deco::after {
+      content: ""; position: absolute; bottom: 12%; left: -40px;
+      width: 160px; height: 160px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(232,97,42,0.05), transparent 70%);
+    }
+    .slide-dots {
+      position: absolute; inset: 0; pointer-events: none; z-index: 0;
+      opacity: 0.35;
+      background-image: radial-gradient(circle, #cbd5e1 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+    .slide > *:not(.slide-deco):not(.slide-dots) { position: relative; z-index: 1; }
+    .slide-num {
+      position: absolute; top: 1rem; right: 1.25rem;
+      font-family: Outfit, sans-serif; font-size: 0.7rem; font-weight: 600;
+      color: var(--muted); letter-spacing: 0.05em;
+    }
+    .slide.cover, .slide.dark { border: none; }
+    .slide.cover {
+      background: linear-gradient(145deg, #0a0f1a 0%, var(--navy-deep) 40%, var(--navy) 100%);
+      color: #fff;
+    }
+    .slide.cover .slide-deco {
+      background:
+        radial-gradient(ellipse 80% 60% at 85% 20%, rgba(232, 97, 42, 0.25), transparent),
+        radial-gradient(ellipse 50% 40% at 10% 90%, rgba(250, 204, 21, 0.12), transparent);
     }
     .slide.dark {
-      background: linear-gradient(135deg, var(--navy-deep), var(--navy));
+      background: linear-gradient(160deg, var(--navy-deep) 0%, var(--navy) 100%);
       color: #fff;
     }
-    .slide-label {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      color: var(--orange);
-      text-transform: uppercase;
-      margin-bottom: 0.3rem;
+    .slide.dark .slide-deco::before { border-color: rgba(255,255,255,0.08); }
+    .slide.dark .cat { color: var(--warn); }
+    .slide.dark .title { color: #fff; }
+    .slide.dark .slide-num { color: rgba(255,255,255,0.4); }
+    .slide.dark .note { color: rgba(255,255,255,0.5); }
+
+    /* ── Typography ── */
+    .cat {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--orange); margin-bottom: 0.35rem;
     }
-    .slide.dark .slide-label { color: var(--yellow); }
-    h1 {
+    .title {
       font-family: Outfit, "Noto Sans JP", sans-serif;
-      font-size: clamp(1.75rem, 4vw, 2.55rem);
-      font-weight: 800;
-      line-height: 1.2;
-      margin-bottom: 0.65rem;
+      font-size: clamp(1.35rem, 2.8vw, 1.85rem);
+      font-weight: 800; line-height: 1.25;
+      color: var(--navy); margin-bottom: 1rem;
     }
-    h2 {
-      font-size: clamp(1.25rem, 2.8vw, 1.75rem);
-      font-weight: 800;
-      color: var(--navy);
-      margin-bottom: 0.85rem;
-      border-left: 4px solid var(--orange);
-      padding-left: 0.6rem;
-    }
-    .slide.dark h2 { color: #fff; border-left-color: var(--yellow); }
-    .cover h1 { font-size: clamp(2rem, 5vw, 3rem); }
-    .cover .eyebrow {
-      font-size: 0.95rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      color: var(--yellow);
-      margin-bottom: 0.5rem;
-    }
-    .cover .sub {
-      font-size: 1.05rem;
-      opacity: 0.92;
-      max-width: 34em;
-      margin: 0 auto 1.25rem;
-    }
-    .cover .tags {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.5rem;
-      margin-bottom: 1.5rem;
-    }
-    .cover .tag {
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.25);
-      padding: 0.35rem 0.85rem;
-      border-radius: 999px;
-      font-size: 0.82rem;
-      font-weight: 600;
-    }
-    .cover .meta { font-size: 0.75rem; opacity: 0.6; margin-top: 2rem; }
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; }
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
-    .grid-4 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
-    .flex-1 { flex: 1; }
+    .lead { font-size: 0.88rem; color: var(--muted); max-width: 36em; }
+    .slide.dark .lead { color: rgba(255,255,255,0.75); }
+    .note { font-size: 0.65rem; color: var(--muted); margin-top: auto; padding-top: 0.5rem; }
+    .flex-1 { flex: 1; min-height: 0; }
+    .slide-main { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+
+    /* ── Layout ── */
+    .row { display: flex; gap: 1rem; align-items: stretch; }
+    .row.center { align-items: center; }
+    .col-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; flex: 1; min-height: 0; }
+    .col-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.85rem; flex: 1; min-height: 0; }
+    .col-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.65rem; }
+    .col-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; }
+    .col-6 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.65rem; }
+    .split-40 { display: grid; grid-template-columns: 42% 1fr; gap: 1.25rem; flex: 1; min-height: 0; }
+    .split-50 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; flex: 1; min-height: 0; }
+
+    /* ── Cards ── */
     .card {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 0.85rem 1rem;
-      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1rem 1.1rem;
+      box-shadow: var(--shadow);
     }
     .slide.dark .card {
-      background: rgba(255,255,255,0.08);
-      border-color: rgba(255,255,255,0.15);
-    }
-    .card strong { color: var(--navy); display: block; margin-bottom: 0.2rem; font-size: 0.92rem; }
-    .slide.dark .card strong { color: var(--yellow); }
-    .card p, .card li { font-size: 0.82rem; color: var(--muted); }
-    .slide.dark .card p, .slide.dark .card li { color: rgba(255,255,255,0.88); }
-    .hl {
-      background: linear-gradient(transparent 55%, rgba(250, 204, 21, 0.5) 55%);
-      font-weight: 700;
-    }
-    .num-big {
-      font-family: Outfit, sans-serif;
-      font-size: 2rem;
-      font-weight: 800;
-      color: var(--orange);
-      line-height: 1;
-    }
-    .slide.dark .num-big { color: var(--yellow); }
-    ul.compact { padding-left: 1.05rem; font-size: 0.82rem; }
-    ul.compact li { margin-bottom: 0.28rem; }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.78rem;
-    }
-    th, td {
-      border: 1px solid var(--border);
-      padding: 0.45rem 0.55rem;
-      text-align: left;
-    }
-    th { background: var(--navy); color: #fff; font-weight: 600; }
-    tr:nth-child(even) td { background: var(--surface); }
-    .company-table {
-      width: 100%;
-      font-size: 0.8rem;
-      border-collapse: collapse;
-    }
-    .company-table th {
-      width: 5.5em;
-      background: var(--navy);
-      color: #fff;
-      font-weight: 700;
-      text-align: center;
-      vertical-align: top;
-      padding: 0.5rem 0.4rem;
-      border: 1px solid var(--border);
-      letter-spacing: 0.15em;
-    }
-    .company-table td {
-      padding: 0.45rem 0.65rem;
-      border: 1px solid var(--border);
-      background: #fff;
-      color: var(--text);
-      line-height: 1.5;
-    }
-    .tier-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      margin-top: 0.5rem;
-    }
-    .tier {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.55rem 0.85rem;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      background: #fff;
-    }
-    .tier.ads { border-left: 4px solid #dc2626; }
-    .tier.meo { border-left: 4px solid #2563eb; }
-    .tier.hp { border-left: 4px solid var(--orange); background: var(--surface); }
-    .tier .label { font-weight: 800; font-size: 0.88rem; min-width: 5.5em; color: var(--navy); }
-    .tier .cost { font-size: 0.75rem; color: var(--muted); flex: 1; }
-    .tier .role { font-size: 0.75rem; font-weight: 600; color: var(--orange); }
-    .point-card { display: flex; gap: 0.65rem; align-items: flex-start; }
-    .point-num {
-      flex-shrink: 0;
-      width: 1.85rem; height: 1.85rem;
-      background: var(--orange);
-      color: #fff;
-      border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 800; font-size: 0.85rem;
-    }
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0.45rem;
-    }
-    .feature-pill {
-      background: var(--navy);
-      color: #fff;
-      font-size: 0.72rem;
-      font-weight: 600;
-      text-align: center;
-      padding: 0.5rem 0.35rem;
-      border-radius: 8px;
-    }
-    .triangle-wrap {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      flex: 1;
-    }
-    .triangle {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.5rem;
-      max-width: 520px;
-    }
-    .tri-center {
-      grid-column: 1 / -1;
-      text-align: center;
-      background: var(--orange);
-      color: #fff;
-      font-weight: 800;
-      padding: 0.65rem;
-      border-radius: 10px;
-      font-size: 0.9rem;
-    }
-    .tri-item {
-      background: #fff;
-      border: 2px solid var(--navy);
-      border-radius: 10px;
-      padding: 0.65rem;
-      text-align: center;
-      font-size: 0.8rem;
-    }
-    .tri-item strong { display: block; color: var(--navy); margin-bottom: 0.2rem; }
-    .line-flow {
-      display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap;
-      font-size: 0.78rem; margin-top: 0.35rem;
-    }
-    .line-flow .chip {
-      background: var(--line-green);
-      color: #fff;
-      padding: 0.2rem 0.5rem;
-      border-radius: 6px;
-      font-weight: 700;
-    }
-    .plan-matsu th { background: #64748b; }
-    .plan-take th { background: var(--navy); }
-    .plan-ume th { background: var(--orange); }
-    .plan-take { border: 2px solid var(--orange); border-radius: 10px; overflow: hidden; }
-    .plan-take .rec {
-      background: var(--orange);
-      color: #fff;
-      text-align: center;
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 0.2rem;
-    }
-    .campaign-badge {
-      display: inline-block;
-      background: var(--yellow);
-      color: var(--navy-deep);
-      font-weight: 800;
-      font-size: 0.72rem;
-      padding: 0.15rem 0.5rem;
-      border-radius: 4px;
-      margin-left: 0.35rem;
-    }
-    .cta-box {
-      margin-top: auto;
-      background: var(--navy);
-      color: #fff;
-      border-radius: 10px;
-      padding: 0.85rem 1.1rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-    .cta-box .btn {
-      background: var(--orange);
-      color: #fff;
-      font-weight: 700;
-      padding: 0.55rem 1.1rem;
-      border-radius: 8px;
-      white-space: nowrap;
-      font-size: 0.85rem;
-    }
-    .footnote {
-      font-size: 0.68rem;
-      color: var(--muted);
-      margin-top: 0.45rem;
-    }
-    .slide.dark .footnote { color: rgba(255,255,255,0.55); }
-    .bubble-list { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.5rem 0; }
-    .bubble {
-      background: #fff;
-      border: 1px dashed var(--orange);
-      color: var(--text);
-      font-size: 0.78rem;
-      padding: 0.35rem 0.65rem;
-      border-radius: 999px;
-    }
-    .all-support {
-      text-align: center;
-      font-size: 1.35rem;
-      font-weight: 900;
-      color: var(--navy);
-      margin: 0.75rem 0;
-      line-height: 1.4;
-    }
-    .all-support em { color: var(--orange); font-style: normal; }
-    .slide-body {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(200px, 42%);
-      gap: 1rem;
-      flex: 1;
-      min-height: 0;
-      align-items: stretch;
-    }
-    .slide-body.single { grid-template-columns: 1fr; }
-    .slide-body.reverse { grid-template-columns: minmax(200px, 42%) minmax(0, 1fr); }
-    .visual-box {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 0.75rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 0;
-      overflow: hidden;
-      box-shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
-    }
-    .slide.dark .visual-box {
       background: rgba(255,255,255,0.06);
       border-color: rgba(255,255,255,0.12);
+      box-shadow: none;
     }
-    .visual-box svg { width: 100%; height: auto; max-height: 100%; display: block; }
-    .cover-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      align-items: center;
-      flex: 1;
-      text-align: left;
-      width: 100%;
-      max-width: 960px;
-      margin: 0 auto;
+    .card h3 {
+      font-size: 0.85rem; font-weight: 800; color: var(--navy);
+      margin-bottom: 0.35rem;
     }
-    .cover .cover-copy { text-align: left; }
-    .cover-visual-wrap {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    .slide.dark .card h3 { color: #fff; }
+    .card p, .card li { font-size: 0.78rem; color: var(--muted); }
+    .slide.dark .card p, .slide.dark .card li { color: rgba(255,255,255,0.8); }
+    .card.orange { border-color: rgba(232,97,42,0.35); background: var(--orange-soft); }
+    .card.featured {
+      border: 2px solid var(--orange);
+      box-shadow: var(--shadow-lg);
     }
-    .ribbon {
-      display: inline-block;
-      background: var(--orange);
-      color: #fff;
-      font-weight: 800;
-      font-size: 0.75rem;
-      padding: 0.25rem 0.75rem;
-      border-radius: 4px;
-      margin-bottom: 0.5rem;
-      letter-spacing: 0.05em;
+    .card-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: var(--navy); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.25rem; margin-bottom: 0.6rem;
     }
-    .stat-card {
-      text-align: center;
-      padding: 0.85rem 0.5rem;
-      border-radius: 10px;
+    .slide.dark .card-icon { background: var(--orange); }
+
+    /* ── Badges ── */
+    .badge {
+      display: inline-block; font-size: 0.62rem; font-weight: 800;
+      padding: 0.2rem 0.55rem; border-radius: 999px; letter-spacing: 0.03em;
+    }
+    .badge.open { background: #dcfce7; color: #166534; }
+    .badge.closed { background: #fee2e2; color: #991b1b; }
+    .badge.hot { background: var(--orange); color: #fff; }
+    .badge.muted { background: var(--surface-2); color: var(--muted); }
+    .slide.dark .badge.open { background: rgba(34,197,94,0.25); color: #86efac; }
+    .slide.dark .badge.closed { background: rgba(239,68,68,0.2); color: #fca5a5; }
+
+    /* ── Stats ── */
+    .stat-hero {
+      text-align: center; padding: 1rem 0.75rem;
+      border-radius: var(--radius); background: var(--white);
+      border: 1px solid var(--border); box-shadow: var(--shadow);
+    }
+    .slide.dark .stat-hero {
+      background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.1);
+    }
+    .stat-hero .num {
+      font-family: Outfit, sans-serif;
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 800; line-height: 1; color: var(--orange);
+    }
+    .slide.dark .stat-hero .num { color: var(--warn); }
+    .stat-hero .lbl {
+      font-size: 0.72rem; font-weight: 700; color: var(--navy);
+      margin-top: 0.4rem;
+    }
+    .slide.dark .stat-hero .lbl { color: #fff; }
+    .stat-hero .sub { font-size: 0.65rem; color: var(--muted); margin-top: 0.2rem; }
+    .slide.dark .stat-hero .sub { color: rgba(255,255,255,0.55); }
+
+    /* ── Tables ── */
+    .tbl {
+      width: 100%; border-collapse: separate; border-spacing: 0;
+      font-size: 0.75rem; border-radius: var(--radius); overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .tbl th {
+      background: var(--navy); color: #fff; font-weight: 700;
+      padding: 0.5rem 0.65rem; text-align: left;
+    }
+    .tbl td {
+      padding: 0.45rem 0.65rem; border-bottom: 1px solid var(--border);
       background: #fff;
+    }
+    .tbl tr:last-child td { border-bottom: none; }
+    .tbl tr:nth-child(even) td { background: var(--surface); }
+    .tbl .hl td { background: var(--orange-soft); font-weight: 700; }
+    .tbl.center th, .tbl.center td { text-align: center; }
+
+    /* ── Steps ── */
+    .steps {
+      display: flex; align-items: center; gap: 0.35rem; flex-wrap: nowrap;
+    }
+    .step {
+      flex: 1; text-align: center; padding: 0.65rem 0.4rem;
+      border-radius: 10px; background: var(--surface);
       border: 1px solid var(--border);
+      font-size: 0.72rem; font-weight: 700; color: var(--navy);
     }
-    .slide.dark .stat-card { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.12); }
-    .stat-card .label { font-size: 0.72rem; color: var(--muted); margin-top: 0.35rem; }
-    .slide.dark .stat-card .label { color: rgba(255,255,255,0.7); }
-    .bar-chart { display: flex; align-items: flex-end; justify-content: center; gap: 1.5rem; height: 120px; padding: 0 1rem; }
-    .bar-col { display: flex; flex-direction: column; align-items: center; gap: 0.35rem; }
-    .bar {
-      width: 48px;
-      border-radius: 6px 6px 0 0;
-      background: linear-gradient(180deg, var(--orange), #c44e1f);
-      position: relative;
+    .step.active { background: var(--orange); color: #fff; border-color: var(--orange); }
+    .step-arrow { color: var(--orange); font-weight: 900; font-size: 0.9rem; flex-shrink: 0; }
+    .slide.dark .step { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.12); color: #fff; }
+    .slide.dark .step.active { background: var(--orange); }
+
+    /* ── Price cards ── */
+    .price-grid { display: grid; grid-template-columns: 1fr 1.12fr 1fr; gap: 0.85rem; align-items: end; flex: 1; }
+    .price-card {
+      border-radius: var(--radius); border: 1px solid var(--border);
+      background: #fff; overflow: hidden; text-align: center;
+      box-shadow: var(--shadow);
     }
-    .bar.old { height: 100px; background: linear-gradient(180deg, #94a3b8, #64748b); }
-    .bar.new { height: 19px; }
-    .bar-val { font-family: Outfit, sans-serif; font-weight: 800; font-size: 0.85rem; }
-    .icon-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0.5rem;
-    }
-    .icon-cell {
-      background: var(--navy);
-      color: #fff;
-      border-radius: 10px;
-      padding: 0.55rem 0.35rem;
-      text-align: center;
-      font-size: 0.68rem;
-      font-weight: 600;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.35rem;
-    }
-    .icon-cell svg { width: 28px; height: 28px; opacity: 0.95; }
-    .flow-steps {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.25rem;
-      flex-wrap: wrap;
-    }
-    .flow-step {
-      flex: 1;
-      min-width: 70px;
-      text-align: center;
-      padding: 0.5rem 0.35rem;
-      border-radius: 10px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      font-size: 0.7rem;
-      font-weight: 700;
-    }
-    .flow-step.active { background: var(--orange); color: #fff; border-color: var(--orange); }
-    .flow-arrow { color: var(--muted); font-weight: 900; font-size: 1rem; }
-    .map-pins { position: relative; width: 100%; max-width: 280px; margin: 0 auto; }
-    .pin-label {
-      position: absolute;
-      font-size: 0.62rem;
-      font-weight: 700;
-      background: var(--navy);
-      color: #fff;
-      padding: 0.15rem 0.4rem;
-      border-radius: 4px;
-      white-space: nowrap;
-    }
-    .compare-table th { text-align: center; }
-    .compare-table td { text-align: center; }
-    .compare-table .highlight-col { background: rgba(232, 97, 42, 0.12); font-weight: 700; }
-    .price-strike { text-decoration: line-through; color: var(--muted); font-size: 0.75rem; }
-    .price-new { color: var(--orange); font-weight: 800; font-size: 1rem; }
-    .timeline-h {
-      display: flex;
-      gap: 0;
-      margin-top: 0.5rem;
-    }
-    .timeline-h .step {
-      flex: 1;
-      text-align: center;
-      padding: 0.5rem 0.25rem;
-      font-size: 0.68rem;
-      font-weight: 700;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      position: relative;
-    }
-    .timeline-h .step.done { background: var(--navy); color: #fff; }
-    .timeline-h .step::after {
-      content: "→";
-      position: absolute;
-      right: -0.5rem;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--orange);
+    .price-card.featured {
+      border: 2px solid var(--orange);
+      transform: scale(1.03);
+      box-shadow: var(--shadow-lg);
       z-index: 2;
     }
-    .timeline-h .step:last-child::after { display: none; }
-    .check-list { list-style: none; padding: 0; margin: 0; }
-    .check-list li {
-      padding: 0.35rem 0 0.35rem 1.6rem;
-      position: relative;
-      font-size: 0.8rem;
-      border-bottom: 1px dashed var(--border);
+    .price-card .head {
+      padding: 0.55rem; font-weight: 800; font-size: 0.8rem;
+      background: var(--surface); color: var(--navy);
     }
-    .check-list li::before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      color: #fff;
-      background: var(--orange);
-      width: 1.1rem;
-      height: 1.1rem;
-      border-radius: 50%;
-      font-size: 0.65rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
+    .price-card.featured .head { background: var(--orange); color: #fff; }
+    .price-card .body { padding: 0.85rem 0.65rem; }
+    .price-card .plan { font-size: 1.1rem; font-weight: 900; color: var(--navy); }
+    .price-card .tagline { font-size: 0.65rem; color: var(--muted); margin-bottom: 0.5rem; }
+    .price-card .amount {
+      font-family: Outfit, sans-serif;
+      font-size: 1.65rem; font-weight: 800; color: var(--orange); line-height: 1.1;
     }
-    .funnel {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.35rem;
-      width: 100%;
+    .price-card .amount small { font-size: 0.7rem; font-weight: 600; }
+    .price-card .monthly {
+      font-size: 0.78rem; color: var(--muted); margin: 0.35rem 0 0.6rem;
     }
-    .funnel-level {
-      display: flex;
-      align-items: center;
-      gap: 0.65rem;
-      padding: 0.5rem 0.85rem;
-      border-radius: 8px;
-      color: #fff;
-      font-weight: 700;
-      font-size: 0.78rem;
+    .price-card ul {
+      list-style: none; text-align: left; font-size: 0.68rem;
+      border-top: 1px solid var(--border); padding-top: 0.5rem;
     }
-    .funnel-level.l1 { width: 100%; background: #dc2626; }
-    .funnel-level.l2 { width: 82%; background: #2563eb; }
-    .funnel-level.l3 { width: 64%; background: var(--orange); box-shadow: 0 4px 16px rgba(232,97,42,0.35); }
-    .dashboard-mock {
-      width: 100%;
-      background: #0f172a;
-      border-radius: 10px;
-      padding: 0.65rem;
-      color: #e2e8f0;
-      font-size: 0.65rem;
+    .price-card li {
+      padding: 0.28rem 0; border-bottom: 1px dashed var(--border);
+      display: flex; justify-content: space-between;
     }
-    .dash-bars {
-      display: flex;
-      align-items: flex-end;
-      gap: 4px;
-      height: 70px;
-      margin-top: 0.5rem;
+    .price-card li:last-child { border-bottom: none; }
+    .rec-ribbon {
+      background: var(--warn); color: var(--navy-deep);
+      font-size: 0.62rem; font-weight: 800; padding: 0.2rem;
     }
+
+    /* ── Visual panel ── */
+    .viz {
+      background: linear-gradient(180deg, #fff 0%, var(--surface) 100%);
+      border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 0.85rem; display: flex; align-items: center; justify-content: center;
+      box-shadow: var(--shadow); min-height: 0;
+    }
+    .slide.dark .viz {
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.1);
+    }
+    .viz svg { width: 100%; height: auto; max-height: 100%; display: block; }
+
+    /* ── Cover ── */
+    .cover-grid {
+      display: grid; grid-template-columns: 1.05fr 0.95fr;
+      gap: 2rem; align-items: center; flex: 1;
+    }
+    .cover h1 {
+      font-family: Outfit, "Noto Sans JP", sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 800; line-height: 1.15; margin-bottom: 0.75rem;
+    }
+    .cover .sub { font-size: 1rem; opacity: 0.88; line-height: 1.65; margin-bottom: 1.25rem; }
+    .tag-cards { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tag-card {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      backdrop-filter: blur(8px);
+      border-radius: 10px; padding: 0.5rem 0.85rem;
+      font-size: 0.78rem; font-weight: 700;
+    }
+    .tag-card em { display: block; font-style: normal; font-size: 0.62rem; opacity: 0.7; font-weight: 500; margin-top: 0.1rem; }
+    .cover-meta { font-size: 0.68rem; opacity: 0.45; margin-top: 1.5rem; }
+
+    /* ── Hub diagram (s07) ── */
+    .hub-wrap {
+      display: flex; align-items: center; justify-content: center;
+      flex: 1; position: relative;
+    }
+    .hub-center {
+      width: 120px; height: 120px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--orange), #f59e0b);
+      color: #fff; display: flex; align-items: center; justify-content: center;
+      text-align: center; font-weight: 800; font-size: 0.72rem;
+      line-height: 1.35; box-shadow: 0 12px 40px rgba(232,97,42,0.4);
+      z-index: 2;
+    }
+    .hub-card {
+      position: absolute; width: 140px;
+      background: #fff; border-radius: var(--radius);
+      border: 1px solid var(--border); padding: 0.75rem;
+      text-align: center; box-shadow: var(--shadow);
+    }
+    .hub-card strong { display: block; font-size: 0.78rem; color: var(--navy); }
+    .hub-card span { font-size: 0.65rem; color: var(--muted); }
+    .hub-card.t1 { top: 5%; left: 50%; transform: translateX(-50%); }
+    .hub-card.t2 { bottom: 8%; left: 8%; }
+    .hub-card.t3 { bottom: 8%; right: 8%; }
+
+    /* ── Before/After ── */
+    .pain-card {
+      background: #fff; border-left: 4px solid #94a3b8;
+      border-radius: 0 10px 10px 0; padding: 0.5rem 0.75rem;
+      font-size: 0.75rem; font-weight: 600; margin-bottom: 0.4rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .solve-card {
+      background: linear-gradient(90deg, var(--orange-soft), #fff);
+      border: 1px solid rgba(232,97,42,0.3);
+      border-radius: 10px; padding: 0.65rem 0.85rem;
+      font-size: 0.78rem; font-weight: 700; color: var(--navy);
+      margin-bottom: 0.4rem;
+    }
+    .ba-label {
+      font-size: 0.62rem; font-weight: 800; letter-spacing: 0.15em;
+      margin-bottom: 0.5rem; color: var(--muted);
+    }
+    .slide.dark .ba-label { color: rgba(255,255,255,0.5); }
+
+    /* ── Bar compare ── */
+    .bar-compare { margin: 0.75rem 0; }
+    .bar-row { display: flex; align-items: center; gap: 0.65rem; margin-bottom: 0.5rem; }
+    .bar-row .lbl { width: 5.5em; font-size: 0.7rem; font-weight: 700; flex-shrink: 0; }
+    .bar-track { flex: 1; height: 28px; background: var(--surface-2); border-radius: 6px; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 6px; display: flex; align-items: center; padding-left: 0.5rem; font-size: 0.65rem; font-weight: 800; color: #fff; }
+    .bar-fill.slow { width: 95%; background: linear-gradient(90deg, #94a3b8, #64748b); }
+    .bar-fill.fast { width: 22%; background: linear-gradient(90deg, var(--orange), #f59e0b); min-width: 4.5em; }
+
+    /* ── Icon grid ── */
+    .icon-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0.55rem; flex: 1; align-content: start;
+    }
+    .icon-tile {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 12px; padding: 0.65rem 0.4rem;
+      text-align: center; font-size: 0.65rem; font-weight: 700;
+      color: var(--navy); box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+      display: flex; flex-direction: column; align-items: center; gap: 0.35rem;
+    }
+    .icon-tile .ico { font-size: 1.35rem; line-height: 1; }
+    .all-in-banner {
+      text-align: center; padding: 0.5rem;
+      background: var(--navy); color: #fff; border-radius: 10px;
+      font-size: 0.78rem; font-weight: 800; margin-bottom: 0.65rem;
+    }
+    .all-in-banner em { color: var(--warn); font-style: normal; }
+
+    /* ── Value cards ── */
+    .value-card {
+      text-align: center; padding: 1rem 0.75rem;
+      border-radius: var(--radius); border: 1px solid var(--border);
+      background: #fff; box-shadow: var(--shadow);
+    }
+    .value-card .ico { font-size: 2rem; margin-bottom: 0.35rem; }
+    .value-card h3 { font-size: 1rem; font-weight: 900; color: var(--navy); }
+    .value-card p { font-size: 0.7rem; color: var(--muted); margin-top: 0.25rem; }
+
+    /* ── Dashboard mock ── */
+    .dash {
+      background: #0f172a; border-radius: 12px; padding: 0.75rem;
+      color: #e2e8f0; font-size: 0.65rem; width: 100%;
+    }
+    .dash-header { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-weight: 700; }
+    .dash-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.4rem; margin-bottom: 0.5rem; }
+    .dash-kpi {
+      background: rgba(255,255,255,0.06); border-radius: 8px; padding: 0.4rem;
+    }
+    .dash-kpi .v { font-family: Outfit; font-size: 1.1rem; font-weight: 800; color: var(--orange); }
+    .dash-kpi .d { font-size: 0.58rem; color: #94a3b8; }
+    .dash-kpi .up { color: #4ade80; font-size: 0.58rem; font-weight: 700; }
+    .dash-chart { display: flex; align-items: flex-end; gap: 4px; height: 72px; }
     .dash-bar { flex: 1; background: var(--orange); border-radius: 3px 3px 0 0; opacity: 0.85; }
+
+    /* ── Campaign ── */
+    .camp-off {
+      font-family: Outfit; font-size: 3rem; font-weight: 800;
+      color: var(--warn); line-height: 1; text-align: center;
+    }
+    .strike { text-decoration: line-through; color: #94a3b8; font-size: 0.85rem; }
+    .price-new { color: var(--orange); font-weight: 800; font-size: 1.15rem; }
+
+    /* ── CTA ── */
+    .cta-bar {
+      margin-top: auto;
+      background: linear-gradient(90deg, var(--navy-deep), var(--navy));
+      border-radius: var(--radius); padding: 1rem 1.25rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      color: #fff;
+    }
+    .cta-bar .btn {
+      background: var(--orange); color: #fff;
+      font-weight: 800; font-size: 0.95rem;
+      padding: 0.75rem 1.5rem; border-radius: 10px;
+      white-space: nowrap; box-shadow: 0 8px 24px rgba(232,97,42,0.45);
+    }
+    .highlight-box {
+      background: var(--orange-soft); border-left: 4px solid var(--orange);
+      padding: 0.55rem 0.85rem; border-radius: 0 8px 8px 0;
+      font-size: 0.82rem; font-weight: 700; color: var(--navy);
+    }
+    .slide.dark .highlight-box {
+      background: rgba(232,97,42,0.15); color: #fff;
+    }
+
+    /* ── Location cards ── */
+    .loc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; margin-top: 0.65rem; }
+    .loc-card {
+      text-align: center; padding: 0.55rem 0.35rem;
+      background: var(--surface); border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+    .loc-card .pin { font-size: 1.2rem; }
+    .loc-card strong { display: block; font-size: 0.72rem; color: var(--navy); margin-top: 0.2rem; }
+    .loc-card span { font-size: 0.58rem; color: var(--muted); }
+
+    /* ── Industry cards ── */
+    .ind-card {
+      border-radius: 12px; padding: 0.75rem;
+      text-align: center; position: relative;
+      border: 1px dashed rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.06);
+    }
+    .ind-card.sold { opacity: 0.55; border-style: solid; border-color: #64748b; }
+    .ind-card.hot { border: 2px solid var(--warn); background: rgba(232,97,42,0.15); }
+    .ind-card .name { font-weight: 800; font-size: 0.85rem; margin: 0.35rem 0; }
+    .ind-card .rule { font-size: 0.62rem; opacity: 0.7; }
+
+    /* ── Funnel ── */
+    .pyramid { display: flex; flex-direction: column; align-items: center; gap: 0.35rem; width: 100%; }
+    .pyr { padding: 0.55rem; border-radius: 8px; color: #fff; font-weight: 700; font-size: 0.72rem; text-align: center; }
+    .pyr.l1 { width: 100%; background: #dc2626; }
+    .pyr.l2 { width: 82%; background: var(--google); }
+    .pyr.l3 { width: 64%; background: var(--orange); box-shadow: 0 6px 20px rgba(232,97,42,0.35); }
+
+    /* ── Split focus (s08) ── */
+    .focus-panel {
+      border-radius: var(--radius); padding: 1.5rem 1.25rem;
+      text-align: center; flex: 1;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+    }
+    .focus-panel.p1 { background: linear-gradient(160deg, #1e3a5f, var(--navy)); color: #fff; }
+    .focus-panel.p2 { background: linear-gradient(160deg, #7c2d12, var(--orange)); color: #fff; }
+    .focus-panel .num {
+      font-family: Outfit; font-size: 4rem; font-weight: 800; line-height: 1; opacity: 0.25;
+      position: absolute; top: 0.5rem; left: 1rem;
+    }
+    .focus-panel { position: relative; overflow: hidden; }
+    .focus-panel h3 { font-size: 1.15rem; font-weight: 900; margin: 0.5rem 0; z-index: 1; }
+    .focus-panel .icons { display: flex; gap: 0.5rem; margin-top: 0.75rem; z-index: 1; }
+    .focus-panel .icons span {
+      background: rgba(255,255,255,0.15); padding: 0.35rem 0.55rem;
+      border-radius: 8px; font-size: 0.68rem; font-weight: 700;
+    }
+
+    /* ── Print ── */
     @media print {
       html, body { overflow: visible; height: auto; }
       .nav { display: none; }
       .deck-scroll { position: static; overflow: visible; }
       .slide {
-        height: auto;
-        min-height: 100vh;
-        page-break-after: always;
-        margin-bottom: 0;
+        height: auto; min-height: 100vh;
+        page-break-after: always; margin: 0;
+        border-radius: 0; border: none;
+        -webkit-print-color-adjust: exact; print-color-adjust: exact;
       }
     }
-    @media (max-width: 768px) {
-      .grid-2, .grid-3, .grid-4, .feature-grid, .icon-grid { grid-template-columns: 1fr; }
-      .slide-body, .slide-body.reverse, .cover-layout { grid-template-columns: 1fr; }
-      .slide { padding: 1.1rem; height: auto; min-height: var(--slide-h); }
+    @media (max-width: 900px) {
+      .col-2, .col-3, .col-4, .split-40, .split-50, .cover-grid, .price-grid, .icon-grid { grid-template-columns: 1fr; }
+      .slide { height: auto; min-height: var(--slide-h); padding: 1.25rem; }
     }
   </style>
 </head>
@@ -623,147 +550,158 @@
 
       <!-- 01 表紙 -->
       <section class="slide cover" id="s01">
+        <div class="slide-deco"></div>
         <span class="slide-num">01 / 20</span>
-        <div class="cover-layout">
-          <div class="cover-copy">
-            <span class="ribbon">AI Web Marketing</span>
-            <h1>AIに選ばれる。<br>あなたに届く。</h1>
-            <p class="sub">広告・MEOの次に必要なのは、<strong>問い合わせが来るホームページ</strong>。<br>作って終わりではなく、<strong>育てるWeb</strong>を月額で。</p>
-            <div class="tags">
-              <span class="tag">早期納品 最短2〜3週間</span>
-              <span class="tag">公式LINEで楽々更新</span>
-              <span class="tag">SEO ＋ AIO対応</span>
-              <span class="tag">ページ追加OK</span>
-            </div>
-            <p class="meta">© 2024.09 RUNBIRD. All Rights Reserved.</p>
-          </div>
-          <div class="cover-visual-wrap">
-            <svg viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg" style="max-width:380px;width:100%" aria-hidden="true">
-              <defs><linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#E8612A"/><stop offset="100%" stop-color="#facc15"/></linearGradient></defs>
-              <rect x="40" y="30" width="220" height="160" rx="12" fill="#fff" opacity="0.95"/>
-              <rect x="52" y="48" width="196" height="24" rx="4" fill="#1B2A4A"/>
-              <rect x="52" y="82" width="120" height="8" rx="2" fill="#e2e8f0"/>
-              <rect x="52" y="118" width="80" height="28" rx="6" fill="url(#g1)"/>
-              <text x="92" y="137" fill="#fff" font-size="11" font-weight="bold" text-anchor="middle">問い合わせ</text>
-              <circle cx="320" cy="80" r="36" fill="url(#g1)"/>
-              <text x="320" y="76" fill="#fff" font-size="22" font-weight="bold" text-anchor="middle">AI</text>
-              <rect x="280" y="200" width="90" height="150" rx="14" fill="#1B2A4A"/>
-              <rect x="288" y="212" width="74" height="110" rx="6" fill="#fff"/>
-              <rect x="296" y="268" width="58" height="10" rx="3" fill="#06c755"/>
-              <path d="M180 120 Q250 100 300 130" stroke="#facc15" stroke-width="3" fill="none" stroke-dasharray="6 4"/>
-            </svg>
-          </div>
-        </div>
-      </section>
-
-      <!-- 02 会社概要（MEOブック同一） -->
-      <section class="slide" id="s02">
-        <span class="slide-num">02 / 20</span>
-        <p class="slide-label">Company</p>
-        <h2>会社概要</h2>
-        <div class="slide-body">
+        <div class="cover-grid flex-1">
           <div>
-          <table class="company-table">
-          <tr><th>社　　名</th><td>株式会社ランバード</td></tr>
-          <tr><th>U　R　L</th><td>https://runbird.net</td></tr>
-          <tr><th>設　　立</th><td>2019年5月31日</td></tr>
-          <tr><th>役　　員</th><td>代表取締役:嶋田僚平</td></tr>
-          <tr><th>所在地</th><td>
-            <strong>東京本社:</strong> 東京都中央区晴海１丁目8-10晴海アイランドトリトンスクエアオフィスタワーX棟40階<br>
-            <strong>大阪支店:</strong> 大阪府大阪市中央区農人橋2丁目1-31第6松屋ビル3階<br>
-            <strong>福岡支店:</strong> 福岡県福岡市博多区博多駅東3丁目1-29博多第2ムカヰビル4階<br>
-            <strong>沖縄支店:</strong> 沖縄県宜野湾市大山2-31-29三商ビル3階
-          </td></tr>
-          <tr><th>連絡先</th><td>TEL:03-5843-6996 / FAX:03-5843-6978<br>MAIL：info@runbird.net</td></tr>
-          <tr><th>事業内容</th><td>
-            動画制作/リスティング広告運用/SNS広告運用/バナー広告運用/MEO対策/SEO対策/ウェブサイト制作、LP制作<br>
-            風評被害対策/有料職業紹介/業務用エアコン販売/業務用冷蔵庫販売/換気機器販売/福祉事業（障がい者グループホーム）
-          </td></tr>
-        </table>
-            <p class="footnote">※ 高単価・対面の bizクラウド（自動ブログHP）とは別商材です。</p>
+            <p class="cat" style="color:var(--warn)">AI Web Marketing</p>
+            <h1>AIに選ばれる。<br>あなたに届く。</h1>
+            <p class="sub">問い合わせが来るホームページを、<strong>月額で育てる</strong>。<br>作って終わりではなく、運用まで込みのWeb。</p>
+            <div class="tag-cards">
+              <span class="tag-card">早期納品<em>最短2〜3週間</em></span>
+              <span class="tag-card">LINE更新<em>送るだけで反映</em></span>
+              <span class="tag-card">SEO＋AIO<em>GoogleとAI検索</em></span>
+              <span class="tag-card">ページ追加<em>プラン内OK</em></span>
+            </div>
+            <p class="cover-meta">© 2024.09 RUNBIRD. All Rights Reserved.</p>
           </div>
-          <div class="visual-box">
-            <svg viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <ellipse cx="140" cy="100" rx="120" ry="75" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2"/>
-              <text x="140" y="28" text-anchor="middle" font-size="11" font-weight="bold" fill="#1B2A4A">全国4拠点</text>
-              <circle cx="175" cy="72" r="8" fill="#E8612A"/><text x="175" y="58" text-anchor="middle" font-size="8" font-weight="bold" fill="#1B2A4A">東京</text>
-              <circle cx="115" cy="95" r="7" fill="#1B2A4A"/><text x="115" y="112" text-anchor="middle" font-size="8" fill="#1B2A4A">大阪</text>
-              <circle cx="95" cy="118" r="7" fill="#1B2A4A"/><text x="95" y="135" text-anchor="middle" font-size="8" fill="#1B2A4A">福岡</text>
-              <circle cx="155" cy="145" r="6" fill="#1B2A4A"/><text x="155" y="162" text-anchor="middle" font-size="8" fill="#1B2A4A">沖縄</text>
-              <rect x="20" y="168" width="240" height="24" rx="6" fill="#1B2A4A"/>
-              <text x="140" y="184" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold">HP・MEO・動画・AI 一気通貫</text>
+          <div class="viz" style="background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.12)">
+            <svg viewBox="0 0 420 340" aria-hidden="true">
+              <defs>
+                <linearGradient id="gO" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#E8612A"/><stop offset="100%" stop-color="#facc15"/></linearGradient>
+              </defs>
+              <circle cx="210" cy="170" r="100" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+              <rect x="155" y="125" width="110" height="90" rx="10" fill="#fff" opacity="0.95"/>
+              <rect x="165" y="138" width="90" height="12" rx="3" fill="#1B2A4A"/>
+              <rect x="165" y="158" width="60" height="6" rx="2" fill="#e2e8f0"/>
+              <rect x="165" y="178" width="50" height="22" rx="6" fill="url(#gO)"/>
+              <text x="190" y="193" fill="#fff" font-size="9" font-weight="bold" text-anchor="middle">問合せ</text>
+              <circle cx="80" cy="90" r="32" fill="url(#gO)"/>
+              <text x="80" y="88" fill="#fff" font-size="14" font-weight="bold" text-anchor="middle">AI</text>
+              <text x="80" y="102" fill="#fff" font-size="7" text-anchor="middle">検索</text>
+              <circle cx="340" cy="100" r="28" fill="#2563eb" opacity="0.9"/>
+              <text x="340" y="105" fill="#fff" font-size="11" font-weight="bold" text-anchor="middle">G</text>
+              <rect x="310" y="220" width="56" height="90" rx="12" fill="#1B2A4A"/>
+              <rect x="318" y="232" width="40" height="58" rx="4" fill="#fff"/>
+              <rect x="324" y="296" width="28" height="8" rx="3" fill="#06c755"/>
+              <text x="338" y="215" fill="#06c755" font-size="8" font-weight="bold" text-anchor="middle">LINE</text>
+              <circle cx="70" cy="250" r="22" fill="rgba(232,97,42,0.3)" stroke="#E8612A" stroke-width="2"/>
+              <text x="70" y="255" fill="#fff" font-size="16" text-anchor="middle">📞</text>
+              <path d="M110 130 Q155 120 155 155" stroke="#facc15" stroke-width="2" fill="none" stroke-dasharray="5 3"/>
+              <path d="M265 155 Q300 120 308 100" stroke="#93c5fd" stroke-width="2" fill="none"/>
+              <path d="M265 175 Q310 200 318 232" stroke="#86efac" stroke-width="2" fill="none"/>
+              <path d="M155 195 Q100 220 92 250" stroke="#fdba74" stroke-width="2" fill="none"/>
             </svg>
           </div>
         </div>
       </section>
 
-      <!-- 03 成功事例店募集 -->
-      <section class="slide dark" id="s03">
-        <span class="slide-num">03 / 20</span>
-        <p class="slide-label">Campaign</p>
-        <h2>各エリア各業種の<br>成功事例店募集!!</h2>
-        <p style="font-size:0.9rem;margin-bottom:0.5rem">本システムの一般販売に向けて、地域ごとに成功事例店となる店舗様を募集しております。</p>
-        <div class="slide-body flex-1">
-        <div class="grid-2" style="min-height:0">
-          <div class="card">
-            <strong>対象・条件</strong>
-            <ul class="compact" style="margin-top:0.4rem">
-              <li>各エリア（地域）の<strong>1業種につき1店舗限定</strong></li>
-              <li>集客に意欲的で取材にご協力いただける方</li>
-              <li>成功時に<strong>データ共有</strong>をいただける事業所様</li>
-              <li><strong>長期的に経営</strong>される意思のある事業所様</li>
-              <li>初期設定や運用に<strong>協力的</strong>な事業所様</li>
-            </ul>
+      <!-- 02 会社概要 -->
+      <section class="slide" id="s02">
+        <div class="slide-deco"></div><div class="slide-dots"></div>
+        <span class="slide-num">02 / 20</span>
+        <p class="cat">Company</p>
+        <h2 class="title">株式会社ランバード</h2>
+        <div class="split-40 flex-1">
+          <div>
+            <table class="tbl">
+              <tr><th>社名</th><td>株式会社ランバード</td></tr>
+              <tr><th>URL</th><td>https://runbird.net</td></tr>
+              <tr><th>設立</th><td>2019年5月31日</td></tr>
+              <tr><th>代表</th><td>代表取締役 嶋田僚平</td></tr>
+              <tr><th>TEL</th><td>03-5843-6996</td></tr>
+            </table>
+            <div class="loc-grid">
+              <div class="loc-card"><span class="pin">📍</span><strong>東京本社</strong><span>晴海</span></div>
+              <div class="loc-card"><span class="pin">📍</span><strong>大阪支店</strong><span>中央区</span></div>
+              <div class="loc-card"><span class="pin">📍</span><strong>福岡支店</strong><span>博多</span></div>
+              <div class="loc-card"><span class="pin">📍</span><strong>沖縄支店</strong><span>宜野湾</span></div>
+            </div>
           </div>
-          <div class="card" style="border:2px solid var(--yellow)">
-            <strong style="color:var(--yellow)">AIホームページ 事例店特典</strong>
-            <ul class="compact" style="margin-top:0.4rem">
-              <li>事例店様向けの<strong>特別ご案内</strong>（詳細は後ほどご説明）</li>
-              <li>初期費用・月額ともに<strong>通常よりお得な条件</strong></li>
-              <li>成功データのご提供にご協力いただける方が対象</li>
-            </ul>
-            <p class="footnote" style="margin-top:0.5rem">枠が埋まり次第、通常条件でのご案内となります。<br>※ 金額のご提示は、ヒアリング後・プラン確定時に行います。</p>
+          <div>
+            <div class="all-in-banner"><em>全国4拠点</em> — HP・MEO・動画・AI <em>一気通貫</em></div>
+            <div class="viz" style="min-height:180px">
+              <svg viewBox="0 0 300 200" aria-hidden="true">
+                <ellipse cx="150" cy="105" rx="125" ry="78" fill="#e8ecf2" stroke="#cbd5e1"/>
+                <circle cx="185" cy="75" r="10" fill="#E8612A"/><text x="185" y="60" text-anchor="middle" font-size="9" font-weight="bold" fill="#1B2A4A">東京</text>
+                <circle cx="120" cy="100" r="8" fill="#1B2A4A"/><text x="120" y="118" text-anchor="middle" font-size="8" fill="#1B2A4A">大阪</text>
+                <circle cx="95" cy="125" r="8" fill="#1B2A4A"/><text x="95" y="143" text-anchor="middle" font-size="8" fill="#1B2A4A">福岡</text>
+                <circle cx="160" cy="150" r="7" fill="#1B2A4A"/><text x="160" y="168" text-anchor="middle" font-size="8" fill="#1B2A4A">沖縄</text>
+              </svg>
+            </div>
+            <p class="note" style="margin-top:0.4rem">動画・広告・MEO・SEO・HP制作／福祉事業ほか</p>
           </div>
         </div>
-          <div class="visual-box">
-            <svg viewBox="0 0 240 180" xmlns="http://www.w3.org/2000/svg">
-              <text x="120" y="16" text-anchor="middle" font-size="10" font-weight="bold" fill="#facc15">1エリア × 1業種 = 1店舗</text>
-              <rect x="20" y="28" width="90" height="55" rx="6" fill="rgba(255,255,255,0.15)" stroke="#facc15" stroke-dasharray="4"/>
-              <text x="65" y="52" text-anchor="middle" fill="#fff" font-size="9">美容室</text>
-              <text x="65" y="68" text-anchor="middle" fill="#facc15" font-size="14" font-weight="bold">1枠</text>
-              <rect x="130" y="28" width="90" height="55" rx="6" fill="rgba(232,97,42,0.4)" stroke="#E8612A"/>
-              <text x="175" y="52" text-anchor="middle" fill="#fff" font-size="9">飲食店</text>
-              <text x="175" y="68" text-anchor="middle" fill="#fff" font-size="8">募集終了</text>
-              <rect x="20" y="95" width="90" height="55" rx="6" fill="rgba(255,255,255,0.15)" stroke="#facc15"/>
-              <text x="65" y="119" text-anchor="middle" fill="#fff" font-size="9">クリニック</text>
-              <text x="65" y="135" text-anchor="middle" fill="#facc15" font-size="14" font-weight="bold">募集中</text>
-              <rect x="130" y="95" width="90" height="55" rx="6" fill="rgba(255,255,255,0.1)" stroke="#64748b"/>
-              <text x="175" y="125" text-anchor="middle" fill="#94a3b8" font-size="9">士業・他</text>
-            </svg>
+      </section>
+
+      <!-- 03 事例店募集 -->
+      <section class="slide dark" id="s03">
+        <div class="slide-deco"></div>
+        <span class="slide-num">03 / 20</span>
+        <p class="cat">Campaign</p>
+        <h2 class="title" style="font-size:clamp(1.5rem,3vw,2rem)">1エリア × 1業種 = <span style="color:var(--warn)">1店舗限定</span></h2>
+        <div class="slide-main">
+          <p class="lead" style="margin-bottom:0.75rem">成功事例データ取得のため、地域・業種ごとに<strong>1枠のみ</strong>募集。</p>
+          <div class="col-4" style="margin-bottom:0.75rem">
+            <div class="ind-card hot">
+              <span class="badge open">募集中</span>
+              <p class="name">美容室</p>
+              <p class="rule">1枠</p>
+            </div>
+            <div class="ind-card sold">
+              <span class="badge closed">募集終了</span>
+              <p class="name">飲食店</p>
+              <p class="rule">1枠</p>
+            </div>
+            <div class="ind-card hot">
+              <span class="badge open">募集中</span>
+              <p class="name">クリニック</p>
+              <p class="rule">1枠</p>
+            </div>
+            <div class="ind-card">
+              <span class="badge muted">残りわずか</span>
+              <p class="name">士業・他</p>
+              <p class="rule">要確認</p>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="card"><h3>対象条件</h3>
+              <ul style="list-style:none;font-size:0.75rem;line-height:1.7">
+                <li>✓ 集客に意欲・取材協力OK</li>
+                <li>✓ 成功データの共有にご協力</li>
+                <li>✓ 長期経営・運用協力の意思</li>
+              </ul>
+            </div>
+            <div class="card orange">
+              <h3>事例店特典</h3>
+              <p>特別条件・通常よりお得（詳細はヒアリング後）</p>
+              <p class="note" style="margin-top:0.5rem;padding:0">※ 金額はスライド17・18でご提示</p>
+            </div>
           </div>
         </div>
       </section>
 
       <!-- 04 集客3層 -->
       <section class="slide" id="s04">
+        <div class="slide-deco"></div><div class="slide-dots"></div>
         <span class="slide-num">04 / 20</span>
-        <p class="slide-label">Education</p>
-        <h2>AIホームページとは — 集客の3層</h2>
-        <div class="slide-body flex-1">
+        <p class="cat">Education</p>
+        <h2 class="title">AIホームページとは — 集客の3層</h2>
+        <div class="split-50 flex-1">
           <div>
-            <p style="font-size:0.88rem;margin-bottom:0.5rem"><strong>AI検索・Google検索・問い合わせ導線</strong>まで設計した、月額育成型ホームページ。</p>
-            <table class="compare-table" style="font-size:0.72rem">
-              <tr><th>層</th><th>月額費用感</th><th>役割</th></tr>
-              <tr><td>広告</td><td>20万〜50万+</td><td>止めると止まる</td></tr>
-              <tr><td>MEO</td><td>数万〜十数万</td><td>マップで比較</td></tr>
-              <tr class="highlight-col"><td><strong>AIホームページ</strong></td><td><strong>1.8万〜</strong></td><td><strong>信頼・問い合わせ</strong></td></tr>
+            <p class="lead" style="margin-bottom:0.65rem">月額で育てる、<strong>信頼・問い合わせの受け皿</strong>。</p>
+            <table class="tbl center">
+              <tr><th>層</th><th>費用感</th><th>役割</th></tr>
+              <tr><td>広告</td><td>月20万〜</td><td>即効・止めると止まる</td></tr>
+              <tr><td>MEO</td><td>月数万〜</td><td>マップで比較</td></tr>
+              <tr class="hl"><td><strong>AI HP</strong></td><td><strong>月1.8万〜</strong></td><td><strong>信頼・問合せ</strong></td></tr>
             </table>
           </div>
-          <div class="visual-box">
-            <div class="funnel">
-              <div class="funnel-level l1"><span>📢</span> 広告 — 即効・高コスト</div>
-              <div class="funnel-level l2"><span>📍</span> MEO — 来店直前の入口</div>
-              <div class="funnel-level l3"><span>🌐</span> AIホームページ ★本日の提案</div>
+          <div class="viz">
+            <div class="pyramid">
+              <div class="pyr l1">📢 広告 — 即効・高コスト</div>
+              <div class="pyr l2">📍 MEO — 来店直前の入口</div>
+              <div class="pyr l3">🌐 AIホームページ ★本日の提案</div>
             </div>
           </div>
         </div>
@@ -771,478 +709,423 @@
 
       <!-- 05 必要性 -->
       <section class="slide dark" id="s05">
+        <div class="slide-deco"></div>
         <span class="slide-num">05 / 20</span>
-        <p class="slide-label">Why Now</p>
-        <h2>なぜ「今」HPを変えるのか</h2>
-        <div class="slide-body flex-1">
-          <div class="grid-3" style="align-content:start">
-            <div class="stat-card">
-              <div class="bar-chart" style="height:90px">
-                <div class="bar-col"><span class="bar-val">24%</span><div class="bar old" style="height:72px"></div><span style="font-size:0.65rem">以前</span></div>
-                <div class="bar-col"><span class="bar-val" style="color:#facc15">4.5%</span><div class="bar new" style="height:14px;background:#facc15"></div><span style="font-size:0.65rem">AI Mode後</span></div>
-              </div>
-              <strong>Google AI Mode</strong>
-              <p class="label">HPクリック率の変化</p>
-            </div>
-            <div class="stat-card">
-              <svg viewBox="0 0 80 80" style="width:70px;margin:0 auto"><circle cx="40" cy="40" r="32" fill="none" stroke="#334155" stroke-width="12"/><circle cx="40" cy="40" r="32" fill="none" stroke="#facc15" stroke-width="12" stroke-dasharray="160 60" transform="rotate(-90 40 40)"/><text x="40" y="44" text-anchor="middle" font-size="14" font-weight="bold" fill="#facc15">79%</text></svg>
-              <strong>マップが第一参考</strong>
-              <p class="label">お店選び（カンリー調査）</p>
-            </div>
-            <div class="stat-card">
-              <p class="num-big" style="font-size:1.5rem">AIO</p>
-              <strong>AI検索の台頭</strong>
-              <p class="label">ChatGPT等に聞かれる時代</p>
-            </div>
+        <p class="cat">Why Now</p>
+        <h2 class="title">なぜ「今」HPを変えるのか</h2>
+        <div class="col-3" style="margin-bottom:0.85rem">
+          <div class="stat-hero">
+            <div class="num">24→4.5<span style="font-size:0.45em">%</span></div>
+            <p class="lbl">Google AI Mode</p>
+            <p class="sub">HPクリック率の変化</p>
           </div>
-          <div class="visual-box" style="flex-direction:column;align-items:stretch;padding:0.65rem">
-            <p style="font-size:0.75rem;font-weight:700;margin-bottom:0.35rem;color:#facc15">お客様の行動フロー</p>
-            <div class="flow-steps">
-              <span class="flow-step">AIに質問</span><span class="flow-arrow">→</span>
-              <span class="flow-step">マップ比較</span><span class="flow-arrow">→</span>
-              <span class="flow-step active">HPで信頼</span><span class="flow-arrow">→</span>
-              <span class="flow-step active">LINE/電話</span>
-            </div>
+          <div class="stat-hero">
+            <div class="num">79<span style="font-size:0.5em">%</span></div>
+            <p class="lbl">マップが第一参考</p>
+            <p class="sub">お店選び（カンリー調査）</p>
+          </div>
+          <div class="stat-hero">
+            <div class="num" style="font-size:1.8rem">AIO</div>
+            <p class="lbl">AI検索の台頭</p>
+            <p class="sub">ChatGPTに聞かれる時代</p>
           </div>
         </div>
-        <p style="margin-top:0.85rem;font-size:0.95rem"><span class="hl">「HPを作ったから大丈夫」は、もう通用しません。</span></p>
-        <p class="footnote">※ 数値は社内整理・公開情報ベース。成果・順位の保証はしません。</p>
+        <p style="font-size:0.85rem;font-weight:700;margin-bottom:0.5rem;color:var(--warn)">お客様の行動フロー</p>
+        <div class="steps">
+          <span class="step">AIに質問</span><span class="step-arrow">→</span>
+          <span class="step">マップ比較</span><span class="step-arrow">→</span>
+          <span class="step active">HPで信頼</span><span class="step-arrow">→</span>
+          <span class="step active">LINE / 電話</span>
+        </div>
+        <p class="highlight-box" style="margin-top:0.75rem">「HPを作ったから大丈夫」は、もう通用しません。</p>
+        <p class="note">※ 数値は社内整理。成果・順位の保証はしません。</p>
       </section>
 
-      <!-- 06 ALLサポート -->
+      <!-- 06 Before/After -->
       <section class="slide" id="s06">
+        <div class="slide-deco"></div><div class="slide-dots"></div>
         <span class="slide-num">06 / 20</span>
-        <p class="slide-label">Solution</p>
-        <h2>だから必要なのは — 新規獲得のチャンス!!</h2>
-        <div class="slide-body flex-1">
+        <p class="cat">Solution</p>
+        <h2 class="title">課題と解決 — ALLサポート</h2>
+        <div class="split-50 flex-1">
           <div>
-            <div class="bubble-list">
-              <span class="bubble">予算を大きく割けない…</span>
-              <span class="bubble">リソースが足りない…</span>
-              <span class="bubble">何をしたらいいかわからない…</span>
-              <span class="bubble">作ったけど更新できていない…</span>
-              <span class="bubble">AI対策が必要と言われる…</span>
-            </div>
-            <p class="all-support" style="font-size:1.15rem;margin-top:0.65rem">必要な事を分かりやすく、そして超お手軽!!<br><em>AIホームページ</em>が <em>ALLサポート</em></p>
+            <p class="ba-label">BEFORE — 店舗の悩み</p>
+            <div class="pain-card">予算を大きく割けない…</div>
+            <div class="pain-card">リソースが足りない…</div>
+            <div class="pain-card">何をすればいいかわからない…</div>
+            <div class="pain-card">作ったけど更新できていない…</div>
+            <div class="pain-card">AI対策が必要と言われる…</div>
           </div>
-          <div class="visual-box">
-            <svg viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="50" cy="60" r="28" fill="#e2e8f0"/><text x="50" y="65" text-anchor="middle" font-size="20">😰</text>
-              <path d="M78 60 L120 90" stroke="#94a3b8" stroke-width="2" marker-end="url(#arr)"/>
-              <rect x="120" y="55" width="120" height="70" rx="10" fill="#1B2A4A"/>
-              <text x="180" y="85" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">RUNBIRD</text>
-              <text x="180" y="102" text-anchor="middle" fill="#E8612A" font-size="10" font-weight="bold">AIホームページ</text>
-              <text x="180" y="118" text-anchor="middle" fill="#facc15" font-size="9">ALLサポート</text>
-              <path d="M240 90 L200 120" stroke="#06c755" stroke-width="2"/>
-              <circle cx="210" cy="140" r="28" fill="#dcfce7"/><text x="210" y="146" text-anchor="middle" font-size="20">😊</text>
-              <defs><marker id="arr" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="#94a3b8"/></marker></defs>
-            </svg>
+          <div>
+            <p class="ba-label">AFTER — ランバードが丸ごと</p>
+            <div class="solve-card">✓ 初期＋月額で運用まで込み</div>
+            <div class="solve-card">✓ LINEで送るだけ更新</div>
+            <div class="solve-card">✓ SEO・AIO・導線を設計</div>
+            <div class="solve-card">✓ 月次レポートで見える化</div>
+            <div class="all-in-banner" style="margin-top:0.5rem"><em>AIホームページ</em>が ALLサポート</div>
           </div>
         </div>
       </section>
 
-      <!-- 07 3要素 -->
+      <!-- 07 3要素ハブ -->
       <section class="slide" id="s07">
+        <div class="slide-deco"></div>
         <span class="slide-num">07 / 20</span>
-        <p class="slide-label">Framework</p>
-        <h2>問い合わせが来るHPの3要素</h2>
-        <div class="grid-3 flex-1">
-          <div class="card" style="text-align:center;padding:1rem">
-            <svg width="56" height="56" viewBox="0 0 56 56" style="margin:0 auto"><rect x="8" y="12" width="40" height="28" rx="4" fill="#1B2A4A"/><circle cx="38" cy="32" r="8" fill="#E8612A"/></svg>
-            <strong>① 導線設計</strong><p style="font-size:0.78rem;margin-top:0.3rem">電話・LINE・予約・フォーム</p>
-          </div>
-          <div class="card" style="text-align:center;padding:1rem">
-            <svg width="56" height="56" viewBox="0 0 56 56" style="margin:0 auto"><polygon points="28,8 48,20 48,40 28,48 8,40 8,20" fill="none" stroke="#1B2A4A" stroke-width="2"/><text x="28" y="32" text-anchor="middle" font-size="16" fill="#E8612A">★</text></svg>
-            <strong>② 信頼設計</strong><p style="font-size:0.78rem;margin-top:0.3rem">料金・実績・FAQ</p>
-          </div>
-          <div class="card" style="text-align:center;padding:1rem;border:2px solid var(--orange)">
-            <svg width="56" height="56" viewBox="0 0 56 56" style="margin:0 auto"><circle cx="28" cy="28" r="20" fill="none" stroke="#E8612A" stroke-width="2"/><path d="M28 16 V28 L36 34" stroke="#E8612A" stroke-width="2"/></svg>
-            <strong>③ 継続更新</strong><p style="font-size:0.78rem;margin-top:0.3rem">LINEで定期反映</p>
-          </div>
+        <p class="cat">Framework</p>
+        <h2 class="title">問い合わせが来るHPの3要素</h2>
+        <div class="hub-wrap flex-1" style="min-height:220px">
+          <div class="hub-center">問い合わせが<br>来るHP</div>
+          <div class="hub-card t1"><div class="card-icon" style="margin:0 auto 0.35rem;width:36px;height:36px;font-size:1rem">📲</div><strong>① 導線設計</strong><span>電話・LINE・予約</span></div>
+          <div class="hub-card t2"><div class="card-icon" style="margin:0 auto 0.35rem;width:36px;height:36px;font-size:1rem">⭐</div><strong>② 信頼設計</strong><span>料金・実績・FAQ</span></div>
+          <div class="hub-card t3"><div class="card-icon" style="margin:0 auto 0.35rem;width:36px;height:36px;font-size:1rem">🔄</div><strong>③ 継続更新</strong><span>LINEで定期反映</span></div>
         </div>
-        <p class="footnote">MEOの「関連性・視認性・知名度」に相当する、HP版の勝ち筋フレーム。</p>
+        <p class="note">MEOの「関連性・視認性・知名度」に相当するHP版フレーム</p>
       </section>
 
       <!-- 08 重要2点 -->
       <section class="slide dark" id="s08">
+        <div class="slide-deco"></div>
         <span class="slide-num">08 / 20</span>
-        <p class="slide-label">Focus</p>
-        <h2>MEO対策で特に重要なポイントは2つ！<br><span style="font-size:0.85em;font-weight:600">（HP版）</span></h2>
-        <div class="grid-2 flex-1" style="align-items:center">
-          <div class="card" style="text-align:center;padding:1.5rem">
-            <p style="font-size:3rem;font-weight:900;color:var(--yellow);line-height:1">1</p>
-            <strong style="font-size:1.1rem;color:var(--yellow)">問い合わせ導線</strong>
-            <p style="margin-top:0.5rem">電話・LINE・予約・フォーム</p>
+        <p class="cat">Focus</p>
+        <h2 class="title">特に重要な2つのポイント</h2>
+        <div class="row flex-1" style="gap:1rem">
+          <div class="focus-panel p1">
+            <span class="num">1</span>
+            <h3>問い合わせ導線</h3>
+            <p style="font-size:0.8rem;opacity:0.85">MEOの「口コミ」に相当</p>
+            <div class="icons"><span>📞 電話</span><span>💬 LINE</span><span>📅 予約</span></div>
           </div>
-          <div class="card" style="text-align:center;padding:1.5rem">
-            <p style="font-size:3rem;font-weight:900;color:var(--yellow);line-height:1">2</p>
-            <strong style="font-size:1.1rem;color:var(--yellow)">更新 ＋ AIO</strong>
-            <p style="margin-top:0.5rem">LINE更新・SEO・AI検索向け構成</p>
+          <div class="focus-panel p2">
+            <span class="num">2</span>
+            <h3>更新 ＋ AIO</h3>
+            <p style="font-size:0.8rem;opacity:0.85">MEOの「関連性」に相当</p>
+            <div class="icons"><span>🔍 SEO</span><span>🤖 AI検索</span><span>📝 更新</span></div>
           </div>
         </div>
       </section>
 
       <!-- 09 POINT1 -->
       <section class="slide" id="s09">
+        <div class="slide-deco"></div><div class="slide-dots"></div>
         <span class="slide-num">09 / 20</span>
-        <p class="slide-label">POINT 1</p>
-        <h2>早期納品 × 公式LINEで楽々更新</h2>
-        <div class="slide-body flex-1">
-          <div class="card">
-            <strong>早期納品 — 納期比較表</strong>
-            <table style="margin-top:0.4rem;font-size:0.75rem;width:100%">
-              <tr><th></th><th>外注制作</th><th>AIホームページ</th></tr>
-              <tr><td>納期</td><td class="price-strike">3〜6ヶ月</td><td class="price-new">14〜21営業日</td></tr>
-            </table>
-            <div style="margin-top:0.5rem;display:flex;gap:8px;align-items:center">
-              <span style="font-size:0.65rem">長さ比較</span>
-              <div> style="flex:3;height:12px;background:#94a3b8;border-radius:4px"></div>
-              <div style="flex:1;height:12px;background:#E8612A;border-radius:4px"></div>
+        <p class="cat">Point 1</p>
+        <h2 class="title">早期納品 × LINEで楽々更新</h2>
+        <div class="split-50 flex-1">
+          <div>
+            <p style="font-size:0.78rem;font-weight:700;margin-bottom:0.5rem;color:var(--navy)">納期比較</p>
+            <div class="bar-compare">
+              <div class="bar-row"><span class="lbl">外注</span><div class="bar-track"><div class="bar-fill slow">3〜6ヶ月</div></div></div>
+              <div class="bar-row"><span class="lbl">AI HP</span><div class="bar-track"><div class="bar-fill fast">14〜21日</div></div></div>
+            </div>
+            <span class="badge hot" style="margin-top:0.5rem">反映 2〜3営業日</span>
+            <div class="steps" style="margin-top:0.75rem">
+              <span class="step active">LINE送信</span><span class="step-arrow">→</span>
+              <span class="step active">運用チーム</span><span class="step-arrow">→</span>
+              <span class="step active">HP反映</span>
             </div>
           </div>
-          <div class="visual-box">
-            <svg viewBox="0 0 260 210" xmlns="http://www.w3.org/2000/svg">
-              <text x="130" y="18" text-anchor="middle" font-size="11" font-weight="bold" fill="#1B2A4A">LINEで送るだけ → HPに反映</text>
-              <rect x="160" y="35" width="85" height="150" rx="14" fill="#1B2A4A"/>
-              <rect x="168" y="48" width="69" height="100" rx="5" fill="#fff"/>
-              <rect x="178" y="158" width="49" height="16" rx="5" fill="#06c755"/>
-              <text x="202" y="30" text-anchor="middle" font-size="11" font-weight="bold" fill="#06c755">LINE</text>
-              <rect x="20" y="70" width="120" height="70" rx="10" fill="#fff7ed" stroke="#E8612A" stroke-width="2"/>
-              <text x="80" y="100" text-anchor="middle" font-size="11" fill="#1B2A4A">メッセージ</text>
-              <text x="80" y="118" text-anchor="middle" font-size="9" fill="#64748b">写真・キャンペーン文</text>
-              <path d="M140 105 L168 105" stroke="#E8612A" stroke-width="3"/>
-              <polygon points="168,105 160,100 160,110" fill="#E8612A"/>
-              <text x="130" y="200" text-anchor="middle" font-size="9" fill="#64748b">反映 2〜3営業日 / 月1〜4回</text>
+          <div class="viz">
+            <svg viewBox="0 0 280 220" aria-hidden="true">
+              <rect x="175" y="20" width="85" height="170" rx="14" fill="#1B2A4A"/>
+              <rect x="183" y="35" width="69" height="120" rx="5" fill="#fff"/>
+              <rect x="193" y="162" width="49" height="18" rx="5" fill="#06c755"/>
+              <text x="217" y="14" fill="#06c755" font-size="11" font-weight="bold" text-anchor="middle">LINE</text>
+              <rect x="25" y="70" width="130" height="80" rx="10" fill="#fff4ef" stroke="#E8612A" stroke-width="2"/>
+              <text x="90" y="105" text-anchor="middle" font-size="11" fill="#1B2A4A" font-weight="bold">写真・文章</text>
+              <text x="90" y="125" text-anchor="middle" font-size="9" fill="#64748b">キャンペーン文</text>
+              <path d="M155 110 L183 110" stroke="#E8612A" stroke-width="3"/><polygon points="183,110 175,105 175,115" fill="#E8612A"/>
             </svg>
           </div>
         </div>
       </section>
 
-      <!-- 10 POINT2 -->
+      <!-- 10 SEO+AIO -->
       <section class="slide" id="s10">
+        <div class="slide-deco"></div><div class="slide-dots"></div>
         <span class="slide-num">10 / 20</span>
-        <p class="slide-label">POINT 2</p>
-        <h2>SEO ＋ AIO — 質の高い情報設計</h2>
-        <div class="slide-body flex-1">
-          <div class="card" style="border-top:4px solid #2563eb">
-            <strong>🔍 SEO（Google検索）</strong>
-            <ul class="check-list" style="margin-top:0.35rem">
-              <li>タイトル・見出し・地域キーワード</li>
-              <li>構造化データ・内部リンク</li>
-              <li>スマホ最適化</li>
-            </ul>
-          </div>
-          <div class="card" style="border-top:4px solid #E8612A">
-            <strong>🤖 AIO（AI検索）</strong>
-            <ul class="check-list" style="margin-top:0.35rem">
-              <li>40〜60字の結論ブロック</li>
-              <li>FAQ・料金・比較・実績</li>
-              <li>更新日の明示</li>
-            </ul>
-          </div>
-        </div>
-        <div class="visual-box" style="margin-top:0.5rem;padding:0.5rem">
-          <svg viewBox="0 0 500 70" style="width:100%">
-            <rect x="20" y="15" width="100" height="40" rx="8" fill="#2563eb" opacity="0.15"/>
-            <text x="70" y="42" text-anchor="middle" font-weight="bold" fill="#2563eb">Google</text>
-            <rect x="180" y="10" width="140" height="50" rx="8" fill="#1B2A4A"/>
-            <text x="250" y="42" text-anchor="middle" fill="#fff" font-weight="bold">あなたのHP</text>
-            <rect x="380" y="15" width="100" height="40" rx="8" fill="#E8612A" opacity="0.2"/>
-            <text x="430" y="42" text-anchor="middle" font-weight="bold" fill="#E8612A">ChatGPT</text>
-            <path d="M120 35 L180 35 M320 35 L380 35" stroke="#94a3b8" stroke-width="2"/>
+        <p class="cat">Point 2</p>
+        <h2 class="title">SEO ＋ AIO — 両方に届く設計</h2>
+        <div class="viz" style="margin-bottom:0.75rem;padding:1rem">
+          <svg viewBox="0 0 520 100" style="max-width:520px">
+            <rect x="10" y="25" width="110" height="50" rx="10" fill="#2563eb" opacity="0.15"/>
+            <text x="65" y="58" text-anchor="middle" font-weight="bold" fill="#2563eb" font-size="13">Google</text>
+            <rect x="195" y="15" width="130" height="70" rx="10" fill="#1B2A4A"/>
+            <text x="260" y="52" text-anchor="middle" fill="#fff" font-weight="bold" font-size="12">あなたのHP</text>
+            <text x="260" y="68" text-anchor="middle" fill="#94a3b8" font-size="9">受け皿</text>
+            <rect x="400" y="25" width="110" height="50" rx="10" fill="#E8612A" opacity="0.15"/>
+            <text x="455" y="52" text-anchor="middle" font-weight="bold" fill="#E8612A" font-size="11">ChatGPT</text>
+            <text x="455" y="66" text-anchor="middle" fill="#E8612A" font-size="9">AI検索</text>
+            <path d="M120 50 L195 50" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar)"/>
+            <path d="M325 50 L400 50" stroke="#94a3b8" stroke-width="2" marker-end="url(#ar)"/>
+            <defs><marker id="ar" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="#94a3b8"/></marker></defs>
           </svg>
         </div>
-        <p style="margin-top:0.35rem;font-size:0.78rem" class="footnote">※「必ずAIに出る」は約束しません。拾われやすくする設計です。</p>
+        <div class="col-2">
+          <div class="card" style="border-top:4px solid var(--google)">
+            <h3>🔍 SEO</h3>
+            <ul style="list-style:none;font-size:0.75rem;line-height:1.8;color:var(--muted)">
+              <li>✓ 地域KW・見出し設計</li><li>✓ 構造化・内部リンク</li><li>✓ スマホ最適化</li>
+            </ul>
+          </div>
+          <div class="card orange">
+            <h3>🤖 AIO</h3>
+            <ul style="list-style:none;font-size:0.75rem;line-height:1.8;color:var(--muted)">
+              <li>✓ 結論ブロック・FAQ</li><li>✓ 料金・比較・実績</li><li>✓ 更新日の明示</li>
+            </ul>
+          </div>
+        </div>
+        <p class="note">※「必ずAIに出る」は約束しません。拾われやすくする設計です。</p>
       </section>
 
-      <!-- 11 責任 -->
+      <!-- 11 ALLサポート -->
       <section class="slide" id="s11">
+        <div class="slide-deco"></div>
         <span class="slide-num">11 / 20</span>
-        <p class="slide-label">All-in</p>
-        <h2>全てAIホームページが責任をもって行います</h2>
-        <div class="slide-body flex-1" style="align-items:center">
-          <ul class="check-list" style="font-size:0.88rem">
-            <li>問い合わせ導線の設計・実装</li>
-            <li>公式LINE経由の更新代行</li>
-            <li>SEO・AIOの基本設計</li>
-            <li>月次レポート・サーバー保守</li>
-          </ul>
-          <div class="visual-box">
-            <svg viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="130" cy="100" r="45" fill="#E8612A"/>
-              <text x="130" y="96" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">AI</text>
-              <text x="130" y="110" text-anchor="middle" fill="#fff" font-size="9">ホームページ</text>
-              <rect x="25" y="35" width="70" height="36" rx="8" fill="#1B2A4A"/><text x="60" y="58" text-anchor="middle" fill="#fff" font-size="8">導線</text>
-              <rect x="165" y="35" width="70" height="36" rx="8" fill="#1B2A4A"/><text x="200" y="58" text-anchor="middle" fill="#fff" font-size="8">LINE</text>
-              <rect x="25" y="130" width="70" height="36" rx="8" fill="#1B2A4A"/><text x="60" y="153" text-anchor="middle" fill="#fff" font-size="8">SEO</text>
-              <rect x="165" y="130" width="70" height="36" rx="8" fill="#1B2A4A"/><text x="200" y="153" text-anchor="middle" fill="#fff" font-size="8">レポート</text>
-              <line x1="95" y1="53" x2="100" y2="80" stroke="#facc15" stroke-width="2"/>
-              <line x1="165" y1="53" x2="160" y2="80" stroke="#facc15" stroke-width="2"/>
-              <line x1="95" y1="147" x2="100" y2="120" stroke="#facc15" stroke-width="2"/>
-              <line x1="165" y1="147" x2="160" y2="120" stroke="#facc15" stroke-width="2"/>
-            </svg>
-          </div>
+        <p class="cat">All-in</p>
+        <h2 class="title">全てランバードが責任を持って実施</h2>
+        <div class="col-6 flex-1">
+          <div class="card" style="text-align:center"><div class="card-icon">📲</div><h3>導線設計</h3><p>電話・LINE・予約</p></div>
+          <div class="card" style="text-align:center"><div class="card-icon">💬</div><h3>LINE更新</h3><p>送るだけ反映</p></div>
+          <div class="card" style="text-align:center"><div class="card-icon">🔍</div><h3>SEO</h3><p>検索最適化</p></div>
+          <div class="card" style="text-align:center"><div class="card-icon">🤖</div><h3>AIO</h3><p>AI検索対策</p></div>
+          <div class="card" style="text-align:center"><div class="card-icon">📊</div><h3>レポート</h3><p>月次共有</p></div>
+          <div class="card" style="text-align:center"><div class="card-icon">🛡️</div><h3>保守</h3><p>SSL・監視</p></div>
         </div>
       </section>
 
-      <!-- 12 守り -->
+      <!-- 12 セキュリティ -->
       <section class="slide dark" id="s12">
+        <div class="slide-deco"></div>
         <span class="slide-num">12 / 20</span>
-        <p class="slide-label">Security</p>
-        <h2>店舗情報を守る — SSL・改ざん・保守</h2>
-        <div class="slide-body flex-1">
-          <div>
-            <table style="font-size:0.78rem;width:100%">
-              <tr><th>守りの施策</th><th>内容</th></tr>
-              <tr><td>SSL</td><td>常時HTTPS</td></tr>
-              <tr><td>監視</td><td>改ざん・表示崩れ</td></tr>
-              <tr><td>バックアップ</td><td>定期実施</td></tr>
-            </table>
-            <p style="margin-top:0.5rem;font-size:0.82rem">放置HP＝「閉店した店」と判断されるリスク</p>
-          </div>
-          <div class="visual-box">
-            <svg viewBox="0 0 200 190" xmlns="http://www.w3.org/2000/svg">
-              <path d="M100 15 L175 42 V98 C175 138 100 175 100 175 C100 175 25 138 25 98 V42 Z" fill="#1B2A4A" stroke="#facc15" stroke-width="3"/>
-              <text x="100" y="95" text-anchor="middle" font-size="36">🔒</text>
-              <text x="100" y="125" text-anchor="middle" fill="#facc15" font-size="11" font-weight="bold">SSL / 改ざん防止</text>
-            </svg>
-          </div>
+        <p class="cat">Security</p>
+        <h2 class="title">店舗情報を守る — 攻めと守り</h2>
+        <div class="col-3" style="margin-bottom:0.75rem">
+          <div class="card" style="text-align:center"><div style="font-size:2rem">🔒</div><h3>SSL</h3><p>常時HTTPS</p></div>
+          <div class="card" style="text-align:center"><div style="font-size:2rem">👁️</div><h3>監視</h3><p>改ざん・表示崩れ</p></div>
+          <div class="card" style="text-align:center"><div style="font-size:2rem">💾</div><h3>バックアップ</h3><p>定期実施</p></div>
+        </div>
+        <p class="highlight-box" style="font-size:0.95rem">放置HP＝「閉店した店」と判断されるリスク</p>
+      </section>
+
+      <!-- 13 オールインワン -->
+      <section class="slide" id="s13">
+        <div class="slide-deco"></div><div class="slide-dots"></div>
+        <span class="slide-num">13 / 20</span>
+        <p class="cat">Features</p>
+        <h2 class="title">オールインワン — <span style="color:var(--orange)">全部込み</span></h2>
+        <div class="icon-grid flex-1">
+          <div class="icon-tile"><span class="ico">🌐</span>HP制作</div>
+          <div class="icon-tile"><span class="ico">📲</span>導線設計</div>
+          <div class="icon-tile"><span class="ico">🔍</span>SEO</div>
+          <div class="icon-tile"><span class="ico">🤖</span>AIO</div>
+          <div class="icon-tile"><span class="ico">💬</span>LINE更新</div>
+          <div class="icon-tile"><span class="ico">➕</span>ページ追加</div>
+          <div class="icon-tile"><span class="ico">🖥️</span>サーバー</div>
+          <div class="icon-tile"><span class="ico">🔒</span>SSL</div>
+          <div class="icon-tile"><span class="ico">📊</span>レポート</div>
+          <div class="icon-tile"><span class="ico">🛠️</span>保守</div>
+          <div class="icon-tile"><span class="ico">📱</span>スマホ最適</div>
+          <div class="icon-tile"><span class="ico">👥</span>採用ページ</div>
         </div>
       </section>
 
-      <!-- 13 機能一覧 -->
-      <section class="slide" id="s13">
-        <span class="slide-num">13 / 20</span>
-        <p class="slide-label">Features</p>
-        <h2>AIホームページ — オールインワンパッケージの決定版</h2>
-        <div class="icon-grid flex-1" style="align-content:start"><div class="icon-cell"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 L2 7 V17 L12 22 L22 17 V7 Z"/></svg>HP制作</div><div class="icon-cell"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20 H44 M24 4 V44"/></svg>導線</div><div class="icon-cell"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 36 L18 20 L26 28 L36 12"/></svg>SEO</div><div class="icon-cell"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M24 8 A16 16 0 1 1 8 24"/></svg>AIO</div><div class="icon-cell"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 12 H40 V36 H8 Z"/></svg>LINE</div><div class="icon-cell"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M24 12 V36 M12 24 H36"/></svg>追加</div><div class="icon-cell"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 14 H42 V34 H6 Z"/></svg>サーバー</div><div class="icon-cell"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 22 H32 V38 H16 Z M20 22 V16 A4 4 0 0 1 28 16 V22"/></svg>SSL</div><div class="icon-cell"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 32 H40 M8 24 H32 M8 16 H24"/></svg>レポート</div><div class="icon-cell"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M24 8 V16 M20 12 H28"/></svg>保守</div><div class="icon-cell"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 6 H32 V42 H16 Z"/></svg>スマホ</div><div class="icon-cell"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 32 H36 M18 20 A6 6 0 1 0 30 20"/></svg>採用</div></div>
-        <p class="footnote" style="margin-top:0.35rem">MEOのオールインワンパッケージの決定版 — のHP版</p>
-      </section>
-
-      <!-- 14 3価値 -->
+      <!-- 14 3つの価値 -->
       <section class="slide" id="s14">
+        <div class="slide-deco"></div>
         <span class="slide-num">14 / 20</span>
-        <p class="slide-label">Value</p>
-        <h2>AIホームページだからできる — 3つの価値</h2>
-        <div class="slide-body flex-1">
-          <table class="compare-table" style="font-size:0.75rem">
-            <tr><th>価値</th><th>お客様メリット</th></tr>
-            <tr><td>見つかる</td><td>Google・AI検索に届く</td></tr>
-            <tr><td>信頼される</td><td>比較で選ばれる</td></tr>
-            <tr class="highlight-col"><td>行動される</td><td>電話・LINEで問い合わせ</td></tr>
-          </table>
-          <div class="visual-box">
-            <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
-              <polygon points="150,25 270,170 30,170" fill="none" stroke="#1B2A4A" stroke-width="2"/>
-              <circle cx="150" cy="115" r="42" fill="#E8612A"/>
-              <text x="150" y="110" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">AI</text>
-              <text x="150" y="125" text-anchor="middle" fill="#fff" font-size="9">ホームページ</text>
-              <text x="150" y="45" text-anchor="middle" font-size="10" font-weight="bold" fill="#1B2A4A">見つかる</text>
-              <text x="55" y="165" text-anchor="middle" font-size="10" font-weight="bold" fill="#1B2A4A">信頼</text>
-              <text x="245" y="165" text-anchor="middle" font-size="10" font-weight="bold" fill="#1B2A4A">行動</text>
-            </svg>
+        <p class="cat">Value</p>
+        <h2 class="title">3つの価値 — 売上につながる</h2>
+        <div class="col-3 flex-1">
+          <div class="value-card">
+            <div class="ico">🔎</div>
+            <h3>見つかる</h3>
+            <p>Google・AI検索に届く</p>
           </div>
+          <div class="value-card featured">
+            <div class="ico">⭐</div>
+            <h3>信頼される</h3>
+            <p>比較で選ばれる</p>
+          </div>
+          <div class="value-card">
+            <div class="ico">📞</div>
+            <h3>行動される</h3>
+            <p>電話・LINEで問合せ</p>
+          </div>
+        </div>
+        <div class="steps" style="margin-top:0.65rem;max-width:480px;margin-left:auto;margin-right:auto">
+          <span class="step" style="flex:0.8">見つかる</span><span class="step-arrow">→</span>
+          <span class="step" style="flex:0.8">信頼</span><span class="step-arrow">→</span>
+          <span class="step active" style="flex:0.8">問合せ・売上</span>
         </div>
       </section>
 
       <!-- 15 LINE -->
       <section class="slide" id="s15">
+        <div class="slide-deco"></div><div class="slide-dots"></div>
         <span class="slide-num">15 / 20</span>
-        <p class="slide-label">Differentiation</p>
-        <h2>公式LINEに送るだけ — 楽々更新</h2>
-        <div class="slide-body flex-1">
-          <div>
-            <div class="flow-steps" style="margin-bottom:0.65rem">
-              <span class="flow-step active">LINE送信</span><span class="flow-arrow">→</span>
-              <span class="flow-step active">運用チーム</span><span class="flow-arrow">→</span>
-              <span class="flow-step active">HP反映</span>
-            </div>
-            <ul class="check-list">
-              <li>キャンペーン・営業時間・メニュー更新</li>
-              <li>ページ追加もLINEで依頼可</li>
-              <li>回数超過 1回5,000円〜</li>
-            </ul>
+        <p class="cat">Differentiation</p>
+        <h2 class="title">公式LINEに送るだけ — 楽々更新</h2>
+        <div class="split-50 flex-1">
+          <div class="steps" style="flex-direction:column;align-items:stretch;gap:0.5rem">
+            <span class="step active" style="padding:0.85rem">① LINEで送信</span>
+            <span class="step active" style="padding:0.85rem">② 運用チームが反映</span>
+            <span class="step active" style="padding:0.85rem">③ HP・AI検索に最新情報</span>
           </div>
-          <div class="visual-box">
-            <svg viewBox="0 0 220 200" xmlns="http://www.w3.org/2000/svg">
-              <rect x="70" y="10" width="80" height="150" rx="14" fill="#1B2A4A"/>
-              <rect x="78" y="22" width="64" height="110" rx="4" fill="#fff"/>
-              <rect x="88" y="140" width="44" height="12" rx="4" fill="#06c755"/>
-              <text x="110" y="8" text-anchor="middle" font-size="11" font-weight="bold" fill="#06c755">公式LINE</text>
-              <rect x="10" y="60" width="50" height="36" rx="6" fill="#fff7ed" stroke="#E8612A"/><text x="35" y="82" text-anchor="middle" font-size="8">写真</text>
-              <rect x="10" y="105" width="50" height="36" rx="6" fill="#fff7ed" stroke="#E8612A"/><text x="35" y="127" text-anchor="middle" font-size="8">文章</text>
-              <path d="M60 78 L78 78 M60 123 L78 115" stroke="#E8612A" stroke-width="2"/>
-            </svg>
+          <div class="col-2" style="grid-template-columns:1fr 1fr;align-content:start">
+            <div class="card" style="padding:0.65rem;text-align:center"><strong style="font-size:0.75rem">キャンペーン</strong></div>
+            <div class="card" style="padding:0.65rem;text-align:center"><strong style="font-size:0.75rem">営業時間</strong></div>
+            <div class="card" style="padding:0.65rem;text-align:center"><strong style="font-size:0.75rem">メニュー</strong></div>
+            <div class="card" style="padding:0.65rem;text-align:center"><strong style="font-size:0.75rem">ページ追加</strong></div>
           </div>
         </div>
+        <p class="note">回数超過 1回 ¥5,000〜（軽微な修正が対象）</p>
       </section>
 
       <!-- 16 レポート -->
       <section class="slide dark" id="s16">
+        <div class="slide-deco"></div>
         <span class="slide-num">16 / 20</span>
-        <p class="slide-label">Report</p>
-        <h2>1ヶ月毎のレポートで運用状況が分かる!!</h2>
-        <div class="slide-body flex-1">
-          <ul class="check-list">
-            <li>セッション数・アクセス推移</li>
-            <li>問い合わせ導線クリック（電話・LINE・フォーム）</li>
-            <li>今月の更新実施内容</li>
-            <li>次月の改善提案（簡易）</li>
-          </ul>
-          <div class="visual-box" style="flex-direction:column;align-items:stretch">
-            <div class="dashboard-mock">
-              <div style="display:flex;justify-content:space-between;margin-bottom:0.35rem"><span>月次レポート</span><span style="color:#E8612A">2026年5月</span></div>
-              <div class="dash-bars">
-                <div class="dash-bar" style="height:35%"></div>
-                <div class="dash-bar" style="height:55%"></div>
-                <div class="dash-bar" style="height:45%"></div>
-                <div class="dash-bar" style="height:70%"></div>
-                <div class="dash-bar" style="height:85%;background:#facc15"></div>
-                <div class="dash-bar" style="height:60%"></div>
-              </div>
-              <p style="margin-top:0.35rem;color:#94a3b8">問い合わせ導線クリック ↑ 前月比</p>
+        <p class="cat">Report</p>
+        <h2 class="title">月次レポートで「見える化」</h2>
+        <div class="split-50 flex-1">
+          <div class="dash">
+            <div class="dash-header"><span>月次レポート</span><span style="color:var(--orange)">2026年5月</span></div>
+            <div class="dash-kpis">
+              <div class="dash-kpi"><div class="v">2,840</div><div class="d">セッション</div><div class="up">↑12%</div></div>
+              <div class="dash-kpi"><div class="v">47</div><div class="d">問合せクリック</div><div class="up">↑8%</div></div>
+              <div class="dash-kpi"><div class="v">3</div><div class="d">今月の更新</div></div>
             </div>
-            <p style="font-size:0.82rem;margin-top:0.5rem;text-align:center"><span class="hl">見えないものは改善できません。</span></p>
+            <div class="dash-chart">
+              <div class="dash-bar" style="height:40%"></div><div class="dash-bar" style="height:55%"></div>
+              <div class="dash-bar" style="height:48%"></div><div class="dash-bar" style="height:72%"></div>
+              <div class="dash-bar" style="height:88%;background:#facc15"></div><div class="dash-bar" style="height:65%"></div>
+            </div>
+          </div>
+          <div>
+            <div class="card" style="margin-bottom:0.5rem"><h3>レポート内容</h3>
+              <ul style="list-style:none;font-size:0.78rem;line-height:1.9">
+                <li>✓ アクセス推移</li><li>✓ 問合せ導線クリック</li>
+                <li>✓ 更新実施内容</li><li>✓ 次月改善提案</li>
+              </ul>
+            </div>
+            <p class="highlight-box">見えないものは、改善できません。</p>
           </div>
         </div>
       </section>
 
       <!-- 17 通常料金 -->
       <section class="slide" id="s17">
+        <div class="slide-deco"></div>
         <span class="slide-num">17 / 20</span>
-        <p class="slide-label">Pricing</p>
-        <h2>通常ご利用料金 — 松竹梅（税抜）</h2>
-        <p style="font-size:0.78rem;margin-bottom:0.5rem"><strong>初期費用は全プラン10万円以上。</strong> 12ヶ月契約想定。クレジットカード決済可。</p>
-        <table class="compare-table" style="font-size:0.75rem;margin-bottom:0.65rem">
-          <tr><th></th><th>松</th><th class="highlight-col">竹 ★</th><th>梅</th></tr>
-          <tr><td>初期</td><td>10万</td><td class="highlight-col">15万</td><td>20万</td></tr>
-          <tr><td>月額</td><td>1.8万</td><td class="highlight-col">3.3万</td><td>4.5万</td></tr>
-          <tr><td>ページ</td><td>5P</td><td class="highlight-col">8P</td><td>12P</td></tr>
-          <tr><td>LINE更新</td><td>月1</td><td class="highlight-col">月2</td><td>月4</td></tr>
-        </table>
-        <div class="grid-3">
-          <table class="plan-matsu">
-            <thead><tr><th colspan="2">松 — まず土台</th></tr></thead>
-            <tbody>
-              <tr><td>初期</td><td><strong>¥100,000</strong></td></tr>
-              <tr><td>月額</td><td><strong>¥18,000</strong></td></tr>
-              <tr><td>ページ</td><td>5P</td></tr>
-              <tr><td>LINE更新</td><td>月1回</td></tr>
-              <tr><td>追加/年</td><td>2P</td></tr>
-            </tbody>
-          </table>
-          <div class="plan-take">
-            <div class="rec">★ おすすめ</div>
-            <table>
-              <thead><tr><th colspan="2">竹 — 標準</th></tr></thead>
-              <tbody>
-                <tr><td>初期</td><td><strong>¥150,000</strong></td></tr>
-                <tr><td>月額</td><td><strong>¥33,000</strong></td></tr>
-                <tr><td>ページ</td><td>8P</td></tr>
-                <tr><td>LINE更新</td><td>月2回</td></tr>
-                <tr><td>追加/年</td><td>4P</td></tr>
-              </tbody>
-            </table>
+        <p class="cat">Pricing</p>
+        <h2 class="title">通常料金 — 松竹梅（税抜）</h2>
+        <p class="lead" style="margin-bottom:0.65rem;font-size:0.75rem">初期10万円以上・12ヶ月契約・クレジット可</p>
+        <div class="price-grid flex-1">
+          <div class="price-card">
+            <div class="head">松 — まず土台</div>
+            <div class="body">
+              <p class="plan">松</p><p class="tagline">小規模・スタート</p>
+              <p class="amount"><small>初期</small> ¥100,000</p>
+              <p class="monthly">月額 <strong style="color:var(--navy)">¥18,000</strong></p>
+              <ul><li><span>ページ</span><span>5P</span></li><li><span>LINE更新</span><span>月1回</span></li><li><span>追加/年</span><span>2P</span></li></ul>
+            </div>
           </div>
-          <table class="plan-ume">
-            <thead><tr><th colspan="2">梅 — しっかり育成</th></tr></thead>
-            <tbody>
-              <tr><td>初期</td><td><strong>¥200,000</strong></td></tr>
-              <tr><td>月額</td><td><strong>¥45,000</strong></td></tr>
-              <tr><td>ページ</td><td>12P</td></tr>
-              <tr><td>LINE更新</td><td>月4回</td></tr>
-              <tr><td>追加/年</td><td>6P</td></tr>
-            </tbody>
-          </table>
+          <div class="price-card featured">
+            <div class="rec-ribbon">★ おすすめ</div>
+            <div class="head">竹 — 標準</div>
+            <div class="body">
+              <p class="plan">竹</p><p class="tagline">多くの店舗に最適</p>
+              <p class="amount"><small>初期</small> ¥150,000</p>
+              <p class="monthly">月額 <strong style="color:var(--orange);font-size:1rem">¥33,000</strong></p>
+              <ul><li><span>ページ</span><span>8P</span></li><li><span>LINE更新</span><span>月2回</span></li><li><span>追加/年</span><span>4P</span></li></ul>
+            </div>
+          </div>
+          <div class="price-card">
+            <div class="head">梅 — しっかり育成</div>
+            <div class="body">
+              <p class="plan">梅</p><p class="tagline">本格運用</p>
+              <p class="amount"><small>初期</small> ¥200,000</p>
+              <p class="monthly">月額 <strong style="color:var(--navy)">¥45,000</strong></p>
+              <ul><li><span>ページ</span><span>12P</span></li><li><span>LINE更新</span><span>月4回</span></li><li><span>追加/年</span><span>6P</span></li></ul>
+            </div>
+          </div>
         </div>
       </section>
 
       <!-- 18 キャンペーン -->
       <section class="slide dark" id="s18">
+        <div class="slide-deco"></div>
         <span class="slide-num">18 / 20</span>
-        <p class="slide-label">Special</p>
-        <h2>活用事例店 限定キャンペーン</h2>
-        <p style="font-size:0.85rem;margin-bottom:0.65rem">各エリアで1つの業種につき1店舗限定。枠が埋まり次第、通常価格でのご案内となります。</p>
-        <div class="slide-body">
-        <table class="compare-table">
-          <thead>
-            <tr><th>プラン</th><th>通常月額</th><th>事例店月額</th><th>OFF</th><th>初期（事例店）</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>松</td><td class="price-strike">¥18,000</td><td class="price-new">¥14,400</td><td>20%</td><td>10万〜</td></tr>
-            <tr class="highlight-col"><td><strong>竹 ★</strong></td><td class="price-strike">¥33,000</td><td class="price-new">¥26,400</td><td>20%</td><td><strong>12万</strong></td></tr>
-            <tr><td>梅</td><td class="price-strike">¥45,000</td><td class="price-new">¥36,000</td><td>20%</td><td>要相談</td></tr>
-          </tbody>
-        </table>
-        <div class="visual-box" style="margin-top:0.5rem">
-          <svg viewBox="0 0 280 100" style="width:100%">
-            <text x="40" y="20" font-size="9" fill="#facc15">通常</text>
-            <rect x="20" y="28" width="80" height="50" fill="#64748b" opacity="0.6"/>
-            <text x="140" y="20" font-size="9" fill="#facc15" font-weight="bold">事例店</text>
-            <rect x="120" y="40" width="48" height="38" fill="#E8612A"/>
-            <text x="144" y="65" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">-20%</text>
-            <text x="220" y="55" font-size="11" fill="#facc15" font-weight="bold">お得!</text>
-          </svg>
+        <p class="cat">Special Offer</p>
+        <h2 class="title">成功事例店 — 限定キャンペーン</h2>
+        <div class="row center" style="margin-bottom:0.75rem">
+          <div class="camp-off">20%<span style="font-size:0.35em">OFF</span></div>
+          <p class="lead" style="margin:0">月額3ヶ月間・初期費用も特別条件</p>
         </div>
+        <div class="col-3">
+          <div class="card" style="text-align:center">
+            <h3>松</h3>
+            <p class="strike">¥18,000/月</p>
+            <p class="price-new">¥14,400</p>
+            <p style="font-size:0.65rem;margin-top:0.35rem">初期 10万〜</p>
+          </div>
+          <div class="card featured" style="text-align:center;border-color:var(--warn)">
+            <span class="badge hot">★ 竹 おすすめ</span>
+            <p class="strike">¥33,000/月</p>
+            <p class="price-new" style="font-size:1.4rem">¥26,400</p>
+            <p style="font-size:0.72rem;font-weight:700;color:var(--warn);margin-top:0.35rem">初期 12万（通常15万）</p>
+          </div>
+          <div class="card" style="text-align:center">
+            <h3>梅</h3>
+            <p class="strike">¥45,000/月</p>
+            <p class="price-new">¥36,000</p>
+            <p style="font-size:0.65rem;margin-top:0.35rem">初期 要相談</p>
+          </div>
         </div>
-        <p class="footnote" style="margin-top:0.5rem">キャンペーン適用条件：データ共有・長期経営・運用協力（MEOブックと同型）</p>
+        <p class="note" style="margin-top:0.65rem">1エリア1業種1店舗限定。枠埋まり次第通常価格。データ共有・運用協力が条件。</p>
       </section>
 
       <!-- 19 オプション -->
       <section class="slide" id="s19">
+        <div class="slide-deco"></div><div class="slide-dots"></div>
         <span class="slide-num">19 / 20</span>
-        <p class="slide-label">Options</p>
-        <h2>オプション・セット提案</h2>
-        <div class="grid-2 flex-1">
-          <table>
-            <thead><tr><th>オプション</th><th>内容</th></tr></thead>
-            <tbody>
-              <tr><td>ドメイン</td><td>取得・移管（実費＋作業費）</td></tr>
-              <tr><td><strong>meoクラウド</strong></td><td>マップで見つけて → HPで信頼</td></tr>
-              <tr><td><strong>AI動画広告</strong></td><td>認知 → HPで問い合わせ</td></tr>
-              <tr><td>大幅リニューアル</td><td>都度見積</td></tr>
-            </tbody>
-          </table>
-          <div class="card" style="border:2px solid var(--orange)">
-            <strong>ランバードだけの一気通貫</strong>
-            <p style="margin-top:0.5rem;font-size:0.88rem"><strong>MEO</strong>で見つけて、<strong>HP</strong>で信頼して、<strong>LINE</strong>で予約。<br>広告・マップ・Webをワンストップで。</p>
-          </div>
+        <p class="cat">Options</p>
+        <h2 class="title">ランバードだけの一気通貫</h2>
+        <div class="col-4" style="margin-bottom:0.75rem">
+          <div class="card" style="text-align:center"><h3>meoクラウド</h3><p>マップで見つける</p></div>
+          <div class="card" style="text-align:center"><h3>AI動画広告</h3><p>認知を広げる</p></div>
+          <div class="card" style="text-align:center"><h3>ドメイン</h3><p>取得・移管</p></div>
+          <div class="card" style="text-align:center"><h3>リニューアル</h3><p>都度見積</p></div>
+        </div>
+        <div class="all-in-banner" style="font-size:0.95rem;padding:0.85rem">
+          <strong>MEO</strong>で見つけて → <strong>HP</strong>で信頼して → <strong>LINE</strong>で予約
         </div>
       </section>
 
       <!-- 20 クロージング -->
       <section class="slide" id="s20">
+        <div class="slide-deco"></div>
         <span class="slide-num">20 / 20</span>
-        <p class="slide-label">Closing</p>
-        <h2>次の一歩 — 問い合わせが来るWebを、今月から</h2>
-        <div class="grid-2 flex-1">
-          <div class="card">
-            <strong>今日の整理</strong>
-            <ol class="compact" style="margin-top:0.4rem;list-style:decimal;padding-left:1.1rem">
-              <li>AI検索・マップの時代。放置HPはリスク。</li>
-              <li>早期納品 × LINE更新 × SEO/AIO。</li>
-              <li>事例店枠 or <strong>竹プラン</strong>で2〜3週間後の公開を。</li>
-            </ol>
-          </div>
-          <div class="card">
-            <strong>次のアクション</strong>
-            <div class="timeline-h" style="margin-top:0.5rem">
-              <div class="step done">①枠確認</div>
-              <div class="step done">②プラン</div>
-              <div class="step">③素材</div>
-              <div class="step">④公開</div>
-            </div>
-            <p style="font-size:0.72rem;margin-top:0.35rem;color:var(--muted)">最短14〜21営業日で公開</p>
-          </div>
+        <p class="cat">Closing</p>
+        <h2 class="title">次の一歩 — 今月から始める</h2>
+        <div class="col-3" style="margin-bottom:0.75rem">
+          <div class="card"><h3>① 時代</h3><p>AI検索・マップ時代。放置HPはリスク。</p></div>
+          <div class="card"><h3>② 商品</h3><p>早期納品×LINE×SEO/AIO。</p></div>
+          <div class="card orange"><h3>③ 次</h3><p>事例店枠 or <strong>竹プラン</strong></p></div>
         </div>
-        <div class="cta-box">
-          <div>
-            <strong style="font-size:1rem">高い制作費ではなく、運用まで込みの月額パッケージ。</strong>
-            <p style="font-size:0.8rem;opacity:0.9;margin-top:0.2rem">© 2024.09 RUNBIRD — 株式会社ランバード</p>
-          </div>
+        <div class="steps" style="margin-bottom:0.75rem">
+          <span class="step done" style="background:var(--navy);color:#fff">①枠確認</span><span class="step-arrow">→</span>
+          <span class="step done" style="background:var(--navy);color:#fff">②プラン</span><span class="step-arrow">→</span>
+          <span class="step">③素材</span><span class="step-arrow">→</span>
+          <span class="step active">④公開</span>
+        </div>
+        <p style="text-align:center;font-family:Outfit;font-size:1.5rem;font-weight:800;color:var(--orange);margin-bottom:0.75rem">最短 14〜21 営業日で公開</p>
+        <div class="cta-bar">
+          <div><strong style="font-size:1rem">運用まで込みの月額パッケージ</strong>
+            <p style="font-size:0.75rem;opacity:0.8;margin-top:0.2rem">© RUNBIRD — 株式会社ランバード</p></div>
           <span class="btn">事例店枠を確認する</span>
         </div>
-        <p class="footnote">PDF化：Chrome → 印刷 → PDFに保存（@media print 対応）</p>
+        <p class="note">PDF：Chrome → 印刷 → PDF（@media print対応）</p>
       </section>
 
     </div>
