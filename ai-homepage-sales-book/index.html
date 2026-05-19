@@ -22,6 +22,9 @@
       --line-green: #06c755;
       --nav-h: 52px;
       --slide-w: min(96vw, 1280px);
+      --pad: clamp(28px, 4vw, 52px);
+    --h1: clamp(2rem, 4.2vw, 3.8rem);
+    --mega: clamp(3.5rem, 8vw, 7rem);
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -75,10 +78,10 @@
       aspect-ratio: 16 / 9;
       max-height: calc(100vh - var(--nav-h) - 32px);
       background: var(--bg);
-      border-radius: 18px;
+      border-radius: 2px;
       border: 1px solid var(--glass-border);
       box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
-      padding: 28px 36px 22px;
+      padding: var(--pad);
       display: flex; flex-direction: column;
       position: relative; overflow: hidden;
       page-break-after: always;
@@ -381,674 +384,400 @@
       .price-card.featured { transform: none; }
       .dash-mock { grid-template-columns: repeat(2, 1fr); }
     }
+
+    h1{font-size:var(--h1);font-weight:900;line-height:1.12}
+    .mega{font-size:var(--mega);font-weight:900;line-height:.95}
+    .fw9{font-weight:900}
+    .orb{position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none}
+    .orb-o{width:280px;height:280px;background:rgba(255,138,0,.22);top:-80px;right:-60px}
+    .orb-c{width:220px;height:220px;background:rgba(52,213,255,.18);bottom:-40px;left:-40px}
+    .wave-bottom{position:absolute;bottom:0;left:0;right:0;height:28%;pointer-events:none}
+    .pillars{display:flex;gap:clamp(16px,3vw,40px);flex:1;align-items:stretch}
+    .pillar{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:.35em;background:var(--glass);border:1px solid var(--glass-border);border-radius:16px;padding:clamp(20px,3vw,36px)}
+    .pillar .mega{font-size:clamp(2.2rem,5vw,4rem)}
+    .s03-only{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:18px}
+    .s03-only .mega{font-size:clamp(2.6rem,6vw,5rem);max-width:14ch;line-height:1.05}
+    .pills-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+    .pill-hot{background:linear-gradient(135deg,rgba(255,138,0,.35),rgba(255,216,77,.2));border-color:rgba(255,138,0,.5);color:var(--gold)}
+    .hub-radial{flex:1;position:relative;display:flex;align-items:center;justify-content:center}
+    .hub-radial .hub-center{width:clamp(110px,16vw,160px);height:clamp(110px,16vw,160px);border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:900;background:linear-gradient(135deg,var(--orange),#e86a00);box-shadow:0 0 40px rgba(255,138,0,.4);z-index:2;font-size:clamp(.78rem,1.15vw,.92rem);line-height:1.2}
+    .orbit{position:absolute;padding:.45em .8em;border-radius:10px;background:var(--glass);border:1px solid var(--glass-border);font-size:clamp(.68rem,1vw,.82rem);font-weight:700}
+    .split-ico{flex:1;display:flex;gap:clamp(12px,2vw,24px)}
+    .split-side{flex:1;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:clamp(18px,3vw,28px)}
+    .split-before{background:rgba(255,80,80,.12);border:1px solid rgba(255,120,120,.3)}
+    .split-after{background:rgba(52,213,255,.12);border:1px solid rgba(52,213,255,.35)}
+    .icon-lg{width:clamp(64px,10vw,96px);height:clamp(64px,10vw,96px)}
+    .tri7{flex:1;display:grid;grid-template-columns:1fr 1.15fr 1fr;grid-template-rows:1fr auto 1fr;gap:10px;align-items:center;justify-items:center}
+    .tri7 .c{grid-column:2;grid-row:2;width:clamp(130px,20vw,180px);height:clamp(130px,20vw,180px);border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:900;border:2px solid var(--orange);background:linear-gradient(135deg,#0b2f3f,#061826);font-size:clamp(.72rem,1.15vw,.9rem);line-height:1.25}
+    .tri7 .n{padding:12px 14px;border-radius:12px;background:var(--glass);border:1px solid var(--glass-border);font-weight:800}
+    .tri7 .t{grid-column:2;grid-row:1} .tri7 .l{grid-column:1;grid-row:2} .tri7 .r{grid-column:3;grid-row:2}
+    .dual8{flex:1;display:flex;gap:clamp(16px,3vw,40px);align-items:center}
+    .dual8 ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+    .dual8 li{font-weight:600;font-size:clamp(.8rem,1.15vw,.92rem)}
+    .gword{font-size:clamp(2.4rem,6vw,4.8rem);font-weight:900;line-height:1;background:linear-gradient(90deg,#f8fafc,#34d5ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .duel-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+    .duel-lbl{width:5em;font-size:clamp(.72rem,1vw,.82rem);font-weight:700;flex-shrink:0}
+    .duel-trk{flex:1;height:clamp(26px,4vh,40px);background:rgba(0,0,0,.25);border-radius:8px;overflow:hidden}
+    .duel-old{height:100%;width:72%;background:rgba(255,100,100,.5);border-radius:8px;display:flex;align-items:center;padding-left:10px;font-size:clamp(.65rem,.9vw,.75rem);font-weight:800}
+    .duel-new{height:100%;width:28%;background:linear-gradient(90deg,var(--orange),var(--gold));border-radius:8px;display:flex;align-items:center;padding-left:8px;font-size:clamp(.65rem,.9vw,.75rem);font-weight:800;color:#061826}
+    .badge-y{display:inline-block;padding:.45em 1em;border-radius:8px;background:var(--gold);color:#061826;font-weight:900}
+    .seo-cols{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .seo-box{border-radius:14px;padding:14px;background:var(--glass);border:1px solid var(--glass-border)}
+    .seo-box.aio{border-color:rgba(52,213,255,.4);background:rgba(52,213,255,.08)}
+    .seo-box p{font-size:clamp(.72rem,1vw,.82rem);color:var(--muted);font-weight:600}
+    .sun-wrap{flex:1;position:relative;display:flex;align-items:center;justify-content:center;min-height:200px}
+    .sun-core{width:clamp(96px,13vw,130px);height:clamp(96px,13vw,130px);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:Outfit,sans-serif;font-weight:900;background:linear-gradient(135deg,var(--orange),var(--gold));box-shadow:0 0 36px rgba(255,138,0,.45);z-index:2}
+    .ray{position:absolute;padding:.35em .7em;border-radius:8px;background:var(--glass);border:1px solid var(--glass-border);font-size:clamp(.65rem,.95vw,.78rem);font-weight:700}
+    .s12-row{flex:1;display:flex;align-items:center;gap:clamp(16px,3vw,32px)}
+    .s12-row svg{width:clamp(52px,7vw,72px);height:clamp(52px,7vw,72px)}
+    .s12-msg{flex:1;font-size:clamp(1.4rem,2.8vw,2.2rem);font-weight:900;line-height:1.2}
+    .ring-wrap{flex:1;position:relative;display:flex;align-items:center;justify-content:center;min-height:200px;width:100%}
+    .ring-title{font-size:clamp(2rem,4vw,3rem);font-weight:900;z-index:2}
+    .ring-item{position:absolute;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:clamp(.52rem,.75vw,.65rem);font-weight:700}
+    .flow14{flex:1;display:flex;align-items:center;gap:6px}
+    .flow14 .s{flex:1;text-align:center;padding:clamp(14px,2vw,22px) 6px;border-radius:12px;background:var(--glass);border:1px solid var(--glass-border);font-weight:800}
+    .flow14 .a{color:var(--orange);font-size:1.4rem}
+    .phones{display:flex;align-items:center;justify-content:center;gap:clamp(6px,1.2vw,12px);flex:1}
+    .phone{width:clamp(88px,11vw,120px);aspect-ratio:9/19;border-radius:16px;border:3px solid rgba(255,255,255,.2);background:linear-gradient(180deg,#0d3d52,#061826);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:clamp(.52rem,.8vw,.65rem);font-weight:700;text-align:center;padding:10px 6px}
+    .phone.on{border-color:var(--orange);box-shadow:0 0 24px rgba(255,138,0,.35);transform:scale(1.05)}
+    .ph-arr{color:var(--cyan);font-size:1.6rem}
+    .kpi4{display:flex;gap:clamp(8px,1.2vw,14px)}
+    .kpi4 .k{flex:1;text-align:center;padding:clamp(10px,1.2vw,14px);border-radius:12px;background:var(--glass);border:1px solid var(--glass-border)}
+    .kpi4 .k .mega{font-size:clamp(1.6rem,3vw,2.4rem);display:block}
+    .kpi4 .k span{font-size:clamp(.6rem,.85vw,.7rem);color:var(--muted)}
+    .chart-f{flex:1;display:flex;align-items:flex-end}
+    .price3{flex:1;display:flex;align-items:flex-end;gap:clamp(10px,2vw,20px);justify-content:center}
+    .pcol{flex:1;max-width:260px;border-radius:16px;padding:clamp(14px,2vw,22px);background:var(--glass);border:1px solid var(--glass-border);text-align:center}
+    .pcol.on{flex:1.12;transform:scale(1.06);border-color:var(--orange);background:linear-gradient(180deg,rgba(255,138,0,.18),rgba(6,24,38,.5))}
+    .pcol .tier{font-size:clamp(1.1rem,1.8vw,1.45rem);font-weight:900}
+    .pcol .yen .num{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:900}
+    .pcol .meta{font-size:clamp(.62rem,.85vw,.72rem);color:var(--muted)}
+    .close-power{flex:1;display:flex;align-items:center;justify-content:center;gap:clamp(20px,4vw,48px)}
+    .off-ring{width:clamp(130px,20vw,190px);height:clamp(130px,20vw,190px);border-radius:50%;border:6px solid var(--gold);display:flex;flex-direction:column;align-items:center;justify-content:center}
+    .off-ring .mega{font-size:clamp(2.2rem,4.5vw,3.6rem);line-height:1}
+    .close-b .mega{font-size:clamp(2.6rem,5.5vw,4.5rem);color:var(--gold)}
+    .strike{text-decoration:line-through;opacity:.45}
+    .flow19{flex:1;display:flex;flex-direction:column;justify-content:center;gap:16px}
+    .flow19m{display:flex;align-items:center;gap:6px}
+    .flow19m .s{flex:1;text-align:center;padding:clamp(14px,2vw,20px) 6px;border-radius:12px;background:var(--glass);border:1px solid var(--glass-border);font-weight:800}
+    .opts{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+    .opts span{font-size:clamp(.62rem,.85vw,.72rem);padding:5px 10px;border-radius:8px;background:rgba(52,213,255,.1);border:1px solid rgba(52,213,255,.3);font-weight:600}
+    .s20c{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:clamp(14px,2vh,22px)}
+    .s20c .mega{font-size:clamp(2.8rem,6.5vw,5rem)}
+    .chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+    .chip{padding:.55em 1em;border-radius:10px;font-weight:800;background:var(--glass);border:1px solid var(--glass-border)}
+    .cta-big{display:inline-block;padding:.8em 1.8em;border-radius:12px;font-weight:900;background:linear-gradient(135deg,var(--orange),#e86a00);color:var(--text);text-decoration:none}
+    .tiny-foot{font-size:.6rem;color:var(--muted);text-align:center;margin-top:auto}
   </style>
 </head>
 <body>
 
-  <nav class="deck-nav" aria-label="スライドナビゲーション">
+  <header class="deck-nav">
     <span class="logo">RUNBIRD</span>
     <a href="#s01">01</a><a href="#s02">02</a><a href="#s03">03</a><a href="#s04">04</a>
     <a href="#s05">05</a><a href="#s06">06</a><a href="#s07">07</a><a href="#s08">08</a>
     <a href="#s09">09</a><a href="#s10">10</a><a href="#s11">11</a><a href="#s12">12</a>
     <a href="#s13">13</a><a href="#s14">14</a><a href="#s15">15</a><a href="#s16">16</a>
     <a href="#s17">17</a><a href="#s18">18</a><a href="#s19">19</a><a href="#s20">20</a>
-  </nav>
+  </header>
 
   <div class="deck-wrap">
-    <main class="deck">
+    <div class="deck">
 
       <!-- s01 Cover -->
-      <section class="slide" id="s01" aria-labelledby="t-s01">
-        <div class="slide-inner">
-          <header class="slide-head">
-            <span class="brand-sm">RUNBIRD</span>
-            <span class="pg num">01 / 20</span>
-          </header>
-          <p class="cat">AI Web Marketing</p>
-          <div class="slide-body cover-layout">
-            <div>
-              <h1 class="cover-title" id="t-s01">
-                <span class="l1">AIに選ばれる。</span>
-                <span class="l2">あなたに届く。</span>
-              </h1>
-              <p class="hero-sub">作って終わりではなく、育てるWeb — AIホームページ</p>
-              <div class="cover-tag">
-                <span class="pill">早期納品</span>
-                <span class="pill">LINE更新</span>
-                <span class="pill">SEO・AIO</span>
-              </div>
-            </div>
-            <svg viewBox="0 0 420 220" width="100%" height="auto" aria-label="集客エコシステム図">
-              <defs>
-                <linearGradient id="gHub" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#ff8a00"/>
-                  <stop offset="100%" stop-color="#e65c00"/>
-                </linearGradient>
-              </defs>
-              <circle cx="210" cy="110" r="42" fill="url(#gHub)" opacity="0.95"/>
-              <text x="210" y="106" text-anchor="middle" class="svg-t" font-size="10" font-weight="700">AI</text>
-              <text x="210" y="120" text-anchor="middle" class="svg-t" font-size="10" font-weight="700">ホームページ</text>
-              <line x1="210" y1="68" x2="210" y2="28" stroke="#34d5ff" stroke-width="1.5" stroke-dasharray="4 3"/>
-              <rect x="170" y="8" width="80" height="22" rx="6" fill="rgba(255,255,255,0.1)" stroke="#34d5ff"/>
-              <text x="210" y="23" text-anchor="middle" class="svg-t svg-cyan">Google / AI検索</text>
-              <line x1="248" y1="88" x2="310" y2="55" stroke="#ffd84d" stroke-width="1.5"/>
-              <rect x="300" y="38" width="70" height="28" rx="6" fill="rgba(6,199,85,0.2)" stroke="#06c755"/>
-              <text x="335" y="56" text-anchor="middle" class="svg-t">LINE</text>
-              <line x1="252" y1="130" x2="330" y2="155" stroke="#ff8a00" stroke-width="1.5"/>
-              <rect x="318" y="142" width="56" height="28" rx="6" fill="rgba(255,255,255,0.08)" stroke="#ff8a00"/>
-              <text x="346" y="160" text-anchor="middle" class="svg-t">電話</text>
-              <line x1="168" y1="130" x2="90" y2="155" stroke="#ffd84d" stroke-width="1.5"/>
-              <rect x="36" y="142" width="70" height="28" rx="6" fill="rgba(255,255,255,0.08)" stroke="#ffd84d"/>
-              <text x="71" y="160" text-anchor="middle" class="svg-t">HP受け皿</text>
-              <circle cx="70" cy="55" r="18" fill="rgba(52,213,255,0.15)" stroke="#34d5ff"/>
-              <text x="70" y="59" text-anchor="middle" class="svg-t-sm">MEO</text>
-            </svg>
-          </div>
-          <footer class="slide-foot">© RUNBIRD — <strong>問い合わせが来る営業資産</strong>を、月額で育てる</footer>
+      <section class="slide" id="s01">
+        <div class="orb orb-o"></div>
+        <div class="orb orb-c"></div>
+        <div class="slide-inner" style="justify-content:flex-end;padding-bottom:7%">
+          <span class="cat en">AI HOMEPAGE SALES BOOK</span>
+          <h1 style="max-width:14ch;margin-top:10px">AIに選ばれる。<br><span style="color:var(--cyan)">あなたに届く。</span></h1>
+          <p class="hero-sub">問い合わせが来るHPを、月額で育てる。</p>
         </div>
+        <svg class="wave-bottom" viewBox="0 0 1200 200" preserveAspectRatio="none" aria-hidden="true">
+          <path fill="rgba(52,213,255,0.08)" d="M0,120 Q300,40 600,100 T1200,80 L1200,200 L0,200 Z"/>
+          <path fill="rgba(255,138,0,0.06)" d="M0,160 Q400,100 800,140 T1200,120 L1200,200 L0,200 Z"/>
+        </svg>
       </section>
 
       <!-- s02 Company -->
-      <section class="slide" id="s02" aria-labelledby="t-s02">
+      <section class="slide" id="s02">
         <div class="slide-inner">
-          <header class="slide-head">
-            <span class="brand-sm">RUNBIRD</span>
-            <span class="pg num">02 / 20</span>
-          </header>
-          <p class="cat">Company</p>
-          <h2 class="hero-title" id="t-s02">会社概要</h2>
-          <p class="hero-sub">制作からMEO・動画・LINEまで一気通貫で集客を支援</p>
-          <div class="slide-body grid-2">
-            <div class="glass" style="padding:10px">
-              <table class="info-table">
-                <tr><th>社名</th><td>株式会社ランバード</td></tr>
-                <tr><th>URL</th><td>https://runbird.net</td></tr>
-                <tr><th>設立</th><td>2019年5月31日</td></tr>
-                <tr><th>代表</th><td>代表取締役 嶋田僚平</td></tr>
-                <tr><th>連絡</th><td>TEL 03-5843-6996 / info@runbird.net</td></tr>
-                <tr><th>事業</th><td>HP・MEO・SEO・動画・SNS広告・福祉事業 他</td></tr>
-              </table>
-            </div>
-            <div>
-              <p style="font-size:0.62rem;font-weight:800;color:var(--gold);margin-bottom:6px;text-align:center">全国4拠点</p>
-              <div class="grid-2" style="margin-bottom:8px">
-                <div class="glass loc-card"><div class="city">東京本社</div><div class="addr">中央区晴海 トリトンスクエア</div></div>
-                <div class="glass loc-card"><div class="city">大阪支店</div><div class="addr">中央区農人橋 第6松屋ビル</div></div>
-                <div class="glass loc-card"><div class="city">福岡支店</div><div class="addr">博多区博多駅東 第2ムカヰビル</div></div>
-                <div class="glass loc-card"><div class="city">沖縄支店</div><div class="addr">宜野湾市大山 三商ビル</div></div>
-              </div>
-              <svg viewBox="0 0 320 80" width="100%" aria-label="日本地図イメージ">
-                <path d="M40 50 Q80 20 120 35 T200 30 T280 45" fill="none" stroke="rgba(52,213,255,0.4)" stroke-width="2"/>
-                <circle cx="220" cy="38" r="5" fill="#ff8a00"/><text x="220" y="52" text-anchor="middle" class="svg-t-sm">東京</text>
-                <circle cx="140" cy="48" r="4" fill="#34d5ff"/><text x="140" y="62" text-anchor="middle" class="svg-t-sm">大阪</text>
-                <circle cx="100" cy="55" r="4" fill="#ffd84d"/><text x="100" y="69" text-anchor="middle" class="svg-t-sm">福岡</text>
-                <circle cx="60" cy="58" r="4" fill="#34d5ff"/><text x="60" y="72" text-anchor="middle" class="svg-t-sm">沖縄</text>
-              </svg>
-            </div>
+          <span class="cat en">COMPANY</span>
+          <div class="pillars">
+            <div class="pillar"><p class="mega num">4</p><h2>全国4拠点</h2><p class="hero-sub">東京・大阪・福岡・沖縄</p></div>
+            <div class="pillar"><p class="mega">一気通貫</p><h2>Web一気通貫</h2><p class="hero-sub">HP・MEO・LINE・動画</p></div>
+            <div class="pillar"><p class="mega num">2019</p><h2>2019設立</h2><p class="hero-sub">運用まで伴走</p></div>
           </div>
-          <footer class="slide-foot">運用まで伴走する — <strong>作って終わりにしない</strong></footer>
+          <p class="tiny-foot">株式会社ランバード｜runbird.net｜03-5843-6996</p>
         </div>
       </section>
 
       <!-- s03 Campaign -->
-      <section class="slide" id="s03" aria-labelledby="t-s03">
+      <section class="slide" id="s03">
         <div class="slide-inner">
-          <header class="slide-head">
-            <span class="brand-sm">RUNBIRD</span>
-            <span class="pg num">03 / 20</span>
-          </header>
-          <p class="cat">Campaign</p>
-          <h2 class="hero-title" id="t-s03">成功事例店 <span class="acc">募集</span></h2>
-          <div class="slide-body">
-            <p class="giant-limit"><em>1</em>エリア × <em>1</em>業種 × <em>1</em>店舗限定</p>
-            <div class="grid-4">
-              <div class="glass ind-card"><div class="name">美容室</div><span class="badge open">募集中</span></div>
-              <div class="glass ind-card"><div class="name">整体・整骨</div><span class="badge open">募集中</span></div>
-              <div class="glass ind-card"><div class="name">飲食店</div><span class="badge closed">募集終了</span></div>
-              <div class="glass ind-card"><div class="name">士業・クリニック</div><span class="badge open">要確認</span></div>
-              <div class="glass ind-card"><div class="name">ジム・パーソナル</div><span class="badge open">募集中</span></div>
-              <div class="glass ind-card"><div class="name">学習塾</div><span class="badge open">募集中</span></div>
-              <div class="glass ind-card"><div class="name">リフォーム</div><span class="badge closed">募集終了</span></div>
-              <div class="glass ind-card"><div class="name">その他</div><span class="badge open">エリア確認</span></div>
+          <span class="cat">CAMPAIGN</span>
+          <div class="s03-only">
+            <p class="mega">1エリア×1業種×1店舗限定</p>
+            <div class="pills-row">
+              <span class="pill pill-hot">成功事例店 募集中</span>
+              <span class="pill">エリア要確認</span>
+              <span class="pill">業種枠あり</span>
             </div>
           </div>
-          <footer class="slide-foot">事例データ共有にご協力いただける方へ — <strong>金額は後ほどご案内</strong></footer>
         </div>
       </section>
 
       <!-- s04 System -->
-      <section class="slide" id="s04" aria-labelledby="t-s04">
+      <section class="slide" id="s04">
         <div class="slide-inner">
-          <header class="slide-head">
-            <span class="brand-sm">RUNBIRD</span>
-            <span class="pg num">04 / 20</span>
-          </header>
-          <p class="cat">System</p>
-          <h2 class="hero-title" id="t-s04">AIホームページとは</h2>
-          <p class="hero-sub">検索・マップ・AI — すべての入口の受け皿</p>
-          <div class="slide-body" style="display:flex;justify-content:center">
-            <svg viewBox="0 0 480 200" width="100%" max-width="520" aria-label="システム構成図">
-              <circle cx="240" cy="100" r="50" fill="rgba(255,138,0,0.25)" stroke="#ff8a00" stroke-width="2"/>
-              <text x="240" y="96" text-anchor="middle" class="svg-t" font-size="11" font-weight="700">AI</text>
-              <text x="240" y="112" text-anchor="middle" class="svg-t" font-size="11" font-weight="700">ホームページ</text>
-              <g>
-                <line x1="240" y1="50" x2="240" y2="18" stroke="#34d5ff"/>
-                <rect x="200" y="2" width="80" height="20" rx="4" fill="rgba(52,213,255,0.15)" stroke="#34d5ff"/>
-                <text x="240" y="16" text-anchor="middle" class="svg-t-sm">SEO</text>
-              </g>
-              <g>
-                <line x1="285" y1="72" x2="350" y2="40" stroke="#ffd84d"/>
-                <rect x="330" y="24" width="70" height="22" rx="4" fill="rgba(255,216,77,0.12)" stroke="#ffd84d"/>
-                <text x="365" y="39" text-anchor="middle" class="svg-t-sm">MEO</text>
-              </g>
-              <g>
-                <line x1="290" y1="128" x2="360" y2="160" stroke="#34d5ff"/>
-                <rect x="340" y="148" width="80" height="22" rx="4" fill="rgba(52,213,255,0.12)" stroke="#34d5ff"/>
-                <text x="380" y="163" text-anchor="middle" class="svg-t-sm">AI検索</text>
-              </g>
-              <g>
-                <line x1="195" y1="128" x2="120" y2="160" stroke="#06c755"/>
-                <rect x="50" y="148" width="56" height="22" rx="4" fill="rgba(6,199,85,0.15)" stroke="#06c755"/>
-                <text x="78" y="163" text-anchor="middle" class="svg-t-sm">LINE</text>
-              </g>
-              <g>
-                <line x1="195" y1="72" x2="130" y2="40" stroke="#ff8a00"/>
-                <rect x="60" y="24" width="56" height="22" rx="4" fill="rgba(255,138,0,0.12)" stroke="#ff8a00"/>
-                <text x="88" y="39" text-anchor="middle" class="svg-t-sm">HP</text>
-              </g>
-            </svg>
+          <span class="cat">SYSTEM</span>
+          <h1>AIホームページとは</h1>
+          <p class="hero-sub">すべての入口の受け皿</p>
+          <div class="hub-radial">
+            <div class="hub-center">AI ホームページ</div>
+            <span class="orbit" style="top:4%;left:50%;transform:translateX(-50%)">Google</span>
+            <span class="orbit" style="top:22%;right:8%">AI検索</span>
+            <span class="orbit" style="bottom:22%;right:10%">MEO</span>
+            <span class="orbit" style="bottom:8%;left:50%;transform:translateX(-50%)">LINE</span>
+            <span class="orbit" style="top:22%;left:8%">問合せ</span>
           </div>
-          <footer class="slide-foot">広告は止まる。MEOは入口。<strong>HPは信頼と問い合わせの受け皿</strong></footer>
         </div>
       </section>
 
       <!-- s05 Why now -->
-      <section class="slide" id="s05" aria-labelledby="t-s05">
+      <section class="slide" id="s05">
         <div class="slide-inner">
-          <header class="slide-head">
-            <span class="brand-sm">RUNBIRD</span>
-            <span class="pg num">05 / 20</span>
-          </header>
-          <p class="cat">Why Now</p>
-          <h2 class="hero-title" id="t-s05">なぜ <span class="acc-o">今</span> 必要か</h2>
-          <div class="slide-body">
-            <div class="grid-3" style="margin-bottom:10px">
-              <div class="glass metric-huge">
-                <div class="val num">24<span class="arrow">→</span>4.5%</div>
-                <div class="lbl">Google AI Mode<br>HPクリック率の変化</div>
-              </div>
-              <div class="glass metric-huge">
-                <div class="val num">79%</div>
-                <div class="lbl">お店選びで<br>マップを参考</div>
-              </div>
-              <div class="glass metric-huge">
-                <div class="val" style="font-size:1.4rem">AIO</div>
-                <div class="lbl">AI検索に<br>拾われる設計が必須</div>
-              </div>
-            </div>
-            <div class="flex-row">
-              <div class="glass line-step flex-1"><span class="n num">1</span><br>AIに聞く</div>
-              <div class="glass line-step flex-1"><span class="n num">2</span><br>マップで比較</div>
-              <div class="glass line-step flex-1"><span class="n num">3</span><br>HPで信頼確認</div>
-              <div class="glass line-step flex-1"><span class="n num">4</span><br>電話・LINE予約</div>
-            </div>
+          <span class="cat">WHY NOW</span>
+          <h1>なぜ<span class="acc-o">今</span>必要か</h1>
+          <div class="stat-row" style="display:flex;gap:clamp(16px,3vw,32px);flex:1;align-items:stretch">
+            <div style="flex:1;text-align:center;padding:clamp(20px,3vw,32px) 8px;border-top:4px solid var(--cyan)"><p class="mega num" style="font-size:clamp(2.5rem,5.5vw,4.5rem)">24→4.5%</p><p class="hero-sub">HPクリック率</p></div>
+            <div style="flex:1;text-align:center;padding:clamp(20px,3vw,32px) 8px;border-top:4px solid var(--gold)"><p class="mega num" style="font-size:clamp(2.5rem,5.5vw,4.5rem)">79%</p><p class="hero-sub">マップ参照</p></div>
+            <div style="flex:1;text-align:center;padding:clamp(20px,3vw,32px) 8px;border-top:4px solid var(--orange)"><p class="mega" style="font-size:clamp(2.5rem,5.5vw,4.5rem)">AIO</p><p class="hero-sub">AI検索時代</p></div>
           </div>
-          <footer class="slide-foot">「作ったから大丈夫」は通用しない — <strong>放置HPはリスク</strong></footer>
+          <div class="flow14">
+            <span class="s">AIに聞く</span><span class="a">→</span><span class="s">マップ比較</span><span class="a">→</span><span class="s">HPで信頼</span><span class="a">→</span><span class="s">問合せ</span>
+          </div>
         </div>
       </section>
 
       <!-- s06 Before/After -->
-      <section class="slide" id="s06" aria-labelledby="t-s06">
+      <section class="slide" id="s06">
         <div class="slide-inner">
-          <header class="slide-head">
-            <span class="brand-sm">RUNBIRD</span>
-            <span class="pg num">06 / 20</span>
-          </header>
-          <p class="cat">Solution</p>
-          <h2 class="hero-title" id="t-s06">お悩み → <span class="acc">ALL</span>サポート</h2>
-          <div class="slide-body split-ba">
-            <div class="glass ba-col before">
-              <h3>Before — よくある悩み</h3>
-              <div class="ba-item">予算・リソースが足りない</div>
-              <div class="ba-item">何をすればいいかわからない</div>
-              <div class="ba-item">作ったけど更新できていない</div>
-              <div class="ba-item">AI対策が高そうで踏み出せない</div>
-            </div>
-            <div class="ba-arrow" aria-hidden="true">→</div>
-            <div class="glass ba-col after">
-              <h3>After — AIホームページ</h3>
-              <div class="ba-item">初期＋月額で運用込み</div>
-              <div class="ba-item">導線・SEO・AIOを設計</div>
-              <div class="ba-item">LINEで送るだけ更新</div>
-              <div class="ba-item">最短14〜21営業日で公開</div>
-            </div>
+          <span class="cat">SOLUTION</span>
+          <h1>Before / After</h1>
+          <div class="split-ico">
+            <div class="split-side split-before"><svg class="icon-lg" viewBox="0 0 80 80" fill="none" aria-hidden="true"><circle cx="40" cy="40" r="36" stroke="#ff6b6b" stroke-width="2"/><path d="M28 52c4-6 20-6 24 0M28 34h4M48 34h4" stroke="#ff6b6b" stroke-width="3" stroke-linecap="round"/></svg><p class="hero-sub">放置・古いHP</p></div>
+            <span class="ph-arr">→</span>
+            <div class="split-side split-after"><svg class="icon-lg" viewBox="0 0 80 80" fill="none" aria-hidden="true"><circle cx="40" cy="40" r="36" stroke="#34d5ff" stroke-width="2"/><path d="M28 48c4 8 20 8 24 0M28 34h4M48 34h4" stroke="#34d5ff" stroke-width="3" stroke-linecap="round"/></svg><p class="hero-sub">育つ・届くHP</p></div>
           </div>
-          <footer class="slide-foot"><strong>回る仕組み</strong>が必要 — 高額制作費ではない</footer>
         </div>
       </section>
 
       <!-- s07 Hub -->
-      <section class="slide" id="s07" aria-labelledby="t-s07">
+      <section class="slide" id="s07">
         <div class="slide-inner">
-          <header class="slide-head">
-            <span class="brand-sm">RUNBIRD</span>
-            <span class="pg num">07 / 20</span>
-          </header>
-          <p class="cat">Framework</p>
-          <h2 class="hero-title" id="t-s07">勝ち筋の <span class="acc">3</span> 要素</h2>
-          <div class="slide-body hub-wrap">
-            <div class="glass hub-node">導線設計<br><span style="font-size:0.48rem;color:var(--muted)">電話・LINE・予約</span></div>
-            <div class="hub-center">問い合わせが<br>来るHP</div>
-            <div class="glass hub-node">信頼設計<br><span style="font-size:0.48rem;color:var(--muted)">料金・実績・FAQ</span></div>
-            <div class="glass hub-node">継続更新<br><span style="font-size:0.48rem;color:var(--muted)">放置しない</span></div>
+          <span class="cat">FRAMEWORK</span>
+          <h1>勝ち筋3要素</h1>
+          <div class="tri7">
+            <span class="n t">見つかる</span>
+            <span class="n l">信頼</span>
+            <span class="c">問い合わせが来るHP</span>
+            <span class="n r">行動</span>
           </div>
-          <footer class="slide-foot">MEOの3要素に相当する — <strong>HP版フレーム</strong></footer>
         </div>
       </section>
 
       <!-- s08 Two focus -->
-      <section class="slide" id="s08" aria-labelledby="t-s08">
+      <section class="slide" id="s08">
         <div class="slide-inner">
-          <header class="slide-head">
-            <span class="brand-sm">RUNBIRD</span>
-            <span class="pg num">08 / 20</span>
-          </header>
-          <p class="cat">Focus</p>
-          <h2 class="hero-title" id="t-s08">注力する <span class="acc-o">2</span> 点</h2>
-          <div class="slide-body flex-row">
-            <div class="glass focus-panel">
-              <div class="icon" aria-hidden="true">📲</div>
-              <h3>POINT 1 — 問い合わせ導線</h3>
-              <ul>
-                <li>電話・LINE・予約・フォーム</li>
-                <li>迷わせない1クリック設計</li>
-                <li>マップからの流入を逃さない</li>
-              </ul>
-            </div>
-            <div class="glass focus-panel">
-              <div class="icon" aria-hidden="true">🔄</div>
-              <h3>POINT 2 — 更新 ＋ AIO</h3>
-              <ul>
-                <li>LINEで送るだけ反映</li>
-                <li>SEO基本設計</li>
-                <li>AIに拾われやすい構成</li>
-              </ul>
-            </div>
+          <span class="cat">FOCUS</span>
+          <h1>注力する2点</h1>
+          <div class="dual8">
+            <div><ul><li>電話・LINE・予約導線</li><li>1クリック設計</li><li>マップ流入を逃さない</li></ul></div>
+            <div class="gwords"><p class="gword">導線設計</p><p class="gword">更新+AIO</p></div>
           </div>
-          <footer class="slide-foot">口コミ＝導線 / 関連性＝更新・AIO — <strong>この2点に集中</strong></footer>
         </div>
       </section>
 
       <!-- s09 Speed + LINE -->
-      <section class="slide" id="s09" aria-labelledby="t-s09">
+            <section class="slide" id="s09">
         <div class="slide-inner">
-          <header class="slide-head">
-            <span class="brand-sm">RUNBIRD</span>
-            <span class="pg num">09 / 20</span>
-          </header>
-          <p class="cat">POINT 1</p>
-          <h2 class="hero-title" id="t-s09">早期納品 × <span class="acc">LINE</span>更新</h2>
-          <div class="slide-body grid-2">
-            <div>
-              <div class="bar-row">
-                <div class="lbl">一般的な外注制作</div>
-                <div class="bar-track"><div class="bar-fill slow num">3〜6ヶ月</div></div>
-              </div>
-              <div class="bar-row">
-                <div class="lbl">AIホームページ（素材提出後）</div>
-                <div class="bar-track"><div class="bar-fill fast num">14〜21営業日</div></div>
-              </div>
-            </div>
-            <div>
-              <div class="line-steps">
-                <div class="glass line-step"><span class="n">1</span><br>LINEで送信</div>
-                <div class="glass line-step"><span class="n">2</span><br>2〜3営業日で反映</div>
-                <div class="glass line-step"><span class="n">3</span><br>HP・AI検索に最新化</div>
-              </div>
-            </div>
-          </div>
-          <footer class="slide-foot">社長がスマホで回せる — <strong>放置＝閉店した店</strong></footer>
+          <span class="cat">SPEED</span>
+          <h1>早期納品×LINE更新</h1>
+          <div class="duel-row"><span class="duel-lbl">外注</span><div class="duel-trk"><div class="duel-old">3〜6ヶ月</div></div></div>
+          <div class="duel-row"><span class="duel-lbl">当社</span><div class="duel-trk"><div class="duel-new">14〜21日</div></div></div>
+          <div class="flow14"><span class="s">LINE送信</span><span class="a">→</span><span class="s">反映</span><span class="a">→</span><span class="s">HP最新化</span></div>
+          <span class="badge-y">2〜3営業日で反映</span>
         </div>
       </section>
 
       <!-- s10 SEO+AIO -->
-      <section class="slide" id="s10" aria-labelledby="t-s10">
+            <section class="slide" id="s10">
         <div class="slide-inner">
-          <header class="slide-head">
-            <span class="brand-sm">RUNBIRD</span>
-            <span class="pg num">10 / 20</span>
-          </header>
-          <p class="cat">POINT 2</p>
-          <h2 class="hero-title" id="t-s10">SEO ＋ <span class="acc">AIO</span></h2>
-          <div class="slide-body grid-2">
-            <svg viewBox="0 0 240 140" width="100%" aria-label="GoogleとChatGPTからHPへの導線">
-              <rect x="10" y="10" width="90" height="28" rx="6" fill="rgba(37,99,235,0.3)" stroke="#60a5fa"/>
-              <text x="55" y="28" text-anchor="middle" class="svg-t">Google検索</text>
-              <rect x="140" y="10" width="90" height="28" rx="6" fill="rgba(16,185,129,0.2)" stroke="#34d399"/>
-              <text x="185" y="28" text-anchor="middle" class="svg-t">ChatGPT</text>
-              <line x1="55" y1="38" x2="120" y2="75" stroke="#34d5ff"/>
-              <line x1="185" y1="38" x2="120" y2="75" stroke="#ff8a00"/>
-              <rect x="70" y="75" width="100" height="36" rx="8" fill="rgba(255,138,0,0.25)" stroke="#ff8a00"/>
-              <text x="120" y="98" text-anchor="middle" class="svg-t" font-weight="700">御社HP</text>
-              <text x="120" y="125" text-anchor="middle" class="svg-t-sm">FAQ・料金・更新日</text>
-            </svg>
-            <table class="cmp-table glass" style="padding:0;overflow:hidden">
-              <thead><tr><th></th><th>SEO</th><th>AIO</th></tr></thead>
-              <tbody>
-                <tr><td>目的</td><td>検索順位</td><td class="good">AI回答に載る</td></tr>
-                <tr><td>施策</td><td>KW・構造化</td><td class="good">結論ブロック・FAQ</td></tr>
-                <tr><td>更新</td><td>定期</td><td class="good">更新日が重要</td></tr>
-              </tbody>
-            </table>
+          <span class="cat">AI ERA</span>
+          <h1>AI時代の集客設計</h1>
+          <div style="display:flex;justify-content:center;gap:16px;align-items:center;flex-shrink:0">
+            <span class="glass" style="padding:10px 16px;font-weight:800">Google</span><span class="ph-arr">→</span>
+            <span class="glass" style="padding:10px 16px;font-weight:800">ChatGPT</span><span class="ph-arr">→</span>
+            <span class="glass" style="padding:10px 16px;font-weight:800;border-color:var(--orange)">御社HP</span>
           </div>
-          <footer class="slide-foot">「必ず出る」は言わない — <strong>拾われやすくする設計</strong></footer>
+          <div class="seo-cols">
+            <div class="seo-box"><h3>SEO</h3><p>検索順位・KW設計</p></div>
+            <div class="seo-box aio"><h3>AIO</h3><p>AI回答・FAQ設計</p></div>
+          </div>
         </div>
       </section>
 
       <!-- s11 Services -->
-      <section class="slide" id="s11" aria-labelledby="t-s11">
+      <section class="slide" id="s11">
         <div class="slide-inner">
-          <header class="slide-head">
-            <span class="brand-sm">RUNBIRD</span>
-            <span class="pg num">11 / 20</span>
-          </header>
-          <p class="cat">Responsibility</p>
-          <h2 class="hero-title" id="t-s11">すべて <span class="acc-o">ランバード</span> が担当</h2>
-          <div class="slide-body grid-6">
-            <div class="glass svc-card"><div class="ico">🎨</div><h4>HP制作</h4><p>スマホ最適</p></div>
-            <div class="glass svc-card"><div class="ico">📞</div><h4>導線設計</h4><p>CV設計</p></div>
-            <div class="glass svc-card"><div class="ico">🔍</div><h4>SEO設計</h4><p>基本設計</p></div>
-            <div class="glass svc-card"><div class="ico">🤖</div><h4>AIO構成</h4><p>FAQ・比較</p></div>
-            <div class="glass svc-card"><div class="ico">💬</div><h4>LINE更新</h4><p>反映代行</p></div>
-            <div class="glass svc-card"><div class="ico">📊</div><h4>月次レポート</h4><p>数値共有</p></div>
+          <span class="cat">ALL RUNBIRD</span>
+          <h1>すべてランバードが担当</h1>
+          <div class="sun-wrap">
+            <div class="sun-core">RUNBIRD</div>
+            <span class="ray" style="top:2%;left:50%;transform:translateX(-50%)">HP</span>
+            <span class="ray" style="top:18%;right:6%">SEO</span>
+            <span class="ray" style="bottom:18%;right:6%">AIO</span>
+            <span class="ray" style="bottom:2%;left:50%;transform:translateX(-50%)">LINE</span>
+            <span class="ray" style="bottom:18%;left:6%">保守</span>
+            <span class="ray" style="top:18%;left:6%">レポート</span>
           </div>
-          <footer class="slide-foot">導線＋更新 / SEO・AIO＋レポート — <strong>運用代行込み</strong></footer>
         </div>
       </section>
 
       <!-- s12 Security -->
-      <section class="slide" id="s12" aria-labelledby="t-s12">
+      <section class="slide" id="s12">
         <div class="slide-inner">
-          <header class="slide-head">
-            <span class="brand-sm">RUNBIRD</span>
-            <span class="pg num">12 / 20</span>
-          </header>
-          <p class="cat">Security</p>
-          <h2 class="hero-title" id="t-s12">攻めだけでなく <span class="acc">守り</span></h2>
-          <div class="slide-body">
-            <div class="grid-3">
-              <div class="glass sec-card">
-                <div style="font-size:1.4rem" aria-hidden="true">🔒</div>
-                <h4>SSL常時HTTPS</h4>
-                <p>安全な通信を維持</p>
-              </div>
-              <div class="glass sec-card">
-                <div style="font-size:1.4rem" aria-hidden="true">🛡</div>
-                <h4>改ざん監視・復旧</h4>
-                <p>契約範囲内で対応</p>
-              </div>
-              <div class="glass sec-card">
-                <div style="font-size:1.4rem" aria-hidden="true">💾</div>
-                <h4>定期バックアップ</h4>
-                <p>表示崩れ一次対応</p>
-              </div>
-            </div>
-            <p class="bold-msg">放置HPは、AIもお客様も「情報が古い店」と判断する</p>
-          </div>
-          <footer class="slide-foot">月額に<strong>保守・セキュリティ</strong>を含む</footer>
+          <span class="cat">SECURITY</span>
+          <div class="s12-row"><svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M32 4L8 14v18c0 14 10 26 24 28 14-2 24-14 24-28V14L32 4z" stroke="#34d5ff" stroke-width="2.5" fill="rgba(52,213,255,.15)"/></svg><svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><circle cx="22" cy="34" r="12" stroke="#ff8a00" stroke-width="2.5"/><path d="M30 34h26M42 28v12M50 30v8" stroke="#ffd84d" stroke-width="2.5" stroke-linecap="round"/></svg><svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect x="12" y="20" width="40" height="32" rx="4" stroke="#34d5ff" stroke-width="2.5"/><path d="M32 12v28M26 30l6 6 6-6" stroke="#ff8a00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><p class="s12-msg">放置HPは閉店した店に見える</p></div>
         </div>
       </section>
 
       <!-- s13 All-in -->
-      <section class="slide" id="s13" aria-labelledby="t-s13">
+      <section class="slide" id="s13">
         <div class="slide-inner">
-          <header class="slide-head">
-            <span class="brand-sm">RUNBIRD</span>
-            <span class="pg num">13 / 20</span>
-          </header>
-          <p class="cat">All-in-One</p>
-          <h2 class="hero-title" id="t-s13">オールインワン</h2>
-          <div class="slide-body">
-            <div class="icon-grid">
-              <div class="glass icon-cell"><span class="i">📱</span>スマホ最適</div>
-              <div class="glass icon-cell"><span class="i">📞</span>導線</div>
-              <div class="glass icon-cell"><span class="i">🔍</span>SEO</div>
-              <div class="glass icon-cell"><span class="i">🤖</span>AIO</div>
-              <div class="glass icon-cell"><span class="i">💬</span>LINE</div>
-              <div class="glass icon-cell"><span class="i">➕</span>ページ追加</div>
-              <div class="glass icon-cell"><span class="i">🌐</span>サーバー</div>
-              <div class="glass icon-cell"><span class="i">🔒</span>SSL</div>
-              <div class="glass icon-cell"><span class="i">📊</span>レポート</div>
-              <div class="glass icon-cell"><span class="i">🛡</span>改ざん対策</div>
-              <div class="glass icon-cell"><span class="i">📝</span>構成設計</div>
-              <div class="glass icon-cell"><span class="i">⚡</span>早期公開</div>
-            </div>
-            <p class="all-in-center">すべて込み</p>
+          <span class="cat">ALL IN</span>
+          <div class="ring-wrap">
+            <p class="ring-title">全部込み</p>
+            <span class="ring-item" style="top:0;left:50%;transform:translateX(-50%)">HP</span>
+            <span class="ring-item" style="top:18%;right:12%">SEO</span>
+            <span class="ring-item" style="bottom:18%;right:12%">AIO</span>
+            <span class="ring-item" style="bottom:0;left:50%;transform:translateX(-50%)">LINE</span>
+            <span class="ring-item" style="bottom:18%;left:12%">保守</span>
+            <span class="ring-item" style="top:18%;left:12%">レポート</span>
+            <span class="ring-item" style="top:50%;right:0">SSL</span>
+            <span class="ring-item" style="top:50%;left:0">サーバー</span>
           </div>
-          <footer class="slide-foot">MEOパッケージの — <strong>HP版決定版</strong></footer>
         </div>
       </section>
 
       <!-- s14 Value -->
-      <section class="slide" id="s14" aria-labelledby="t-s14">
+      <section class="slide" id="s14">
         <div class="slide-inner">
-          <header class="slide-head">
-            <span class="brand-sm">RUNBIRD</span>
-            <span class="pg num">14 / 20</span>
-          </header>
-          <p class="cat">Value</p>
-          <h2 class="hero-title" id="t-s14">3つの価値</h2>
-          <div class="slide-body">
-            <div class="grid-3">
-              <div class="glass val-col"><h4>見つかる</h4><p>SEO・AIOで<br>検索とAIに届く</p></div>
-              <div class="glass val-col"><h4>信頼される</h4><p>料金・実績・FAQで<br>比較に勝つ</p></div>
-              <div class="glass val-col"><h4>行動される</h4><p>電話・LINEで<br>問い合わせが来る</p></div>
-            </div>
-            <div class="arrow-sales" aria-hidden="true">▼</div>
-            <p class="sales-target">売上につながるWeb資産</p>
+          <span class="cat">VALUE</span>
+          <h1>3つの価値</h1>
+          <div class="flow14">
+            <span class="s">見つかる</span><span class="a">→</span><span class="s">信頼</span><span class="a">→</span><span class="s">行動</span><span class="a">→</span><span class="s">問合せ</span>
           </div>
-          <footer class="slide-foot">三角構造の中心 — <strong>AIホームページ</strong></footer>
         </div>
       </section>
 
       <!-- s15 LINE mock -->
-      <section class="slide" id="s15" aria-labelledby="t-s15">
+      <section class="slide" id="s15">
         <div class="slide-inner">
-          <header class="slide-head">
-            <span class="brand-sm">RUNBIRD</span>
-            <span class="pg num">15 / 20</span>
-          </header>
-          <p class="cat">Differentiation</p>
-          <h2 class="hero-title" id="t-s15">公式LINEで <span class="acc">楽々</span> 編集</h2>
-          <div class="slide-body flex-row" style="align-items:center;justify-content:center">
-            <svg viewBox="0 0 120 200" width="90" aria-label="LINE送信画面">
-              <rect x="10" y="10" width="100" height="180" rx="14" fill="#1a2e1a" stroke="#06c755"/>
-              <rect x="20" y="30" width="60" height="12" rx="6" fill="#06c755" opacity="0.6"/>
-              <text x="60" y="80" text-anchor="middle" class="svg-t-sm">写真・テキスト送信</text>
-              <rect x="25" y="100" width="70" height="40" rx="6" fill="rgba(255,255,255,0.1)"/>
-            </svg>
-            <div style="font-size:1.5rem;color:var(--gold)" aria-hidden="true">→</div>
-            <svg viewBox="0 0 120 200" width="90" aria-label="運用チーム反映">
-              <rect x="10" y="10" width="100" height="180" rx="14" fill="rgba(255,138,0,0.15)" stroke="#ff8a00"/>
-              <text x="60" y="70" text-anchor="middle" class="svg-t">運用チーム</text>
-              <text x="60" y="90" text-anchor="middle" class="svg-t-sm">2〜3営業日</text>
-            </svg>
-            <div style="font-size:1.5rem;color:var(--gold)" aria-hidden="true">→</div>
-            <svg viewBox="0 0 120 200" width="90" aria-label="HP反映画面">
-              <rect x="10" y="10" width="100" height="180" rx="14" fill="rgba(52,213,255,0.1)" stroke="#34d5ff"/>
-              <text x="60" y="70" text-anchor="middle" class="svg-t">HP更新</text>
-              <text x="60" y="95" text-anchor="middle" class="svg-t-sm">AI検索にも</text>
-              <text x="60" y="110" text-anchor="middle" class="svg-t-sm">最新情報</text>
-            </svg>
+          <span class="cat">LINE OPS</span>
+          <h1>公式LINEで楽々編集</h1>
+          <div class="phones">
+            <div class="phone">LINE 送信</div>
+            <span class="ph-arr">→</span>
+            <div class="phone on">運用 反映</div>
+            <span class="ph-arr">→</span>
+            <div class="phone">HP 更新</div>
           </div>
-          <footer class="slide-foot">大幅リニューアルは別途 — <strong>軽微な修正が対象</strong></footer>
         </div>
       </section>
 
       <!-- s16 Dashboard -->
-      <section class="slide" id="s16" aria-labelledby="t-s16">
+      <section class="slide" id="s16">
         <div class="slide-inner">
-          <header class="slide-head">
-            <span class="brand-sm">RUNBIRD</span>
-            <span class="pg num">16 / 20</span>
-          </header>
-          <p class="cat">Report</p>
-          <h2 class="hero-title" id="t-s16">月次レポートで <span class="acc-o">可視化</span></h2>
-          <div class="slide-body dash-mock">
-            <div class="glass kpi-box"><div class="k">セッション</div><div class="v num">+24%</div></div>
-            <div class="glass kpi-box"><div class="k">電話タップ</div><div class="v num">186</div></div>
-            <div class="glass kpi-box"><div class="k">LINEクリック</div><div class="v num">94</div></div>
-            <div class="glass kpi-box"><div class="k">フォーム</div><div class="v num">12</div></div>
-            <div class="glass chart-box" style="grid-row:span 2">
-              <div class="k" style="margin-bottom:4px">アクセス推移</div>
-              <svg viewBox="0 0 200 100" width="100%" preserveAspectRatio="none">
-                <polyline points="0,80 40,70 80,55 120,45 160,35 200,25" fill="none" stroke="#34d5ff" stroke-width="2"/>
-                <polyline points="0,80 40,75 80,68 120,60 160,50 200,40" fill="none" stroke="#ff8a00" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.7"/>
-              </svg>
-            </div>
+          <span class="cat">REPORT</span>
+          <h1>月次レポート</h1>
+          <div class="kpi4">
+            <div class="k"><span class="mega num">+24%</span><span>セッション</span></div>
+            <div class="k"><span class="mega num">186</span><span>電話</span></div>
+            <div class="k"><span class="mega num">94</span><span>LINE</span></div>
+            <div class="k"><span class="mega num">12</span><span>フォーム</span></div>
           </div>
-          <footer class="slide-foot">見えないものは改善できない — <strong>毎月数字で共有</strong></footer>
+          <div class="chart-f">
+            <svg viewBox="0 0 400 100" width="100%" aria-hidden="true">
+              <polyline points="0,80 80,65 160,50 240,38 320,28 400,18" fill="none" stroke="#34d5ff" stroke-width="3"/>
+              <polyline points="0,80 80,72 160,60 240,52 320,42 400,35" fill="none" stroke="#ff8a00" stroke-width="2" stroke-dasharray="6 4" opacity=".7"/>
+            </svg>
+          </div>
         </div>
       </section>
 
       <!-- s17 Pricing -->
-      <section class="slide" id="s17" aria-labelledby="t-s17">
+      <section class="slide" id="s17">
         <div class="slide-inner">
-          <header class="slide-head">
-            <span class="brand-sm">RUNBIRD</span>
-            <span class="pg num">17 / 20</span>
-          </header>
-          <p class="cat">Pricing</p>
-          <h2 class="hero-title" id="t-s17">通常料金 — <span class="acc">松竹梅</span></h2>
-          <div class="slide-body">
-            <div class="price-grid">
-              <div class="glass price-card">
-                <div class="plan">松</div>
-                <div class="tagline">まず土台</div>
-                <div class="init">初期 <strong class="num">¥100,000</strong></div>
-                <div class="month">月額 <strong class="num">¥18,000</strong></div>
-                <div style="font-size:0.48rem;color:var(--muted);margin-top:6px">5P / LINE月1回</div>
-              </div>
-              <div class="glass price-card featured">
-                <span class="feat-badge">標準★</span>
-                <div class="plan">竹</div>
-                <div class="tagline">おすすめ</div>
-                <div class="init">初期 <strong class="num">¥150,000</strong></div>
-                <div class="month">月額 <strong class="num">¥33,000</strong></div>
-                <div style="font-size:0.48rem;color:var(--muted);margin-top:6px">8P / LINE月2回</div>
-              </div>
-              <div class="glass price-card">
-                <div class="plan">梅</div>
-                <div class="tagline">しっかり育成</div>
-                <div class="init">初期 <strong class="num">¥200,000</strong></div>
-                <div class="month">月額 <strong class="num">¥45,000</strong></div>
-                <div style="font-size:0.48rem;color:var(--muted);margin-top:6px">12P / LINE月4回</div>
-              </div>
-            </div>
-            <p class="tax-note">※表示価格はすべて税抜　12ヶ月契約想定</p>
+          <span class="cat">PRICING</span>
+          <h1>松竹梅（税抜）</h1>
+          <div class="price3">
+            <div class="pcol"><p class="tier">松</p><p class="yen">月額 <span class="num">¥18,000</span></p><p class="meta">初期10万 / 5P</p></div>
+            <div class="pcol on"><p class="tier">竹 ★</p><p class="yen">月額 <span class="num">¥33,000</span></p><p class="meta">初期15万 / 8P</p></div>
+            <div class="pcol"><p class="tier">梅</p><p class="yen">月額 <span class="num">¥45,000</span></p><p class="meta">初期20万 / 12P</p></div>
           </div>
-          <footer class="slide-foot">制作50〜150万＋外注更新と比べ — <strong>月額で運用込み</strong></footer>
         </div>
       </section>
 
       <!-- s18 Campaign pricing -->
-      <section class="slide" id="s18" aria-labelledby="t-s18">
+      <section class="slide" id="s18">
         <div class="slide-inner">
-          <header class="slide-head">
-            <span class="brand-sm">RUNBIRD</span>
-            <span class="pg num">18 / 20</span>
-          </header>
-          <p class="cat">Special Offer</p>
-          <h2 class="hero-title" id="t-s18">成功事例店 <span class="acc-o">特別価格</span></h2>
-          <div class="slide-body">
-            <p class="off-huge num">20<small>% OFF</small></p>
-            <p style="text-align:center;font-size:0.65rem;color:var(--gold);font-weight:800;margin:6px 0">各エリア × 1業種 × 1店舗限定 · 月額3ヶ月間</p>
-            <div class="camp-grid">
-              <div class="glass camp-box">
-                <div class="label">松 — 月額</div>
-                <div class="was">¥18,000</div>
-                <div class="price num">¥14,400</div>
-                <div class="init-p">初期 10万〜</div>
-              </div>
-              <div class="glass camp-box featured">
-                <span class="feat-badge">★ おすすめ</span>
-                <div class="label">竹 — 月額</div>
-                <div class="was">¥33,000</div>
-                <div class="price num">¥26,400</div>
-                <div class="init-p">初期 ¥120,000（通常15万）</div>
-              </div>
-              <div class="glass camp-box">
-                <div class="label">梅 — 月額</div>
-                <div class="was">¥45,000</div>
-                <div class="price num">¥36,000</div>
-                <div class="init-p">初期 要相談</div>
-              </div>
+          <span class="cat">CLOSING</span>
+          <h1>成功事例店 特別価格</h1>
+          <div class="close-power">
+            <div class="off-ring"><p class="mega num">20%</p><p class="hero-sub">OFF</p></div>
+            <div class="close-b">
+              <p class="strike num">¥33,000</p>
+              <p class="mega num">¥26,400</p>
+              <p class="hero-sub">竹プラン月額（税抜）</p>
+              <p class="hero-sub">初期 <span class="fw9 num">¥120,000</span>（通常15万）</p>
             </div>
-            <p class="tax-note">※税抜表示</p>
           </div>
-          <footer class="slide-foot">枠埋まり次第通常価格 — <strong>エリア・業種を当日確認</strong></footer>
         </div>
       </section>
 
       <!-- s19 Options -->
-      <section class="slide" id="s19" aria-labelledby="t-s19">
+      <section class="slide" id="s19">
         <div class="slide-inner">
-          <header class="slide-head">
-            <span class="brand-sm">RUNBIRD</span>
-            <span class="pg num">19 / 20</span>
-          </header>
-          <p class="cat">Options</p>
-          <h2 class="hero-title" id="t-s19">オプション・セット</h2>
-          <div class="slide-body">
-            <div class="grid-4" style="margin-bottom:10px">
-              <div class="glass svc-card"><h4>ドメイン</h4><p>取得・移管</p></div>
-              <div class="glass svc-card"><h4>meoクラウド</h4><p>入口対策</p></div>
-              <div class="glass svc-card"><h4>AI動画広告</h4><p>認知→HP</p></div>
-              <div class="glass svc-card"><h4>追加修正</h4><p>¥5,000〜/回</p></div>
+          <span class="cat">OPTIONS</span>
+          <h1>一気通貫セット</h1>
+          <div class="flow19">
+            <div class="flow19m">
+              <span class="s">MEO</span><span class="a">→</span><span class="s">HP</span><span class="a">→</span><span class="s">LINE</span><span class="a">→</span><span class="s">レポート</span>
             </div>
-            <div class="flex-row" style="justify-content:center;align-items:center">
-              <div class="glass hub-node" style="border-color:var(--gold)">MEO</div>
-              <span style="color:var(--gold);font-size:1.2rem" aria-hidden="true">→</span>
-              <div class="glass hub-node" style="border-color:var(--orange)">HP</div>
-              <span style="color:var(--gold);font-size:1.2rem" aria-hidden="true">→</span>
-              <div class="glass hub-node" style="border-color:var(--line-green)">LINE</div>
+            <div class="opts">
+              <span>ドメイン</span><span>AI動画</span><span>追加修正</span><span>meoクラウド</span>
             </div>
-            <p style="text-align:center;font-size:0.58rem;color:var(--muted);margin-top:8px">MEOで見つけて、HPで信頼して、LINEで予約</p>
           </div>
-          <footer class="slide-foot">ランバードだけの — <strong>一気通貫</strong></footer>
         </div>
       </section>
 
       <!-- s20 Closing -->
-      <section class="slide" id="s20" aria-labelledby="t-s20">
+      <section class="slide" id="s20">
         <div class="slide-inner">
-          <header class="slide-head">
-            <span class="brand-sm">RUNBIRD</span>
-            <span class="pg num">20 / 20</span>
-          </header>
-          <p class="cat">Next Step</p>
-          <h2 class="hero-title" id="t-s20">次の一手</h2>
-          <div class="slide-body">
-            <div class="grid-3" style="margin-bottom:8px">
-              <div class="glass val-col"><h4>時代</h4><p>AI検索・マップ時代<br>放置HPはリスク</p></div>
-              <div class="glass val-col"><h4>商品</h4><p>早期納品×LINE<br>SEO・AIO込み</p></div>
-              <div class="glass val-col"><h4>次</h4><p>事例店枠 or 竹<br>公開スケジュール</p></div>
+          <div class="s20c">
+            <p class="mega num">14〜21営業日</p>
+            <p class="hero-sub">素材提出後の公開目安</p>
+            <div class="chips">
+              <span class="chip">1.エリア確認</span><span class="chip">2.プラン確定</span><span class="chip">3.素材</span><span class="chip">4.契約</span>
             </div>
-            <div class="steps-row">
-              <span class="step-chip">1. エリア確認</span>
-              <span class="step-chip">2. プラン確定</span>
-              <span class="step-chip">3. 素材リスト</span>
-              <span class="step-chip">4. 契約</span>
-              <span class="step-chip">5. 公開</span>
-            </div>
-            <p class="days-huge num">14〜21 <span style="font-size:0.45em;color:var(--muted)">営業日で公開</span></p>
-            <p style="text-align:center"><a class="cta-btn" href="#s03">事例店枠を確認する</a></p>
+            <a class="cta-big" href="#s03">事例店枠を確認する</a>
           </div>
-          <footer class="slide-foot">問い合わせが来続けるWeb — <strong>株式会社ランバード</strong></footer>
         </div>
       </section>
 
-    </main>
+    </div>
   </div>
 
   <script>
