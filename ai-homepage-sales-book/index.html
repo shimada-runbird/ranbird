@@ -4,791 +4,1631 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AIホームページ 営業ブック | 株式会社ランバード</title>
-  <meta name="description" content="AIに選ばれる。あなたに届く。問い合わせが来るホームページを月額で育てる。ランバード AIホームページ 営業プレゼン（20スライド）。">
   <meta name="robots" content="noindex, nofollow">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;900&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Noto+Serif+JP:wght@700;900&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: linear-gradient(135deg, #061826 0%, #0b2f3f 48%, #102a43 100%);
-      --glass: rgba(255, 255, 255, 0.08);
-      --glass-border: rgba(255, 255, 255, 0.14);
-      --text: #f8fafc;
-      --muted: rgba(248, 250, 252, 0.68);
-      --orange: #ff8a00;
-      --gold: #ffd84d;
-      --cyan: #34d5ff;
-      --line-green: #06c755;
-      --nav-h: 52px;
-      --slide-w: min(96vw, 1280px);
-      --pad: clamp(28px, 4vw, 52px);
-    --h1: clamp(2rem, 4.2vw, 3.8rem);
-    --mega: clamp(3.5rem, 8vw, 7rem);
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: "Noto Sans JP", sans-serif;
-      font-feature-settings: "palt" 1;
-      background: #061826;
-      color: var(--text);
-      -webkit-font-smoothing: antialiased;
-    }
-    .num { font-family: Outfit, sans-serif; }
+:root{
+  --n0:#02060c;--n1:#061826;--n2:#0a2a3d;--n3:#0d4a55;
+  --w:#f8fafc;--sub:#a8c8d4;--mute:#5a8a9a;
+  --o:#ff8a00;--y:#ffd84d;--r:#ff4d4d;--c:#34d5ff;--lg:#06c755;
+  --nav:40px;
+  --slide-w:min(96vw,1280px);
+  --pad:clamp(28px,3.8vw,48px);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
+body{font-family:"Noto Sans JP",sans-serif;background:var(--n0);color:var(--w);-webkit-font-smoothing:antialiased}
+.num{font-family:Outfit,sans-serif}
+.nav{position:fixed;inset:0 0 auto;z-index:999;height:var(--nav);display:flex;align-items:center;gap:1px;padding:0 8px;background:rgba(2,6,12,.97);border-bottom:1px solid rgba(255,255,255,.06)}
+.nav .logo{margin-right:auto;font-family:Outfit,sans-serif;font-size:.58rem;font-weight:800;letter-spacing:.16em;color:var(--o)}
+.nav a{color:var(--mute);text-decoration:none;font-family:Outfit,sans-serif;font-size:.52rem;font-weight:700;padding:2px 4px}
+.nav a:hover{color:var(--w)}
+.viewport{position:fixed;top:var(--nav);left:0;right:0;bottom:0;overflow-y:auto;scroll-snap-type:y mandatory;background:#000}
+.deck{display:flex;flex-direction:column;align-items:center;padding:8px 0 16px;gap:10px}
 
-    /* Nav */
-    .deck-nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 300;
-      height: var(--nav-h);
-      display: flex; align-items: center; gap: 2px;
-      padding: 0 12px;
-      background: rgba(6, 24, 38, 0.94);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    .deck-nav .logo {
-      font-family: Outfit, sans-serif;
-      font-weight: 800; font-size: 0.78rem; letter-spacing: 0.12em;
-      color: var(--orange); margin-right: auto; white-space: nowrap;
-    }
-    .deck-nav a {
-      color: var(--muted); text-decoration: none;
-      font-family: Outfit, sans-serif; font-size: 0.62rem; font-weight: 600;
-      padding: 4px 5px; border-radius: 4px; transition: color 0.15s, background 0.15s;
-    }
-    .deck-nav a:hover, .deck-nav a:focus-visible {
-      color: var(--text); background: rgba(255, 255, 255, 0.1); outline: none;
-    }
+/* === SLIDE SHELL: fixed 16:9 presentation canvas === */
+.sl{
+  scroll-snap-align:start;scroll-snap-stop:always;
+  width:var(--slide-w);
+  aspect-ratio:16/9;
+  max-height:calc(100vh - var(--nav) - 16px);
+  position:relative;overflow:hidden;
+  display:grid;
+  grid-template-rows:auto 1fr;
+  padding:var(--pad);
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:0 32px 100px rgba(0,0,0,.65);
+  page-break-after:always;
+}
+.sl>*{position:relative;z-index:2}
+.sl .bg{position:absolute;inset:0;z-index:0;pointer-events:none}
+.sl .frame{position:absolute;inset:10px;border:1px solid rgba(255,255,255,.05);pointer-events:none;z-index:1;border-radius:2px}
 
-    /* Deck */
-    .deck-wrap {
-      position: fixed; top: var(--nav-h); left: 0; right: 0; bottom: 0;
-      overflow-y: auto; scroll-snap-type: y mandatory;
-    }
-    .deck {
-      display: flex; flex-direction: column; align-items: center;
-      gap: 20px; padding: 16px 0 32px;
-    }
+.sh{display:flex;justify-content:space-between;align-items:center;margin-bottom:clamp(8px,1.2vh,14px)}
+.sh .brand{font-family:Outfit,sans-serif;font-size:.55rem;font-weight:800;letter-spacing:.2em;color:var(--c)}
+.sh .pg{font-family:Outfit,sans-serif;font-size:.6rem;font-weight:700;color:var(--mute)}
+.body{min-height:0;display:flex;flex-direction:column;justify-content:center;flex:1}
 
-    /* Slide shell */
-    .slide {
-      scroll-snap-align: start; scroll-snap-stop: always;
-      width: var(--slide-w);
-      aspect-ratio: 16 / 9;
-      max-height: calc(100vh - var(--nav-h) - 32px);
-      background: var(--bg);
-      border-radius: 2px;
-      border: 1px solid var(--glass-border);
-      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
-      padding: var(--pad);
-      display: flex; flex-direction: column;
-      position: relative; overflow: hidden;
-      page-break-after: always;
-    }
-    .slide::before {
-      content: "";
-      position: absolute; inset: 0; pointer-events: none;
-      background:
-        radial-gradient(ellipse 55% 45% at 100% 0%, rgba(255, 138, 0, 0.12), transparent 55%),
-        radial-gradient(ellipse 40% 35% at 0% 100%, rgba(52, 213, 255, 0.08), transparent 50%);
-    }
-    .slide-inner { position: relative; z-index: 1; flex: 1; display: flex; flex-direction: column; min-height: 0; }
+/* backgrounds by role */
+.bg-cover{background:radial-gradient(ellipse 90% 70% at 70% 20%,rgba(52,213,255,.22),transparent 50%),radial-gradient(ellipse 60% 50% at 10% 90%,rgba(255,138,0,.18),transparent 45%),linear-gradient(155deg,#02060c,#061826 40%,#0a3d4a 75%,#0d4a55)}
+.bg-quiet{background:linear-gradient(160deg,#0a1420,#0f2435 60%,#122a3a)}
+.bg-camp{background:radial-gradient(circle at 50% 30%,rgba(255,216,77,.15),transparent 45%),linear-gradient(165deg,#1a0800,#061826,#0a2040)}
+.bg-alert{background:linear-gradient(165deg,#080810,#0a1628 50%,#180800)}
+.bg-hero{background:linear-gradient(145deg,#061826,#0a2840 50%,#0d2030)}
+.bg-price{background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(255,216,77,.12),transparent 50%),linear-gradient(180deg,#0a1a28,#02060c)}
+.bg-close{background:radial-gradient(circle at 40% 25%,rgba(255,138,0,.2),transparent 40%),linear-gradient(150deg,#1a0e00,#061826,#0a2a3d)}
 
-    .slide-head {
-      display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 10px; flex-shrink: 0;
-    }
-    .slide-head .brand-sm {
-      font-family: Outfit, sans-serif; font-weight: 800; font-size: 0.72rem;
-      letter-spacing: 0.14em; color: var(--orange);
-    }
-    .slide-head .pg {
-      font-family: Outfit, sans-serif; font-size: 0.85rem; font-weight: 700;
-      color: var(--muted);
-    }
-    .cat {
-      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--cyan); margin-bottom: 4px;
-    }
-    .hero-title {
-      font-size: clamp(1.5rem, 2.8vw, 2.1rem);
-      font-weight: 900; line-height: 1.15; letter-spacing: 0.02em;
-      margin-bottom: 4px;
-    }
-    .hero-title .acc { color: var(--gold); }
-    .hero-title .acc-o { color: var(--orange); }
-    .hero-sub {
-      font-size: 0.72rem; color: var(--muted); margin-bottom: 10px; line-height: 1.45;
-    }
-    .slide-body { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; }
-    .slide-foot {
-      flex-shrink: 0; margin-top: 8px; padding-top: 8px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      font-size: 0.65rem; color: var(--muted); text-align: center;
-    }
-    .slide-foot strong { color: var(--gold); font-weight: 700; }
+/* typography */
+.cat{font-size:clamp(.48rem,.65vw,.58rem);font-weight:800;letter-spacing:.28em;color:var(--c);text-transform:uppercase}
+.h-xl{font-size:clamp(2rem,4.8vw,4.2rem);font-weight:900;line-height:1.05;letter-spacing:-.02em}
+.h-lg{font-size:clamp(1.35rem,2.6vw,2.1rem);font-weight:900;line-height:1.1}
+.h-md{font-size:clamp(1rem,1.8vw,1.35rem);font-weight:900;line-height:1.2}
+.sub{font-size:clamp(.62rem,.85vw,.75rem);color:var(--sub);line-height:1.45}
+.mini{font-size:clamp(.46rem,.6vw,.54rem);color:var(--mute)}
+.mark{background:linear-gradient(transparent 55%,rgba(255,216,77,.6) 55%)}
+.num-xl{font-family:Outfit,sans-serif;font-size:clamp(3.5rem,9vw,8.75rem);font-weight:900;line-height:.9;letter-spacing:-.03em}
+.num-lg{font-family:Outfit,sans-serif;font-size:clamp(2.2rem,5.5vw,5.5rem);font-weight:900;line-height:1}
+.num-md{font-family:Outfit,sans-serif;font-size:clamp(1.6rem,3.5vw,3.2rem);font-weight:900;line-height:1}
+.accent-o{color:var(--o)}.accent-y{color:var(--y)}.accent-c{color:var(--c)}.accent-r{color:var(--r)}
+.glow-t{text-shadow:0 0 60px rgba(52,213,255,.35),0 0 120px rgba(52,213,255,.15)}
 
-    /* Glass */
-    .glass {
-      background: var(--glass);
-      border: 1px solid var(--glass-border);
-      border-radius: 12px;
-      backdrop-filter: blur(8px);
-    }
+/* layouts */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,3vw,32px);align-items:center;height:100%}
+.split-55{grid-template-columns:1.1fr .9fr}
+.split-45{grid-template-columns:.9fr 1.1fr}
+.center-col{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:clamp(10px,1.5vh,16px);height:100%}
 
-    /* Layout helpers */
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
-    .grid-6 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-    .flex-row { display: flex; gap: 12px; align-items: stretch; }
-    .flex-1 { flex: 1; min-width: 0; }
+/* cover — bizブック表紙と同型 */
+.cover-biz{padding:0;display:block;grid-template-rows:unset;border:none}
+.bg-cover-biz{background:linear-gradient(128deg,#0e5a6e 0%,#0a4558 18%,#073040 38%,#061a2a 62%,#040e18 82%,#02060c 100%)}
+.cover-waves-biz{position:absolute;inset:auto 0 0;left:0;width:100%;height:38%;z-index:1;pointer-events:none;opacity:.9}
+.cover-rb-logo{position:absolute;top:clamp(20px,3.2vh,36px);left:clamp(24px,3.8vw,44px);z-index:4}
+.cover-rb-logo .rb-logo-img{display:block;height:clamp(38px,5.2vh,54px);width:auto;max-width:min(42vw,220px);object-fit:contain}
+.cover-biz-body{position:absolute;left:clamp(28px,4.5vw,52px);top:50%;transform:translateY(-46%);z-index:3;max-width:min(68%,720px)}
+.cover-intro{display:flex;align-items:center;gap:clamp(12px,1.6vw,18px);margin-bottom:clamp(18px,2.8vh,30px)}
+.cover-icon{width:clamp(52px,6.5vw,68px);height:clamp(52px,6.5vw,68px);border-radius:16px;background:#fff;flex-shrink:0;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 28px rgba(0,0,0,.25)}
+.cover-sub{font-size:clamp(.72rem,1.05vw,.92rem);font-weight:500;color:#fff;line-height:1.6;letter-spacing:.03em}
+.cover-title{font-size:clamp(3rem,7.2vw,5.6rem);font-weight:900;color:#fff;line-height:1.06;letter-spacing:.02em;margin:0 0 clamp(22px,3.2vh,34px);text-shadow:0 0 24px rgba(255,255,255,.5),0 0 64px rgba(255,255,255,.28),0 0 120px rgba(255,255,255,.12)}
+.cover-box{display:inline-block;border:1px solid rgba(255,255,255,.88);padding:clamp(10px,1.3vh,14px) clamp(16px,2.2vw,26px);font-size:clamp(.66rem,.92vw,.84rem);font-weight:500;color:#fff;letter-spacing:.05em;line-height:1.5;background:transparent}
+.cover-left{display:flex;flex-direction:column;justify-content:center;gap:clamp(12px,2vh,20px)}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{padding:8px 16px;border-radius:8px;font-size:clamp(.58rem,.8vw,.7rem);font-weight:800;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(8px)}
+.wave-b{position:absolute;bottom:0;left:0;right:0;height:22%;opacity:.45;z-index:1}
 
-    /* Cover */
-    .cover-layout { display: grid; grid-template-columns: 1fr 1.1fr; gap: 20px; align-items: center; height: 100%; }
-    .cover-title { font-size: clamp(2rem, 4.2vw, 3rem); font-weight: 900; line-height: 1.15; }
-    .cover-title span { display: block; }
-    .cover-title .l1 { color: var(--text); }
-    .cover-title .l2 { color: var(--orange); }
-    .cover-tag { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; }
-    .pill {
-      font-size: 0.58rem; font-weight: 700; padding: 4px 10px;
-      border-radius: 999px; background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-    }
+/* biz教育スライド（薄い青灰・巨大見出し＋定義リスト） */
+.slide-biz-light{color:#0a1628;padding:clamp(28px,3.5vw,44px);display:flex;flex-direction:column;grid-template-rows:unset}
+.bg-biz-light{background:linear-gradient(180deg,#d8e4ea 0%,#c9d8e0 45%,#bcced8 100%)}
+.slide-biz-light .cover-waves-biz{height:28%}
+.slide-biz-light .cover-waves-biz path{stroke:rgba(255,255,255,.55)}
+.slide-biz-light .cover-waves-biz path[fill]{fill:rgba(255,255,255,.12)}
+.slide-biz-light .body-edu{flex:1;display:flex;flex-direction:column;justify-content:space-evenly;align-items:stretch;min-height:0;padding:clamp(4px,1vh,12px) clamp(20px,3vw,40px) clamp(36px,7vh,56px);gap:clamp(16px,2.5vh,28px)}
+.edu-head{text-align:center;font-weight:900;line-height:1.18;margin:0;font-size:clamp(2.2rem,5.2vw,4rem);color:#0a1628;letter-spacing:.02em}
+.edu-head .em-ai{font-size:1.1em;position:relative;display:inline-block}
+.edu-head .em-kw{background:linear-gradient(180deg,#0d3d5c 0%,#061826 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.edu-head .em-sub{font-size:.68em;font-weight:900;color:#0a1628}
+.edu-list{max-width:min(94%,920px);margin:0 auto;padding:0;width:100%;display:grid;grid-template-columns:clamp(120px,15vw,170px) 1fr;column-gap:clamp(20px,3vw,40px);row-gap:clamp(22px,3.2vh,34px);align-items:start;flex:1;align-content:center}
+.edu-list dt{font-size:clamp(.95rem,1.35vw,1.15rem);font-weight:900;color:#0a1628;line-height:1.35;padding-top:3px}
+.edu-list dd{font-size:clamp(.82rem,1.12vw,.98rem);font-weight:600;color:#1a3040;line-height:1.65;margin:0}
 
-    /* Table */
-    .info-table { width: 100%; border-collapse: collapse; font-size: 0.58rem; }
-    .info-table th, .info-table td {
-      padding: 5px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      text-align: left; vertical-align: top;
-    }
-    .info-table th { color: var(--cyan); font-weight: 700; width: 72px; white-space: nowrap; }
-    .loc-card { padding: 8px 10px; text-align: center; }
-    .loc-card .city { font-weight: 800; font-size: 0.72rem; color: var(--gold); }
-    .loc-card .addr { font-size: 0.48rem; color: var(--muted); margin-top: 4px; line-height: 1.35; }
+/* 会社概要（MEO／bizブック同型） */
+.slide-co{color:#0a1628;padding:clamp(32px,4vw,52px);display:flex;flex-direction:column;grid-template-rows:unset}
+.bg-co{background:linear-gradient(180deg,#d4dde3 0%,#c5d0d8 50%,#b8c6cf 100%)}
+.co-title{font-size:clamp(2.2rem,4.8vw,3.4rem);font-weight:900;margin:0 0 clamp(18px,2.8vh,28px);line-height:1.1;letter-spacing:.04em}
+.co-body{flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0;padding:0 clamp(4px,1vw,12px)}
+.co-spec{display:grid;grid-template-columns:clamp(5.8rem,7.5vw,8rem) minmax(0,1fr);column-gap:clamp(18px,2.2vw,28px);row-gap:clamp(16px,2.2vh,24px);width:100%;max-width:min(98%,980px);margin:0 auto;font-size:clamp(.92rem,1.28vw,1.08rem);font-weight:600;line-height:1.58;color:#1a3040}
+.co-spec dt{margin:0;padding:0 clamp(14px,1.4vw,20px) 0 0;font-weight:900;color:#0a1628;text-align:right;border-right:2px solid #0a1628;align-self:start;letter-spacing:.12em;white-space:nowrap}
+.co-spec dd{margin:0;padding:0 0 0 clamp(14px,1.4vw,20px)}
+.co-spec dd strong{font-weight:900;color:#0a1628}
+.co-spec a{color:#0a3040;font-weight:700;text-decoration:underline;text-underline-offset:2px}
 
-    /* Campaign */
-    .giant-limit {
-      text-align: center; font-size: clamp(1.35rem, 3vw, 2rem); font-weight: 900;
-      color: var(--gold); margin-bottom: 12px; letter-spacing: 0.06em;
-    }
-    .giant-limit em { font-style: normal; color: var(--orange); font-size: 1.15em; }
-    .ind-card { padding: 10px 8px; text-align: center; position: relative; }
-    .ind-card .name { font-weight: 800; font-size: 0.68rem; }
-    .badge {
-      display: inline-block; margin-top: 6px; font-size: 0.48rem; font-weight: 800;
-      padding: 2px 8px; border-radius: 4px;
-    }
-    .badge.open { background: rgba(52, 213, 255, 0.2); color: var(--cyan); }
-    .badge.closed { background: rgba(255, 138, 0, 0.25); color: var(--gold); }
+/* biz事例店募集（成功事例店） */
+.slide-recruit{color:#fff;padding:clamp(28px,3.5vw,44px);display:flex;flex-direction:column;grid-template-rows:unset}
+.bg-recruit{background:radial-gradient(ellipse 95% 85% at 50% 32%,#0e3550 0%,#082838 28%,#061826 55%,#030a12 100%)}
+.rec-body{flex:1;display:flex;flex-direction:column;justify-content:space-evenly;min-height:0;gap:clamp(12px,2vh,20px)}
+.rec-top{display:grid;grid-template-columns:minmax(130px,20%) 1fr;gap:clamp(18px,2.8vw,36px);align-items:start}
+.rec-brand{display:flex;flex-direction:column;align-items:center;gap:clamp(8px,1.2vh,12px);text-align:center;padding-top:clamp(4px,1vh,8px)}
+.rec-brand-icon{width:clamp(76px,9.5vw,100px);height:clamp(76px,9.5vw,100px);background:#fff;border-radius:clamp(14px,1.6vw,18px);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 36px rgba(0,0,0,.4)}
+.rec-brand-name{font-size:clamp(1.05rem,1.65vw,1.35rem);font-weight:900;line-height:1.25;letter-spacing:.03em}
+.rec-headline{font-size:clamp(1.75rem,4vw,2.85rem);font-weight:900;color:var(--y);line-height:1.22;margin:0 0 clamp(10px,1.5vh,16px);letter-spacing:.02em}
+.rec-lead{font-size:clamp(.86rem,1.18vw,1.02rem);font-weight:600;line-height:1.72;color:rgba(255,255,255,.93);max-width:54ch;margin:0}
+.rec-section{flex:0 0 auto}
+.rec-section-label{font-size:clamp(1.05rem,1.5vw,1.22rem);font-weight:900;color:var(--y);text-align:center;margin:0 0 clamp(8px,1.2vh,12px)}
+.rec-hr{height:1px;background:rgba(255,255,255,.4);max-width:min(94%,760px);margin:0 auto clamp(12px,1.8vh,18px)}
+.rec-target{text-align:center;font-size:clamp(.9rem,1.22vw,1.06rem);font-weight:600;line-height:1.8;color:rgba(255,255,255,.96);margin:0}
+.rec-cond-box{border:1px solid rgba(255,255,255,.5);padding:clamp(14px,2vh,22px) clamp(18px,2.4vw,30px);max-width:min(96%,900px);margin:0 auto}
+.rec-cond-list{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:clamp(10px,1.5vh,15px)}
+.rec-cond-list li{font-size:clamp(.86rem,1.16vw,1.02rem);font-weight:600;line-height:1.68;color:rgba(255,255,255,.96)}
 
-    /* Metrics */
-    .metric-huge {
-      text-align: center; padding: 14px 8px;
-    }
-    .metric-huge .val {
-      font-family: Outfit, sans-serif; font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-      font-weight: 800; line-height: 1; color: var(--orange);
-    }
-    .metric-huge .val .arrow { color: var(--cyan); font-size: 0.7em; }
-    .metric-huge .lbl { font-size: 0.58rem; color: var(--muted); margin-top: 6px; }
 
-    /* Before/After */
-    .split-ba { display: grid; grid-template-columns: 1fr auto 1fr; gap: 10px; align-items: stretch; }
-    .ba-col { padding: 12px; }
-    .ba-col h3 { font-size: 0.72rem; margin-bottom: 8px; }
-    .ba-col.before h3 { color: #f87171; }
-    .ba-col.after h3 { color: var(--cyan); }
-    .ba-item {
-      font-size: 0.55rem; padding: 6px 8px; margin-bottom: 5px;
-      border-radius: 8px; background: rgba(0, 0, 0, 0.2);
-    }
-    .ba-arrow {
-      display: flex; align-items: center; font-family: Outfit, sans-serif;
-      font-size: 1.4rem; font-weight: 800; color: var(--gold);
-    }
+/* Google統計（biz 05_86%スライド同型） */
+.slide-gs{color:#0d3a4a;padding:clamp(22px,2.8vw,36px);display:flex;flex-direction:column;grid-template-rows:unset}
+.bg-gs{background:linear-gradient(180deg,#e8eef2 0%,#dce6ec 45%,#d2dde5 100%)}
+.gs-wrap{flex:1;display:flex;flex-direction:column;justify-content:space-between;min-height:0;gap:clamp(8px,1.2vh,14px)}
+.gs-title{text-align:center;font-size:clamp(1.15rem,2.35vw,1.65rem);font-weight:900;line-height:1.35;margin:0;color:#0d3a4a;letter-spacing:.02em}
+.gw i{font-style:normal;font-weight:900}
+.gw i:nth-child(1){color:#4285F4}.gw i:nth-child(2){color:#EA4335}.gw i:nth-child(3){color:#FBBC05}
+.gw i:nth-child(4){color:#4285F4}.gw i:nth-child(5){color:#34A853}.gw i:nth-child(6){color:#EA4335}
+.gs-upper{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(14px,2vw,24px);align-items:center;flex:1;min-height:0}
+.gs-86{text-align:center;padding:clamp(4px,1vh,8px) 0}
+.gs-86-lead{font-size:clamp(.78rem,1.05vw,.92rem);font-weight:800;color:#0d3a4a;line-height:1.5;margin:0}
+.gs-86-num{font-size:clamp(3.2rem,9vw,5.5rem);font-weight:900;line-height:1;color:#0d3a4a;margin:clamp(2px,.4vh,6px) 0;letter-spacing:-.02em}
+.gs-86-tail{font-size:clamp(.82rem,1.12vw,.98rem);font-weight:800;color:#0d3a4a;margin:0}
+.gs-src{font-size:clamp(.42rem,.58vw,.52rem);font-weight:600;color:#5a7a88;line-height:1.45;margin:clamp(4px,.6vh,8px) 0 0}
+.gs-chart-h{font-size:clamp(.72rem,.95vw,.86rem);font-weight:900;color:#0d3a4a;margin:0 0 clamp(8px,1.2vh,12px);text-align:center}
+.gs-bars{display:flex;flex-direction:column;gap:clamp(6px,.9vh,9px)}
+.gs-bar-row{display:grid;grid-template-columns:minmax(72px,28%) 1fr;align-items:center;gap:clamp(6px,.8vw,10px)}
+.gs-bar-label{font-size:clamp(.58rem,.78vw,.72rem);font-weight:800;color:#0d3a4a;text-align:right;line-height:1.25}
+.gs-bar-track{position:relative;height:clamp(16px,2.2vh,22px);background:rgba(255,255,255,.55);border-radius:2px;overflow:visible}
+.gs-bar-fill{position:absolute;left:0;top:0;bottom:0;border-radius:2px;background:linear-gradient(90deg,#1a4d5c,#2a6a7a)}
+.gs-bar-fill.mid{background:linear-gradient(90deg,#2a6a7a,#4a8a9a)}
+.gs-bar-fill.light{background:linear-gradient(90deg,#6aa0b0,#8ab8c4)}
+.gs-bar-pct{position:absolute;right:clamp(4px,.5vw,8px);top:50%;transform:translateY(-50%);font-size:clamp(.52rem,.7vw,.64rem);font-weight:900;color:#0d3a4a;font-family:Outfit,sans-serif;z-index:1}
+.gs-panel{background:rgba(255,255,255,.72);border:1px solid rgba(13,58,74,.25);border-radius:clamp(10px,1.2vw,14px);padding:clamp(12px,1.8vh,18px) clamp(14px,2vw,22px);display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(12px,2vw,20px);align-items:center;flex:1;min-height:0}
+.gs-panel-text .gs-chart-h{text-align:left}
+.gs-panel-pct{font-size:clamp(1.1rem,2.2vw,1.55rem);font-weight:900;color:#0d3a4a;line-height:1.2;margin:0 0 clamp(6px,.8vh,10px)}
+.gs-panel-body{font-size:clamp(.62rem,.85vw,.76rem);font-weight:700;color:#1a3040;line-height:1.65;margin:0}
+.gs-pie-wrap{display:flex;align-items:center;justify-content:center;gap:clamp(10px,1.5vw,16px)}
+.gs-pie{width:clamp(100px,14vw,140px);height:clamp(100px,14vw,140px);border-radius:50%;background:conic-gradient(#1a4d5c 0 36.6%,#3d7a8c 36.6% 86.2%,#b8c6cf 86.2% 100%);flex-shrink:0;box-shadow:0 4px 16px rgba(13,58,74,.12)}
+.gs-pie-legend{display:flex;flex-direction:column;gap:clamp(5px,.8vh,8px)}
+.gs-leg-item{display:flex;align-items:center;gap:6px;font-size:clamp(.52rem,.72vw,.66rem);font-weight:800;color:#0d3a4a;line-height:1.3}
+.gs-leg-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+.gs-leg-dot.a{background:#1a4d5c}.gs-leg-dot.b{background:#3d7a8c}.gs-leg-dot.c{background:#b8c6cf}
+.gs-foot{text-align:center;font-size:clamp(.95rem,1.75vw,1.25rem);font-weight:900;color:#0d3a4a;margin:0;padding-top:clamp(2px,.4vh,6px);line-height:1.35}
 
-    /* Hub diagram */
-    .hub-wrap { display: flex; align-items: center; justify-content: center; gap: 16px; }
-    .hub-center {
-      width: 120px; height: 120px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center; text-align: center;
-      font-weight: 900; font-size: 0.72rem; line-height: 1.3;
-      background: linear-gradient(145deg, var(--orange), #e65c00);
-      box-shadow: 0 0 40px rgba(255, 138, 0, 0.35);
-    }
-    .hub-node { padding: 10px 14px; text-align: center; font-size: 0.62rem; font-weight: 700; min-width: 88px; }
 
-    /* Focus panels */
-    .focus-panel { padding: 14px; flex: 1; }
-    .focus-panel .icon { font-size: 1.4rem; margin-bottom: 6px; }
-    .focus-panel h3 { font-size: 0.78rem; color: var(--gold); margin-bottom: 6px; }
-    .focus-panel ul { list-style: none; font-size: 0.55rem; color: var(--muted); }
-    .focus-panel li { padding: 3px 0 3px 12px; position: relative; }
-    .focus-panel li::before { content: "▸"; position: absolute; left: 0; color: var(--cyan); }
+/* 3つの検索方法（biz 03_3つの検索方法と相場同型） */
+.slide-s3{color:#2a2a2a;padding:clamp(20px,2.6vw,32px);display:flex;flex-direction:column;grid-template-rows:unset}
+.bg-s3{background:linear-gradient(180deg,#eceff2 0%,#e2e7eb 50%,#d8dee4 100%)}
+.s3-wrap{flex:1;display:flex;flex-direction:column;justify-content:space-between;min-height:0;gap:clamp(6px,1vh,10px)}
+.s3-title{text-align:center;font-size:clamp(1.05rem,2.1vw,1.5rem);font-weight:900;line-height:1.35;margin:0;color:#333;letter-spacing:.02em}
+.s3-num{font-size:1.45em;color:#1a8a9a;font-family:Outfit,sans-serif;font-weight:900}
+.s3-main{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:clamp(10px,1.6vw,18px);flex:1;min-height:0;align-items:stretch}
+.s3-left{display:flex;flex-direction:column;justify-content:space-between;gap:clamp(6px,1vh,10px);padding-right:clamp(4px,.5vw,8px)}
+.s3-block h3{font-size:clamp(.72rem,.95vw,.86rem);font-weight:900;color:#1a8a9a;margin:0 0 clamp(4px,.6vh,6px);line-height:1.3}
+.s3-block p{font-size:clamp(.56rem,.74vw,.68rem);font-weight:700;color:#333;line-height:1.55;margin:0}
+.s3-block p+p{margin-top:clamp(2px,.3vh,4px)}
+.s3-price{color:#c62828;font-weight:900}
+.s3-phones{display:grid;grid-template-columns:1fr 1fr;gap:clamp(8px,1.2vw,14px);align-items:end}
+.s3-phone-fig{margin:0;display:flex;flex-direction:column;align-items:center;gap:clamp(4px,.6vh,6px)}
+.s3-scroll-lbl{font-size:clamp(.48rem,.62vw,.58rem);font-weight:800;color:#555;margin:0;text-align:center;line-height:1.3}
+.s3-phone{width:100%;max-width:clamp(130px,16vw,168px);height:auto;display:block}
+.s3-foot{text-align:center;font-size:clamp(.78rem,1.35vw,1.05rem);font-weight:900;color:#333;line-height:1.45;margin:0;padding:clamp(2px,.4vh,6px) 0}
 
-    /* Bar compare */
-    .bar-row { margin-bottom: 10px; }
-    .bar-row .lbl { font-size: 0.55rem; color: var(--muted); margin-bottom: 4px; }
-    .bar-track { height: 22px; background: rgba(0, 0, 0, 0.3); border-radius: 6px; overflow: hidden; }
-    .bar-fill { height: 100%; border-radius: 6px; display: flex; align-items: center; padding-left: 8px; font-size: 0.55rem; font-weight: 800; }
-    .bar-fill.slow { width: 88%; background: rgba(248, 113, 113, 0.5); }
-    .bar-fill.fast { width: 38%; background: linear-gradient(90deg, var(--cyan), #0ea5e9); }
-    .line-steps { display: flex; gap: 8px; margin-top: 8px; }
-    .line-step { flex: 1; padding: 8px; text-align: center; font-size: 0.52rem; }
-    .line-step .n { font-family: Outfit, sans-serif; font-size: 1rem; font-weight: 800; color: var(--line-green); }
 
-    /* Service cards */
-    .svc-card { padding: 10px 8px; text-align: center; }
-    .svc-card .ico { font-size: 1.1rem; margin-bottom: 4px; }
-    .svc-card h4 { font-size: 0.62rem; font-weight: 800; }
-    .svc-card p { font-size: 0.48rem; color: var(--muted); margin-top: 3px; }
+/* WEB施策費用高騰（biz 06同型） */
+.slide-cost{color:#2a4b5d;padding:clamp(18px,2.4vw,28px);display:flex;flex-direction:column;grid-template-rows:unset}
+.bg-cost{background:linear-gradient(180deg,#e4eaee 0%,#dce4e9 50%,#d4dde4 100%)}
+.cost-wrap{flex:1;display:flex;flex-direction:column;justify-content:space-between;min-height:0;gap:clamp(4px,.8vh,8px)}
+.cost-title{text-align:center;font-family:"Noto Serif JP","Noto Sans JP",serif;font-size:clamp(1.15rem,2.4vw,1.65rem);font-weight:900;line-height:1.35;margin:0;color:#2a4b5d}
+.cost-hl{background:linear-gradient(transparent 58%,#f4d03f 58%);padding:0 .05em}
+.cost-globe{width:100%;max-height:clamp(88px,14vh,118px);display:block;margin:0 auto}
+.cost-sub{text-align:center;font-family:"Noto Serif JP","Noto Sans JP",serif;font-size:clamp(.72rem,1.15vw,.88rem);font-weight:900;color:#2a4b5d;margin:0;line-height:1.45}
+.cost-ryo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,2vw,24px);align-items:end;padding:0 clamp(8px,2vw,20px)}
+.cost-col{text-align:center}
+.cost-kanji{display:block;font-family:"Noto Serif JP",serif;font-size:clamp(2.4rem,6vw,3.6rem);font-weight:900;color:#9bb0bc;line-height:1;margin-bottom:clamp(4px,.6vh,8px)}
+.cost-fresh{display:block;font-size:clamp(.48rem,.62vw,.56rem);font-weight:700;color:#6a8a98;margin-bottom:2px}
+.cost-trend{display:block;font-size:clamp(.48rem,.6vw,.54rem);font-weight:700;color:#6a8a98;margin-bottom:clamp(2px,.3vh,4px)}
+.cost-col p{font-family:"Noto Serif JP","Noto Sans JP",serif;font-size:clamp(.58rem,.78vw,.7rem);font-weight:800;color:#2a4b5d;line-height:1.55;margin:0}
+.cost-line{background:linear-gradient(transparent 62%,#f4d03f 62%);padding:0 .04em}
+.cost-note{font-size:clamp(.4rem,.52vw,.48rem);font-weight:600;color:#5a7a88;line-height:1.5;margin:0;text-align:left;padding:0 clamp(4px,1vw,12px)}
 
-    /* Security */
-    .sec-card { padding: 12px; text-align: center; }
-    .sec-card h4 { font-size: 0.68rem; color: var(--cyan); margin: 6px 0 4px; }
-    .sec-card p { font-size: 0.5rem; color: var(--muted); }
-    .bold-msg {
-      text-align: center; font-size: 0.85rem; font-weight: 900;
-      color: var(--gold); margin-top: 10px; letter-spacing: 0.06em;
-    }
 
-    /* Icon grid */
-    .icon-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; }
-    .icon-cell { padding: 8px 4px; text-align: center; font-size: 0.48rem; font-weight: 600; }
-    .icon-cell .i { font-size: 1rem; display: block; margin-bottom: 3px; }
-    .all-in-center {
-      text-align: center; margin-top: 8px; font-size: 1rem; font-weight: 900;
-      color: var(--orange); letter-spacing: 0.15em;
-    }
+/* 放置型AI SEO完成系（biz 08同型） */
+.slide-seo{color:#1a3040;padding:clamp(18px,2.4vw,30px);display:flex;flex-direction:column;grid-template-rows:unset}
+.bg-seo{background:linear-gradient(180deg,#e6eef2 0%,#dce6ec 50%,#d4dee6 100%)}
+.seo-wrap{flex:1;display:flex;flex-direction:column;justify-content:space-between;min-height:0;gap:clamp(6px,1vh,10px)}
+.seo-head{display:grid;grid-template-columns:1fr auto;gap:clamp(12px,2vw,20px);align-items:center}
+.seo-kicker{font-size:clamp(.62rem,.85vw,.76rem);font-weight:800;color:#333;margin:0 0 4px}
+.seo-title{font-size:clamp(1rem,2vw,1.45rem);font-weight:900;color:#1a3d52;margin:0;line-height:1.3}
+.seo-brand{display:flex;align-items:center;gap:clamp(8px,1vw,12px)}
+.seo-brand-icon{width:clamp(52px,6.5vw,68px);height:clamp(52px,6.5vw,68px);background:#3d4549;border-radius:clamp(10px,1.2vw,14px);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.seo-brand-name{font-size:clamp(1.1rem,1.9vw,1.5rem);font-weight:900;color:#2a2a2a;line-height:1.2}
+.seo-mid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(10px,1.6vw,18px);align-items:center;padding:clamp(4px,.8vh,8px) 0}
+.seo-chk{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:clamp(6px,1vh,10px)}
+.seo-chk li{font-size:clamp(.68rem,.92vw,.82rem);font-weight:800;color:#1a3040;line-height:1.4;padding-left:1.6em;position:relative}
+.seo-chk li::before{content:"";position:absolute;left:0;top:.15em;width:.95em;height:.95em;background:#1a8a8a;border-radius:2px}
+.seo-chk li::after{content:"✓";position:absolute;left:.12em;top:.05em;font-size:.7em;font-weight:900;color:#fff}
+.seo-chk .em-r{color:#c62828}
+.seo-auto{text-align:center}
+.seo-auto-line{margin:0;font-size:clamp(1.35rem,3.2vw,2.1rem);font-weight:900;color:#1a4d6a;line-height:1.15}
+.seo-yel{background:linear-gradient(transparent 55%,#f4d03f 55%);padding:0 .06em}
+.seo-auto-and{margin:clamp(2px,.3vh,4px) 0;font-size:clamp(1rem,2vw,1.4rem);font-weight:900;color:#1a4d6a}
+.seo-bot{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(10px,1.5vw,16px);align-items:start;flex:1;min-height:0}
+.seo-expl h3{font-size:clamp(.78rem,1.1vw,.92rem);font-weight:900;color:#1a6a7a;margin:0 0 clamp(6px,.8vh,10px)}
+.seo-expl h3 .em-y{color:#e6a800}
+.seo-expl p{font-size:clamp(.52rem,.7vw,.64rem);font-weight:700;color:#333;line-height:1.65;margin:0}
+.seo-expl .em-r{color:#c62828;font-weight:900}
+.seo-trends{background:#fff;border:1px solid #ddd;border-radius:6px;padding:clamp(6px,.8vh,10px);box-shadow:0 4px 16px rgba(0,0,0,.08);max-height:100%;overflow:hidden}
+.seo-trends svg{width:100%;height:auto;display:block}
 
-    /* Value columns */
-    .val-col { padding: 12px; text-align: center; }
-    .val-col h4 { font-size: 0.75rem; color: var(--gold); margin-bottom: 6px; }
-    .val-col p { font-size: 0.52rem; color: var(--muted); }
-    .arrow-sales {
-      text-align: center; font-family: Outfit, sans-serif;
-      font-size: 1.8rem; color: var(--orange); margin: 4px 0;
-    }
-    .sales-target {
-      text-align: center; font-size: 1.1rem; font-weight: 900; color: var(--cyan);
-    }
 
-    /* Pricing */
-    .price-grid { display: grid; grid-template-columns: 1fr 1.15fr 1fr; gap: 10px; align-items: end; }
-    .price-card { padding: 14px 12px; text-align: center; }
-    .price-card.featured {
-      border-color: var(--orange);
-      box-shadow: 0 0 30px rgba(255, 138, 0, 0.25);
-      transform: scale(1.03);
-    }
-    .price-card .plan { font-size: 1.4rem; font-weight: 900; }
-    .price-card .tagline { font-size: 0.52rem; color: var(--muted); margin-bottom: 8px; }
-    .price-card .init { font-size: 0.55rem; color: var(--muted); }
-    .price-card .init strong {
-      display: block; font-family: Outfit, sans-serif;
-      font-size: clamp(1.2rem, 2.2vw, 1.65rem); color: var(--text); margin: 4px 0;
-    }
-    .price-card .month strong {
-      font-family: Outfit, sans-serif; font-size: clamp(1rem, 1.8vw, 1.35rem); color: var(--cyan);
-    }
-    .price-card.featured .plan { color: var(--orange); }
-    .feat-badge {
-      display: inline-block; font-size: 0.48rem; font-weight: 800;
-      background: var(--orange); color: #061826; padding: 2px 8px;
-      border-radius: 4px; margin-bottom: 6px;
-    }
-    .tax-note { font-size: 0.48rem; color: var(--muted); text-align: right; margin-top: 4px; }
+/* マーケティング予測分析（biz 17同型） */
+.slide-mkt{color:#1a1a1a;padding:clamp(18px,2.4vw,30px);display:flex;flex-direction:column;grid-template-rows:unset}
+.bg-mkt{background:linear-gradient(180deg,#e4eaee 0%,#dce6ec 100%)}
+.mkt-wrap{flex:1;display:flex;flex-direction:column;justify-content:space-between;min-height:0;gap:clamp(6px,1vh,10px)}
+.mkt-title{text-align:center;font-size:clamp(.88rem,1.75vw,1.28rem);font-weight:900;line-height:1.45;margin:0;color:#222}
+.mkt-yel{background:linear-gradient(transparent 58%,#f4d03f 58%);padding:0 .04em}
+.mkt-devices{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(8px,1.4vw,16px);align-items:end;flex:1;min-height:0;padding:0 clamp(4px,1vw,12px)}
+.mkt-device{display:flex;flex-direction:column;align-items:center;gap:clamp(4px,.6vh,6px)}
+.mkt-badge{width:clamp(44px,5.5vw,56px);height:clamp(44px,5.5vw,56px);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mkt-badge.meo{background:#e8f4fc;border:2px solid #4285f4}
+.mkt-badge.seo{background:#fff5e6;border:2px solid #ff8a00}
+.mkt-badge-lbl{font-size:clamp(.62rem,.85vw,.76rem);font-weight:900;margin:0}
+.mkt-screen{width:100%;max-width:clamp(140px,18vw,200px);height:auto;display:block;filter:drop-shadow(0 8px 20px rgba(0,0,0,.15))}
+.mkt-screen.wide{max-width:clamp(200px,26vw,280px)}
+.mkt-foot{text-align:center;margin:0}
+.mkt-foot-lead{font-size:clamp(.62rem,.9vw,.78rem);font-weight:800;color:#1a8a9a;margin:0 0 4px;text-decoration:underline;text-underline-offset:3px}
+.mkt-foot-name{font-family:"Noto Serif JP",serif;font-size:clamp(1.35rem,2.8vw,2rem);font-weight:900;margin:0;line-height:1.2}
 
-    /* Campaign price */
-    .off-huge {
-      text-align: center; font-family: Outfit, sans-serif;
-      font-size: clamp(2.8rem, 7vw, 4.2rem); font-weight: 900;
-      color: var(--gold); line-height: 1;
-      text-shadow: 0 0 60px rgba(255, 216, 77, 0.35);
-    }
-    .off-huge small { font-size: 0.35em; color: var(--orange); }
-    .camp-grid { display: grid; grid-template-columns: 1fr 1.2fr 1fr; gap: 10px; align-items: end; margin-top: 10px; }
-    .camp-box { padding: 12px 10px; text-align: center; position: relative; }
-    .camp-box.featured { border-color: var(--orange); box-shadow: 0 0 40px rgba(255, 138, 0, 0.3); transform: scale(1.05); }
-    .camp-box .label { font-size: 0.52rem; color: var(--muted); margin-bottom: 4px; }
-    .camp-box .was { font-size: 0.5rem; color: var(--muted); text-decoration: line-through; }
-    .camp-box .price { font-family: Outfit, sans-serif; font-size: clamp(1.2rem, 2.5vw, 1.75rem); font-weight: 900; color: var(--cyan); line-height: 1.1; }
-    .camp-box.featured .price { color: var(--orange); font-size: clamp(1.4rem, 2.8vw, 2rem); }
-    .camp-box .init-p { font-size: 0.48rem; color: var(--gold); margin-top: 4px; font-weight: 700; }
 
-    /* CTA */
-    .cta-btn {
-      display: inline-block; margin-top: 10px; padding: 12px 32px;
-      background: linear-gradient(135deg, var(--orange), #e65c00);
-      color: #fff; font-weight: 900; font-size: 0.85rem;
-      border-radius: 14px; text-decoration: none; letter-spacing: 0.08em;
-      box-shadow: 0 12px 40px rgba(255, 138, 0, 0.45);
-    }
-    .steps-row { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; margin: 8px 0; }
-    .step-chip {
-      font-size: 0.5rem; padding: 5px 10px; border-radius: 6px;
-      background: rgba(255, 255, 255, 0.08); border: 1px solid var(--glass-border);
-    }
-    .days-huge {
-      text-align: center; font-family: Outfit, sans-serif;
-      font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 900; color: var(--cyan);
-    }
+/* 限定キャンペーン・一般価格（biz 16/19型） */
+.slide-camp2{color:#fff;padding:clamp(20px,2.6vw,32px);display:flex;flex-direction:column;grid-template-rows:unset}
+.bg-camp2{background:linear-gradient(135deg,#0a1628 0%,#0d2840 35%,#061826 70%,#02060c 100%)}
+.camp2-wrap{flex:1;display:flex;flex-direction:column;justify-content:space-between;min-height:0;gap:clamp(10px,1.5vh,16px)}
+.camp2-kicker{text-align:center;font-size:clamp(.72rem,1.1vw,.88rem);font-weight:800;margin:0;color:#fff;text-shadow:0 0 20px rgba(255,255,255,.25)}
+.camp2-title{text-align:center;font-size:clamp(1.6rem,3.8vw,2.6rem);font-weight:900;margin:0;line-height:1.15;color:#fff;text-shadow:0 0 24px rgba(255,255,255,.35),0 2px 8px rgba(0,0,0,.4);letter-spacing:.06em}
+.camp2-price-block{flex:1;display:flex;flex-direction:column;justify-content:center;gap:clamp(12px,2vh,18px);padding:0 clamp(8px,2vw,24px)}
+.camp2-row{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:clamp(10px,1.5vw,16px)}
+.camp2-pill{background:#2d7a8c;color:#fff;font-size:clamp(.62rem,.85vw,.76rem);font-weight:900;padding:clamp(6px,1vh,10px) clamp(14px,2vw,22px);border-radius:999px;white-space:nowrap}
+.camp2-price-txt{font-size:clamp(.78rem,1.2vw,.95rem);font-weight:800;color:#fff}
+.camp2-hr{height:1px;background:rgba(255,255,255,.45);max-width:min(88%,720px);margin:0 auto}
+.camp2-row2{display:flex;align-items:center;justify-content:center;gap:clamp(12px,2vw,20px);flex-wrap:wrap}
+.camp2-row2-txt{font-size:clamp(.78rem,1.2vw,.95rem);font-weight:800;color:#fff}
+.camp2-gokei{display:inline-flex;flex-direction:column;line-height:1;font-size:clamp(.7rem,1vw,.85rem);font-weight:900;align-items:center;margin-right:4px}
+.camp2-month{font-size:clamp(.95rem,1.6vw,1.2rem);font-weight:900;color:#fff}
+.camp2-cond{background:#fff;border-radius:clamp(10px,1.2vw,14px);display:grid;grid-template-columns:minmax(100px,.32fr) 1px minmax(0,1fr);gap:clamp(12px,2vw,20px);padding:clamp(14px,2vh,20px) clamp(16px,2.2vw,24px);align-items:start}
+.camp2-cond-lbl{font-size:clamp(.72rem,1.05vw,.86rem);font-weight:900;color:#2d7a8c;line-height:1.45}
+.camp2-cond-div{background:#ccc;height:100%;min-height:80px}
+.camp2-cond-list{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:clamp(8px,1.2vh,12px)}
+.camp2-cond-list li{font-size:clamp(.58rem,.78vw,.7rem);font-weight:800;color:#1a1a1a;line-height:1.5}
 
-    /* Compare table */
-    .cmp-table { width: 100%; border-collapse: collapse; font-size: 0.52rem; }
-    .cmp-table th, .cmp-table td {
-      padding: 5px 8px; border: 1px solid rgba(255, 255, 255, 0.1); text-align: center;
-    }
-    .cmp-table th { background: rgba(255, 138, 0, 0.15); color: var(--gold); }
-    .cmp-table .good { color: var(--cyan); font-weight: 700; }
 
-    /* Dashboard mock */
-    .dash-mock { display: grid; grid-template-columns: repeat(4, 1fr) 1.5fr; gap: 8px; }
-    .kpi-box { padding: 10px 8px; }
-    .kpi-box .k { font-size: 0.48rem; color: var(--muted); }
-    .kpi-box .v { font-family: Outfit, sans-serif; font-size: 1.1rem; font-weight: 800; color: var(--cyan); }
-    .chart-box { grid-column: span 1; grid-row: span 2; padding: 8px; display: flex; flex-direction: column; }
-    .chart-box svg { flex: 1; }
+/* 限定キャンペーン・割引価格（biz 16_100%OFF同型） */
+.slide-camp-disc{color:#fff;padding:clamp(18px,2.4vw,30px);display:flex;flex-direction:column;grid-template-rows:unset;position:relative}
+.slide-camp-disc .bg-camp2{position:absolute;inset:0}
+.camp-disc-edge{position:absolute;left:clamp(10px,1.2vw,16px);top:clamp(12px,2vh,20px);bottom:clamp(12px,2vh,20px);width:2px;background:rgba(255,255,255,.85);z-index:3;pointer-events:none}
+.camp-disc-wrap{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:space-between;min-height:0;gap:clamp(8px,1.2vh,14px);padding-left:clamp(12px,1.5vw,20px)}
+.camp-disc-head{text-align:center}
+.camp-disc-kicker{font-size:clamp(.68rem,1.05vw,.84rem);font-weight:800;margin:0 0 4px;text-shadow:0 0 16px rgba(255,255,255,.2)}
+.camp-disc-title{font-size:clamp(1.5rem,3.5vw,2.4rem);font-weight:900;margin:0;line-height:1.12;text-shadow:0 0 22px rgba(255,255,255,.35);letter-spacing:.05em}
+.camp-disc-rows{flex:1;display:flex;flex-direction:column;justify-content:center;gap:clamp(14px,2.2vh,22px);padding:clamp(4px,1vh,8px) 0}
+.camp-disc-row{display:grid;grid-template-columns:1fr auto 1fr;gap:clamp(8px,1.2vw,14px);align-items:center}
+.camp-disc-old{text-align:right;padding-right:clamp(4px,.5vw,8px)}
+.camp-disc-old .lbl{font-size:clamp(.52rem,.7vw,.62rem);font-weight:700;margin:0 0 2px;opacity:.95}
+.camp-disc-old .item{font-size:clamp(.68rem,.95vw,.8rem);font-weight:900;margin:0;line-height:1.35}
+.camp-disc-old .price{font-size:clamp(1rem,2vw,1.35rem);font-weight:900;margin:0;line-height:1.2}
+.camp-disc-old .tax{font-size:clamp(.48rem,.65vw,.58rem);font-weight:700}
+.camp-disc-badge{width:clamp(72px,9vw,96px);flex-shrink:0}
+.camp-disc-new{text-align:left;padding-left:clamp(4px,.5vw,8px)}
+.camp-disc-new .lbl{font-size:clamp(.52rem,.7vw,.62rem);font-weight:800;color:#f4d03f;margin:0 0 2px}
+.camp-disc-new .price{font-size:clamp(1.5rem,3.2vw,2.2rem);font-weight:900;color:#f4d03f;line-height:1.1;margin:0}
+.camp-disc-new .tax{font-size:clamp(.48rem,.65vw,.58rem);font-weight:700;color:#f4d03f}
+.camp-disc-hr{height:1px;background:rgba(255,255,255,.5);border:none;margin:0}
+.camp-disc-note{font-size:clamp(.42rem,.58vw,.52rem);font-weight:600;line-height:1.55;margin:0;text-align:center;opacity:.92;padding:0 clamp(8px,2vw,16px)}
 
-    /* SVG text */
-    .svg-t { fill: #f8fafc; font-family: "Noto Sans JP", sans-serif; font-size: 9px; font-weight: 600; }
-    .svg-t-sm { font-size: 7px; fill: rgba(248, 250, 252, 0.7); }
-    .svg-accent { fill: #ff8a00; }
-    .svg-cyan { fill: #34d5ff; }
-    .svg-gold { fill: #ffd84d; }
 
-    /* Print */
-    @media print {
-      @page { size: landscape; margin: 8mm; }
-      body { background: #061826; }
-      .deck-nav { display: none; }
-      .deck-wrap { position: static; overflow: visible; top: 0; }
-      .deck { gap: 0; padding: 0; }
-      .slide {
-        width: 100%; max-height: none; aspect-ratio: auto;
-        min-height: 190mm; margin: 0; border-radius: 0;
-        page-break-after: always; break-after: page;
-        box-shadow: none;
-      }
-    }
+/* 365日24時間・専属広報担当（biz 18同型） */
+.slide-pr{color:#fff;padding:0;display:flex;flex-direction:column;grid-template-rows:unset;position:relative;overflow:hidden}
+.bg-pr{background:radial-gradient(ellipse 120% 100% at 15% 10%,#0e3a4a 0%,#0a2838 35%,#061826 65%,#02060c 100%)}
+.pr-frame{position:absolute;inset:clamp(10px,1.4vw,16px);border:1px solid rgba(255,255,255,.9);pointer-events:none;z-index:3;border-radius:1px}
+.pr-wrap{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:0;padding:clamp(24px,4vw,40px) clamp(20px,3vw,36px);gap:clamp(20px,3.5vh,36px)}
+.pr-copy{text-align:center;margin:0}
+.pr-line{display:block;font-size:clamp(1.15rem,2.6vw,1.85rem);font-weight:900;line-height:1.45;letter-spacing:.08em;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.35)}
+.pr-icon{width:clamp(100px,14vw,150px);height:auto;display:block;filter:drop-shadow(0 4px 12px rgba(0,0,0,.25))}
 
-    @media (max-width: 900px) {
-      .slide { padding: 16px 18px 14px; }
-      .grid-4, .icon-grid { grid-template-columns: repeat(2, 1fr); }
-      .grid-6 { grid-template-columns: repeat(2, 1fr); }
-      .cover-layout { grid-template-columns: 1fr; }
-      .price-grid { grid-template-columns: 1fr; }
-      .price-card.featured { transform: none; }
-      .dash-mock { grid-template-columns: repeat(2, 1fr); }
-    }
 
-    h1{font-size:var(--h1);font-weight:900;line-height:1.12}
-    .mega{font-size:var(--mega);font-weight:900;line-height:.95}
-    .fw9{font-weight:900}
-    .orb{position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none}
-    .orb-o{width:280px;height:280px;background:rgba(255,138,0,.22);top:-80px;right:-60px}
-    .orb-c{width:220px;height:220px;background:rgba(52,213,255,.18);bottom:-40px;left:-40px}
-    .wave-bottom{position:absolute;bottom:0;left:0;right:0;height:28%;pointer-events:none}
-    .pillars{display:flex;gap:clamp(16px,3vw,40px);flex:1;align-items:stretch}
-    .pillar{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:.35em;background:var(--glass);border:1px solid var(--glass-border);border-radius:16px;padding:clamp(20px,3vw,36px)}
-    .pillar .mega{font-size:clamp(2.2rem,5vw,4rem)}
-    .s03-only{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:18px}
-    .s03-only .mega{font-size:clamp(2.6rem,6vw,5rem);max-width:14ch;line-height:1.05}
-    .pills-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
-    .pill-hot{background:linear-gradient(135deg,rgba(255,138,0,.35),rgba(255,216,77,.2));border-color:rgba(255,138,0,.5);color:var(--gold)}
-    .hub-radial{flex:1;position:relative;display:flex;align-items:center;justify-content:center}
-    .hub-radial .hub-center{width:clamp(110px,16vw,160px);height:clamp(110px,16vw,160px);border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:900;background:linear-gradient(135deg,var(--orange),#e86a00);box-shadow:0 0 40px rgba(255,138,0,.4);z-index:2;font-size:clamp(.78rem,1.15vw,.92rem);line-height:1.2}
-    .orbit{position:absolute;padding:.45em .8em;border-radius:10px;background:var(--glass);border:1px solid var(--glass-border);font-size:clamp(.68rem,1vw,.82rem);font-weight:700}
-    .split-ico{flex:1;display:flex;gap:clamp(12px,2vw,24px)}
-    .split-side{flex:1;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:clamp(18px,3vw,28px)}
-    .split-before{background:rgba(255,80,80,.12);border:1px solid rgba(255,120,120,.3)}
-    .split-after{background:rgba(52,213,255,.12);border:1px solid rgba(52,213,255,.35)}
-    .icon-lg{width:clamp(64px,10vw,96px);height:clamp(64px,10vw,96px)}
-    .tri7{flex:1;display:grid;grid-template-columns:1fr 1.15fr 1fr;grid-template-rows:1fr auto 1fr;gap:10px;align-items:center;justify-items:center}
-    .tri7 .c{grid-column:2;grid-row:2;width:clamp(130px,20vw,180px);height:clamp(130px,20vw,180px);border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:900;border:2px solid var(--orange);background:linear-gradient(135deg,#0b2f3f,#061826);font-size:clamp(.72rem,1.15vw,.9rem);line-height:1.25}
-    .tri7 .n{padding:12px 14px;border-radius:12px;background:var(--glass);border:1px solid var(--glass-border);font-weight:800}
-    .tri7 .t{grid-column:2;grid-row:1} .tri7 .l{grid-column:1;grid-row:2} .tri7 .r{grid-column:3;grid-row:2}
-    .dual8{flex:1;display:flex;gap:clamp(16px,3vw,40px);align-items:center}
-    .dual8 ul{list-style:none;display:flex;flex-direction:column;gap:10px}
-    .dual8 li{font-weight:600;font-size:clamp(.8rem,1.15vw,.92rem)}
-    .gword{font-size:clamp(2.4rem,6vw,4.8rem);font-weight:900;line-height:1;background:linear-gradient(90deg,#f8fafc,#34d5ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-    .duel-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-    .duel-lbl{width:5em;font-size:clamp(.72rem,1vw,.82rem);font-weight:700;flex-shrink:0}
-    .duel-trk{flex:1;height:clamp(26px,4vh,40px);background:rgba(0,0,0,.25);border-radius:8px;overflow:hidden}
-    .duel-old{height:100%;width:72%;background:rgba(255,100,100,.5);border-radius:8px;display:flex;align-items:center;padding-left:10px;font-size:clamp(.65rem,.9vw,.75rem);font-weight:800}
-    .duel-new{height:100%;width:28%;background:linear-gradient(90deg,var(--orange),var(--gold));border-radius:8px;display:flex;align-items:center;padding-left:8px;font-size:clamp(.65rem,.9vw,.75rem);font-weight:800;color:#061826}
-    .badge-y{display:inline-block;padding:.45em 1em;border-radius:8px;background:var(--gold);color:#061826;font-weight:900}
-    .seo-cols{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .seo-box{border-radius:14px;padding:14px;background:var(--glass);border:1px solid var(--glass-border)}
-    .seo-box.aio{border-color:rgba(52,213,255,.4);background:rgba(52,213,255,.08)}
-    .seo-box p{font-size:clamp(.72rem,1vw,.82rem);color:var(--muted);font-weight:600}
-    .sun-wrap{flex:1;position:relative;display:flex;align-items:center;justify-content:center;min-height:200px}
-    .sun-core{width:clamp(96px,13vw,130px);height:clamp(96px,13vw,130px);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:Outfit,sans-serif;font-weight:900;background:linear-gradient(135deg,var(--orange),var(--gold));box-shadow:0 0 36px rgba(255,138,0,.45);z-index:2}
-    .ray{position:absolute;padding:.35em .7em;border-radius:8px;background:var(--glass);border:1px solid var(--glass-border);font-size:clamp(.65rem,.95vw,.78rem);font-weight:700}
-    .s12-row{flex:1;display:flex;align-items:center;gap:clamp(16px,3vw,32px)}
-    .s12-row svg{width:clamp(52px,7vw,72px);height:clamp(52px,7vw,72px)}
-    .s12-msg{flex:1;font-size:clamp(1.4rem,2.8vw,2.2rem);font-weight:900;line-height:1.2}
-    .ring-wrap{flex:1;position:relative;display:flex;align-items:center;justify-content:center;min-height:200px;width:100%}
-    .ring-title{font-size:clamp(2rem,4vw,3rem);font-weight:900;z-index:2}
-    .ring-item{position:absolute;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:clamp(.52rem,.75vw,.65rem);font-weight:700}
-    .flow14{flex:1;display:flex;align-items:center;gap:6px}
-    .flow14 .s{flex:1;text-align:center;padding:clamp(14px,2vw,22px) 6px;border-radius:12px;background:var(--glass);border:1px solid var(--glass-border);font-weight:800}
-    .flow14 .a{color:var(--orange);font-size:1.4rem}
-    .phones{display:flex;align-items:center;justify-content:center;gap:clamp(6px,1.2vw,12px);flex:1}
-    .phone{width:clamp(88px,11vw,120px);aspect-ratio:9/19;border-radius:16px;border:3px solid rgba(255,255,255,.2);background:linear-gradient(180deg,#0d3d52,#061826);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:clamp(.52rem,.8vw,.65rem);font-weight:700;text-align:center;padding:10px 6px}
-    .phone.on{border-color:var(--orange);box-shadow:0 0 24px rgba(255,138,0,.35);transform:scale(1.05)}
-    .ph-arr{color:var(--cyan);font-size:1.6rem}
-    .kpi4{display:flex;gap:clamp(8px,1.2vw,14px)}
-    .kpi4 .k{flex:1;text-align:center;padding:clamp(10px,1.2vw,14px);border-radius:12px;background:var(--glass);border:1px solid var(--glass-border)}
-    .kpi4 .k .mega{font-size:clamp(1.6rem,3vw,2.4rem);display:block}
-    .kpi4 .k span{font-size:clamp(.6rem,.85vw,.7rem);color:var(--muted)}
-    .chart-f{flex:1;display:flex;align-items:flex-end}
-    .price3{flex:1;display:flex;align-items:flex-end;gap:clamp(10px,2vw,20px);justify-content:center}
-    .pcol{flex:1;max-width:260px;border-radius:16px;padding:clamp(14px,2vw,22px);background:var(--glass);border:1px solid var(--glass-border);text-align:center}
-    .pcol.on{flex:1.12;transform:scale(1.06);border-color:var(--orange);background:linear-gradient(180deg,rgba(255,138,0,.18),rgba(6,24,38,.5))}
-    .pcol .tier{font-size:clamp(1.1rem,1.8vw,1.45rem);font-weight:900}
-    .pcol .yen .num{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:900}
-    .pcol .meta{font-size:clamp(.62rem,.85vw,.72rem);color:var(--muted)}
-    .close-power{flex:1;display:flex;align-items:center;justify-content:center;gap:clamp(20px,4vw,48px)}
-    .off-ring{width:clamp(130px,20vw,190px);height:clamp(130px,20vw,190px);border-radius:50%;border:6px solid var(--gold);display:flex;flex-direction:column;align-items:center;justify-content:center}
-    .off-ring .mega{font-size:clamp(2.2rem,4.5vw,3.6rem);line-height:1}
-    .close-b .mega{font-size:clamp(2.6rem,5.5vw,4.5rem);color:var(--gold)}
-    .strike{text-decoration:line-through;opacity:.45}
-    .flow19{flex:1;display:flex;flex-direction:column;justify-content:center;gap:16px}
-    .flow19m{display:flex;align-items:center;gap:6px}
-    .flow19m .s{flex:1;text-align:center;padding:clamp(14px,2vw,20px) 6px;border-radius:12px;background:var(--glass);border:1px solid var(--glass-border);font-weight:800}
-    .opts{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
-    .opts span{font-size:clamp(.62rem,.85vw,.72rem);padding:5px 10px;border-radius:8px;background:rgba(52,213,255,.1);border:1px solid rgba(52,213,255,.3);font-weight:600}
-    .s20c{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:clamp(14px,2vh,22px)}
-    .s20c .mega{font-size:clamp(2.8rem,6.5vw,5rem)}
-    .chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
-    .chip{padding:.55em 1em;border-radius:10px;font-weight:800;background:var(--glass);border:1px solid var(--glass-border)}
-    .cta-big{display:inline-block;padding:.8em 1.8em;border-radius:12px;font-weight:900;background:linear-gradient(135deg,var(--orange),#e86a00);color:var(--text);text-decoration:none}
-    .tiny-foot{font-size:.6rem;color:var(--muted);text-align:center;margin-top:auto}
-  </style>
+/* 世の中の集客方法（2x2比較） */
+.slide-mkt4{color:#1a1a1a;padding:clamp(16px,2.2vw,26px);display:flex;flex-direction:column;grid-template-rows:unset}
+.bg-mkt4{background:linear-gradient(180deg,#e4eaee 0%,#dce6ec 100%)}
+.mkt4-wrap{flex:1;display:flex;flex-direction:column;min-height:0;gap:clamp(8px,1.2vh,12px)}
+.mkt4-title{font-size:clamp(1.1rem,2.2vw,1.55rem);font-weight:900;margin:0;line-height:1.2}
+.mkt4-grid{flex:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:0;border:2px solid #1a4d5c;min-height:0}
+.mkt4-cell{padding:clamp(8px,1.2vh,12px) clamp(10px,1.4vw,14px);border:1px solid #1a4d5c;display:flex;flex-direction:column;gap:clamp(4px,.6vh,6px);min-height:0;overflow:hidden;background:rgba(255,255,255,.25)}
+.mkt4-cell h3{font-size:clamp(.72rem,1vw,.86rem);font-weight:900;margin:0;color:#1a1a1a;line-height:1.25}
+.mkt4-cell .cost{font-size:clamp(.62rem,.85vw,.74rem);font-weight:900;margin:0}
+.mkt4-cell .hint{font-size:clamp(.48rem,.65vw,.58rem);font-weight:800;color:#1a6a9a;margin:0;line-height:1.35}
+.mkt4-cell p{font-size:clamp(.44rem,.6vw,.54rem);font-weight:700;line-height:1.45;margin:0;color:#333}
+.mkt4-cell .sub-h{font-size:clamp(.5rem,.68vw,.58rem);font-weight:900;margin:clamp(2px,.3vh,4px) 0 0}
+.mkt4-vis{display:flex;gap:6px;align-items:flex-end;margin-top:auto;flex-wrap:wrap}
+.mkt4-vis svg{height:clamp(36px,6vh,52px);width:auto;flex-shrink:0}
+.mkt4-tiers{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:4px}
+.mkt4-tier{border:1px solid #1a4d5c;padding:3px 2px;text-align:center;background:#fff}
+.mkt4-tier .pg{font-size:clamp(.4rem,.55vw,.5rem);font-weight:800;margin:0}
+.mkt4-tier .pr{font-size:clamp(.48rem,.65vw,.58rem);font-weight:900;margin:0}
+.mkt4-row2{display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:end}
+
+
+/* 同じキーワード・検索結果の個人差 */
+.slide-kw{color:#1a3040;padding:clamp(16px,2.2vw,26px);display:flex;flex-direction:column;grid-template-rows:unset}
+.bg-kw{background:#f0f4f7}
+.kw-wrap{flex:1;display:flex;flex-direction:column;min-height:0;gap:clamp(8px,1.2vh,12px)}
+.kw-title{font-size:clamp(.95rem,1.9vw,1.35rem);font-weight:900;line-height:1.4;margin:0;color:#1a3d52}
+.kw-title .em{color:#1a8a9a}
+.kw-main{flex:1;display:grid;grid-template-columns:minmax(0,.42fr) minmax(0,1fr);gap:clamp(10px,1.6vw,18px);min-height:0;align-items:center}
+.kw-text h3{font-size:clamp(.62rem,.88vw,.76rem);font-weight:900;color:#1a3d52;margin:0 0 clamp(6px,.8vh,10px);line-height:1.45}
+.kw-text p{font-size:clamp(.48rem,.65vw,.58rem);font-weight:700;line-height:1.55;margin:0;color:#333}
+.kw-phones{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(6px,1vw,10px);align-items:end}
+.kw-phone{margin:0;display:flex;flex-direction:column;align-items:center;gap:4px}
+.kw-phone svg{width:100%;max-width:clamp(100px,13vw,130px);height:auto;display:block;filter:drop-shadow(0 6px 16px rgba(0,0,0,.12))}
+.kw-phone figcaption{font-size:clamp(.4rem,.55vw,.5rem);font-weight:800;color:#666;text-align:center}
+.kw-foot{background:linear-gradient(90deg,#0d3a52,#1a4d6a);padding:clamp(10px,1.6vh,14px) clamp(14px,2vw,22px);border-radius:4px;margin:0}
+.kw-foot p{font-size:clamp(.62rem,1.05vw,.78rem);font-weight:900;color:#fff;margin:0;line-height:1.45;text-align:center}
+
+
+/* トレンドを意識した対策（詳細版） */
+.slide-trd2{color:#1a3040;padding:clamp(14px,2vw,24px);display:flex;flex-direction:column;grid-template-rows:unset}
+.bg-trd2{background:linear-gradient(180deg,#eef2f5 0%,#e4eaee 100%)}
+.trd2-wrap{flex:1;display:flex;flex-direction:column;min-height:0;gap:clamp(6px,1vh,10px)}
+.trd2-title{font-size:clamp(.95rem,1.85vw,1.32rem);font-weight:900;color:#1a3d52;margin:0;line-height:1.3}
+.trd2-title .em-y{color:#e6a800}
+.trd2-grid{flex:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:clamp(8px,1.2vw,12px);min-height:0}
+.trd2-panel{background:rgba(255,255,255,.55);padding:clamp(8px,1.2vh,12px);border-radius:6px;display:flex;flex-direction:column;gap:clamp(4px,.6vh,6px);min-height:0;overflow:hidden}
+.trd2-panel h3{font-size:clamp(.5rem,.7vw,.58rem);font-weight:900;color:#1a6a7a;margin:0}
+.trd2-panel p{font-size:clamp(.44rem,.6vw,.52rem);font-weight:700;line-height:1.5;margin:0;color:#333}
+.trd2-panel .em-r{color:#c62828;font-weight:900}
+.trd2-panel svg{width:100%;flex:1;min-height:clamp(48px,10vh,72px);max-height:clamp(72px,14vh,100px)}
+.trd2-panel-wide{grid-column:1/-1}
+.trd2-bottom{text-align:center}
+.trd2-msg{font-size:clamp(.72rem,1.35vw,.95rem);font-weight:900;color:#1a6a9a;margin:0 0 clamp(6px,.8vh,10px);line-height:1.4}
+.trd2-tags{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(6px,.8vw,10px)}
+.trd2-tag{background:#1a8a9a;color:#fff;font-size:clamp(.44rem,.62vw,.54rem);font-weight:800;padding:clamp(4px,.6vh,6px) clamp(10px,1.4vw,16px);border-radius:999px}
+
+/* quiet company */
+.stat-row{display:flex;gap:clamp(20px,4vw,48px);justify-content:center;align-items:flex-end;margin-bottom:clamp(16px,2.5vh,24px)}
+.stat-item{text-align:center}
+.stat-item .num-lg{color:var(--y)}
+.stat-item .lbl{font-size:clamp(.55rem,.75vw,.65rem);font-weight:700;color:var(--sub);margin-top:6px}
+.map-svg{width:100%;max-height:clamp(80px,14vh,120px);opacity:.85}
+
+/* campaign slots */
+.limit-mega{font-size:clamp(2rem,5.5vw,4.5rem);font-weight:900;line-height:1.05;color:var(--y);text-shadow:0 0 80px rgba(255,216,77,.35);max-width:14ch}
+.slot-bar{display:flex;gap:clamp(8px,1.2vw,14px);width:100%;max-width:640px}
+.slot-item{flex:1;text-align:center;padding:clamp(12px,1.5vw,16px) 6px;border-radius:12px;border:2px solid rgba(255,255,255,.15);background:rgba(0,0,0,.35)}
+.slot-item.hot{border-color:var(--y);box-shadow:0 0 30px rgba(255,216,77,.2)}
+.slot-item .nm{font-size:clamp(.58rem,.8vw,.68rem);font-weight:800}
+.slot-item .st{font-size:clamp(.46rem,.6vw,.52rem);font-weight:900;margin-top:6px;padding:3px 8px;border-radius:4px;display:inline-block}
+.slot-item .st.ok{background:rgba(52,213,255,.35)}.slot-item .st.ng{background:rgba(100,100,100,.4);opacity:.7}
+.cond-strip{display:flex;gap:clamp(12px,2vw,20px);flex-wrap:wrap;justify-content:center}
+.cond-strip span{font-size:clamp(.52rem,.72vw,.62rem);font-weight:700;padding:6px 12px;background:rgba(255,255,255,.08);border-radius:6px}
+
+/* pyramid + hub */
+.diagram-row{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(16px,2.5vw,28px);align-items:center;height:100%}
+.pyramid{display:flex;flex-direction:column;align-items:center;gap:5px}
+.pyr{width:100%;padding:clamp(8px,1vh,12px);text-align:center;font-weight:800;font-size:clamp(.52rem,.75vw,.65rem);color:#fff;border-radius:8px}
+.pyr.a{width:100%;background:linear-gradient(90deg,#8b2020,#c0392b)}
+.pyr.b{width:85%;background:linear-gradient(90deg,#1a5276,#2980b9)}
+.pyr.c{width:68%;background:linear-gradient(90deg,#c45c00,var(--o));box-shadow:0 0 40px rgba(255,138,0,.4)}
+
+/* crisis stats */
+.crisis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,2vw,20px);margin:clamp(12px,2vh,20px) 0}
+.crisis-box{text-align:center;padding:clamp(16px,2vw,24px) 8px 0;border-top:4px solid var(--c)}
+.crisis-box:nth-child(2){border-color:var(--y)}.crisis-box:nth-child(3){border-color:var(--r)}
+.crisis-box .lbl{margin-top:8px}
+.banner-crisis{text-align:center;font-size:clamp(.9rem,1.6vw,1.15rem);font-weight:900;color:var(--y);letter-spacing:.08em;margin-top:clamp(8px,1.5vh,14px)}
+
+/* before after split */
+.ba-split{display:grid;grid-template-columns:1fr 48px 1fr;align-items:stretch;height:100%;gap:0}
+.ba-pane{padding:clamp(14px,2vw,20px);display:flex;flex-direction:column;gap:8px;border-radius:14px}
+.ba-pane.bad{background:linear-gradient(145deg,rgba(40,45,55,.9),rgba(30,35,45,.95));border:1px solid rgba(120,130,150,.25)}
+.ba-pane.good{background:linear-gradient(145deg,rgba(52,213,255,.08),rgba(255,138,0,.06));border:1px solid rgba(255,138,0,.35);box-shadow:0 0 40px rgba(255,138,0,.1)}
+.ba-pane h3{font-size:clamp(.7rem,1vw,.82rem);font-weight:900;margin-bottom:4px}
+.ba-pane.bad h3{color:#94a3b8}.ba-pane.good h3{color:var(--y)}
+.ba-line{font-size:clamp(.52rem,.72vw,.62rem);font-weight:700;padding:8px 10px;border-radius:8px;background:rgba(0,0,0,.25)}
+.ba-arrow{display:flex;align-items:center;justify-content:center;font-size:clamp(1.8rem,3vw,2.4rem);color:var(--o);font-weight:900}
+
+/* focus dual */
+.focus-split{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(24px,4vw,48px);align-items:center;height:100%}
+.chk{list-style:none}
+.chk li{font-size:clamp(.68rem,.95vw,.78rem);font-weight:800;padding:clamp(10px,1.2vh,14px) 0;border-bottom:1px solid rgba(255,255,255,.07);display:flex;gap:10px}
+.chk li::before{content:"✓";color:var(--y);font-weight:900;font-size:1.15em}
+.word-stack{display:flex;flex-direction:column;gap:clamp(14px,2.5vh,22px)}
+.word-huge{font-size:clamp(2.2rem,5.2vw,4rem);font-weight:900;line-height:1.05}
+
+/* speed compare */
+.speed-split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3.5vw,36px);align-items:center;height:100%}
+.bar-compare{width:100%}
+.bar-row{margin-bottom:clamp(14px,2vh,18px)}
+.bar-lbl{font-size:clamp(.55rem,.75vw,.65rem);font-weight:800;color:var(--sub);margin-bottom:6px}
+.bar-track{height:clamp(36px,5.5vh,52px);background:rgba(0,0,0,.45);border-radius:10px;overflow:hidden}
+.bar-fill{height:100%;display:flex;align-items:center;padding-left:14px;font-weight:900;font-size:clamp(.62rem,.85vw,.72rem)}
+.bar-fill.slow{width:92%;background:linear-gradient(90deg,#4a5568,#2d3748);color:var(--sub)}
+.bar-fill.fast{width:32%;min-width:9em;background:linear-gradient(90deg,var(--o),var(--y));color:#1a0a00;box-shadow:0 0 30px rgba(255,138,0,.4)}
+.copy-mega{font-size:clamp(1.3rem,2.6vw,1.9rem);font-weight:900;color:var(--y);margin-top:12px}
+.badge-pill{display:inline-block;margin-top:10px;padding:10px 22px;border-radius:999px;background:var(--y);color:#1a1000;font-size:clamp(.62rem,.85vw,.72rem);font-weight:900}
+
+/* price towers */
+.price-stage{display:flex;align-items:flex-end;justify-content:center;gap:clamp(10px,2vw,18px);flex:1}
+.tower{flex:1;max-width:240px;text-align:center;padding:clamp(16px,2vw,24px) clamp(10px,1.2vw,14px);border-radius:16px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.1)}
+.tower.featured{flex:1.15;transform:scale(1.08);border:2px solid var(--o);background:linear-gradient(180deg,rgba(255,138,0,.15),rgba(0,0,0,.5));box-shadow:0 0 60px rgba(255,138,0,.25)}
+.tower .plan{font-size:clamp(.75rem,1.1vw,.9rem);font-weight:900}
+.tower .plan-en{font-family:Outfit,sans-serif;font-size:clamp(.46rem,.6vw,.54rem);letter-spacing:.2em;color:var(--mute);margin:2px 0 10px}
+.tower.featured .plan-en{color:rgba(255,138,0,.9)}
+.tower .price{font-family:Outfit,sans-serif;font-size:clamp(1.6rem,3.2vw,4.5rem);font-weight:900;color:var(--o);line-height:1}
+.tower.featured .price{font-size:clamp(2rem,4.5vw,5.5rem)}
+.tower .init{font-size:clamp(.48rem,.65vw,.58rem);color:var(--sub);margin-top:8px}
+.rec-star{display:inline-block;margin-bottom:8px;padding:5px 12px;border-radius:6px;background:var(--o);font-size:clamp(.48rem,.62vw,.56rem);font-weight:900}
+
+/* campaign close */
+.close-stage{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:clamp(6px,1vh,10px);height:100%}
+.close-stage .limit{font-size:clamp(.62rem,.88vw,.75rem);font-weight:900;color:var(--y);letter-spacing:.16em}
+.off-ring{width:clamp(110px,17vw,160px);height:clamp(110px,17vw,160px);border-radius:50%;border:6px solid var(--y);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 0 80px rgba(255,216,77,.35),inset 0 0 40px rgba(255,216,77,.08)}
+.off-ring .pct{font-family:Outfit,sans-serif;font-size:clamp(2.2rem,5vw,3.8rem);font-weight:900;color:var(--y);line-height:1}
+.price-block .was{font-size:clamp(1rem,1.8vw,1.35rem);text-decoration:line-through;opacity:.45;color:var(--sub)}
+.price-block .now{font-family:Outfit,sans-serif;font-size:clamp(3rem,7.5vw,7.5rem);font-weight:900;color:var(--c);line-height:.95;text-shadow:0 0 80px rgba(52,213,255,.3)}
+.price-row{display:flex;align-items:center;justify-content:center;gap:clamp(24px,5vw,56px);margin:clamp(8px,1.5vh,14px) 0}
+
+/* CTA */
+.cta{display:inline-block;padding:clamp(14px,1.8vh,18px) clamp(36px,5vw,56px);border-radius:14px;background:linear-gradient(135deg,var(--o),#e07000);color:#fff;font-size:clamp(.78rem,1.1vw,.92rem);font-weight:900;text-decoration:none;letter-spacing:.1em;box-shadow:0 16px 50px rgba(255,138,0,.5),0 0 0 1px rgba(255,255,255,.1)}
+.steps{display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:center}
+.step{font-size:clamp(.52rem,.72vw,.62rem);font-weight:800;padding:8px 14px;border-radius:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1)}
+.step-ar{color:var(--o);font-weight:900}
+
+/* SVG containers */
+.svg-main{width:100%;height:100%;max-height:min(42vh,340px)}
+.svg-flow{width:100%;max-height:clamp(100px,16vh,140px)}
+
+@media print{
+  .nav{display:none}.viewport{position:static;overflow:visible}
+  .sl{max-height:none;width:100%;page-break-after:always;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+@media(max-width:800px){
+  .split,.split-55,.split-45,.diagram-row,.ba-split,.focus-split,.speed-split{grid-template-columns:1fr}
+  .ba-arrow{display:none}.crisis-grid{grid-template-columns:1fr}
+}
+
+/* ======================================================
+   PREMIUM REDESIGNED SLIDES — ZERO-BASE
+====================================================== */
+
+/* ---- S01 NEW COVER ---- */
+#s01{padding:0;display:flex;flex-direction:row;background:linear-gradient(135deg,#010810 0%,#071428 55%,#040c1c 100%)}
+.s01-net{position:absolute;inset:0;width:100%;height:100%;opacity:.13;pointer-events:none}
+.s01-wrap{position:relative;z-index:2;display:flex;width:100%;height:100%;align-items:center}
+.s01-left{flex:1;padding:6% 4% 6% 7%;display:flex;flex-direction:column;justify-content:center;gap:clamp(12px,2vh,22px)}
+.s01-logo{height:clamp(26px,3.8vh,42px);width:auto;object-fit:contain;opacity:.9}
+.s01-eyebrow{font-family:Outfit,sans-serif;font-size:clamp(.48rem,.7vw,.62rem);font-weight:800;letter-spacing:.28em;color:#34d5ff;text-transform:uppercase}
+.s01-h1{font-size:clamp(1.9rem,4.5vw,4.3rem);font-weight:900;line-height:1.04;letter-spacing:-.03em;color:#fff}
+.s01-h1 em{font-style:normal;color:#ffd84d}
+.s01-desc{font-size:clamp(.62rem,.95vw,.85rem);color:rgba(255,255,255,.5);line-height:1.65;max-width:460px}
+.s01-tags{display:flex;gap:8px;flex-wrap:wrap}
+.s01-tag{padding:clamp(5px,.8vh,8px) clamp(10px,1.4vw,16px);border-radius:100px;font-size:clamp(.48rem,.68vw,.62rem);font-weight:700;letter-spacing:.04em}
+.s01-tag-c{background:rgba(52,213,255,.1);border:1px solid rgba(52,213,255,.35);color:#34d5ff}
+.s01-tag-o{background:rgba(255,138,0,.1);border:1px solid rgba(255,138,0,.35);color:#ff8a00}
+.s01-tag-y{background:rgba(255,216,77,.1);border:1px solid rgba(255,216,77,.35);color:#ffd84d}
+.s01-tag-g{background:rgba(6,199,85,.1);border:1px solid rgba(6,199,85,.35);color:#06c755}
+.s01-right{flex:0 0 46%;height:100%;display:flex;align-items:center;justify-content:center;padding:4%}
+.s01-diagram{width:100%;max-height:100%}
+
+/* ---- S04 AI OVERVIEW ---- */
+#s04{padding:0;display:flex;flex-direction:row;background:linear-gradient(150deg,#010c1e 0%,#071838 60%,#030d1a 100%)}
+.s04-wrap{position:relative;z-index:2;display:flex;flex-direction:row;width:100%;height:100%;align-items:center}
+.s04-left{flex:0 0 44%;padding:7% 4% 7% 7%;display:flex;flex-direction:column;justify-content:center;gap:clamp(12px,2vh,22px)}
+.s04-eyebrow{font-family:Outfit,sans-serif;font-size:clamp(.48rem,.68vw,.6rem);font-weight:800;letter-spacing:.28em;color:#34d5ff;text-transform:uppercase}
+.s04-h2{font-size:clamp(1.5rem,3vw,2.8rem);font-weight:900;color:#fff;letter-spacing:-.02em;line-height:1.1;text-align:left}
+.s04-h2 span{color:#ffd84d}
+.s04-sub{font-size:clamp(.58rem,.88vw,.78rem);color:rgba(255,255,255,.5);line-height:1.65;max-width:360px}
+.s04-features{display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;margin-top:4px}
+.s04-feat{display:flex;align-items:center;gap:7px;font-size:clamp(.52rem,.76vw,.67rem);font-weight:700}
+.s04-feat::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;flex-shrink:0}
+.s04-feat-seo{color:#ff8a00}.s04-feat-meo{color:#ea4335}.s04-feat-aio{color:#ffd84d}.s04-feat-line{color:#06c755}.s04-feat-rep{color:#34d5ff}.s04-feat-cta{color:rgba(170,110,255,1)}
+.s04-right{flex:1;height:100%;display:flex;align-items:center;justify-content:center;padding:4% 6% 4% 0}
+.s04-diagram-wrap{width:100%;max-width:420px;aspect-ratio:1;display:flex;align-items:center;justify-content:center}
+.s04-svg{width:100%;height:100%}
+
+/* ---- S05 WHY NOW ---- */
+#s05{padding:0;display:flex;background:linear-gradient(135deg,#010810 0%,#07152a 60%,#030c18 100%)}
+.s05-wrap{position:relative;z-index:2;display:flex;width:100%;height:100%;align-items:center;padding:5% 7%;gap:6%}
+.s05-left{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+.s05-lead-txt{font-size:clamp(.58rem,.85vw,.76rem);color:rgba(255,255,255,.5);letter-spacing:.06em;text-align:center}
+.s05-bignum{font-family:Outfit,sans-serif;font-weight:900;font-size:clamp(90px,17vw,195px);line-height:.85;letter-spacing:-.04em;color:#ff8a00;text-shadow:0 0 80px rgba(255,138,0,.5),0 0 160px rgba(255,138,0,.2)}
+.s05-pct{font-family:Outfit,sans-serif;font-weight:900;font-size:clamp(36px,6.5vw,65px);color:#ffd84d;line-height:1}
+.s05-tail-txt{font-size:clamp(.62rem,1vw,.88rem);color:rgba(255,255,255,.55);font-weight:700;text-align:center;max-width:160px;line-height:1.4}
+.s05-right{flex:1;display:flex;flex-direction:column;justify-content:center;gap:clamp(10px,1.8vh,18px)}
+.s05-h2{font-size:clamp(.95rem,1.7vw,1.4rem);font-weight:900;color:#fff;line-height:1.2;margin-bottom:2px}
+.s05-chart-title{font-size:clamp(.5rem,.72vw,.64rem);color:rgba(255,255,255,.45);margin-bottom:6px}
+.s05-bar-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.s05-bar-label{width:clamp(75px,8.5vw,105px);font-size:clamp(.48rem,.68vw,.6rem);color:rgba(255,255,255,.75);text-align:right;flex-shrink:0;line-height:1.2}
+.s05-bar-track{flex:1;height:clamp(16px,2.3vh,26px);background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden}
+.s05-bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,#ff6b00,#ffd84d)}
+.s05-bar-fill.mid{background:linear-gradient(90deg,#ff8a00,#ffb84d)}
+.s05-bar-fill.low{background:linear-gradient(90deg,#0d4a55,#34d5ff)}
+.s05-bar-pct{font-family:Outfit,sans-serif;font-weight:800;font-size:clamp(.52rem,.72vw,.65rem);color:#ffd84d;min-width:40px}
+.s05-stat-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:clamp(8px,1.3vh,14px) clamp(12px,1.8vw,18px);margin-top:4px}
+.s05-stat-pct{font-family:Outfit,sans-serif;font-weight:900;font-size:clamp(1.6rem,3.2vw,2.9rem);color:#34d5ff;line-height:1}
+.s05-stat-desc{font-size:clamp(.5rem,.7vw,.62rem);color:rgba(255,255,255,.5);margin-top:3px;line-height:1.4}
+
+/* ---- S16 LINE UPDATE ---- */
+#s16{padding:0;display:flex;flex-direction:column;background:linear-gradient(135deg,#010c1a 0%,#071428 60%,#040c16 100%)}
+.s16-wrap{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:6% 6% 8%;gap:clamp(14px,2.2vh,26px)}
+.s16-eyebrow{font-family:Outfit,sans-serif;font-size:clamp(.48rem,.68vw,.6rem);font-weight:800;letter-spacing:.28em;color:#06c755;text-transform:uppercase}
+.s16-h1{font-size:clamp(2rem,4.8vw,4.6rem);font-weight:900;color:#ffd84d;letter-spacing:-.03em;line-height:1;text-align:center;text-shadow:0 0 60px rgba(255,216,77,.3)}
+.s16-flow-row{display:flex;align-items:center;justify-content:center;gap:clamp(10px,2vw,28px);width:100%;max-width:860px}
+.s16-node-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;min-width:0}
+.s16-phone-svg{width:clamp(80px,11vw,130px);height:auto}
+.s16-node-label{font-size:clamp(.5rem,.75vw,.68rem);font-weight:800;color:rgba(255,255,255,.65);text-align:center;letter-spacing:.04em}
+.s16-arrow-col{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:4px}
+.s16-arrow-svg{width:clamp(32px,4.5vw,52px)}
+.s16-center-circle{width:clamp(70px,10vw,110px);height:clamp(70px,10vw,110px);border-radius:50%;background:linear-gradient(135deg,rgba(255,138,0,.18),rgba(255,216,77,.08));border:2px solid rgba(255,138,0,.4);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;box-shadow:0 0 40px rgba(255,138,0,.2)}
+
+/* ---- S18 PRICING ---- */
+#s18{padding:0;display:flex;flex-direction:column;background:radial-gradient(ellipse 80% 50% at 50% 10%,rgba(255,216,77,.08),transparent 55%),linear-gradient(180deg,#071428 0%,#020c1a 100%)}
+.s18-wrap{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:4% 6%;gap:clamp(14px,2.2vh,24px)}
+.s18-eyebrow{font-family:Outfit,sans-serif;font-size:clamp(.48rem,.68vw,.6rem);font-weight:800;letter-spacing:.28em;color:#34d5ff;text-transform:uppercase}
+.s18-h2{font-size:clamp(1.5rem,2.8vw,2.5rem);font-weight:900;color:#fff;letter-spacing:-.025em}
+.s18-note{font-size:clamp(.46rem,.62vw,.56rem);color:rgba(255,255,255,.3);align-self:flex-end;margin-bottom:-6px}
+.s18-plans{display:flex;gap:clamp(12px,2vw,22px);align-items:stretch;width:100%;max-width:960px}
+.s18-plan{flex:1;border-radius:14px;padding:clamp(14px,2.2vh,24px) clamp(12px,1.8vw,20px);background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;gap:clamp(6px,1vh,12px)}
+.s18-plan.featured{background:linear-gradient(160deg,rgba(255,138,0,.12),rgba(255,216,77,.06));border-color:rgba(255,138,0,.5);box-shadow:0 0 60px rgba(255,138,0,.15),0 0 120px rgba(255,138,0,.07);scale:1.04}
+.s18-rec-badge{display:inline-block;padding:4px 12px;border-radius:100px;background:#ff8a00;color:#fff;font-size:clamp(.46rem,.6vw,.54rem);font-weight:800;letter-spacing:.08em;align-self:flex-start}
+.s18-plan-name{font-size:clamp(.5rem,.75vw,.66rem);font-weight:800;color:rgba(255,255,255,.4);letter-spacing:.18em;text-transform:uppercase}
+.s18-plan.featured .s18-plan-name{color:#ffd84d}
+.s18-plan-name-ja{font-size:clamp(.85rem,1.3vw,1.1rem);font-weight:900;color:#fff}
+.s18-price-wrap{border-top:1px solid rgba(255,255,255,.08);padding-top:clamp(6px,1vh,12px)}
+.s18-price-main{font-family:Outfit,sans-serif;font-weight:900;font-size:clamp(1.7rem,3.2vw,3rem);color:#fff;line-height:1}
+.s18-price-main .s18-unit{font-size:.42em;color:rgba(255,255,255,.4);font-weight:600}
+.s18-plan.featured .s18-price-main{color:#ffd84d}
+.s18-init-fee{font-size:clamp(.46rem,.65vw,.58rem);color:rgba(255,255,255,.35);margin-top:3px}
+.s18-features{list-style:none;display:flex;flex-direction:column;gap:clamp(3px,.7vh,7px);margin-top:auto;padding-top:clamp(6px,1vh,10px);border-top:1px solid rgba(255,255,255,.06)}
+.s18-feature{font-size:clamp(.48rem,.66vw,.58rem);color:rgba(255,255,255,.5);display:flex;align-items:flex-start;gap:6px;line-height:1.3}
+.s18-feature::before{content:'✓';color:#ff8a00;font-weight:900;font-size:.95em;flex-shrink:0;margin-top:1px}
+.s18-plan.featured .s18-feature{color:rgba(255,255,255,.75)}
+.s18-plan.featured .s18-feature::before{color:#ffd84d}
+.s18-footer-note{font-size:clamp(.46rem,.6vw,.54rem);color:rgba(255,255,255,.22);text-align:center}
+
+/* ---- S19 CAMPAIGN ---- */
+#s19{padding:0;display:flex;background:radial-gradient(circle at 75% 50%,rgba(255,138,0,.12),transparent 50%),linear-gradient(135deg,#0a0500 0%,#061020 50%,#080202 100%)}
+.s19-wrap{position:relative;z-index:2;display:flex;width:100%;height:100%;align-items:center;padding:5% 7%;gap:5%}
+.s19-left{flex:1;display:flex;flex-direction:column;justify-content:center;gap:clamp(10px,1.8vh,20px)}
+.s19-limit-badge{display:inline-flex;align-items:center;gap:7px;padding:clamp(6px,1vh,11px) clamp(12px,1.8vw,20px);border-radius:8px;background:rgba(255,138,0,.15);border:1px solid rgba(255,138,0,.55);color:#ff8a00;font-size:clamp(.54rem,.8vw,.7rem);font-weight:800;letter-spacing:.06em;align-self:flex-start}
+.s19-h2{font-size:clamp(2rem,4.5vw,4.2rem);font-weight:900;color:#fff;line-height:1.0;letter-spacing:-.03em}
+.s19-compare{display:flex;flex-direction:column;gap:clamp(6px,1.2vh,14px)}
+.s19-compare-row{display:flex;align-items:center;gap:clamp(10px,1.6vw,18px)}
+.s19-label-tag{font-size:clamp(.48rem,.66vw,.58rem);font-weight:800;color:rgba(255,255,255,.35);letter-spacing:.1em;min-width:75px}
+.s19-was-price{font-family:Outfit,sans-serif;font-weight:700;font-size:clamp(.9rem,1.8vw,1.5rem);color:rgba(255,255,255,.22);text-decoration:line-through}
+.s19-arrow-txt{color:#ffd84d;font-size:clamp(.9rem,1.6vw,1.3rem);font-weight:900}
+.s19-now-price{font-family:Outfit,sans-serif;font-weight:900;font-size:clamp(1.8rem,4.2vw,4.2rem);color:#ffd84d;line-height:1;letter-spacing:-.03em}
+.s19-now-price .s19-unit{font-size:.38em;color:rgba(255,255,255,.4);font-weight:600;letter-spacing:0}
+.s19-divider{height:1px;background:rgba(255,255,255,.07)}
+.s19-note{font-size:clamp(.46rem,.62vw,.54rem);color:rgba(255,255,255,.28);line-height:1.5}
+.s19-right{flex:0 0 auto;display:flex;align-items:center;justify-content:center}
+.s19-badge-circle{width:clamp(150px,21vw,220px);height:clamp(150px,21vw,220px);border-radius:50%;background:linear-gradient(135deg,#ffd84d 0%,#ff8a00 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;box-shadow:0 0 80px rgba(255,138,0,.5),0 0 160px rgba(255,138,0,.2);animation:badge-pulse 3s ease-in-out infinite}
+@keyframes badge-pulse{0%,100%{box-shadow:0 0 80px rgba(255,138,0,.5),0 0 160px rgba(255,138,0,.2)}50%{box-shadow:0 0 110px rgba(255,138,0,.7),0 0 220px rgba(255,138,0,.3)}}
+.s19-badge-pct{font-family:Outfit,sans-serif;font-weight:900;font-size:clamp(2.8rem,5.5vw,5.2rem);color:#02060c;line-height:.9;letter-spacing:-.03em}
+.s19-badge-off{font-family:Outfit,sans-serif;font-weight:900;font-size:clamp(1.1rem,2vw,1.9rem);color:#02060c;letter-spacing:.05em}
+
+/* ---- S21 CLOSE ---- */
+#s21{padding:0;display:flex;background:radial-gradient(circle at 35% 40%,rgba(255,138,0,.15),transparent 40%),linear-gradient(145deg,#0a0800,#061828,#082030)}
+.s21-wrap{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:5%;gap:clamp(10px,1.8vh,18px);text-align:center}
+.s21-eyebrow{font-family:Outfit,sans-serif;font-size:clamp(.48rem,.68vw,.6rem);font-weight:800;letter-spacing:.28em;color:#ff8a00;text-transform:uppercase}
+.s21-lead{font-size:clamp(.78rem,1.2vw,1.05rem);color:rgba(255,255,255,.45);font-weight:500}
+.s21-days{font-family:Outfit,sans-serif;font-weight:900;font-size:clamp(3.5rem,9.5vw,9rem);line-height:.85;letter-spacing:-.04em;color:#34d5ff;text-shadow:0 0 80px rgba(52,213,255,.4),0 0 160px rgba(52,213,255,.2)}
+.s21-days-unit{font-size:clamp(.95rem,1.9vw,1.7rem);font-weight:900;color:rgba(255,255,255,.65)}
+.s21-steps-row{display:flex;align-items:center;gap:0;margin:clamp(4px,1vh,8px) 0}
+.s21-step-item{display:flex;flex-direction:column;align-items:center;gap:5px}
+.s21-step-num{font-family:Outfit,sans-serif;font-size:clamp(.55rem,.82vw,.72rem);font-weight:900;color:#ff8a00}
+.s21-step-box{padding:clamp(8px,1.4vh,14px) clamp(14px,2.3vw,26px);border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:#fff;font-size:clamp(.58rem,.85vw,.75rem);font-weight:700}
+.s21-step-arrow{padding:0 clamp(5px,.9vw,12px);color:#ffd84d;font-size:clamp(.9rem,1.4vw,1.2rem);font-weight:900}
+.s21-cta-new{display:inline-block;padding:clamp(13px,1.9vh,18px) clamp(38px,6.5vw,66px);border-radius:100px;background:linear-gradient(90deg,#ff6b00,#ff9a00);color:#fff;font-size:clamp(.72rem,1.1vw,.95rem);font-weight:900;text-decoration:none;letter-spacing:.05em;box-shadow:0 16px 60px rgba(255,138,0,.55),0 0 0 1px rgba(255,255,255,.1);transition:transform .2s,box-shadow .2s}
+.s21-cta-new:hover{transform:translateY(-2px);box-shadow:0 20px 80px rgba(255,138,0,.7)}
+.s21-sub-note{font-size:clamp(.46rem,.62vw,.56rem);color:rgba(255,255,255,.22)}
+</style>
 </head>
 <body>
-
-  <header class="deck-nav">
+  <nav class="nav">
     <span class="logo">RUNBIRD</span>
-    <a href="#s01">01</a><a href="#s02">02</a><a href="#s03">03</a><a href="#s04">04</a>
-    <a href="#s05">05</a><a href="#s06">06</a><a href="#s07">07</a><a href="#s08">08</a>
-    <a href="#s09">09</a><a href="#s10">10</a><a href="#s11">11</a><a href="#s12">12</a>
-    <a href="#s13">13</a><a href="#s14">14</a><a href="#s15">15</a><a href="#s16">16</a>
-    <a href="#s17">17</a><a href="#s18">18</a><a href="#s19">19</a><a href="#s20">20</a>
-  </header>
-
-  <div class="deck-wrap">
+    <a href="#s01">01</a><a href="#s02">02</a><a href="#s03">03</a><a href="#s04">04</a><a href="#s05">05</a><a href="#s06">06</a><a href="#s07">07</a><a href="#s08">08</a><a href="#s09">09</a><a href="#s10">10</a><a href="#s11">11</a><a href="#s12">12</a><a href="#s13">13</a><a href="#s14">14</a><a href="#s15">15</a><a href="#s16">16</a><a href="#s17">17</a><a href="#s18">18</a><a href="#s19">19</a><a href="#s20">20</a><a href="#s21">21</a>
+  </nav>
+  <div class="viewport">
     <div class="deck">
 
-      <!-- s01 Cover -->
-      <section class="slide" id="s01">
-        <div class="orb orb-o"></div>
-        <div class="orb orb-c"></div>
-        <div class="slide-inner" style="justify-content:flex-end;padding-bottom:7%">
-          <span class="cat en">AI HOMEPAGE SALES BOOK</span>
-          <h1 style="max-width:14ch;margin-top:10px">AIに選ばれる。<br><span style="color:var(--cyan)">あなたに届く。</span></h1>
-          <p class="hero-sub">問い合わせが来るHPを、月額で育てる。</p>
-        </div>
-        <svg class="wave-bottom" viewBox="0 0 1200 200" preserveAspectRatio="none" aria-hidden="true">
-          <path fill="rgba(52,213,255,0.08)" d="M0,120 Q300,40 600,100 T1200,80 L1200,200 L0,200 Z"/>
-          <path fill="rgba(255,138,0,0.06)" d="M0,160 Q400,100 800,140 T1200,120 L1200,200 L0,200 Z"/>
+      <!-- 01 COVER — PREMIUM REDESIGN -->
+      <section class="sl" id="s01">
+        <!-- Neural network grid background -->
+        <svg class="s01-net" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <defs>
+            <pattern id="s01-grid" width="80" height="80" patternUnits="userSpaceOnUse">
+              <path d="M 80 0 L 0 0 0 80" fill="none" stroke="#34d5ff" stroke-width="0.4"/>
+            </pattern>
+            <radialGradient id="s01-glow1" cx="75%" cy="30%" r="40%">
+              <stop offset="0%" stop-color="rgba(52,213,255,0.18)"/><stop offset="100%" stop-color="rgba(52,213,255,0)"/>
+            </radialGradient>
+            <radialGradient id="s01-glow2" cx="80%" cy="80%" r="35%">
+              <stop offset="0%" stop-color="rgba(255,138,0,0.14)"/><stop offset="100%" stop-color="rgba(255,138,0,0)"/>
+            </radialGradient>
+          </defs>
+          <rect width="1280" height="720" fill="url(#s01-grid)"/>
+          <rect width="1280" height="720" fill="url(#s01-glow1)"/>
+          <rect width="1280" height="720" fill="url(#s01-glow2)"/>
+          <!-- Horizontal light line -->
+          <line x1="0" y1="360" x2="1280" y2="360" stroke="rgba(52,213,255,0.06)" stroke-width="1"/>
+          <line x1="640" y1="0" x2="640" y2="720" stroke="rgba(52,213,255,0.06)" stroke-width="1"/>
         </svg>
-      </section>
-
-      <!-- s02 Company -->
-      <section class="slide" id="s02">
-        <div class="slide-inner">
-          <span class="cat en">COMPANY</span>
-          <div class="pillars">
-            <div class="pillar"><p class="mega num">4</p><h2>全国4拠点</h2><p class="hero-sub">東京・大阪・福岡・沖縄</p></div>
-            <div class="pillar"><p class="mega">一気通貫</p><h2>Web一気通貫</h2><p class="hero-sub">HP・MEO・LINE・動画</p></div>
-            <div class="pillar"><p class="mega num">2019</p><h2>2019設立</h2><p class="hero-sub">運用まで伴走</p></div>
-          </div>
-          <p class="tiny-foot">株式会社ランバード｜runbird.net｜03-5843-6996</p>
-        </div>
-      </section>
-
-      <!-- s03 Campaign -->
-      <section class="slide" id="s03">
-        <div class="slide-inner">
-          <span class="cat">CAMPAIGN</span>
-          <div class="s03-only">
-            <p class="mega">1エリア×1業種×1店舗限定</p>
-            <div class="pills-row">
-              <span class="pill pill-hot">成功事例店 募集中</span>
-              <span class="pill">エリア要確認</span>
-              <span class="pill">業種枠あり</span>
+        <div class="s01-wrap">
+          <!-- Left: text -->
+          <div class="s01-left">
+            <img src="assets/runbird-logo.png" alt="RUNBIRD" class="s01-logo">
+            <p class="s01-eyebrow">Next Generation AI Marketing</p>
+            <h1 class="s01-h1">AIに選ばれる。<br><em>あなたに届く。</em></h1>
+            <p class="s01-desc">Google・AI検索・MEO・SNSのすべてで<br>選ばれ続けるホームページ。放置しながら育てる。</p>
+            <div class="s01-tags">
+              <span class="s01-tag s01-tag-c">SEO 自動最適化</span>
+              <span class="s01-tag s01-tag-o">AI 記事自動生成</span>
+              <span class="s01-tag s01-tag-y">MEO 連動</span>
+              <span class="s01-tag s01-tag-g">LINE 連携</span>
             </div>
           </div>
-        </div>
-      </section>
-
-      <!-- s04 System -->
-      <section class="slide" id="s04">
-        <div class="slide-inner">
-          <span class="cat">SYSTEM</span>
-          <h1>AIホームページとは</h1>
-          <p class="hero-sub">すべての入口の受け皿</p>
-          <div class="hub-radial">
-            <div class="hub-center">AI ホームページ</div>
-            <span class="orbit" style="top:4%;left:50%;transform:translateX(-50%)">Google</span>
-            <span class="orbit" style="top:22%;right:8%">AI検索</span>
-            <span class="orbit" style="bottom:22%;right:10%">MEO</span>
-            <span class="orbit" style="bottom:8%;left:50%;transform:translateX(-50%)">LINE</span>
-            <span class="orbit" style="top:22%;left:8%">問合せ</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- s05 Why now -->
-      <section class="slide" id="s05">
-        <div class="slide-inner">
-          <span class="cat">WHY NOW</span>
-          <h1>なぜ<span class="acc-o">今</span>必要か</h1>
-          <div class="stat-row" style="display:flex;gap:clamp(16px,3vw,32px);flex:1;align-items:stretch">
-            <div style="flex:1;text-align:center;padding:clamp(20px,3vw,32px) 8px;border-top:4px solid var(--cyan)"><p class="mega num" style="font-size:clamp(2.5rem,5.5vw,4.5rem)">24→4.5%</p><p class="hero-sub">HPクリック率</p></div>
-            <div style="flex:1;text-align:center;padding:clamp(20px,3vw,32px) 8px;border-top:4px solid var(--gold)"><p class="mega num" style="font-size:clamp(2.5rem,5.5vw,4.5rem)">79%</p><p class="hero-sub">マップ参照</p></div>
-            <div style="flex:1;text-align:center;padding:clamp(20px,3vw,32px) 8px;border-top:4px solid var(--orange)"><p class="mega" style="font-size:clamp(2.5rem,5.5vw,4.5rem)">AIO</p><p class="hero-sub">AI検索時代</p></div>
-          </div>
-          <div class="flow14">
-            <span class="s">AIに聞く</span><span class="a">→</span><span class="s">マップ比較</span><span class="a">→</span><span class="s">HPで信頼</span><span class="a">→</span><span class="s">問合せ</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- s06 Before/After -->
-      <section class="slide" id="s06">
-        <div class="slide-inner">
-          <span class="cat">SOLUTION</span>
-          <h1>Before / After</h1>
-          <div class="split-ico">
-            <div class="split-side split-before"><svg class="icon-lg" viewBox="0 0 80 80" fill="none" aria-hidden="true"><circle cx="40" cy="40" r="36" stroke="#ff6b6b" stroke-width="2"/><path d="M28 52c4-6 20-6 24 0M28 34h4M48 34h4" stroke="#ff6b6b" stroke-width="3" stroke-linecap="round"/></svg><p class="hero-sub">放置・古いHP</p></div>
-            <span class="ph-arr">→</span>
-            <div class="split-side split-after"><svg class="icon-lg" viewBox="0 0 80 80" fill="none" aria-hidden="true"><circle cx="40" cy="40" r="36" stroke="#34d5ff" stroke-width="2"/><path d="M28 48c4 8 20 8 24 0M28 34h4M48 34h4" stroke="#34d5ff" stroke-width="3" stroke-linecap="round"/></svg><p class="hero-sub">育つ・届くHP</p></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- s07 Hub -->
-      <section class="slide" id="s07">
-        <div class="slide-inner">
-          <span class="cat">FRAMEWORK</span>
-          <h1>勝ち筋3要素</h1>
-          <div class="tri7">
-            <span class="n t">見つかる</span>
-            <span class="n l">信頼</span>
-            <span class="c">問い合わせが来るHP</span>
-            <span class="n r">行動</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- s08 Two focus -->
-      <section class="slide" id="s08">
-        <div class="slide-inner">
-          <span class="cat">FOCUS</span>
-          <h1>注力する2点</h1>
-          <div class="dual8">
-            <div><ul><li>電話・LINE・予約導線</li><li>1クリック設計</li><li>マップ流入を逃さない</li></ul></div>
-            <div class="gwords"><p class="gword">導線設計</p><p class="gword">更新+AIO</p></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- s09 Speed + LINE -->
-            <section class="slide" id="s09">
-        <div class="slide-inner">
-          <span class="cat">SPEED</span>
-          <h1>早期納品×LINE更新</h1>
-          <div class="duel-row"><span class="duel-lbl">外注</span><div class="duel-trk"><div class="duel-old">3〜6ヶ月</div></div></div>
-          <div class="duel-row"><span class="duel-lbl">当社</span><div class="duel-trk"><div class="duel-new">14〜21日</div></div></div>
-          <div class="flow14"><span class="s">LINE送信</span><span class="a">→</span><span class="s">反映</span><span class="a">→</span><span class="s">HP最新化</span></div>
-          <span class="badge-y">2〜3営業日で反映</span>
-        </div>
-      </section>
-
-      <!-- s10 SEO+AIO -->
-            <section class="slide" id="s10">
-        <div class="slide-inner">
-          <span class="cat">AI ERA</span>
-          <h1>AI時代の集客設計</h1>
-          <div style="display:flex;justify-content:center;gap:16px;align-items:center;flex-shrink:0">
-            <span class="glass" style="padding:10px 16px;font-weight:800">Google</span><span class="ph-arr">→</span>
-            <span class="glass" style="padding:10px 16px;font-weight:800">ChatGPT</span><span class="ph-arr">→</span>
-            <span class="glass" style="padding:10px 16px;font-weight:800;border-color:var(--orange)">御社HP</span>
-          </div>
-          <div class="seo-cols">
-            <div class="seo-box"><h3>SEO</h3><p>検索順位・KW設計</p></div>
-            <div class="seo-box aio"><h3>AIO</h3><p>AI回答・FAQ設計</p></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- s11 Services -->
-      <section class="slide" id="s11">
-        <div class="slide-inner">
-          <span class="cat">ALL RUNBIRD</span>
-          <h1>すべてランバードが担当</h1>
-          <div class="sun-wrap">
-            <div class="sun-core">RUNBIRD</div>
-            <span class="ray" style="top:2%;left:50%;transform:translateX(-50%)">HP</span>
-            <span class="ray" style="top:18%;right:6%">SEO</span>
-            <span class="ray" style="bottom:18%;right:6%">AIO</span>
-            <span class="ray" style="bottom:2%;left:50%;transform:translateX(-50%)">LINE</span>
-            <span class="ray" style="bottom:18%;left:6%">保守</span>
-            <span class="ray" style="top:18%;left:6%">レポート</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- s12 Security -->
-      <section class="slide" id="s12">
-        <div class="slide-inner">
-          <span class="cat">SECURITY</span>
-          <div class="s12-row"><svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M32 4L8 14v18c0 14 10 26 24 28 14-2 24-14 24-28V14L32 4z" stroke="#34d5ff" stroke-width="2.5" fill="rgba(52,213,255,.15)"/></svg><svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><circle cx="22" cy="34" r="12" stroke="#ff8a00" stroke-width="2.5"/><path d="M30 34h26M42 28v12M50 30v8" stroke="#ffd84d" stroke-width="2.5" stroke-linecap="round"/></svg><svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect x="12" y="20" width="40" height="32" rx="4" stroke="#34d5ff" stroke-width="2.5"/><path d="M32 12v28M26 30l6 6 6-6" stroke="#ff8a00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><p class="s12-msg">放置HPは閉店した店に見える</p></div>
-        </div>
-      </section>
-
-      <!-- s13 All-in -->
-      <section class="slide" id="s13">
-        <div class="slide-inner">
-          <span class="cat">ALL IN</span>
-          <div class="ring-wrap">
-            <p class="ring-title">全部込み</p>
-            <span class="ring-item" style="top:0;left:50%;transform:translateX(-50%)">HP</span>
-            <span class="ring-item" style="top:18%;right:12%">SEO</span>
-            <span class="ring-item" style="bottom:18%;right:12%">AIO</span>
-            <span class="ring-item" style="bottom:0;left:50%;transform:translateX(-50%)">LINE</span>
-            <span class="ring-item" style="bottom:18%;left:12%">保守</span>
-            <span class="ring-item" style="top:18%;left:12%">レポート</span>
-            <span class="ring-item" style="top:50%;right:0">SSL</span>
-            <span class="ring-item" style="top:50%;left:0">サーバー</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- s14 Value -->
-      <section class="slide" id="s14">
-        <div class="slide-inner">
-          <span class="cat">VALUE</span>
-          <h1>3つの価値</h1>
-          <div class="flow14">
-            <span class="s">見つかる</span><span class="a">→</span><span class="s">信頼</span><span class="a">→</span><span class="s">行動</span><span class="a">→</span><span class="s">問合せ</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- s15 LINE mock -->
-      <section class="slide" id="s15">
-        <div class="slide-inner">
-          <span class="cat">LINE OPS</span>
-          <h1>公式LINEで楽々編集</h1>
-          <div class="phones">
-            <div class="phone">LINE 送信</div>
-            <span class="ph-arr">→</span>
-            <div class="phone on">運用 反映</div>
-            <span class="ph-arr">→</span>
-            <div class="phone">HP 更新</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- s16 Dashboard -->
-      <section class="slide" id="s16">
-        <div class="slide-inner">
-          <span class="cat">REPORT</span>
-          <h1>月次レポート</h1>
-          <div class="kpi4">
-            <div class="k"><span class="mega num">+24%</span><span>セッション</span></div>
-            <div class="k"><span class="mega num">186</span><span>電話</span></div>
-            <div class="k"><span class="mega num">94</span><span>LINE</span></div>
-            <div class="k"><span class="mega num">12</span><span>フォーム</span></div>
-          </div>
-          <div class="chart-f">
-            <svg viewBox="0 0 400 100" width="100%" aria-hidden="true">
-              <polyline points="0,80 80,65 160,50 240,38 320,28 400,18" fill="none" stroke="#34d5ff" stroke-width="3"/>
-              <polyline points="0,80 80,72 160,60 240,52 320,42 400,35" fill="none" stroke="#ff8a00" stroke-width="2" stroke-dasharray="6 4" opacity=".7"/>
+          <!-- Right: connection diagram -->
+          <div class="s01-right">
+            <svg class="s01-diagram" viewBox="0 0 380 290" aria-hidden="true">
+              <defs>
+                <radialGradient id="s01-cglow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="rgba(52,213,255,0.35)"/>
+                  <stop offset="100%" stop-color="rgba(52,213,255,0)"/>
+                </radialGradient>
+              </defs>
+              <!-- Connection lines (dashed) -->
+              <line x1="190" y1="145" x2="90" y2="60" stroke="rgba(66,133,244,0.35)" stroke-width="1.5" stroke-dasharray="5 4"/>
+              <line x1="190" y1="145" x2="290" y2="60" stroke="rgba(255,138,0,0.35)" stroke-width="1.5" stroke-dasharray="5 4"/>
+              <line x1="190" y1="145" x2="55" y2="175" stroke="rgba(234,67,53,0.35)" stroke-width="1.5" stroke-dasharray="5 4"/>
+              <line x1="190" y1="145" x2="325" y2="175" stroke="rgba(6,199,85,0.35)" stroke-width="1.5" stroke-dasharray="5 4"/>
+              <line x1="190" y1="145" x2="110" y2="250" stroke="rgba(255,216,77,0.35)" stroke-width="1.5" stroke-dasharray="5 4"/>
+              <line x1="190" y1="145" x2="270" y2="250" stroke="rgba(52,213,255,0.35)" stroke-width="1.5" stroke-dasharray="5 4"/>
+              <!-- Center glow -->
+              <circle cx="190" cy="145" r="60" fill="url(#s01-cglow)"/>
+              <!-- Center node -->
+              <circle cx="190" cy="145" r="44" fill="rgba(5,18,38,0.95)" stroke="rgba(52,213,255,0.7)" stroke-width="1.8"/>
+              <text x="190" y="139" fill="#34d5ff" font-size="10" font-weight="800" text-anchor="middle" font-family="Outfit,sans-serif" letter-spacing="1.5">AI</text>
+              <text x="190" y="154" fill="#fff" font-size="8.5" font-weight="700" text-anchor="middle" font-family="'Noto Sans JP',sans-serif">ホームページ</text>
+              <!-- Node: Google SEO -->
+              <circle cx="90" cy="60" r="33" fill="rgba(5,18,38,0.92)" stroke="rgba(66,133,244,0.55)" stroke-width="1.3"/>
+              <text x="90" y="55" fill="#4285f4" font-size="8" font-weight="800" text-anchor="middle" font-family="Outfit,sans-serif">Google</text>
+              <text x="90" y="67" fill="rgba(255,255,255,0.65)" font-size="6.5" text-anchor="middle" font-family="'Noto Sans JP',sans-serif">検索対策</text>
+              <!-- Node: SEO -->
+              <circle cx="290" cy="60" r="33" fill="rgba(5,18,38,0.92)" stroke="rgba(255,138,0,0.55)" stroke-width="1.3"/>
+              <text x="290" y="55" fill="#ff8a00" font-size="10" font-weight="900" text-anchor="middle" font-family="Outfit,sans-serif">SEO</text>
+              <text x="290" y="68" fill="rgba(255,255,255,0.65)" font-size="6.5" text-anchor="middle" font-family="'Noto Sans JP',sans-serif">自動最適化</text>
+              <!-- Node: MEO -->
+              <circle cx="55" cy="175" r="31" fill="rgba(5,18,38,0.92)" stroke="rgba(234,67,53,0.55)" stroke-width="1.3"/>
+              <text x="55" y="170" fill="#ea4335" font-size="10" font-weight="900" text-anchor="middle" font-family="Outfit,sans-serif">MEO</text>
+              <text x="55" y="183" fill="rgba(255,255,255,0.65)" font-size="6" text-anchor="middle" font-family="'Noto Sans JP',sans-serif">マップ対策</text>
+              <!-- Node: LINE -->
+              <circle cx="325" cy="175" r="31" fill="rgba(5,18,38,0.92)" stroke="rgba(6,199,85,0.55)" stroke-width="1.3"/>
+              <text x="325" y="170" fill="#06c755" font-size="10" font-weight="900" text-anchor="middle" font-family="Outfit,sans-serif">LINE</text>
+              <text x="325" y="183" fill="rgba(255,255,255,0.65)" font-size="6" text-anchor="middle" font-family="'Noto Sans JP',sans-serif">自動連携</text>
+              <!-- Node: AIO -->
+              <circle cx="110" cy="252" r="30" fill="rgba(5,18,38,0.92)" stroke="rgba(255,216,77,0.55)" stroke-width="1.3"/>
+              <text x="110" y="247" fill="#ffd84d" font-size="9" font-weight="900" text-anchor="middle" font-family="Outfit,sans-serif">AIO</text>
+              <text x="110" y="260" fill="rgba(255,255,255,0.65)" font-size="5.8" text-anchor="middle" font-family="'Noto Sans JP',sans-serif">AI検索最適化</text>
+              <!-- Node: Report -->
+              <circle cx="270" cy="252" r="30" fill="rgba(5,18,38,0.92)" stroke="rgba(52,213,255,0.55)" stroke-width="1.3"/>
+              <text x="270" y="247" fill="#34d5ff" font-size="8.5" font-weight="800" text-anchor="middle" font-family="Outfit,sans-serif">Report</text>
+              <text x="270" y="260" fill="rgba(255,255,255,0.65)" font-size="5.8" text-anchor="middle" font-family="'Noto Sans JP',sans-serif">月次分析</text>
             </svg>
           </div>
         </div>
       </section>
 
-      <!-- s17 Pricing -->
-      <section class="slide" id="s17">
-        <div class="slide-inner">
-          <span class="cat">PRICING</span>
-          <h1>松竹梅（税抜）</h1>
-          <div class="price3">
-            <div class="pcol"><p class="tier">松</p><p class="yen">月額 <span class="num">¥18,000</span></p><p class="meta">初期10万 / 5P</p></div>
-            <div class="pcol on"><p class="tier">竹 ★</p><p class="yen">月額 <span class="num">¥33,000</span></p><p class="meta">初期15万 / 8P</p></div>
-            <div class="pcol"><p class="tier">梅</p><p class="yen">月額 <span class="num">¥45,000</span></p><p class="meta">初期20万 / 12P</p></div>
+      <!-- 02 AIHP要約・強み（biz教育スライド同型） -->
+      <section class="sl slide-biz-light" id="s02">
+        <div class="bg bg-biz-light"></div>
+        <svg class="cover-waves-biz" viewBox="0 0 1200 220" preserveAspectRatio="none" aria-hidden="true">
+          <path fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1" d="M0,160 Q200,100 400,130 T800,110 T1200,140"/>
+          <path fill="none" stroke="rgba(255,255,255,.65)" stroke-width="1.2" d="M0,175 Q250,115 500,145 T900,125 T1200,155"/>
+          <path fill="none" stroke="rgba(255,255,255,.4)" stroke-width=".9" d="M0,190 Q300,130 600,160 T1200,170"/>
+          <path fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1" d="M0,205 Q180,165 380,185 T760,175 T1200,195"/>
+          <path fill="rgba(255,255,255,.15)" d="M0,165 Q300,95 600,125 T1200,100 L1200,220 L0,220Z"/>
+        </svg>
+        <div class="body body-edu">
+          <h2 class="edu-head">
+            <span class="em-ai">AI</span><span class="em-sub">ホームページ</span>は<br>
+            <span class="em-kw">問い合わせ</span>を受け止める
+          </h2>
+          <dl class="edu-list">
+            <dt>要約</dt>
+            <dd>AI検索・Google検索・問い合わせ導線まで設計した、月額で育てるホームページ。きれいな制作物ではなく、作って終わりにしない運用型のWeb資産です。</dd>
+            <dt>早期納品</dt>
+            <dd>素材提出後、最短14〜21営業日で公開。一般的な外注制作（3〜6ヶ月）と比べ、スピードで集客の受け皿を整えられます。</dd>
+            <dt>LINEで更新</dt>
+            <dd>公式LINEに送るだけで運用チームが反映（2〜3営業日）。社長・店長がパソコン操作なしでも、HPを最新の営業状態に保てます。</dd>
+          </dl>
+        </div>
+      </section>
+
+      <!-- 03 会社概要（MEO／bizブック同型・文言固定） -->
+      <section class="sl slide-co" id="s03">
+        <div class="bg bg-co"></div>
+        <h2 class="co-title">会社概要</h2>
+        <div class="co-body">
+          <dl class="co-spec">
+            <dt>社　　名</dt>
+            <dd>株式会社ランバード</dd>
+            <dt>URL</dt>
+            <dd><a href="https://runbird.net" target="_blank" rel="noopener noreferrer">https://runbird.net</a></dd>
+            <dt>設　　立</dt>
+            <dd>2019年5月31日</dd>
+            <dt>役　　員</dt>
+            <dd>代表取締役　嶋田僚平</dd>
+            <dt>所在地</dt>
+            <dd><strong>東京本社</strong>　東京都中央区晴海１丁目8-10　晴海アイランドトリトンスクエアオフィスタワーX棟40階<br>
+            <strong>大阪支店</strong>　大阪府大阪市中央区農人橋2丁目1-31　第6松屋ビル307<br>
+            <strong>福岡支店</strong>　福岡県福岡市博多区博多駅東3丁目1-29　博多　第2ムカヰビル405<br>
+            <strong>沖縄支店</strong>　沖縄県宜野湾市大山2-31-29　三商ビル302</dd>
+            <dt>連絡先</dt>
+            <dd>TEL　03-5843-6996　／　FAX　03-5843-6978<br>MAIL　<a href="mailto:info@runbird.net">info@runbird.net</a></dd>
+            <dt>事業内容</dt>
+            <dd>ウェブサイト制作、LP制作／動画制作／MEO対策／SEO対策／リスティング広告運用／SNS広告運用<br>
+            バナー広告運用／風評被害対策／業務用エアコン販売／業務用冷蔵庫販売／換気機器販売<br>
+            有料職業紹介／福祉事業（障がい者グループホーム）</dd>
+          </dl>
+        </div>
+      </section>
+
+
+<!-- 04 AIホームページとは — PREMIUM REDESIGN -->
+      <section class="sl" id="s04">
+        <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0" viewBox="0 0 1280 720" preserveAspectRatio="none" aria-hidden="true">
+          <defs><radialGradient id="s04bg1" cx="70%" cy="50%" r="50%"><stop offset="0%" stop-color="rgba(52,213,255,0.08)"/><stop offset="100%" stop-color="rgba(52,213,255,0)"/></radialGradient></defs>
+          <ellipse cx="900" cy="360" rx="500" ry="380" fill="url(#s04bg1)"/>
+        </svg>
+        <div class="s04-wrap">
+          <div class="s04-left">
+            <p class="s04-eyebrow">Product Overview</p>
+            <h2 class="s04-h2">AIホームページとは<br><span>何か</span></h2>
+            <p class="s04-sub">Google・MEO・AI・LINEのすべてが<br>1つにつながるスマート集客基盤</p>
+            <div class="s04-features">
+              <span class="s04-feat s04-feat-seo">SEO　AI記事自動生成</span>
+              <span class="s04-feat s04-feat-meo">MEO　マップ上位表示</span>
+              <span class="s04-feat s04-feat-aio">AIO　AI検索最適化</span>
+              <span class="s04-feat s04-feat-line">LINE　オーナー更新</span>
+              <span class="s04-feat s04-feat-rep">Report　月次効果測定</span>
+              <span class="s04-feat s04-feat-cta">問い合わせ　導線設計</span>
+            </div>
+          </div>
+          <div class="s04-right">
+            <div class="s04-diagram-wrap">
+              <svg class="s04-svg" viewBox="0 0 480 480" aria-hidden="true">
+                <defs>
+                  <radialGradient id="s04cg2" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="rgba(52,213,255,0.22)"/>
+                    <stop offset="100%" stop-color="rgba(52,213,255,0)"/>
+                  </radialGradient>
+                </defs>
+                <circle cx="240" cy="240" r="158" fill="none" stroke="rgba(52,213,255,0.07)" stroke-width="1" stroke-dasharray="4 8"/>
+                <line x1="240" y1="240" x2="395" y2="162" stroke="rgba(255,138,0,0.5)" stroke-width="1.5" stroke-dasharray="5 4"/>
+                <line x1="240" y1="240" x2="395" y2="318" stroke="rgba(234,67,53,0.5)" stroke-width="1.5" stroke-dasharray="5 4"/>
+                <line x1="240" y1="240" x2="240" y2="400" stroke="rgba(6,199,85,0.5)" stroke-width="1.5" stroke-dasharray="5 4"/>
+                <line x1="240" y1="240" x2="85" y2="318" stroke="rgba(52,213,255,0.5)" stroke-width="1.5" stroke-dasharray="5 4"/>
+                <line x1="240" y1="240" x2="85" y2="162" stroke="rgba(255,216,77,0.5)" stroke-width="1.5" stroke-dasharray="5 4"/>
+                <line x1="240" y1="240" x2="240" y2="80" stroke="rgba(160,100,255,0.5)" stroke-width="1.5" stroke-dasharray="5 4"/>
+                <ellipse cx="240" cy="240" rx="68" ry="68" fill="url(#s04cg2)"/>
+                <rect x="186" y="207" width="108" height="66" rx="14" fill="rgba(4,14,32,0.97)" stroke="rgba(52,213,255,0.85)" stroke-width="2"/>
+                <text x="240" y="232" fill="#34d5ff" font-size="13" font-weight="900" text-anchor="middle" font-family="Outfit,sans-serif" letter-spacing="2">AI</text>
+                <text x="240" y="250" fill="#fff" font-size="11" font-weight="700" text-anchor="middle" font-family="'Noto Sans JP',sans-serif">ホームページ</text>
+                <text x="240" y="265" fill="rgba(255,255,255,0.35)" font-size="8" text-anchor="middle" font-family="'Noto Sans JP',sans-serif">RUNBIRD</text>
+                <rect x="343" y="130" width="104" height="64" rx="12" fill="rgba(4,14,32,0.93)" stroke="rgba(255,138,0,0.65)" stroke-width="1.5"/>
+                <text x="395" y="154" fill="#ff8a00" font-size="13" font-weight="900" text-anchor="middle" font-family="Outfit,sans-serif">SEO</text>
+                <text x="395" y="170" fill="rgba(255,255,255,0.6)" font-size="8.5" text-anchor="middle" font-family="'Noto Sans JP',sans-serif">AI記事自動生成</text>
+                <rect x="343" y="286" width="104" height="64" rx="12" fill="rgba(4,14,32,0.93)" stroke="rgba(234,67,53,0.65)" stroke-width="1.5"/>
+                <text x="395" y="310" fill="#ea4335" font-size="13" font-weight="900" text-anchor="middle" font-family="Outfit,sans-serif">MEO</text>
+                <text x="395" y="326" fill="rgba(255,255,255,0.6)" font-size="8.5" text-anchor="middle" font-family="'Noto Sans JP',sans-serif">マップ上位表示</text>
+                <rect x="188" y="368" width="104" height="64" rx="12" fill="rgba(4,14,32,0.93)" stroke="rgba(6,199,85,0.65)" stroke-width="1.5"/>
+                <text x="240" y="392" fill="#06c755" font-size="13" font-weight="900" text-anchor="middle" font-family="Outfit,sans-serif">LINE</text>
+                <text x="240" y="408" fill="rgba(255,255,255,0.6)" font-size="8.5" text-anchor="middle" font-family="'Noto Sans JP',sans-serif">オーナー更新</text>
+                <rect x="33" y="286" width="104" height="64" rx="12" fill="rgba(4,14,32,0.93)" stroke="rgba(52,213,255,0.65)" stroke-width="1.5"/>
+                <text x="85" y="310" fill="#34d5ff" font-size="11" font-weight="900" text-anchor="middle" font-family="Outfit,sans-serif">Report</text>
+                <text x="85" y="326" fill="rgba(255,255,255,0.6)" font-size="8.5" text-anchor="middle" font-family="'Noto Sans JP',sans-serif">月次効果測定</text>
+                <rect x="33" y="130" width="104" height="64" rx="12" fill="rgba(4,14,32,0.93)" stroke="rgba(255,216,77,0.65)" stroke-width="1.5"/>
+                <text x="85" y="154" fill="#ffd84d" font-size="13" font-weight="900" text-anchor="middle" font-family="Outfit,sans-serif">AIO</text>
+                <text x="85" y="170" fill="rgba(255,255,255,0.6)" font-size="8.5" text-anchor="middle" font-family="'Noto Sans JP',sans-serif">AI検索最適化</text>
+                <rect x="188" y="48" width="104" height="64" rx="12" fill="rgba(4,14,32,0.93)" stroke="rgba(160,100,255,0.65)" stroke-width="1.5"/>
+                <text x="240" y="72" fill="rgba(170,110,255,1)" font-size="10" font-weight="900" text-anchor="middle" font-family="'Noto Sans JP',sans-serif">問い合わせ</text>
+                <text x="240" y="88" fill="rgba(255,255,255,0.6)" font-size="8.5" text-anchor="middle" font-family="'Noto Sans JP',sans-serif">導線・CTA設計</text>
+              </svg>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- s18 Campaign pricing -->
-      <section class="slide" id="s18">
-        <div class="slide-inner">
-          <span class="cat">CLOSING</span>
-          <h1>成功事例店 特別価格</h1>
-          <div class="close-power">
-            <div class="off-ring"><p class="mega num">20%</p><p class="hero-sub">OFF</p></div>
-            <div class="close-b">
-              <p class="strike num">¥33,000</p>
-              <p class="mega num">¥26,400</p>
-              <p class="hero-sub">竹プラン月額（税抜）</p>
-              <p class="hero-sub">初期 <span class="fw9 num">¥120,000</span>（通常15万）</p>
+<!-- 05 なぜ今必要か — PREMIUM REDESIGN -->
+      <section class="sl" id="s05">
+        <div class="s05-wrap">
+          <!-- Left: Giant stat -->
+          <div class="s05-left">
+            <p class="s05-lead-txt">ネットユーザーの</p>
+            <p class="s05-bignum">86</p>
+            <p class="s05-pct">%</p>
+            <p class="s05-tail-txt">がGoogleで<br>お店を探す</p>
+          </div>
+          <!-- Right: Charts & context -->
+          <div class="s05-right">
+            <h2 class="s05-h2">Google検索が主流の今<br>放置HPは選ばれない</h2>
+            <p class="s05-chart-title">お店を探すときに最も使う手段は？ (n=550)</p>
+            <div class="s05-bar-row">
+              <span class="s05-bar-label">Google 検索</span>
+              <div class="s05-bar-track"><div class="s05-bar-fill" style="width:60.2%"></div></div>
+              <span class="s05-bar-pct">60.2%</span>
+            </div>
+            <div class="s05-bar-row">
+              <span class="s05-bar-label">Google MAP</span>
+              <div class="s05-bar-track"><div class="s05-bar-fill" style="width:60.2%"></div></div>
+              <span class="s05-bar-pct">60.2%</span>
+            </div>
+            <div class="s05-bar-row">
+              <span class="s05-bar-label">口コミサイト</span>
+              <div class="s05-bar-track"><div class="s05-bar-fill mid" style="width:58%"></div></div>
+              <span class="s05-bar-pct">58.0%</span>
+            </div>
+            <div class="s05-bar-row">
+              <span class="s05-bar-label">SNS</span>
+              <div class="s05-bar-track"><div class="s05-bar-fill low" style="width:26.7%"></div></div>
+              <span class="s05-bar-pct">26.7%</span>
+            </div>
+            <div class="s05-stat-box">
+              <p class="s05-stat-pct">85.6%</p>
+              <p class="s05-stat-desc">のユーザーが検索結果3ページ目までしか見ない<br>上位に出なければ、存在しないのと同じ</p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- s19 Options -->
-      <section class="slide" id="s19">
-        <div class="slide-inner">
-          <span class="cat">OPTIONS</span>
-          <h1>一気通貫セット</h1>
-          <div class="flow19">
-            <div class="flow19m">
-              <span class="s">MEO</span><span class="a">→</span><span class="s">HP</span><span class="a">→</span><span class="s">LINE</span><span class="a">→</span><span class="s">レポート</span>
+<!-- 06 3つの検索方法（biz 03_3つの検索方法と相場同型） -->
+      <section class="sl slide-s3" id="s06">
+        <div class="bg bg-s3"></div>
+        <div class="s3-wrap">
+          <h2 class="s3-title">検索エンジン(Google)には<span class="s3-num">3</span>つの検索方法がある</h2>
+          <div class="s3-main">
+            <div class="s3-left">
+              <div class="s3-block">
+                <h3>リスティング広告枠</h3>
+                <p>製作費30万円以上〜</p>
+                <p>月々20万円〜50万円以上　1クリックごとに課金</p>
+              </div>
+              <div class="s3-block">
+                <h3>MEO枠</h3>
+                <p>1回の対策あたり<span class="s3-price">1万円前後</span>かかるが1回では対策できず</p>
+                <p>月の総額で<span class="s3-price">10万円〜20万円以上</span></p>
+                <p>マップは上位に表示されるため、近隣のユーザーに対するアプローチが強い上位表示が必須</p>
+              </div>
+              <div class="s3-block">
+                <h3>SEO枠</h3>
+                <p>1回の対策あたり<span class="s3-price">2万円前後</span>かかるが1回では対策できず</p>
+                <p>月の総額で<span class="s3-price">20万円〜50万円以上</span></p>
+                <p>細かな情報を知りたいユーザーに対してアプローチできるため購入意欲が高い上位表示が必須</p>
+              </div>
             </div>
-            <div class="opts">
-              <span>ドメイン</span><span>AI動画</span><span>追加修正</span><span>meoクラウド</span>
+            <div class="s3-phones">
+              <figure class="s3-phone-fig">
+                <figcaption class="s3-scroll-lbl">検索結果スクロール上</figcaption>
+                <svg class="s3-phone" viewBox="0 0 180 300" aria-hidden="true">
+                  <rect x="8" y="4" width="164" height="292" rx="18" fill="#111" stroke="#333" stroke-width="2"/>
+                  <rect x="16" y="14" width="148" height="274" rx="10" fill="#f5f5f5"/>
+                  <rect x="22" y="22" width="136" height="22" rx="11" fill="#fff" stroke="#ddd"/>
+                  <text x="90" y="37" fill="#666" font-size="8" font-weight="bold" text-anchor="middle">エステサロン</text>
+                  <rect x="22" y="50" width="136" height="52" rx="4" fill="none" stroke="#1a9a8a" stroke-width="2.5"/>
+                  <rect x="26" y="54" width="50" height="8" rx="2" fill="#ddd"/><text x="30" y="61" fill="#888" font-size="5">スポンサー</text>
+                  <rect x="26" y="66" width="90" height="6" rx="1" fill="#e0e0e0"/><rect x="26" y="76" width="70" height="5" rx="1" fill="#eee"/>
+                  <rect x="48" y="88" width="84" height="18" rx="3" fill="rgba(26,154,138,.92)"/>
+                  <text x="90" y="100" fill="#fff" font-size="6.5" font-weight="bold" text-anchor="middle">広告枠 30万円〜</text>
+                  <rect x="22" y="108" width="136" height="88" rx="4" fill="none" stroke="#1a3d5c" stroke-width="2.5"/>
+                  <rect x="26" y="112" width="128" height="28" rx="3" fill="#c5d8e8"/>
+                  <circle cx="40" cy="126" r="6" fill="#4a8"/><text x="52" y="124" fill="#333" font-size="5" font-weight="bold">地図</text>
+                  <rect x="26" y="144" width="60" height="24" rx="2" fill="#fff" stroke="#ccc"/>
+                  <rect x="90" y="144" width="60" height="24" rx="2" fill="#fff" stroke="#ccc"/>
+                  <rect x="48" y="168" width="84" height="18" rx="3" fill="rgba(26,61,92,.9)"/>
+                  <text x="90" y="179" fill="#fff" font-size="5" font-weight="bold" text-anchor="middle">MEO枠 10万円〜</text>
+                  <text x="90" y="187" fill="#fff" font-size="4.5" font-weight="bold" text-anchor="middle">20万円以上/月</text>
+                </svg>
+              </figure>
+              <figure class="s3-phone-fig">
+                <figcaption class="s3-scroll-lbl">検索結果スクロール下</figcaption>
+                <svg class="s3-phone" viewBox="0 0 180 300" aria-hidden="true">
+                  <rect x="8" y="4" width="164" height="292" rx="18" fill="#111" stroke="#333" stroke-width="2"/>
+                  <rect x="16" y="14" width="148" height="274" rx="10" fill="#f5f5f5"/>
+                  <rect x="22" y="22" width="136" height="22" rx="11" fill="#fff" stroke="#ddd"/>
+                  <text x="90" y="37" fill="#666" font-size="8" font-weight="bold" text-anchor="middle">エステサロン</text>
+                  <rect x="22" y="50" width="136" height="70" rx="4" fill="none" stroke="#1a3d5c" stroke-width="2"/>
+                  <rect x="26" y="54" width="128" height="20" rx="2" fill="#c5d8e8"/>
+                  <rect x="26" y="78" width="128" height="36" rx="2" fill="#fff" stroke="#ccc"/>
+                  <rect x="48" y="98" width="84" height="16" rx="3" fill="rgba(26,61,92,.88)"/>
+                  <text x="90" y="109" fill="#fff" font-size="6" font-weight="bold" text-anchor="middle">MEO枠</text>
+                  <rect x="22" y="128" width="136" height="100" rx="4" fill="none" stroke="#2a6a9a" stroke-width="2.5"/>
+                  <rect x="26" y="134" width="90" height="8" rx="2" fill="#1a6a9a"/><text x="30" y="141" fill="#fff" font-size="5" font-weight="bold">ホットペッパー</text>
+                  <rect x="26" y="148" width="120" height="6" rx="1" fill="#e8e8e8"/><rect x="26" y="158" width="100" height="5" rx="1" fill="#eee"/>
+                  <rect x="26" y="170" width="120" height="6" rx="1" fill="#e8e8e8"/><rect x="26" y="180" width="90" height="5" rx="1" fill="#eee"/>
+                  <rect x="26" y="192" width="120" height="6" rx="1" fill="#e8e8e8"/>
+                  <rect x="48" y="208" width="84" height="18" rx="3" fill="rgba(42,106,154,.92)"/>
+                  <text x="90" y="218" fill="#fff" font-size="5.5" font-weight="bold" text-anchor="middle">SEO枠 20万円〜</text>
+                  <text x="90" y="226" fill="#fff" font-size="4.5" font-weight="bold" text-anchor="middle">50万円以上/月</text>
+                </svg>
+              </figure>
+            </div>
+          </div>
+          <p class="s3-foot">Googleから良い認識を受けて、複数のキーワードを継続的に認められていくには、これらの施策が必要になるため…</p>
+        </div>
+      </section>
+
+<!-- 07 WEB施策費用高騰（biz 06同型） -->
+      <section class="sl slide-cost" id="s07">
+        <div class="bg bg-cost"></div>
+        <div class="cost-wrap">
+          <h2 class="cost-title">WEB施策の<span class="cost-hl">費用が高騰する理由</span></h2>
+          <svg class="cost-globe" viewBox="0 0 520 130" aria-hidden="true">
+            <circle cx="260" cy="68" r="28" fill="none" stroke="#2a5a6a" stroke-width="1.8"/>
+            <ellipse cx="260" cy="68" rx="42" ry="14" fill="none" stroke="#2a5a6a" stroke-width="1.2" transform="rotate(-22 260 68)"/>
+            <ellipse cx="260" cy="68" rx="42" ry="14" fill="none" stroke="#2a5a6a" stroke-width="1.2" transform="rotate(22 260 68)"/>
+            <circle cx="302" cy="52" r="3" fill="#2a5a6a"/><circle cx="218" cy="84" r="3" fill="#2a5a6a"/>
+            <line x1="260" y1="40" x2="260" y2="96" stroke="#2a5a6a" stroke-width="1"/><line x1="232" y1="68" x2="288" y2="68" stroke="#2a5a6a" stroke-width="1"/>
+            <g font-family="Noto Sans JP,sans-serif" font-size="9" font-weight="800" fill="#333">
+              <circle cx="118" cy="42" r="22" fill="#fff" stroke="#333" stroke-width="1"/><text x="118" y="46" text-anchor="middle">専門性</text>
+              <circle cx="88" cy="88" r="20" fill="#fff" stroke="#333" stroke-width="1"/><text x="88" y="92" text-anchor="middle">文字数</text>
+              <circle cx="148" cy="108" r="24" fill="#fff" stroke="#333" stroke-width="1"/><text x="148" y="106" text-anchor="middle" font-size="8">ロング</text><text x="148" y="116" text-anchor="middle" font-size="8">テール</text>
+              <circle cx="402" cy="38" r="20" fill="#fff" stroke="#333" stroke-width="1"/><text x="402" y="42" text-anchor="middle">ニーズ</text>
+              <circle cx="432" cy="78" r="22" fill="#fff" stroke="#333" stroke-width="1"/><text x="432" y="82" text-anchor="middle">トレンド</text>
+              <circle cx="388" cy="108" r="26" fill="#fff" stroke="#333" stroke-width="1"/><text x="388" y="104" text-anchor="middle" font-size="7.5">情報の</text><text x="388" y="114" text-anchor="middle" font-size="7.5">深さ</text>
+            </g>
+            <circle cx="175" cy="28" r="6" fill="none" stroke="#bbb" stroke-width="1"/>
+            <circle cx="340" cy="22" r="8" fill="none" stroke="#bbb" stroke-width="1"/>
+            <circle cx="455" cy="55" r="5" fill="none" stroke="#bbb" stroke-width="1"/>
+            <circle cx="65" cy="55" r="7" fill="none" stroke="#bbb" stroke-width="1"/>
+          </svg>
+          <p class="cost-sub">Googleに評価される専門的な高品質の記事が必要</p>
+          <div class="cost-ryo">
+            <div class="cost-col">
+              <span class="cost-kanji">量</span>
+              <p>GoogleはE-E-A-Tを重要視<br><span class="cost-line">専門的な3000文字以上</span>の記事</p>
+            </div>
+            <div class="cost-col">
+              <span class="cost-fresh">（ 鮮度 ）</span>
+              <span class="cost-kanji">質</span>
+              <span class="cost-trend">トレンド</span>
+              <p><span class="cost-line">最新情報</span>を意識した情報</p>
+            </div>
+          </div>
+          <p class="cost-note">E-E-A-T（イーイーエーティー）は、Googleが検索品質評価ガイドラインで用いるウェブサイトやコンテンツの評価基準であり、「Experience（経験）、Expertise（専門性）、Authoritativeness（権威性）、Trustworthiness（信頼性）」の頭文字をとったものです。</p>
+        </div>
+      </section>
+
+<!-- 08 放置型AI SEO完成系（biz 08同型） -->
+      <section class="sl slide-seo" id="s08">
+        <div class="bg bg-seo"></div>
+        <div class="seo-wrap">
+          <header class="seo-head">
+            <div>
+              <p class="seo-kicker">手間ゼロで成果を出す</p>
+              <h2 class="seo-title">放置型AI搭載のSEOの完成系!!</h2>
+            </div>
+            <div class="seo-brand">
+              <div class="seo-brand-icon" aria-hidden="true">
+                <svg width="36" height="36" viewBox="0 0 40 40" fill="none">
+                  <rect x="8" y="10" width="24" height="18" rx="3" fill="#fff"/>
+                  <circle cx="16" cy="17" r="1.5" fill="#333"/><circle cx="22" cy="17" r="1.5" fill="#333"/>
+                  <path d="M14 24 Q20 28 26 24" stroke="#333" stroke-width="1.2" fill="none"/>
+                  <path d="M20 6 L24 10 L20 12 L16 10 Z" fill="#f4d03f" stroke="#333" stroke-width=".8"/>
+                </svg>
+              </div>
+              <p class="seo-brand-name">AIホームページ</p>
+            </div>
+          </header>
+          <div class="seo-mid">
+            <ul class="seo-chk">
+              <li>トレンドやキーワードを</li>
+              <li>意識した<span class="em-r">最新版</span>の</li>
+              <li><span class="em-r">5,000文字以上</span>の記事</li>
+            </ul>
+            <div class="seo-auto">
+              <p class="seo-auto-line"><span class="seo-yel">自動作成</span></p>
+              <p class="seo-auto-and">&amp;</p>
+              <p class="seo-auto-line"><span class="seo-yel">自動投稿</span></p>
+            </div>
+          </div>
+          <div class="seo-bot">
+            <div class="seo-expl">
+              <h3><span class="em-y">トレンド</span>を意識した対策とは</h3>
+              <p>トレンドはリアルタイムで更新されるもの。ビッグキーワードからニッチな関連ワードまで幅広くカバーしています。情報には<span class="em-r">鮮度</span>があり、継続的に投稿することで<span class="em-r">WEBサイト自体の活動性</span>をアピールすることがGoogleの評価において重要です。長期的にトレンドを意識した投稿を続けることで、<span class="em-r">Googleから評価されやすく</span>なります。</p>
+            </div>
+            <div class="seo-trends" aria-label="Googleトレンド画面イメージ">
+              <svg viewBox="0 0 280 160" role="presentation">
+                <rect width="280" height="160" fill="#fff"/>
+                <text x="12" y="18" fill="#333" font-size="9" font-weight="bold">Google トレンド</text>
+                <text x="12" y="30" fill="#888" font-size="6">日本 · 過去24時間</text>
+                <rect x="8" y="36" width="264" height="1" fill="#eee"/>
+                <text x="12" y="52" fill="#333" font-size="7" font-weight="bold">1. ドジャース 対 ガーディアンズ</text>
+                <text x="200" y="52" fill="#666" font-size="6">10万+ · 8時間前</text>
+                <path d="M220 48 L268 44 L268 56 L220 52 Z" fill="none" stroke="#4285F4" stroke-width="1"/>
+                <text x="12" y="68" fill="#333" font-size="7" font-weight="bold">2. 谷町 真由</text>
+                <text x="200" y="68" fill="#666" font-size="6">2万+ · 2時間前</text>
+                <path d="M220 64 L255 70 L268 62 L268 72 L220 70 Z" fill="none" stroke="#34A853" stroke-width="1"/>
+                <text x="12" y="84" fill="#333" font-size="7">3. 大谷翔平</text>
+                <text x="200" y="84" fill="#666" font-size="6">5万+ · 4時間前</text>
+                <path d="M220 80 L260 76 L268 82 L220 86 Z" fill="none" stroke="#EA4335" stroke-width="1"/>
+                <text x="12" y="100" fill="#333" font-size="7">4. エステサロン 渋谷</text>
+                <text x="200" y="100" fill="#666" font-size="6">1万+ · 1時間前</text>
+                <text x="12" y="116" fill="#333" font-size="7">5. 美容室 人気</text>
+                <text x="200" y="116" fill="#666" font-size="6">5千+ · 3時間前</text>
+                <rect x="8" y="128" width="264" height="24" rx="3" fill="#f5f5f5"/>
+                <text x="140" y="143" fill="#888" font-size="6" text-anchor="middle">トレンド検索 · 関連トピック</text>
+              </svg>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- s20 Closing -->
-      <section class="slide" id="s20">
-        <div class="slide-inner">
-          <div class="s20c">
-            <p class="mega num">14〜21営業日</p>
-            <p class="hero-sub">素材提出後の公開目安</p>
-            <div class="chips">
-              <span class="chip">1.エリア確認</span><span class="chip">2.プラン確定</span><span class="chip">3.素材</span><span class="chip">4.契約</span>
+<!-- 09 マーケティング予測分析（biz 17同型） -->
+      <section class="sl slide-mkt" id="s09">
+        <div class="bg bg-mkt"></div>
+        <div class="mkt-wrap">
+          <h2 class="mkt-title">
+            <span class="mkt-yel">システムを活用して</span>SEOもMEOもSNSもGoogleから<br>
+            評価される<span class="mkt-yel">マーケティング予測分析システム</span>
+          </h2>
+          <div class="mkt-devices">
+            <div class="mkt-device">
+              <div class="mkt-badge meo" aria-hidden="true">
+                <svg width="32" height="32" viewBox="0 0 32 32"><rect x="6" y="10" width="20" height="14" rx="2" fill="#4285f4"/><text x="16" y="21" fill="#fff" font-size="8" font-weight="bold" text-anchor="middle">G</text><rect x="10" y="6" width="12" height="6" fill="#34a853"/></svg>
+              </div>
+              <p class="mkt-badge-lbl">MEO</p>
+              <svg class="mkt-screen" viewBox="0 0 120 200" aria-hidden="true">
+                <rect x="8" y="4" width="104" height="192" rx="14" fill="#111"/>
+                <rect x="14" y="12" width="92" height="176" rx="8" fill="#f5f5f5"/>
+                <rect x="18" y="18" width="84" height="50" rx="4" fill="#c5dce8"/>
+                <circle cx="35" cy="38" r="4" fill="#ea4335"/><circle cx="55" cy="42" r="3" fill="#ea4335"/><circle cx="75" cy="36" r="3" fill="#ea4335"/>
+                <rect x="18" y="72" width="84" height="1" fill="#ddd"/>
+                <rect x="20" y="78" width="50" height="6" rx="2" fill="#333"/><text x="22" y="83" fill="#fff" font-size="4" font-weight="bold">エステ</text>
+                <rect x="20" y="88" width="80" height="5" rx="1" fill="#eee"/><rect x="20" y="96" width="70" height="4" rx="1" fill="#eee"/>
+                <rect x="20" y="106" width="50" height="6" rx="2" fill="#333"/><rect x="20" y="116" width="75" height="4" fill="#eee"/>
+                <rect x="20" y="126" width="48" height="6" rx="2" fill="#333"/><rect x="20" y="136" width="72" height="4" fill="#eee"/>
+                <rect x="72" y="78" width="24" height="12" rx="6" fill="#4285f4"/><text x="84" y="86" fill="#fff" font-size="4" text-anchor="middle">電話</text>
+              </svg>
             </div>
-            <a class="cta-big" href="#s03">事例店枠を確認する</a>
+            <div class="mkt-device">
+              <div class="mkt-badge seo" aria-hidden="true">
+                <svg width="32" height="32" viewBox="0 0 32 32"><rect x="5" y="8" width="22" height="16" rx="2" fill="none" stroke="#ff8a00" stroke-width="2"/><circle cx="16" cy="16" r="5" fill="none" stroke="#ff8a00" stroke-width="1.5"/><path d="M16 13v6M13 16h6" stroke="#ff8a00" stroke-width="1"/></svg>
+              </div>
+              <p class="mkt-badge-lbl">SEO</p>
+              <svg class="mkt-screen wide" viewBox="0 0 200 140" aria-hidden="true">
+                <rect x="4" y="8" width="192" height="120" rx="6" fill="#ccc" stroke="#999"/>
+                <rect x="8" y="12" width="184" height="112" rx="4" fill="#fff"/>
+                <rect x="8" y="12" width="184" height="18" fill="#1a3d5c"/>
+                <text x="24" y="24" fill="#fff" font-size="7" font-weight="bold">COEVER</text>
+                <text x="100" y="23" fill="#ccc" font-size="4">HOME ブログ CONCEPT</text>
+                <rect x="150" y="16" width="36" height="10" rx="2" fill="#ff8a00"/><text x="168" y="23" fill="#fff" font-size="4" text-anchor="middle">CONTACT</text>
+                <rect x="12" y="34" width="70" height="84" fill="#1a3d5c"/>
+                <text x="16" y="48" fill="#fff" font-size="5" font-weight="bold">BRAND</text>
+                <text x="16" y="56" fill="#fff" font-size="5" font-weight="bold">STRENGTH</text>
+                <rect x="12" y="62" width="60" height="3" fill="#ff8a00" opacity=".8"/>
+                <rect x="86" y="34" width="102" height="84" fill="#ddd"/>
+                <rect x="92" y="50" width="30" height="20" rx="2" fill="#bbb"/><rect x="128" y="45" width="28" height="22" rx="2" fill="#bbb"/>
+                <rect x="100" y="78" width="80" height="30" rx="2" fill="#c5c5c5"/>
+              </svg>
+            </div>
           </div>
+          <footer class="mkt-foot">
+            <p class="mkt-foot-lead">AI活用の時代に求められるシステム</p>
+            <p class="mkt-foot-name"><span class="mkt-yel">AIホームページ</span></p>
+          </footer>
+        </div>
+      </section>
+
+<!-- 10 限定キャンペーン・一般価格（biz同型） -->
+      <section class="sl slide-camp2" id="s10">
+        <div class="bg bg-camp2"></div>
+        <div class="camp2-wrap">
+          <div>
+            <p class="camp2-kicker">活用事例店(各エリア1業種1店舗)</p>
+            <h2 class="camp2-title">限定キャンペーン</h2>
+          </div>
+          <div class="camp2-price-block">
+            <div class="camp2-row">
+              <span class="camp2-pill">一般販売価格</span>
+              <span class="camp2-price-txt">AI構築費用　¥1,480,000〜(税込)</span>
+            </div>
+            <div class="camp2-hr" aria-hidden="true"></div>
+            <div class="camp2-row2">
+              <span class="camp2-row2-txt">保守＆サポート＋システム＝</span>
+              <span class="camp2-gokei"><span>合</span><span>計</span></span>
+              <span class="camp2-month">¥80,000(税込)/月</span>
+            </div>
+          </div>
+          <div class="camp2-cond">
+            <p class="camp2-cond-lbl">キャンペーン<br>適用条件</p>
+            <div class="camp2-cond-div" aria-hidden="true"></div>
+            <ol class="camp2-cond-list">
+              <li>1.　事業のWEB情報が弊社が求めているデータの事業所様</li>
+              <li>2.　成功時にデータ共有をいただける事業所様</li>
+              <li>3.　長期的に経営される意思のある事業所様</li>
+              <li>4.　本施策に対する感想をいただける事業者様</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+<!-- 11 限定キャンペーン・割引価格（biz 16同型） -->
+      <section class="sl slide-camp-disc" id="s11">
+        <div class="bg bg-camp2"></div>
+        <div class="camp-disc-edge" aria-hidden="true"></div>
+        <div class="camp-disc-wrap">
+          <header class="camp-disc-head">
+            <p class="camp-disc-kicker">活用事例店(各エリア1業種1店舗)</p>
+            <h2 class="camp-disc-title">限定キャンペーン</h2>
+          </header>
+          <div class="camp-disc-rows">
+            <div class="camp-disc-row">
+              <div class="camp-disc-old">
+                <p class="lbl">一般販売価格</p>
+                <p class="item">AI構築費用</p>
+                <p class="price">¥1,480,000<span class="tax">(税込)</span></p>
+              </div>
+              <svg class="camp-disc-badge" viewBox="0 0 88 56" aria-hidden="true">
+                <circle cx="32" cy="28" r="26" fill="#f4d03f"/>
+                <text x="32" y="26" fill="#c62828" font-size="9" font-weight="900" text-anchor="middle">100%</text>
+                <text x="32" y="36" fill="#c62828" font-size="8" font-weight="900" text-anchor="middle">OFF</text>
+                <path d="M58 28 H82" stroke="#f4d03f" stroke-width="6" stroke-linecap="round"/>
+                <polygon points="82,28 72,22 72,34" fill="#f4d03f"/>
+              </svg>
+              <div class="camp-disc-new">
+                <p class="lbl">キャンペーン価格</p>
+                <p class="price">¥0<span class="tax">(税込)</span></p>
+              </div>
+            </div>
+            <hr class="camp-disc-hr">
+            <div class="camp-disc-row">
+              <div class="camp-disc-old">
+                <p class="item">保守＆サポート<br>システム</p>
+                <p class="price">¥80,000<span class="tax">(税込)</span></p>
+              </div>
+              <svg class="camp-disc-badge" viewBox="0 0 88 56" aria-hidden="true">
+                <circle cx="32" cy="28" r="26" fill="#f4d03f"/>
+                <text x="32" y="32" fill="#c62828" font-size="10" font-weight="900" text-anchor="middle">45% OFF</text>
+                <path d="M58 28 H82" stroke="#f4d03f" stroke-width="6" stroke-linecap="round"/>
+                <polygon points="82,28 72,22 72,34" fill="#f4d03f"/>
+              </svg>
+              <div class="camp-disc-new">
+                <p class="price">¥45,000<span class="tax">/月(税込)</span></p>
+              </div>
+            </div>
+          </div>
+          <p class="camp-disc-note">※各エリアで1つの業種につき1店舗限定の価格となりますので、枠が埋まってしまった場合には通常価格でのご案内となりますのでご了承ください。</p>
+        </div>
+      </section>
+
+<!-- 12 365日24時間・専属広報担当（biz 18同型） -->
+      <section class="sl slide-pr" id="s12">
+        <div class="bg bg-pr"></div>
+        <div class="pr-frame" aria-hidden="true"></div>
+        <div class="pr-wrap">
+          <p class="pr-copy">
+            <span class="pr-line">365日24時間</span>
+            <span class="pr-line">事業所をアピールし続ける</span>
+            <span class="pr-line">専属の広報担当</span>
+          </p>
+          <svg class="pr-icon" viewBox="0 0 140 72" aria-hidden="true" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 38h22l6-14 8 4 6-10 10 22 4 8-6 12 10H72"/>
+            <path d="M132 38H110l-6-14-8 4-6-10-10 22-4-8-6-12-10H68"/>
+            <path d="M52 44c8 6 18 6 26 0"/>
+            <rect x="58" y="30" width="10" height="18" rx="2" fill="#fff" stroke="none" opacity=".15"/>
+            <rect x="72" y="30" width="10" height="18" rx="2" fill="#fff" stroke="none" opacity=".15"/>
+          </svg>
+        </div>
+      </section>
+
+<!-- 13 世の中の集客方法（2x2比較） -->
+      <section class="sl slide-mkt4" id="s13">
+        <div class="bg bg-mkt4"></div>
+        <div class="mkt4-wrap">
+          <h2 class="mkt4-title">世の中の集客方法</h2>
+          <div class="mkt4-grid">
+            <article class="mkt4-cell">
+              <h3>紙媒体</h3>
+              <p class="cost">(5万円〜10万円)</p>
+              <p class="hint">ターゲットが65歳以上ならオススメ</p>
+              <p>チラシやポケットティッシュは不特定多数の方にばら撒くためニーズがあるユーザーに届けるのが難しい</p>
+              <div class="mkt4-vis">
+                <svg viewBox="0 0 40 52" aria-hidden="true"><rect width="40" height="52" fill="#fff" stroke="#999"/><text x="20" y="28" fill="#666" font-size="5" text-anchor="middle">チラシ</text></svg>
+                <svg viewBox="0 0 28 52" aria-hidden="true"><rect width="28" height="52" rx="4" fill="#f5e6c8" stroke="#999"/><text x="14" y="30" fill="#666" font-size="4" text-anchor="middle">TISSUE</text></svg>
+              </div>
+            </article>
+            <article class="mkt4-cell">
+              <h3>リスティング広告＆SEO対策</h3>
+              <p class="cost">(広告枠)</p>
+              <p class="sub-h">LP制作費用30〜60万円</p>
+              <p><strong>広告費 (広告枠)</strong> 月/20万円〜50万円</p>
+              <p>広告枠では必ず上位に表示されるが、1クリック毎に料金が発生するため月々が高額になる傾向にあります。</p>
+              <p class="sub-h">SEO対策 月/約5〜10万円以上</p>
+              <p>手間が少ない代わりに、他社が行なっているケースも多いため、1キーワードあたりに発生する月々が高額になる傾向にあります。</p>
+              <div class="mkt4-vis">
+                <svg viewBox="0 0 90 48" aria-hidden="true"><rect width="90" height="48" fill="#fff" stroke="#ccc"/><text x="8" y="12" fill="#888" font-size="4">検索結果</text><rect x="6" y="16" width="78" height="10" fill="#e8f0fe"/><text x="10" y="23" fill="#1a73e8" font-size="4" font-weight="bold">広告</text><rect x="6" y="28" width="78" height="8" fill="#f5f5f5"/><rect x="6" y="38" width="78" height="6" fill="#f5f5f5"/></svg>
+              </div>
+            </article>
+            <article class="mkt4-cell">
+              <h3>ポータルサイト</h3>
+              <p>上位に表示させるのには高額、クーポン目的のユーザーが多くリピート率が低い傾向</p>
+              <div class="mkt4-row2">
+                <svg viewBox="0 0 36 56" aria-hidden="true"><rect width="36" height="56" rx="6" fill="#111"/><rect x="4" y="8" width="28" height="44" fill="#fff"/><text x="18" y="32" fill="#d4a" font-size="5" text-anchor="middle">食べログ</text></svg>
+                <svg viewBox="0 0 64 44" aria-hidden="true"><rect width="64" height="44" fill="#fff" stroke="#ccc"/><rect x="4" y="6" width="56" height="8" fill="#d44"/><text x="32" y="32" fill="#888" font-size="5" text-anchor="middle">一覧</text></svg>
+              </div>
+              <div class="mkt4-tiers">
+                <div class="mkt4-tier"><p class="pg">1ページ目</p><p class="pr">20万円</p></div>
+                <div class="mkt4-tier"><p class="pg">2ページ目</p><p class="pr">15万円</p></div>
+                <div class="mkt4-tier"><p class="pg">3ページ目</p><p class="pr">8万円</p></div>
+                <div class="mkt4-tier"><p class="pg">4ページ目</p><p class="pr">4万円</p></div>
+              </div>
+            </article>
+            <article class="mkt4-cell">
+              <h3>動画CM</h3>
+              <p class="cost">月/100万円以上</p>
+              <p>不特定多数の人にみせることができるのが動画CMですが、広告費用も非常に高く、手軽に参入ができません。</p>
+              <div class="mkt4-vis">
+                <svg viewBox="0 0 56 48" aria-hidden="true"><rect x="4" y="8" width="48" height="32" rx="2" fill="#333" stroke="#666"/><rect x="8" y="12" width="40" height="24" fill="#1a3d5c"/><text x="28" y="28" fill="#fff" font-size="10" font-weight="bold" text-anchor="middle">CM</text></svg>
+                <svg viewBox="0 0 40 56" aria-hidden="true"><rect x="16" y="4" width="8" height="48" fill="#444"/><rect x="8" y="8" width="24" height="14" fill="#222"/><text x="20" y="18" fill="#4af" font-size="4" text-anchor="middle">AD</text></svg>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+<!-- 14 同じキーワード・検索結果の個人差 -->
+      <section class="sl slide-kw" id="s14">
+        <div class="bg bg-kw"></div>
+        <div class="kw-wrap">
+          <h2 class="kw-title">同じキーワードでも<span class="em">検索結果は人によって変わる</span></h2>
+          <div class="kw-main">
+            <div class="kw-text">
+              <h3>Googleの目的はユーザーが求めている店舗情報を適切なタイミングで出すこと</h3>
+              <p>同じ場所・同じ検索キーワードで調べても検索結果が同じという時代は終わりを迎え、ユーザーの位置情報や検索履歴を加味し検索する1人1人にあった情報提供に注力しているためです。</p>
+            </div>
+            <div class="kw-phones">
+              <figure class="kw-phone">
+                <svg viewBox="0 0 90 200" aria-hidden="true">
+<rect x="4" y="2" width="82" height="196" rx="12" fill="#111"/>
+<rect x="8" y="6" width="74" height="188" rx="8" fill="#fff"/>
+<text x="45" y="16" fill="#333" font-size="5" font-weight="bold" text-anchor="middle">焼肉</text>
+<rect x="8" y="20" width="74" height="42" fill="#c5dce8"/>
+<text x="45" y="38" fill="#1a73e8" font-size="4" text-anchor="middle">渋谷区</text>
+<text x="45" y="48" fill="#666" font-size="3" text-anchor="middle">10:04</text>
+
+<rect x="8" y="88" width="74" height="22" fill="#fff" stroke="#eee"/><text x="12" y="98" fill="#333" font-size="4" font-weight="bold">炭火マルイチ</text><text x="12" y="106" fill="#888" font-size="3">★4.2</text><rect x="8" y="112" width="74" height="22" fill="#fff" stroke="#eee"/><text x="12" y="122" fill="#333" font-size="4" font-weight="bold">焼肉富士門</text><text x="12" y="130" fill="#888" font-size="3">★4.0</text><rect x="8" y="136" width="74" height="22" fill="#fff" stroke="#eee"/><text x="12" y="146" fill="#333" font-size="4" font-weight="bold">上等焼肉ひらく</text><text x="12" y="154" fill="#888" font-size="3">★4.1</text>
+</svg>
+                <figcaption>渋谷エリア</figcaption>
+              </figure>
+              <figure class="kw-phone">
+                <svg viewBox="0 0 90 200" aria-hidden="true">
+<rect x="4" y="2" width="82" height="196" rx="12" fill="#111"/>
+<rect x="8" y="6" width="74" height="188" rx="8" fill="#fff"/>
+<text x="45" y="16" fill="#333" font-size="5" font-weight="bold" text-anchor="middle">焼肉</text>
+<rect x="8" y="20" width="74" height="42" fill="#c5dce8"/>
+<text x="45" y="38" fill="#1a73e8" font-size="4" text-anchor="middle">新宿区</text>
+<text x="45" y="48" fill="#666" font-size="3" text-anchor="middle">10:04</text>
+
+<rect x="8" y="88" width="74" height="22" fill="#fff" stroke="#eee"/><text x="12" y="98" fill="#333" font-size="4" font-weight="bold">GYUBEI新宿</text><text x="12" y="106" fill="#888" font-size="3">★4.3</text><rect x="8" y="112" width="74" height="22" fill="#fff" stroke="#eee"/><text x="12" y="122" fill="#333" font-size="4" font-weight="bold">はなもんや</text><text x="12" y="130" fill="#888" font-size="3">★4.1</text><rect x="8" y="136" width="74" height="22" fill="#fff" stroke="#eee"/><text x="12" y="146" fill="#333" font-size="4" font-weight="bold">土古里新宿</text><text x="12" y="154" fill="#888" font-size="3">★4.0</text>
+</svg>
+                <figcaption>新宿エリア</figcaption>
+              </figure>
+              <figure class="kw-phone">
+                <svg viewBox="0 0 90 200" aria-hidden="true">
+<rect x="4" y="2" width="82" height="196" rx="12" fill="#111"/>
+<rect x="8" y="6" width="74" height="188" rx="8" fill="#fff"/>
+<text x="45" y="16" fill="#333" font-size="5" font-weight="bold" text-anchor="middle">焼肉</text>
+<rect x="8" y="20" width="74" height="42" fill="#c5dce8"/>
+<text x="45" y="38" fill="#1a73e8" font-size="4" text-anchor="middle">渋谷区</text>
+<text x="45" y="48" fill="#666" font-size="3" text-anchor="middle">10:04</text>
+<rect x="8" y="88" width="74" height="14" fill="#e8f0fe"/><text x="12" y="98" fill="#1a73e8" font-size="4" font-weight="bold">広告</text>
+<rect x="8" y="106" width="74" height="22" fill="#fff" stroke="#eee"/><text x="12" y="116" fill="#333" font-size="4" font-weight="bold">焼肉ZENIBA</text><text x="12" y="124" fill="#888" font-size="3">★4.4</text><rect x="8" y="130" width="74" height="22" fill="#fff" stroke="#eee"/><text x="12" y="140" fill="#333" font-size="4" font-weight="bold">ナルゲ</text><text x="12" y="148" fill="#888" font-size="3">★4.2</text><rect x="8" y="154" width="74" height="22" fill="#fff" stroke="#eee"/><text x="12" y="164" fill="#333" font-size="4" font-weight="bold">KINTAN</text><text x="12" y="172" fill="#888" font-size="3">★4.5</text>
+</svg>
+                <figcaption>渋谷・別ユーザー</figcaption>
+              </figure>
+            </div>
+          </div>
+          <footer class="kw-foot">
+            <p>多くのユーザーに認知させる為に、キーワードを広く対策しておく必要がある！</p>
+          </footer>
+        </div>
+      </section>
+
+<!-- 15 トレンドを意識した対策（詳細） -->
+      <section class="sl slide-trd2" id="s15">
+        <div class="bg bg-trd2"></div>
+        <div class="trd2-wrap">
+          <h2 class="trd2-title"><span class="em-y">トレンド</span>を意識した対策とは</h2>
+          <div class="trd2-grid">
+            <div class="trd2-panel">
+              <p>トレンドはリアルタイムで更新されるもの。ビッグキーワードからニッチな関連ワードまで幅広くカバーしています。情報には<span class="em-r">鮮度</span>があり、継続的に投稿することで<span class="em-r">WEBサイト自体の活動性</span>をアピールすることがGoogleの評価において重要です。長期的にトレンドを意識した投稿を続けることで、<span class="em-r">Googleから評価されやすく</span>なります。</p>
+            </div>
+            <div class="trd2-panel">
+              <h3>Googleトレンド</h3>
+              <svg viewBox="0 0 280 100" aria-hidden="true"><rect width="280" height="100" fill="#fff" stroke="#ddd"/><text x="8" y="12" fill="#333" font-size="6" font-weight="bold">Googleトレンド · 日本</text><text x="8" y="22" fill="#888" font-size="5">過去24時間</text><rect x="6" y="26" width="268" height="1" fill="#eee"/><text x="8" y="38" fill="#333" font-size="5" font-weight="bold">1. ドジャース 対 カージナルス</text><text x="200" y="38" fill="#666" font-size="4">10万+ · 8時間前</text><text x="8" y="50" fill="#333" font-size="5">2. 谷町 真由</text><text x="200" y="50" fill="#666" font-size="4">2万+ · 2時間前</text><text x="8" y="62" fill="#333" font-size="5">3. 日本ハム 対 西武</text><text x="200" y="62" fill="#666" font-size="4">5万+ · 4時間前</text><text x="8" y="76" fill="#333" font-size="5">4. エステサロン 渋谷</text><text x="8" y="88" fill="#333" font-size="5">5. 美容室 人気</text></svg>
+            </div>
+            <div class="trd2-panel">
+              <svg viewBox="0 0 300 88" aria-hidden="true"><text x="4" y="10" fill="#333" font-size="5" font-weight="bold">X(旧twitter)トレンド 日本のトレンド</text><text x="20" y="22" fill="#666" font-size="4" text-anchor="middle">現在</text><text x="95" y="22" fill="#666" font-size="4" text-anchor="middle">1時間前</text><text x="170" y="22" fill="#666" font-size="4" text-anchor="middle">3時間前</text><text x="245" y="22" fill="#666" font-size="4" text-anchor="middle">6時間前</text><rect x="4" y="26" width="68" height="58" fill="#f8f8f8" stroke="#ddd"/><rect x="78" y="26" width="68" height="58" fill="#f8f8f8" stroke="#ddd"/><rect x="152" y="26" width="68" height="58" fill="#f8f8f8" stroke="#ddd"/><rect x="226" y="26" width="68" height="58" fill="#f8f8f8" stroke="#ddd"/><text x="8" y="36" fill="#333" font-size="3.5">1.#ファミマ</text><text x="8" y="44" fill="#333" font-size="3.5">2.引きクーポン</text><text x="8" y="52" fill="#333" font-size="3.5">3.キャンペーン</text><text x="82" y="36" fill="#333" font-size="3.5">1.焼肉</text><text x="82" y="44" fill="#333" font-size="3.5">2.美容室</text><text x="156" y="36" fill="#333" font-size="3.5">1.週末</text><text x="156" y="44" fill="#333" font-size="3.5">2.雨</text><text x="230" y="36" fill="#333" font-size="3.5">1.選挙</text><text x="230" y="44" fill="#333" font-size="3.5">2.野球</text></svg>
+            </div>
+            <div class="trd2-panel">
+              <p>SNSにも最新のトレンドが存在します。Googleトレンドと似ていることも多いですが、SNS独自のトレンドもあり、コンテンツ制作の重要な要素となります。<span class="em-r">こうしたトレンド(キーワード)を追い続けるのは非常に膨大な時間と労力を必要とします。</span></p>
+            </div>
+          </div>
+          <div class="trd2-bottom">
+            <p class="trd2-msg">トレンドとは他の最新情報を追わなくてはならない</p>
+            <div class="trd2-tags">
+              <span class="trd2-tag">マーケター</span>
+              <span class="trd2-tag">ライター</span>
+              <span class="trd2-tag">SEOコンサルタント</span>
+              <span class="trd2-tag">編集・校正</span>
+              <span class="trd2-tag">etc.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 16 LINE UPDATE — PREMIUM REDESIGN -->
+      <section class="sl" id="s16">
+        <div class="s16-wrap">
+          <p class="s16-eyebrow">LINE OPS — 簡単更新</p>
+          <h2 class="s16-h1">LINEで送るだけ</h2>
+          <div class="s16-flow-row">
+            <!-- Left: LINE Phone -->
+            <div class="s16-node-wrap">
+              <svg class="s16-phone-svg" viewBox="0 0 120 200" aria-hidden="true">
+                <rect x="6" y="3" width="108" height="194" rx="16" fill="#0a1a28" stroke="#06c755" stroke-width="2.5"/>
+                <rect x="12" y="12" width="96" height="174" rx="10" fill="#fff"/>
+                <!-- LINE header -->
+                <rect x="12" y="12" width="96" height="28" rx="10" fill="#06c755"/>
+                <rect x="12" y="32" width="96" height="8" fill="#06c755"/>
+                <text x="60" y="31" fill="#fff" font-size="9" font-weight="800" text-anchor="middle" font-family="Outfit,sans-serif">LINE</text>
+                <!-- Chat bubbles: owner -->
+                <rect x="54" y="50" width="48" height="18" rx="9" fill="#06c755"/>
+                <text x="78" y="62" fill="#fff" font-size="7" font-weight="700" text-anchor="middle" font-family="'Noto Sans JP',sans-serif">新メニュー追加！</text>
+                <rect x="54" y="74" width="48" height="18" rx="9" fill="#06c755"/>
+                <text x="78" y="86" fill="#fff" font-size="7" font-weight="700" text-anchor="middle" font-family="'Noto Sans JP',sans-serif">写真も送ります</text>
+                <!-- Chat: team reply -->
+                <rect x="18" y="98" width="52" height="18" rx="9" fill="#f0f0f0"/>
+                <text x="44" y="110" fill="#333" font-size="6.5" font-weight="700" text-anchor="middle" font-family="'Noto Sans JP',sans-serif">承りました！</text>
+                <rect x="18" y="122" width="62" height="18" rx="9" fill="#f0f0f0"/>
+                <text x="49" y="134" fill="#333" font-size="6" font-weight="700" text-anchor="middle" font-family="'Noto Sans JP',sans-serif">2営業日で反映します</text>
+                <!-- Bottom input bar -->
+                <rect x="12" y="158" width="96" height="24" rx="12" fill="#f5f5f5" stroke="#ddd" stroke-width="1"/>
+                <text x="60" y="173" fill="#999" font-size="7" text-anchor="middle" font-family="'Noto Sans JP',sans-serif">メッセージを入力</text>
+              </svg>
+              <p class="s16-node-label" style="color:#06c755;">① オーナーがLINE送信</p>
+            </div>
+            <!-- Arrow 1 -->
+            <div class="s16-arrow-col">
+              <svg class="s16-arrow-svg" viewBox="0 0 52 24" aria-hidden="true">
+                <line x1="4" y1="12" x2="40" y2="12" stroke="#ffd84d" stroke-width="3" stroke-linecap="round"/>
+                <polygon points="40,6 50,12 40,18" fill="#ffd84d"/>
+              </svg>
+            </div>
+            <!-- Center: Team -->
+            <div class="s16-node-wrap">
+              <div class="s16-center-circle">
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                  <circle cx="14" cy="8" r="5" fill="#ff8a00"/>
+                  <circle cx="8" cy="22" r="4" fill="rgba(255,138,0,0.6)"/>
+                  <circle cx="20" cy="22" r="4" fill="rgba(255,138,0,0.6)"/>
+                  <line x1="8" y1="22" x2="14" y2="13" stroke="#ff8a00" stroke-width="1.5"/>
+                  <line x1="20" y1="22" x2="14" y2="13" stroke="#ff8a00" stroke-width="1.5"/>
+                </svg>
+                <span style="font-size:clamp(0.5rem,0.72vw,0.64rem);font-weight:800;color:rgba(255,255,255,0.8);">運用チーム</span>
+              </div>
+              <p class="s16-node-label">② 専任チームが対応</p>
+            </div>
+            <!-- Arrow 2 -->
+            <div class="s16-arrow-col">
+              <svg class="s16-arrow-svg" viewBox="0 0 52 24" aria-hidden="true">
+                <line x1="4" y1="12" x2="40" y2="12" stroke="#ffd84d" stroke-width="3" stroke-linecap="round"/>
+                <polygon points="40,6 50,12 40,18" fill="#ffd84d"/>
+              </svg>
+            </div>
+            <!-- Right: HP mockup -->
+            <div class="s16-node-wrap">
+              <svg class="s16-phone-svg" viewBox="0 0 180 200" aria-hidden="true">
+                <!-- Laptop/browser frame -->
+                <rect x="4" y="8" width="172" height="130" rx="8" fill="#0a1a28" stroke="#34d5ff" stroke-width="2"/>
+                <!-- Browser bar -->
+                <rect x="4" y="8" width="172" height="22" rx="8" fill="#071020"/>
+                <rect x="4" y="22" width="172" height="8" fill="#071020"/>
+                <circle cx="18" cy="19" r="3.5" fill="#ff5f57"/><circle cx="30" cy="19" r="3.5" fill="#febc2e"/><circle cx="42" cy="19" r="3.5" fill="#28c840"/>
+                <rect x="60" y="13" width="90" height="12" rx="6" fill="rgba(255,255,255,0.08)"/>
+                <text x="105" y="22" fill="rgba(255,255,255,0.4)" font-size="7" text-anchor="middle" font-family="Outfit,sans-serif">runbird-client.jp</text>
+                <!-- HP content -->
+                <rect x="12" y="36" width="156" height="40" rx="4" fill="#0d2a44"/>
+                <text x="90" y="52" fill="#fff" font-size="8" font-weight="800" text-anchor="middle" font-family="'Noto Sans JP',sans-serif">新メニュー登場！</text>
+                <text x="90" y="66" fill="rgba(255,255,255,0.6)" font-size="7" text-anchor="middle" font-family="'Noto Sans JP',sans-serif">（更新済み）</text>
+                <rect x="12" y="82" width="70" height="50" rx="4" fill="#0a1e32"/>
+                <rect x="88" y="82" width="80" height="22" rx="3" fill="rgba(255,138,0,0.2)" stroke="rgba(255,138,0,0.4)" stroke-width="1"/>
+                <text x="128" y="96" fill="#ff8a00" font-size="7" text-anchor="middle" font-family="'Noto Sans JP',sans-serif">SEO記事 自動UP済</text>
+                <rect x="88" y="110" width="80" height="22" rx="3" fill="rgba(52,213,255,0.1)" stroke="rgba(52,213,255,0.3)" stroke-width="1"/>
+                <text x="128" y="124" fill="#34d5ff" font-size="7" text-anchor="middle" font-family="'Noto Sans JP',sans-serif">検索評価 ↑ UP</text>
+                <!-- Stand -->
+                <rect x="78" y="138" width="24" height="12" rx="2" fill="#071020"/>
+                <rect x="58" y="148" width="64" height="8" rx="4" fill="#071020"/>
+              </svg>
+              <p class="s16-node-label" style="color:#34d5ff;">③ HPに即反映・検索評価UP</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 16 REPORT -->
+      <section class="sl bg-hero" id="s17">
+        <div class="bg bg-hero"></div>
+        <header class="sh"><span class="brand">RUNBIRD</span><span class="pg num">17</span></header>
+        <div class="body center-col">
+          <p class="cat">REPORT</p>
+          <h2 class="h-md accent-y">見えないものは、改善できない</h2>
+          <svg class="svg-main" viewBox="0 0 480 260" aria-hidden="true">
+<rect x="10" y="10" width="460" height="240" rx="12" fill="rgba(0,0,0,.5)" stroke="rgba(255,255,255,.1)"/>
+<text x="30" y="35" fill="#ffd84d" font-size="10" font-weight="bold">月次レポート</text>
+<rect x="30" y="50" width="95" height="55" rx="8" fill="rgba(52,213,255,.1)" stroke="#34d5ff"/><text x="77" y="72" fill="#34d5ff" font-size="18" font-weight="bold" text-anchor="middle">+24%</text><text x="77" y="92" fill="#a8c8d4" font-size="8" text-anchor="middle">アクセス</text>
+<rect x="135" y="50" width="95" height="55" rx="8" fill="rgba(52,213,255,.1)" stroke="#34d5ff"/><text x="182" y="72" fill="#34d5ff" font-size="18" font-weight="bold" text-anchor="middle">186</text><text x="182" y="92" fill="#a8c8d4" font-size="8" text-anchor="middle">電話</text>
+<rect x="240" y="50" width="95" height="55" rx="8" fill="rgba(52,213,255,.1)" stroke="#34d5ff"/><text x="287" y="72" fill="#34d5ff" font-size="18" font-weight="bold" text-anchor="middle">94</text><text x="287" y="92" fill="#a8c8d4" font-size="8" text-anchor="middle">LINE</text>
+<rect x="345" y="50" width="95" height="55" rx="8" fill="rgba(255,138,0,.1)" stroke="#ff8a00"/><text x="392" y="72" fill="#ff8a00" font-size="18" font-weight="bold" text-anchor="middle">12</text><text x="392" y="92" fill="#a8c8d4" font-size="8" text-anchor="middle">更新</text>
+<polyline points="40,200 120,170 200,150 280,120 360,100 440,80" fill="none" stroke="#34d5ff" stroke-width="3"/>
+<polyline points="40,200 120,185 200,175 280,165 360,155 440,145" fill="none" stroke="#ff8a00" stroke-width="2" stroke-dasharray="6 4" opacity=".7"/>
+</svg>
+        </div>
+      </section>
+
+      <!-- 18 PRICING — PREMIUM REDESIGN -->
+      <section class="sl" id="s18">
+        <div class="s18-wrap">
+          <p class="s18-eyebrow">Pricing Plans</p>
+          <h2 class="s18-h2">通常料金プラン</h2>
+          <p class="s18-note">※税抜 / 月額 + 初期費用</p>
+          <div class="s18-plans">
+            <!-- LIGHT -->
+            <div class="s18-plan">
+              <p class="s18-plan-name">LIGHT</p>
+              <p class="s18-plan-name-ja">ライト</p>
+              <div class="s18-price-wrap">
+                <p class="s18-price-main">¥18,000<span class="s18-unit">/月</span></p>
+                <p class="s18-init-fee">初期費用 ¥100,000 / 5ページ</p>
+              </div>
+              <ul class="s18-features">
+                <li class="s18-feature">AI記事 月2本自動生成</li>
+                <li class="s18-feature">SEO基本対策</li>
+                <li class="s18-feature">LINE更新連携</li>
+                <li class="s18-feature">月次レポート</li>
+              </ul>
+            </div>
+            <!-- STANDARD (featured) -->
+            <div class="s18-plan featured">
+              <span class="s18-rec-badge">おすすめ</span>
+              <p class="s18-plan-name">STANDARD</p>
+              <p class="s18-plan-name-ja">スタンダード</p>
+              <div class="s18-price-wrap">
+                <p class="s18-price-main">¥33,000<span class="s18-unit">/月</span></p>
+                <p class="s18-init-fee">初期費用 ¥150,000 / 8ページ</p>
+              </div>
+              <ul class="s18-features">
+                <li class="s18-feature">AI記事 月4本自動生成</li>
+                <li class="s18-feature">SEO + MEO 同時対策</li>
+                <li class="s18-feature">AIO（AI検索最適化）</li>
+                <li class="s18-feature">LINE更新連携</li>
+                <li class="s18-feature">月次詳細レポート</li>
+              </ul>
+            </div>
+            <!-- PRO -->
+            <div class="s18-plan">
+              <p class="s18-plan-name">PRO</p>
+              <p class="s18-plan-name-ja">プロ</p>
+              <div class="s18-price-wrap">
+                <p class="s18-price-main">¥45,000<span class="s18-unit">/月</span></p>
+                <p class="s18-init-fee">初期費用 ¥200,000 / 12ページ</p>
+              </div>
+              <ul class="s18-features">
+                <li class="s18-feature">AI記事 月8本自動生成</li>
+                <li class="s18-feature">SEO + MEO + AIO 全対策</li>
+                <li class="s18-feature">動画・SNS連動</li>
+                <li class="s18-feature">LINE更新連携</li>
+                <li class="s18-feature">専任担当者 月1MTG</li>
+              </ul>
+            </div>
+          </div>
+          <p class="s18-footer-note">※初期費用は分割払い対応可 / ビジネスクレジット対応</p>
+        </div>
+      </section>
+
+      <!-- 19 CAMPAIGN — PREMIUM REDESIGN -->
+      <section class="sl" id="s19">
+        <div class="s19-wrap">
+          <!-- Left: pricing comparison -->
+          <div class="s19-left">
+            <span class="s19-limit-badge">🔒 各エリア 1業種 1店舗限定</span>
+            <h2 class="s19-h2">活用事例店<br>限定キャンペーン</h2>
+            <div class="s19-compare">
+              <!-- Monthly fee comparison -->
+              <div class="s19-compare-row">
+                <span class="s19-label-tag">月　　額</span>
+                <span class="s19-was-price">¥33,000</span>
+                <span class="s19-arrow-txt">→</span>
+                <span class="s19-now-price">¥26,400<span class="s19-unit">/月</span></span>
+              </div>
+              <div class="s19-divider"></div>
+              <!-- Initial fee comparison -->
+              <div class="s19-compare-row">
+                <span class="s19-label-tag">初期費用</span>
+                <span class="s19-was-price">¥150,000</span>
+                <span class="s19-arrow-txt">→</span>
+                <span class="s19-now-price">¥120,000<span class="s19-unit">（税抜）</span></span>
+              </div>
+            </div>
+            <p class="s19-note">※各エリアで1業種につき1店舗限定の価格です。<br>枠が埋まった場合は通常価格でのご案内となります。</p>
+          </div>
+          <!-- Right: OFF badge -->
+          <div class="s19-right">
+            <div class="s19-badge-circle">
+              <span class="s19-badge-pct">20%</span>
+              <span class="s19-badge-off">OFF</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 19 OPTIONS -->
+      <section class="sl bg-hero" id="s20">
+        <div class="bg bg-hero"></div>
+        <header class="sh"><span class="brand">RUNBIRD</span><span class="pg num">20</span></header>
+        <div class="body center-col">
+          <p class="cat">ONE STOP</p>
+          <h2 class="h-md accent-y">広告・マップ・Webをワンストップ</h2>
+          <svg class="svg-flow" viewBox="0 0 700 100" aria-hidden="true">
+<rect x="10" y="25" width="130" height="50" rx="10" fill="rgba(234,67,53,.2)" stroke="#ea4335"/><text x="75" y="55" fill="#fff" font-size="11" font-weight="bold" text-anchor="middle">MEO</text>
+<path d="M150 50 H190" stroke="#ffd84d" stroke-width="3" marker-end="url(#u)"/>
+<rect x="200" y="25" width="130" height="50" rx="10" fill="rgba(255,138,0,.15)" stroke="#ff8a00"/><text x="265" y="55" fill="#fff" font-size="11" font-weight="bold" text-anchor="middle">HP信頼</text>
+<path d="M340 50 H380" stroke="#ffd84d" stroke-width="3" marker-end="url(#u)"/>
+<rect x="390" y="25" width="130" height="50" rx="10" fill="rgba(6,199,85,.15)" stroke="#06c755"/><text x="455" y="55" fill="#fff" font-size="11" font-weight="bold" text-anchor="middle">LINE予約</text>
+<path d="M530 50 H570" stroke="#ffd84d" stroke-width="3" marker-end="url(#u)"/>
+<rect x="580" y="25" width="110" height="50" rx="10" fill="rgba(52,213,255,.12)" stroke="#34d5ff"/><text x="635" y="55" fill="#fff" font-size="11" font-weight="bold" text-anchor="middle">改善</text>
+<defs><marker id="u" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#ffd84d"/></marker></defs>
+</svg>
+          <div class="cond-strip" style="margin-top:12px">
+            <span>MEO</span><span>AI動画</span><span>ドメイン</span><span>リニューアル</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 20 CLOSE -->
+      <!-- 21 CLOSING — PREMIUM REDESIGN -->
+      <section class="sl" id="s21">
+        <div class="s21-wrap">
+          <p class="s21-eyebrow">Get Started</p>
+          <p class="s21-lead">素材をご提出いただいてから</p>
+          <p class="s21-days">14〜21</p>
+          <p class="s21-days-unit">営業日で公開</p>
+          <div class="s21-steps-row">
+            <div class="s21-step-item">
+              <span class="s21-step-num">01</span>
+              <span class="s21-step-box">枠確認</span>
+            </div>
+            <span class="s21-step-arrow">→</span>
+            <div class="s21-step-item">
+              <span class="s21-step-num">02</span>
+              <span class="s21-step-box">プラン決定</span>
+            </div>
+            <span class="s21-step-arrow">→</span>
+            <div class="s21-step-item">
+              <span class="s21-step-num">03</span>
+              <span class="s21-step-box">素材提出</span>
+            </div>
+            <span class="s21-step-arrow">→</span>
+            <div class="s21-step-item">
+              <span class="s21-step-num">04</span>
+              <span class="s21-step-box">公開・運用開始</span>
+            </div>
+          </div>
+          <a class="s21-cta-new" href="#s04">事例店の枠を確認する</a>
+          <p class="s21-sub-note">各エリア・各業種1店舗限定 / 枠が埋まり次第キャンペーン終了</p>
         </div>
       </section>
 
     </div>
   </div>
-
   <script>
-    document.querySelectorAll('.deck-nav a').forEach(function (link) {
-      link.addEventListener('click', function (e) {
-        var id = this.getAttribute('href');
-        if (!id || id.charAt(0) !== '#') return;
-        var el = document.querySelector(id);
-        if (!el) return;
-        e.preventDefault();
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.querySelectorAll('.nav a').forEach(function(a){
+      a.addEventListener('click',function(e){
+        var id=this.getAttribute('href');
+        var el=document.querySelector(id);
+        if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth',block:'start'});}
       });
     });
   </script>
