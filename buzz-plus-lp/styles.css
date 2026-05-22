@@ -1311,9 +1311,40 @@ img { max-width: 100%; height: auto; display: block; }
   width: 28px;
   height: 28px;
   color: #fff;
+  display: block;
+  fill: currentColor;
 }
 
 .p-logo__name { font-size: 10px; font-weight: 800; color: var(--navy); }
+
+/* プラットフォーム帯：公式カラー＋白ロゴのみ */
+.platform-logos--brands {
+  gap: 14px;
+}
+
+.platform-logos--brands .p-logo {
+  min-width: 56px;
+  width: 56px;
+  height: 56px;
+  padding: 14px;
+  justify-content: center;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(16, 29, 63, 0.1);
+}
+
+.platform-logos--brands .p-logo__icon {
+  width: 26px;
+  height: 26px;
+}
+
+.platform-logos--brands .p-logo__name {
+  display: none;
+}
+
+.p-logo--tt .p-logo__icon,
+.p-logo--x .p-logo__icon {
+  color: #fff;
+}
 
 .p-logo--yt { background: #ff0000; border-color: #ff0000; }
 .p-logo--ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); border-color: transparent; }
@@ -1415,6 +1446,14 @@ img { max-width: 100%; height: auto; display: block; }
   padding: 4px;
   border-radius: 6px;
   color: #fff;
+  fill: currentColor;
+}
+
+.device-badge svg {
+  width: 16px;
+  height: 16px;
+  color: var(--navy);
+  fill: currentColor;
 }
 
 .matrix-table .cell-logo--yt svg { background: #ff0000; }

@@ -8,6 +8,17 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- Brand icons sprite (Simple Icons / MIT) — 同一ページ内参照で確実表示 -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+    <symbol id="si-youtube" viewBox="0 0 24 24"><path fill="currentColor" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></symbol>
+    <symbol id="si-instagram" viewBox="0 0 24 24"><path fill="currentColor" d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 1 0 0-12.324zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-11.405a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></symbol>
+    <symbol id="si-tiktok" viewBox="0 0 24 24"><path fill="currentColor" d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></symbol>
+    <symbol id="si-facebook" viewBox="0 0 24 24"><path fill="currentColor" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></symbol>
+    <symbol id="si-line" viewBox="0 0 24 24"><path fill="currentColor" d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.63-.63.63h-2.386c-.345 0-.627-.286-.627-.63V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.63-.63.63M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></symbol>
+    <symbol id="si-x" viewBox="0 0 24 24"><path fill="currentColor" d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></symbol>
+    <symbol id="si-google" viewBox="0 0 24 24"><path fill="currentColor" d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/></symbol>
+    <symbol id="si-globe" viewBox="0 0 24 24"><path fill="currentColor" d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm1.016 4.34c2.33.06 4.34 1.618 5.234 3.707.22.536.38 1.103.474 1.69H13.01V4.34zM4.71 8.037c.75-2.01 2.238-3.64 4.1-4.577v4.577H4.71zm0 7.926h4.1v4.577c-1.862-.937-3.35-2.567-4.1-4.577zm5.299 4.577V15.963h5.014c-.094.587-.254 1.154-.474 1.69-.894 2.089-2.904 3.647-5.234 3.707V20.54H9.01zM19.29 15.963c-.75 2.01-2.238 3.64-4.1 4.577v-4.577h4.1zm0-7.926h-4.1V3.46c1.862.937 3.35 2.567 4.1 4.577z"/></symbol>
+  </svg>
   <header class="topbar">
     <a class="topbar__logo" href="#top" aria-label="Buzz Plus">
       <svg class="topbar__logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 88" fill="none" role="img" aria-label="BUZZ+ AI VIDEO × SNS GROWTH">
@@ -58,7 +69,7 @@
                   <div class="reels-preview__bg" role="img" aria-label="美容室のショート動画プレビュー"></div>
                   <div class="reels-preview__top">
                     <span class="reels-preview__pill">Reels</span>
-                    <span class="p-logo p-logo--ig" style="min-width:auto;padding:4px 8px;border:none"><svg class="p-logo__icon" style="width:14px;height:14px"><use href="icons.svg#si-instagram"/></svg></span>
+                    <span class="p-logo p-logo--ig" style="min-width:auto;padding:4px 8px;border:none"><svg class="p-logo__icon" style="width:14px;height:14px"><use href="#si-instagram"/></svg></span>
                   </div>
                   <div class="reels-preview__actions" aria-hidden="true">
                     <span>♡</span><strong>1.8k</strong>
@@ -84,10 +95,10 @@
             <span>サービス</span><span>商品</span><span>求人</span>
           </div>
           <div class="platform-dock">
-            <span class="p-logo p-logo--yt" title="YouTube"><svg class="p-logo__icon"><use href="icons.svg#si-youtube"/></svg></span>
-            <span class="p-logo p-logo--ig" title="Instagram"><svg class="p-logo__icon"><use href="icons.svg#si-instagram"/></svg></span>
-            <span class="p-logo p-logo--tt" title="TikTok"><svg class="p-logo__icon"><use href="icons.svg#si-tiktok"/></svg></span>
-            <span class="p-logo p-logo--line" title="LINE"><svg class="p-logo__icon"><use href="icons.svg#si-line"/></svg></span>
+            <span class="p-logo p-logo--yt" title="YouTube"><svg class="p-logo__icon"><use href="#si-youtube"/></svg></span>
+            <span class="p-logo p-logo--ig" title="Instagram"><svg class="p-logo__icon"><use href="#si-instagram"/></svg></span>
+            <span class="p-logo p-logo--tt" title="TikTok"><svg class="p-logo__icon"><use href="#si-tiktok"/></svg></span>
+            <span class="p-logo p-logo--line" title="LINE"><svg class="p-logo__icon"><use href="#si-line"/></svg></span>
           </div>
         </div>
       </div>
@@ -97,16 +108,16 @@
     <!-- Platform strip -->
     <section class="platform-strip" aria-label="配信プラットフォーム">
       <div class="wrap">
-        <p class="platform-strip__label">制作した動画は、ここに届きます（フリー素材・アイコン使用）</p>
-        <div class="platform-logos">
-          <span class="p-logo p-logo--yt"><svg class="p-logo__icon"><use href="icons.svg#si-youtube"/></svg><span class="p-logo__name">YouTube</span></span>
-          <span class="p-logo p-logo--ig"><svg class="p-logo__icon"><use href="icons.svg#si-instagram"/></svg><span class="p-logo__name">Instagram</span></span>
-          <span class="p-logo p-logo--tt"><svg class="p-logo__icon"><use href="icons.svg#si-tiktok"/></svg><span class="p-logo__name">TikTok</span></span>
-          <span class="p-logo p-logo--fb"><svg class="p-logo__icon"><use href="icons.svg#si-facebook"/></svg><span class="p-logo__name">Facebook</span></span>
-          <span class="p-logo p-logo--line"><svg class="p-logo__icon"><use href="icons.svg#si-line"/></svg><span class="p-logo__name">LINE</span></span>
-          <span class="p-logo p-logo--x"><svg class="p-logo__icon"><use href="icons.svg#si-x"/></svg><span class="p-logo__name">X</span></span>
-          <span class="p-logo p-logo--gg"><svg class="p-logo__icon"><use href="icons.svg#si-google"/></svg><span class="p-logo__name">Google検索</span></span>
-          <span class="p-logo p-logo--web"><svg class="p-logo__icon"><use href="icons.svg#si-globe"/></svg><span class="p-logo__name">自社HP</span></span>
+        <p class="platform-strip__label">制作した動画は、ここに届きます</p>
+        <div class="platform-logos platform-logos--brands">
+          <span class="p-logo p-logo--yt" title="YouTube" aria-label="YouTube"><svg class="p-logo__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#si-youtube"/></svg></span>
+          <span class="p-logo p-logo--ig" title="Instagram" aria-label="Instagram"><svg class="p-logo__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#si-instagram"/></svg></span>
+          <span class="p-logo p-logo--tt" title="TikTok" aria-label="TikTok"><svg class="p-logo__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#si-tiktok"/></svg></span>
+          <span class="p-logo p-logo--fb" title="Facebook" aria-label="Facebook"><svg class="p-logo__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#si-facebook"/></svg></span>
+          <span class="p-logo p-logo--line" title="LINE" aria-label="LINE"><svg class="p-logo__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#si-line"/></svg></span>
+          <span class="p-logo p-logo--x" title="X" aria-label="X"><svg class="p-logo__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#si-x"/></svg></span>
+          <span class="p-logo p-logo--gg" title="Google" aria-label="Google"><svg class="p-logo__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#si-google"/></svg></span>
+          <span class="p-logo p-logo--web" title="自社HP" aria-label="自社HP"><svg class="p-logo__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#si-globe"/></svg></span>
         </div>
       </div>
     </section>
@@ -310,13 +321,13 @@
             <span style="font-size:10px;opacity:.85">AI動画制作</span>
           </div>
           <span class="flow-arrow">→</span>
-          <div class="flow-node"><span class="p-logo p-logo--yt" style="min-width:auto;padding:10px"><svg class="p-logo__icon"><use href="icons.svg#si-youtube"/></svg></span><strong>YouTube</strong></div>
+          <div class="flow-node"><span class="p-logo p-logo--yt" style="min-width:auto;padding:10px"><svg class="p-logo__icon"><use href="#si-youtube"/></svg></span><strong>YouTube</strong></div>
           <span class="flow-arrow">+</span>
-          <div class="flow-node"><span class="p-logo p-logo--ig" style="min-width:auto;padding:10px"><svg class="p-logo__icon"><use href="icons.svg#si-instagram"/></svg></span><strong>Instagram</strong></div>
+          <div class="flow-node"><span class="p-logo p-logo--ig" style="min-width:auto;padding:10px"><svg class="p-logo__icon"><use href="#si-instagram"/></svg></span><strong>Instagram</strong></div>
           <span class="flow-arrow">+</span>
-          <div class="flow-node"><span class="p-logo p-logo--tt" style="min-width:auto;padding:10px"><svg class="p-logo__icon"><use href="icons.svg#si-tiktok"/></svg></span><strong>TikTok</strong></div>
+          <div class="flow-node"><span class="p-logo p-logo--tt" style="min-width:auto;padding:10px"><svg class="p-logo__icon"><use href="#si-tiktok"/></svg></span><strong>TikTok</strong></div>
           <span class="flow-arrow">+</span>
-          <div class="flow-node"><span class="p-logo p-logo--web" style="min-width:auto;padding:10px"><svg class="p-logo__icon"><use href="icons.svg#si-globe"/></svg></span><strong>HP・採用</strong></div>
+          <div class="flow-node"><span class="p-logo p-logo--web" style="min-width:auto;padding:10px"><svg class="p-logo__icon"><use href="#si-globe"/></svg></span><strong>HP・採用</strong></div>
         </div>
         <div class="platforms-hero reveal">
           <div>
@@ -326,31 +337,31 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><span class="cell-logo cell-logo--ig"><svg><use href="icons.svg#si-instagram"/></svg>Instagram</span></td>
+                  <td><span class="cell-logo cell-logo--ig"><svg><use href="#si-instagram"/></svg>Instagram</span></td>
                   <td>縦型 9:16・Reels</td><td>サービス・商品の魅力</td><td><span class="tag-pill tag-pill--hot">最重要</span></td>
                 </tr>
                 <tr>
-                  <td><span class="cell-logo cell-logo--yt"><svg><use href="icons.svg#si-youtube"/></svg>YouTube</span></td>
+                  <td><span class="cell-logo cell-logo--yt"><svg><use href="#si-youtube"/></svg>YouTube</span></td>
                   <td>横型 16:9・Shorts</td><td>店舗紹介・施術解説</td><td><span class="tag-pill tag-pill--hot">最重要</span></td>
                 </tr>
                 <tr>
-                  <td><span class="cell-logo cell-logo--tt"><svg><use href="icons.svg#si-tiktok"/></svg>TikTok</span></td>
+                  <td><span class="cell-logo cell-logo--tt"><svg><use href="#si-tiktok"/></svg>TikTok</span></td>
                   <td>縦型 9:16・15〜60秒</td><td>トレンド訴求・若年層</td><td><span class="tag-pill">高</span></td>
                 </tr>
                 <tr>
-                  <td><span class="cell-logo cell-logo--line"><svg><use href="icons.svg#si-line"/></svg>LINE</span></td>
+                  <td><span class="cell-logo cell-logo--line"><svg><use href="#si-line"/></svg>LINE</span></td>
                   <td>正方形・短尺</td><td>予約導線・クーポン</td><td><span class="tag-pill">高</span></td>
                 </tr>
                 <tr>
-                  <td><span class="cell-logo cell-logo--fb"><svg><use href="icons.svg#si-facebook"/></svg>Facebook</span></td>
+                  <td><span class="cell-logo cell-logo--fb"><svg><use href="#si-facebook"/></svg>Facebook</span></td>
                   <td>横型・正方形</td><td>地域広告・40代以上</td><td><span class="tag-pill">中</span></td>
                 </tr>
                 <tr>
-                  <td><span class="cell-logo cell-logo--gg"><svg><use href="icons.svg#si-google"/></svg>Google・MEO</span></td>
+                  <td><span class="cell-logo cell-logo--gg"><svg><use href="#si-google"/></svg>Google・MEO</span></td>
                   <td>短尺・サムネ</td><td>来店前の安心感</td><td><span class="tag-pill">中</span></td>
                 </tr>
                 <tr>
-                  <td><span class="cell-logo cell-logo--web"><svg><use href="icons.svg#si-globe"/></svg>自社HP・採用</span></td>
+                  <td><span class="cell-logo cell-logo--web"><svg><use href="#si-globe"/></svg>自社HP・採用</span></td>
                   <td>埋め込み・求人ページ</td><td>求人・採用・商品</td><td><span class="tag-pill tag-pill--hot">最重要</span></td>
                 </tr>
               </tbody>
@@ -359,15 +370,15 @@
           <div class="device-wall">
             <div class="device-card device-card--main">
               <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7dfc1?w=700&q=80" alt="スマホでSNS視聴" width="700" height="394" loading="lazy">
-              <span class="device-badge"><svg><use href="icons.svg#si-instagram"/></svg> Reels / Stories</span>
+              <span class="device-badge"><svg><use href="#si-instagram"/></svg> Reels / Stories</span>
             </div>
             <div class="device-card">
               <img src="https://images.unsplash.com/photo-1516321318423-f06f0e5043ef?w=400&q=80" alt="PCでYouTube視聴" width="400" height="300" loading="lazy">
-              <span class="device-badge"><svg><use href="icons.svg#si-youtube"/></svg> YouTube</span>
+              <span class="device-badge"><svg><use href="#si-youtube"/></svg> YouTube</span>
             </div>
             <div class="device-card">
               <img src="https://images.unsplash.com/photo-1521737711864-e397b75d3268?w=400&q=80" alt="採用・求人" width="400" height="300" loading="lazy">
-              <span class="device-badge"><svg><use href="icons.svg#si-globe"/></svg> 採用サイト</span>
+              <span class="device-badge"><svg><use href="#si-globe"/></svg> 採用サイト</span>
             </div>
           </div>
         </div>
@@ -386,7 +397,7 @@
         <div class="yt-mockup reveal" aria-label="YouTube掲載イメージ">
           <div class="yt-mockup__top">
             <span class="p-logo p-logo--yt" style="min-width:auto;padding:6px 12px;flex-direction:row;gap:8px">
-              <svg class="p-logo__icon" style="width:22px;height:22px"><use href="icons.svg#si-youtube"/></svg>
+              <svg class="p-logo__icon" style="width:22px;height:22px"><use href="#si-youtube"/></svg>
               <span class="p-logo__name" style="color:#fff;font-size:13px">YouTube</span>
             </span>
             <div class="yt-mockup__search"></div>
@@ -417,8 +428,8 @@
               <h3>サービス訴求動画</h3>
               <p>施術・メニュー・来店体験。Instagram・YouTube・HP向け。</p>
               <div class="platform-logos" style="margin-top:12px;justify-content:flex-start">
-                <span class="p-logo p-logo--ig" style="min-width:48px;padding:6px"><svg class="p-logo__icon" style="width:18px;height:18px"><use href="icons.svg#si-instagram"/></svg></span>
-                <span class="p-logo p-logo--yt" style="min-width:48px;padding:6px"><svg class="p-logo__icon" style="width:18px;height:18px"><use href="icons.svg#si-youtube"/></svg></span>
+                <span class="p-logo p-logo--ig" style="min-width:48px;padding:6px"><svg class="p-logo__icon" style="width:18px;height:18px"><use href="#si-instagram"/></svg></span>
+                <span class="p-logo p-logo--yt" style="min-width:48px;padding:6px"><svg class="p-logo__icon" style="width:18px;height:18px"><use href="#si-youtube"/></svg></span>
               </div>
             </div>
           </article>
@@ -431,8 +442,8 @@
               <h3>商品訴求動画</h3>
               <p>新商品・人気メニュー・製造品。購入・問い合わせにつなげる構成。</p>
               <div class="platform-logos" style="margin-top:12px;justify-content:flex-start">
-                <span class="p-logo p-logo--tt" style="min-width:48px;padding:6px"><svg class="p-logo__icon" style="width:18px;height:18px"><use href="icons.svg#si-tiktok"/></svg></span>
-                <span class="p-logo p-logo--line" style="min-width:48px;padding:6px"><svg class="p-logo__icon" style="width:18px;height:18px"><use href="icons.svg#si-line"/></svg></span>
+                <span class="p-logo p-logo--tt" style="min-width:48px;padding:6px"><svg class="p-logo__icon" style="width:18px;height:18px"><use href="#si-tiktok"/></svg></span>
+                <span class="p-logo p-logo--line" style="min-width:48px;padding:6px"><svg class="p-logo__icon" style="width:18px;height:18px"><use href="#si-line"/></svg></span>
               </div>
             </div>
           </article>
@@ -445,8 +456,8 @@
               <h3>求人・採用訴求動画</h3>
               <p>職場の雰囲気・働きがい。採用サイト・求人媒体・SNSで活用。</p>
               <div class="platform-logos" style="margin-top:12px;justify-content:flex-start">
-                <span class="p-logo p-logo--web" style="min-width:48px;padding:6px"><svg class="p-logo__icon" style="width:18px;height:18px"><use href="icons.svg#si-globe"/></svg></span>
-                <span class="p-logo p-logo--ig" style="min-width:48px;padding:6px"><svg class="p-logo__icon" style="width:18px;height:18px"><use href="icons.svg#si-instagram"/></svg></span>
+                <span class="p-logo p-logo--web" style="min-width:48px;padding:6px"><svg class="p-logo__icon" style="width:18px;height:18px"><use href="#si-globe"/></svg></span>
+                <span class="p-logo p-logo--ig" style="min-width:48px;padding:6px"><svg class="p-logo__icon" style="width:18px;height:18px"><use href="#si-instagram"/></svg></span>
               </div>
             </div>
           </article>
@@ -611,7 +622,7 @@
             </ul>
             <p class="plan-target">個人店・小規模店舗向け</p>
             <div class="plan-visual">
-              <span class="p-logo p-logo--ig"><svg class="p-logo__icon"><use href="icons.svg#si-instagram"/></svg></span>
+              <span class="p-logo p-logo--ig"><svg class="p-logo__icon"><use href="#si-instagram"/></svg></span>
             </div>
           </article>
           <article class="plan plan--featured">
@@ -625,9 +636,9 @@
             </ul>
             <p class="plan-target">美容・整体・飲食・クリニック など</p>
             <div class="plan-visual">
-              <span class="p-logo p-logo--yt"><svg class="p-logo__icon"><use href="icons.svg#si-youtube"/></svg></span>
-              <span class="p-logo p-logo--ig"><svg class="p-logo__icon"><use href="icons.svg#si-instagram"/></svg></span>
-              <span class="p-logo p-logo--tt"><svg class="p-logo__icon"><use href="icons.svg#si-tiktok"/></svg></span>
+              <span class="p-logo p-logo--yt"><svg class="p-logo__icon"><use href="#si-youtube"/></svg></span>
+              <span class="p-logo p-logo--ig"><svg class="p-logo__icon"><use href="#si-instagram"/></svg></span>
+              <span class="p-logo p-logo--tt"><svg class="p-logo__icon"><use href="#si-tiktok"/></svg></span>
             </div>
           </article>
           <article class="plan">
@@ -640,10 +651,10 @@
             </ul>
             <p class="plan-target">複数店舗・本気で動画基盤を作る企業</p>
             <div class="plan-visual">
-              <span class="p-logo p-logo--yt"><svg class="p-logo__icon"><use href="icons.svg#si-youtube"/></svg></span>
-              <span class="p-logo p-logo--ig"><svg class="p-logo__icon"><use href="icons.svg#si-instagram"/></svg></span>
-              <span class="p-logo p-logo--line"><svg class="p-logo__icon"><use href="icons.svg#si-line"/></svg></span>
-              <span class="p-logo p-logo--web"><svg class="p-logo__icon"><use href="icons.svg#si-globe"/></svg></span>
+              <span class="p-logo p-logo--yt"><svg class="p-logo__icon"><use href="#si-youtube"/></svg></span>
+              <span class="p-logo p-logo--ig"><svg class="p-logo__icon"><use href="#si-instagram"/></svg></span>
+              <span class="p-logo p-logo--line"><svg class="p-logo__icon"><use href="#si-line"/></svg></span>
+              <span class="p-logo p-logo--web"><svg class="p-logo__icon"><use href="#si-globe"/></svg></span>
             </div>
           </article>
         </div>
