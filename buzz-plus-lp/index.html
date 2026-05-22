@@ -38,10 +38,20 @@
   </header>
 
   <main id="top">
-    <!-- 1. Hero -->
-    <section class="hero">
-      <div class="wrap hero-grid">
-        <div class="reveal">
+    <!-- トップゾーン：写真背景（すかし）＋テキスト -->
+    <div class="top-zone">
+      <div class="top-zone__photos" aria-hidden="true">
+        <div class="top-photo top-photo--1"></div>
+        <div class="top-photo top-photo--2"></div>
+        <div class="top-photo top-photo--3"></div>
+        <div class="top-photo top-photo--4"></div>
+        <div class="top-photo top-photo--5"></div>
+        <div class="top-photo top-photo--6"></div>
+      </div>
+      <div class="top-zone__veil"></div>
+
+      <section class="hero hero--photo">
+        <div class="wrap hero-content reveal">
           <p class="hero-badge"><span>NEW</span> AI動画サブスクサービス</p>
           <p class="eyebrow">Buzz Plus — AI Video Subscription</p>
           <h1>短納期・低コストで<br><em>売れる動画</em>を毎月届ける</h1>
@@ -50,77 +60,25 @@
             飲食・美容・健康・製造・ブライダル・医療・クリニックの店舗・企業向け。
           </p>
           <div class="stat-row">
-            <div class="stat"><strong>60<small>%</small></strong><span>コスト削減目安</span></div>
-            <div class="stat"><strong>1/5</strong><span>制作時間短縮</span></div>
-            <div class="stat"><strong>月3.3<small>万〜</small></strong><span>サブスクで継続納品</span></div>
+            <div class="stat stat--glass"><strong>60<small>%</small></strong><span>コスト削減目安</span></div>
+            <div class="stat stat--glass"><strong>1/5</strong><span>制作時間短縮</span></div>
+            <div class="stat stat--glass"><strong>月3.3<small>万〜</small></strong><span>サブスクで継続納品</span></div>
           </div>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#contact">無料相談・サンプル相談</a>
             <a class="btn btn-secondary" href="#samples">訴求動画の種類を見る</a>
           </div>
-        </div>
-        <div class="hero-visual-wrap reveal" aria-label="SNS動画の掲載イメージ">
-          <div class="hero-glow" aria-hidden="true"></div>
-          <div class="device-premium">
-            <div class="device-premium__frame">
-              <div class="device-premium__island"></div>
-              <div class="device-premium__screen">
-                <div class="reels-preview">
-                  <div class="reels-preview__bg" role="img" aria-label="美容室のショート動画プレビュー"></div>
-                  <div class="reels-preview__top">
-                    <span class="reels-preview__pill">Reels</span>
-                    <span class="p-logo p-logo--ig" style="min-width:auto;padding:4px 8px;border:none"><svg class="p-logo__icon" style="width:14px;height:14px"><use href="#si-instagram"/></svg></span>
-                  </div>
-                  <div class="reels-preview__actions" aria-hidden="true">
-                    <span>♡</span><strong>1.8k</strong>
-                    <span>💬</span><strong>42</strong>
-                    <span>↗</span><strong>シェア</strong>
-                  </div>
-                  <div class="reels-preview__caption">
-                    <strong>〇〇美容室</strong>
-                    <p>人気メニュー＆店内の雰囲気を15秒で紹介 ✨</p>
-                  </div>
-                  <div class="reels-preview__play" aria-hidden="true">
-                    <svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="24" fill="rgba(255,255,255,.92)"/><path d="M19 15v18l14-9-14-9z" fill="#101d3f"/></svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="hero-float hero-float--stat">
-            <span class="hero-float__label">再生回数</span>
-            <strong>+48<small>%</small></strong>
-          </div>
-          <div class="hero-float hero-float--deliver">
-            <span>サービス</span><span>商品</span><span>求人</span>
-          </div>
-          <div class="platform-dock">
-            <span class="p-logo p-logo--yt" title="YouTube"><svg class="p-logo__icon"><use href="#si-youtube"/></svg></span>
-            <span class="p-logo p-logo--ig" title="Instagram"><svg class="p-logo__icon"><use href="#si-instagram"/></svg></span>
-            <span class="p-logo p-logo--tt" title="TikTok"><svg class="p-logo__icon"><use href="#si-tiktok"/></svg></span>
-            <span class="p-logo p-logo--line" title="LINE"><svg class="p-logo__icon"><use href="#si-line"/></svg></span>
+          <div class="hero-platforms">
+            <span class="p-logo p-logo--yt" title="YouTube"><svg class="p-logo__icon" viewBox="0 0 24 24"><use href="#si-youtube"/></svg></span>
+            <span class="p-logo p-logo--ig" title="Instagram"><svg class="p-logo__icon" viewBox="0 0 24 24"><use href="#si-instagram"/></svg></span>
+            <span class="p-logo p-logo--tt" title="TikTok"><svg class="p-logo__icon" viewBox="0 0 24 24"><use href="#si-tiktok"/></svg></span>
+            <span class="p-logo p-logo--line" title="LINE"><svg class="p-logo__icon" viewBox="0 0 24 24"><use href="#si-line"/></svg></span>
+            <span class="p-logo p-logo--fb" title="Facebook"><svg class="p-logo__icon" viewBox="0 0 24 24"><use href="#si-facebook"/></svg></span>
           </div>
         </div>
-      </div>
-      <p class="scroll-hint">SCROLL</p>
-    </section>
-
-    <!-- Platform strip -->
-    <section class="platform-strip" aria-label="配信プラットフォーム">
-      <div class="wrap">
-        <p class="platform-strip__label">制作した動画は、ここに届きます</p>
-        <div class="platform-logos platform-logos--brands">
-          <span class="p-logo p-logo--yt" title="YouTube" aria-label="YouTube"><svg class="p-logo__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#si-youtube"/></svg></span>
-          <span class="p-logo p-logo--ig" title="Instagram" aria-label="Instagram"><svg class="p-logo__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#si-instagram"/></svg></span>
-          <span class="p-logo p-logo--tt" title="TikTok" aria-label="TikTok"><svg class="p-logo__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#si-tiktok"/></svg></span>
-          <span class="p-logo p-logo--fb" title="Facebook" aria-label="Facebook"><svg class="p-logo__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#si-facebook"/></svg></span>
-          <span class="p-logo p-logo--line" title="LINE" aria-label="LINE"><svg class="p-logo__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#si-line"/></svg></span>
-          <span class="p-logo p-logo--x" title="X" aria-label="X"><svg class="p-logo__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#si-x"/></svg></span>
-          <span class="p-logo p-logo--gg" title="Google" aria-label="Google"><svg class="p-logo__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#si-google"/></svg></span>
-          <span class="p-logo p-logo--web" title="自社HP" aria-label="自社HP"><svg class="p-logo__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#si-globe"/></svg></span>
-        </div>
-      </div>
-    </section>
+        <p class="scroll-hint">SCROLL</p>
+      </section>
+    </div>
 
     <!-- 2. Pain -->
     <section class="section section--alt" id="pain">
@@ -462,8 +420,7 @@
         </div>
         <div class="sample-grid reveal">
           <article class="sample-card">
-            <div class="sample-card__media">
-              <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=700&q=80" alt="サービス訴求動画イメージ" width="700" height="438" loading="lazy">
+            <div class="sample-card__media sample-card__media--service" role="img" aria-label="サービス訴求動画イメージ">
               <span class="sample-card__tag">TYPE 01</span>
             </div>
             <div class="sample-card__body">
@@ -476,8 +433,7 @@
             </div>
           </article>
           <article class="sample-card">
-            <div class="sample-card__media">
-              <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=700&q=80" alt="商品訴求動画イメージ" width="700" height="438" loading="lazy">
+            <div class="sample-card__media sample-card__media--product" role="img" aria-label="商品訴求動画イメージ">
               <span class="sample-card__tag">TYPE 02</span>
             </div>
             <div class="sample-card__body">
@@ -490,9 +446,9 @@
             </div>
           </article>
           <article class="sample-card">
-            <div class="sample-card__media">
-              <img src="https://images.unsplash.com/photo-1521737711864-e397b75d3268?w=700&q=80" alt="求人訴求動画イメージ" width="700" height="438" loading="lazy">
+            <div class="sample-card__media sample-card__media--hire" role="img" aria-label="求人訴求動画イメージ">
               <span class="sample-card__tag">TYPE 03</span>
+              <span class="sample-card__play" aria-hidden="true"></span>
             </div>
             <div class="sample-card__body">
               <h3>求人・採用訴求動画</h3>
@@ -591,9 +547,7 @@
         </div>
         <div class="deliver-grid reveal">
           <article class="deliver-card">
-            <div class="deliver-card__img">
-              <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80" alt="飲食・サービス" width="600" height="400" loading="lazy">
-            </div>
+            <div class="deliver-card__img deliver-card__img--service" role="img" aria-label="飲食・美容のサービス訴求イメージ"></div>
             <div class="deliver-card__body">
               <p class="num">TYPE 01</p>
               <h3>サービス訴求</h3>
@@ -601,9 +555,7 @@
             </div>
           </article>
           <article class="deliver-card">
-            <div class="deliver-card__img">
-              <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80" alt="製造・商品" width="600" height="400" loading="lazy">
-            </div>
+            <div class="deliver-card__img deliver-card__img--product" role="img" aria-label="商品・製造の訴求イメージ"></div>
             <div class="deliver-card__body">
               <p class="num">TYPE 02</p>
               <h3>商品訴求</h3>
@@ -611,8 +563,8 @@
             </div>
           </article>
           <article class="deliver-card">
-            <div class="deliver-card__img">
-              <img src="https://images.unsplash.com/photo-1521737711864-e397b75d3268?w=600&q=80" alt="採用・求人" width="600" height="400" loading="lazy">
+            <div class="deliver-card__img deliver-card__img--hire" role="img" aria-label="採用・求人の職場イメージ">
+              <span class="deliver-card__play" aria-hidden="true"></span>
             </div>
             <div class="deliver-card__body">
               <p class="num">TYPE 03</p>
