@@ -38,62 +38,69 @@
   </header>
 
   <main id="top">
-    <!-- Hero：左テキスト・右写真 -->
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="wrap hero-inner">
-        <div class="hero-copy reveal">
-          <p class="hero-badge"><span>NEW</span> AI動画サブスクサービス</p>
-          <p class="eyebrow hero-eyebrow">Buzz Plus — AI Video Subscription</p>
-          <h1 id="hero-title">短納期・低コストで<br><em>売れる動画</em>を毎月届ける</h1>
-          <p class="lead">
-            撮影・編集の手間なく、<strong>サービス・商品・求人</strong>の訴求動画をAI活用で制作。
-            飲食・美容・健康・製造・ブライダル・医療・クリニックの店舗・企業向け。
-          </p>
+    <!-- Hero（AIX-EC型・背景コラージュのみ店舗向け） -->
+    <section class="hero hero--aix" aria-labelledby="hero-title">
+      <div class="hero-bg" aria-hidden="true">
+        <div class="hero-bg__photo hero-bg__photo--1"></div>
+        <div class="hero-bg__photo hero-bg__photo--2"></div>
+        <div class="hero-bg__photo hero-bg__photo--3"></div>
+        <div class="hero-bg__photo hero-bg__photo--4"></div>
+        <div class="hero-bg__photo hero-bg__photo--5"></div>
+        <div class="hero-bg__photo hero-bg__photo--6"></div>
+      </div>
+      <div class="hero-bg__veil"></div>
 
-          <div class="hero-metrics reveal">
-            <div class="hero-metrics__stats">
-              <div class="stat stat--stack"><strong>60<small>%</small></strong><span>コスト削減目安</span></div>
-              <div class="stat stat--stack"><strong>1/5</strong><span>制作時間短縮</span></div>
-              <div class="stat stat--stack"><strong>月3.3<small>万〜</small></strong><span>サブスクで継続納品</span></div>
-            </div>
-            <div class="hero-metrics__visual">
-              <div class="hero-metrics__photo">
-                <img
-                  class="hero-metrics__img"
-                  src="https://picsum.photos/id/349/1200/800"
-                  alt="ショート動画・SNS訴求のイメージ"
-                  width="1200"
-                  height="800"
-                  loading="eager"
-                  decoding="async"
-                >
-                <span class="hero-metrics__shine" aria-hidden="true"></span>
-                <span class="hero-metrics__tag">AI × VIDEO</span>
-                <span class="hero-metrics__play" aria-hidden="true"></span>
-              </div>
-              <div class="hero-float-card">
-                <p class="hero-float-card__label">3つの訴求</p>
-                <ul>
-                  <li>サービス</li>
-                  <li>商品</li>
-                  <li>求人</li>
-                </ul>
+      <div class="hero-stage wrap reveal">
+        <div class="hero-phone hero-phone--left" aria-hidden="true">
+          <div class="device-premium device-premium--side">
+            <div class="device-premium__frame">
+              <div class="device-premium__island"></div>
+              <div class="device-premium__screen">
+                <div class="reels-preview">
+                  <div class="reels-preview__bg reels-preview__bg--salon"></div>
+                  <div class="reels-preview__top"><span class="reels-preview__pill">Reels</span></div>
+                  <div class="reels-preview__play" aria-hidden="true"><span></span></div>
+                  <div class="reels-preview__caption"><strong>salon_ooike</strong><p>施術の流れが15秒で伝わる</p></div>
+                </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="hero-actions">
+        <div class="hero-center">
+          <p class="hero-badge"><span>NEW</span> 店舗・企業向け AI動画サブスク</p>
+          <h1 id="hero-title">短納期・低コスト<br>売れる動画を毎月届ける</h1>
+          <p class="hero-brand" aria-label="Buzz Plus"><span class="hero-brand__buzz">BUZZ</span><span class="hero-brand__plus">+</span></p>
+          <p class="hero-sub">AI動画サブスクサービス</p>
+          <div class="hero-benefit">
+            <p>
+              最新AIと編集で<strong>60%</strong>のコスト削減目安、<strong>1/5</strong>の制作時間短縮を実現。
+              <strong>月3.3万円〜</strong>のサブスクで、サービス・商品・求人の訴求動画を継続納品できます。
+            </p>
+          </div>
+          <div class="hero-stats-bar">
+            <div class="hero-stat-pill"><strong>60<small>%</small></strong><span>コスト削減目安</span></div>
+            <div class="hero-stat-pill"><strong>1/5</strong><span>制作時間短縮</span></div>
+            <div class="hero-stat-pill"><strong>月3.3<small>万〜</small></strong><span>サブスク継続納品</span></div>
+          </div>
+          <div class="hero-actions hero-actions--center">
             <a class="btn btn-primary" href="#contact">無料相談・サンプル相談</a>
             <a class="btn btn-secondary" href="#samples">訴求動画の種類を見る</a>
           </div>
-          <div class="hero-platforms" aria-label="対応プラットフォーム">
-            <span class="hero-platforms__label">配信先</span>
-            <div class="platform-logos platform-logos--brands hero-platforms__logos">
-              <span class="p-logo p-logo--yt" title="YouTube"><svg class="p-logo__icon" viewBox="0 0 24 24"><use href="#si-youtube"/></svg></span>
-              <span class="p-logo p-logo--ig" title="Instagram"><svg class="p-logo__icon" viewBox="0 0 24 24"><use href="#si-instagram"/></svg></span>
-              <span class="p-logo p-logo--tt" title="TikTok"><svg class="p-logo__icon" viewBox="0 0 24 24"><use href="#si-tiktok"/></svg></span>
-              <span class="p-logo p-logo--line" title="LINE"><svg class="p-logo__icon" viewBox="0 0 24 24"><use href="#si-line"/></svg></span>
-              <span class="p-logo p-logo--fb" title="Facebook"><svg class="p-logo__icon" viewBox="0 0 24 24"><use href="#si-facebook"/></svg></span>
+        </div>
+
+        <div class="hero-phone hero-phone--right" aria-hidden="true">
+          <div class="device-premium device-premium--side">
+            <div class="device-premium__frame">
+              <div class="device-premium__island"></div>
+              <div class="device-premium__screen">
+                <div class="reels-preview">
+                  <div class="reels-preview__bg reels-preview__bg--food"></div>
+                  <div class="reels-preview__top"><span class="reels-preview__pill">Shorts</span></div>
+                  <div class="reels-preview__play" aria-hidden="true"><span></span></div>
+                  <div class="reels-preview__caption"><strong>cafe_harbor</strong><p>新メニュー・店内の雰囲気</p></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
