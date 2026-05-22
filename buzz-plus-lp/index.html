@@ -38,47 +38,57 @@
   </header>
 
   <main id="top">
-    <!-- トップゾーン：写真背景（すかし）＋テキスト -->
-    <div class="top-zone">
-      <div class="top-zone__photos" aria-hidden="true">
-        <div class="top-photo top-photo--1"></div>
-        <div class="top-photo top-photo--2"></div>
-        <div class="top-photo top-photo--3"></div>
-        <div class="top-photo top-photo--4"></div>
-        <div class="top-photo top-photo--5"></div>
-        <div class="top-photo top-photo--6"></div>
-      </div>
-      <div class="top-zone__veil"></div>
-
-      <section class="hero hero--photo">
-        <div class="wrap hero-content reveal">
+    <!-- Hero：左テキスト・右写真 -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-split">
+        <div class="hero-copy reveal">
           <p class="hero-badge"><span>NEW</span> AI動画サブスクサービス</p>
-          <p class="eyebrow">Buzz Plus — AI Video Subscription</p>
-          <h1>短納期・低コストで<br><em>売れる動画</em>を毎月届ける</h1>
+          <p class="eyebrow hero-eyebrow">Buzz Plus — AI Video Subscription</p>
+          <h1 id="hero-title">短納期・低コストで<br><em>売れる動画</em>を毎月届ける</h1>
           <p class="lead">
             撮影・編集の手間なく、<strong>サービス・商品・求人</strong>の訴求動画をAI活用で制作。
             飲食・美容・健康・製造・ブライダル・医療・クリニックの店舗・企業向け。
           </p>
-          <div class="stat-row">
-            <div class="stat stat--glass"><strong>60<small>%</small></strong><span>コスト削減目安</span></div>
-            <div class="stat stat--glass"><strong>1/5</strong><span>制作時間短縮</span></div>
-            <div class="stat stat--glass"><strong>月3.3<small>万〜</small></strong><span>サブスクで継続納品</span></div>
+          <div class="stat-row stat-row--hero">
+            <div class="stat stat--hero"><strong>60<small>%</small></strong><span>コスト削減目安</span></div>
+            <div class="stat stat--hero"><strong>1/5</strong><span>制作時間短縮</span></div>
+            <div class="stat stat--hero"><strong>月3.3<small>万〜</small></strong><span>サブスクで継続納品</span></div>
           </div>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#contact">無料相談・サンプル相談</a>
             <a class="btn btn-secondary" href="#samples">訴求動画の種類を見る</a>
           </div>
-          <div class="hero-platforms">
-            <span class="p-logo p-logo--yt" title="YouTube"><svg class="p-logo__icon" viewBox="0 0 24 24"><use href="#si-youtube"/></svg></span>
-            <span class="p-logo p-logo--ig" title="Instagram"><svg class="p-logo__icon" viewBox="0 0 24 24"><use href="#si-instagram"/></svg></span>
-            <span class="p-logo p-logo--tt" title="TikTok"><svg class="p-logo__icon" viewBox="0 0 24 24"><use href="#si-tiktok"/></svg></span>
-            <span class="p-logo p-logo--line" title="LINE"><svg class="p-logo__icon" viewBox="0 0 24 24"><use href="#si-line"/></svg></span>
-            <span class="p-logo p-logo--fb" title="Facebook"><svg class="p-logo__icon" viewBox="0 0 24 24"><use href="#si-facebook"/></svg></span>
+          <div class="hero-platforms" aria-label="対応プラットフォーム">
+            <span class="hero-platforms__label">配信先</span>
+            <div class="platform-logos platform-logos--brands hero-platforms__logos">
+              <span class="p-logo p-logo--yt" title="YouTube"><svg class="p-logo__icon" viewBox="0 0 24 24"><use href="#si-youtube"/></svg></span>
+              <span class="p-logo p-logo--ig" title="Instagram"><svg class="p-logo__icon" viewBox="0 0 24 24"><use href="#si-instagram"/></svg></span>
+              <span class="p-logo p-logo--tt" title="TikTok"><svg class="p-logo__icon" viewBox="0 0 24 24"><use href="#si-tiktok"/></svg></span>
+              <span class="p-logo p-logo--line" title="LINE"><svg class="p-logo__icon" viewBox="0 0 24 24"><use href="#si-line"/></svg></span>
+              <span class="p-logo p-logo--fb" title="Facebook"><svg class="p-logo__icon" viewBox="0 0 24 24"><use href="#si-facebook"/></svg></span>
+            </div>
           </div>
         </div>
-        <p class="scroll-hint">SCROLL</p>
-      </section>
-    </div>
+        <div class="hero-visual reveal">
+          <figure class="hero-figure">
+            <div class="hero-figure__img" role="img" aria-label="店舗・施術のショート動画イメージ">
+              <span class="hero-figure__play" aria-hidden="true"></span>
+              <span class="hero-figure__tag">Reels / Shorts</span>
+            </div>
+            <figcaption class="hero-figure__cap">飲食・美容・クリニックなど、業種に合わせた縦型動画を制作</figcaption>
+          </figure>
+          <div class="hero-float-card">
+            <p class="hero-float-card__label">3つの訴求</p>
+            <ul>
+              <li>サービス</li>
+              <li>商品</li>
+              <li>求人</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <p class="scroll-hint">SCROLL</p>
+    </section>
 
     <!-- 2. Pain -->
     <section class="section section--alt" id="pain">
