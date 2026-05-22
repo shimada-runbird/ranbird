@@ -52,7 +52,12 @@ img { max-width: 100%; height: auto; display: block; }
   backdrop-filter: blur(12px);
 }
 
-.topbar__logo img { height: 28px; width: auto; }
+.topbar__logo img,
+.topbar__logo-svg {
+  height: 28px;
+  width: auto;
+  display: block;
+}
 
 .nav { display: flex; flex-wrap: wrap; gap: 2px; }
 
