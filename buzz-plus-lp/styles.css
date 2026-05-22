@@ -172,13 +172,10 @@ img { max-width: 100%; height: auto; display: block; }
   pointer-events: none;
 }
 
-.hero-split {
-  display: grid;
-  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
-  gap: clamp(28px, 4.5vw, 52px);
-  align-items: center;
+.hero-inner {
   position: relative;
   z-index: 1;
+  max-width: 980px;
 }
 
 .hero-copy {
@@ -233,8 +230,39 @@ img { max-width: 100%; height: auto; display: block; }
 
 .stat-row { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 28px; }
 
-.stat-row--hero {
-  margin-bottom: 24px;
+/* 数値3段 ＋ 右写真 */
+.hero-metrics {
+  display: grid;
+  grid-template-columns: minmax(168px, 220px) minmax(0, 1fr);
+  gap: clamp(14px, 2.5vw, 22px);
+  margin-bottom: 26px;
+  align-items: stretch;
+  min-height: 220px;
+}
+
+.hero-metrics__stats {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stat--stack {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  padding: 14px 12px;
+  text-align: center;
+  animation: none;
+  border-radius: var(--radius-sm);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.stat--stack:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
 }
 
 .stat {
@@ -249,20 +277,8 @@ img { max-width: 100%; height: auto; display: block; }
   animation: float 4s ease-in-out infinite;
 }
 
-.stat--hero {
-  flex: 0 1 auto;
-  min-width: 108px;
-  padding: 14px 16px;
-  text-align: left;
-  animation: none;
-  border-radius: var(--radius-sm);
-}
-
 .stat:nth-child(2) { animation-delay: 0.5s; }
 .stat:nth-child(3) { animation-delay: 1s; }
-
-.stat-row--hero .stat:nth-child(2),
-.stat-row--hero .stat:nth-child(3) { animation: none; }
 
 @keyframes float {
   0%, 100% { transform: translateY(0); }
@@ -276,8 +292,8 @@ img { max-width: 100%; height: auto; display: block; }
   line-height: 1.05;
 }
 
-.stat--hero strong {
-  font-size: clamp(24px, 3vw, 32px);
+.stat--stack strong {
+  font-size: clamp(26px, 3.2vw, 34px);
 }
 
 .stat strong small { font-size: 14px; font-weight: 800; }
@@ -310,86 +326,86 @@ img { max-width: 100%; height: auto; display: block; }
   justify-content: flex-start;
 }
 
-.hero-visual {
+.hero-metrics__visual {
   position: relative;
+  min-height: 100%;
 }
 
-.hero-figure {
-  margin: 0;
-}
-
-.hero-figure__img {
+.hero-metrics__photo {
   position: relative;
-  aspect-ratio: 4 / 5;
-  max-height: min(520px, 72vh);
+  height: 100%;
+  min-height: 220px;
   border-radius: var(--radius);
-  background: url("https://picsum.photos/id/292/800/1000") center / cover no-repeat;
-  box-shadow: var(--shadow);
-  border: 1px solid rgba(255, 255, 255, 0.8);
   overflow: hidden;
+  background:
+    linear-gradient(125deg, rgba(16, 29, 63, 0.55) 0%, rgba(16, 29, 63, 0.15) 45%, rgba(245, 158, 11, 0.2) 100%),
+    url("https://picsum.photos/id/367/1400/900") center / cover no-repeat;
+  box-shadow:
+    0 24px 56px rgba(16, 29, 63, 0.18),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+  filter: saturate(1.08) contrast(1.06);
 }
 
-.hero-figure__img::after {
-  content: "";
+.hero-metrics__shine {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 55%, rgba(16, 29, 63, 0.35) 100%);
+  background: linear-gradient(
+    118deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.14) 48%,
+    transparent 62%
+  );
+  pointer-events: none;
 }
 
-.hero-figure__play {
+.hero-metrics__tag {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 8px 24px rgba(16, 29, 63, 0.2);
-  z-index: 2;
-}
-
-.hero-figure__play::after {
-  content: "";
-  position: absolute;
-  left: 22px;
+  left: 16px;
   top: 16px;
-  border: 10px solid transparent;
-  border-left: 16px solid var(--navy);
-}
-
-.hero-figure__tag {
-  position: absolute;
-  left: 14px;
-  top: 14px;
   z-index: 2;
   font-size: 10px;
   font-weight: 800;
-  letter-spacing: 0.06em;
-  padding: 6px 10px;
+  letter-spacing: 0.18em;
+  padding: 7px 12px;
   border-radius: 999px;
-  background: rgba(16, 29, 63, 0.82);
-  color: #fff;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--navy);
+  backdrop-filter: blur(6px);
 }
 
-.hero-figure__cap {
-  margin: 12px 4px 0;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--muted);
-  text-align: left;
+.hero-metrics__play {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  z-index: 2;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--orange);
+  box-shadow: 0 8px 20px rgba(245, 158, 11, 0.45);
+}
+
+.hero-metrics__play::after {
+  content: "";
+  position: absolute;
+  left: 19px;
+  top: 14px;
+  border: 8px solid transparent;
+  border-left: 14px solid #fff;
 }
 
 .hero-float-card {
   position: absolute;
-  left: -20px;
-  bottom: 72px;
-  padding: 14px 16px;
-  background: #fff;
-  border: 1px solid var(--line);
+  left: 16px;
+  bottom: 16px;
+  z-index: 3;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-sm);
-  min-width: 140px;
+  box-shadow: 0 12px 28px rgba(16, 29, 63, 0.15);
+  backdrop-filter: blur(8px);
+  min-width: 128px;
 }
 
 .hero-float-card__label {
@@ -431,23 +447,40 @@ img { max-width: 100%; height: auto; display: block; }
 @media (max-width: 900px) {
   .nav { display: none; }
 
-  .hero-split {
+  .hero-metrics {
     grid-template-columns: 1fr;
-    gap: 28px;
+    min-height: 0;
   }
 
-  .hero-figure__img {
-    aspect-ratio: 16 / 10;
-    max-height: 280px;
+  .hero-metrics__stats {
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 
-  .hero-float-card {
-    left: auto;
-    right: 12px;
-    bottom: 12px;
+  .stat--stack {
+    flex: 1 1 calc(33.33% - 8px);
+    min-width: 100px;
+    min-height: 88px;
+  }
+
+  .hero-metrics__photo {
+    min-height: 200px;
+    aspect-ratio: 16 / 9;
   }
 
   .hero h1 { max-width: none; }
+}
+
+@media (max-width: 520px) {
+  .hero-metrics__stats {
+    flex-direction: column;
+  }
+
+  .stat--stack {
+    flex: none;
+    width: 100%;
+    min-height: 72px;
+  }
 }
 
 .hero-visual-wrap {
