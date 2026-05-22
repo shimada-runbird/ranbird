@@ -175,7 +175,6 @@ img { max-width: 100%; height: auto; display: block; }
 .hero-inner {
   position: relative;
   z-index: 1;
-  max-width: 980px;
 }
 
 .hero-copy {
@@ -230,31 +229,36 @@ img { max-width: 100%; height: auto; display: block; }
 
 .stat-row { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 28px; }
 
-/* 数値3段 ＋ 右写真 */
+/* 数値3段（左）＋ 写真（右） */
 .hero-metrics {
   display: grid;
-  grid-template-columns: minmax(168px, 220px) minmax(0, 1fr);
-  gap: clamp(14px, 2.5vw, 22px);
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: clamp(16px, 3vw, 28px);
   margin-bottom: 26px;
   align-items: stretch;
-  min-height: 220px;
+  width: 100%;
+  min-height: 252px;
 }
 
 .hero-metrics__stats {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  justify-self: start;
+  width: 200px;
+  max-width: 100%;
 }
 
 .stat--stack {
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  min-height: 0;
-  padding: 14px 12px;
-  text-align: center;
+  width: 100%;
+  min-height: 72px;
+  padding: 14px 16px;
+  text-align: left;
   animation: none;
   border-radius: var(--radius-sm);
   transition: transform 0.2s, box-shadow 0.2s;
@@ -328,27 +332,47 @@ img { max-width: 100%; height: auto; display: block; }
 
 .hero-metrics__visual {
   position: relative;
-  min-height: 100%;
+  min-height: 252px;
+  min-width: 0;
 }
 
 .hero-metrics__photo {
-  position: relative;
-  height: 100%;
-  min-height: 220px;
+  position: absolute;
+  inset: 0;
   border-radius: var(--radius);
   overflow: hidden;
-  background:
-    linear-gradient(125deg, rgba(16, 29, 63, 0.55) 0%, rgba(16, 29, 63, 0.15) 45%, rgba(245, 158, 11, 0.2) 100%),
-    url("https://picsum.photos/id/367/1400/900") center / cover no-repeat;
+  background: var(--navy);
   box-shadow:
     0 24px 56px rgba(16, 29, 63, 0.18),
     inset 0 0 0 1px rgba(255, 255, 255, 0.12);
-  filter: saturate(1.08) contrast(1.06);
+}
+
+.hero-metrics__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+  filter: saturate(1.1) contrast(1.05);
+}
+
+.hero-metrics__photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    125deg,
+    rgba(16, 29, 63, 0.45) 0%,
+    rgba(16, 29, 63, 0.08) 50%,
+    rgba(245, 158, 11, 0.18) 100%
+  );
+  pointer-events: none;
 }
 
 .hero-metrics__shine {
   position: absolute;
   inset: 0;
+  z-index: 2;
   background: linear-gradient(
     118deg,
     transparent 30%,
@@ -362,7 +386,7 @@ img { max-width: 100%; height: auto; display: block; }
   position: absolute;
   left: 16px;
   top: 16px;
-  z-index: 2;
+  z-index: 4;
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.18em;
@@ -377,7 +401,7 @@ img { max-width: 100%; height: auto; display: block; }
   position: absolute;
   right: 18px;
   bottom: 18px;
-  z-index: 2;
+  z-index: 4;
   width: 48px;
   height: 48px;
   border-radius: 50%;
@@ -446,40 +470,23 @@ img { max-width: 100%; height: auto; display: block; }
 
 @media (max-width: 900px) {
   .nav { display: none; }
+  .hero h1 { max-width: none; }
+}
 
+@media (max-width: 640px) {
   .hero-metrics {
     grid-template-columns: 1fr;
     min-height: 0;
   }
 
   .hero-metrics__stats {
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-
-  .stat--stack {
-    flex: 1 1 calc(33.33% - 8px);
-    min-width: 100px;
-    min-height: 88px;
-  }
-
-  .hero-metrics__photo {
-    min-height: 200px;
-    aspect-ratio: 16 / 9;
-  }
-
-  .hero h1 { max-width: none; }
-}
-
-@media (max-width: 520px) {
-  .hero-metrics__stats {
-    flex-direction: column;
-  }
-
-  .stat--stack {
-    flex: none;
     width: 100%;
-    min-height: 72px;
+    max-width: 280px;
+  }
+
+  .hero-metrics__visual {
+    min-height: 200px;
+    order: 2;
   }
 }
 
