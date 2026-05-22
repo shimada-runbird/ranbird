@@ -15,7 +15,9 @@
 | 正方形（ネイビー） | `BUZZplus_確定版_正方形_ネイビー背景.svg` |
 | ボックス | `BUZZplus_確定版_ボックス.svg` |
 
-プレビュー: `buzz-plus-preview.html`
+**公開URL:** https://shimada-runbird.github.io/ranbird/buzz-plus-logo/
+
+ローカル: `index.html`（ブランドガイド）
 
 ---
 
