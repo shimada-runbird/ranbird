@@ -1,26 +1,23 @@
-# manager-training CLAUDE.md
+# manager-training CLAUDE.md — Ver.2
 
-## バージョン管理（必読）
+## バージョン
 
 | Ver | フォルダ | 編集 |
 |---|---|---|
-| **Ver.1 確定版** | `../manager-training-v1/` | **禁止（上書きしない）** |
-| **Ver.2 作業用** | このフォルダ `manager-training/` | ここで編集 |
+| Ver.1 | `../manager-training-v1/` | **禁止** |
+| **Ver.2（本フォルダ）** | `manager-training/` | 編集可 |
 
-- Ver.1 公開URL: https://shimada-runbird.github.io/ranbird/manager-training-v1/
-- Ver.2 公開URL（予定）: https://shimada-runbird.github.io/ranbird/manager-training/
+公開URL: https://shimada-runbird.github.io/ranbird/manager-training/
 
-## 目的
+## 概要
 
-マネージャー研修資料 **Ver.2** を外部共有用 HTML/CSS で制作・公開する作業場所。
+営業会社ランバード向け・実務型マネージャー研修（14スライド・16:9 HTML）。
 
-## 基本ルール
+- `index.html` / `style.css` / `script.js` / `assets/`
+- 元コンセプト: `経営戦略/マネージャー研修資料_強い幹部層を作る.md`（Ver.2は営業会社仕様に再設計）
 
-1. **Ver.1 の `manager-training-v1/` は変更しない。**
-2. 編集対象は原則 `index.html` と `styles.css`。
-3. 外部共有前提のため、個人名・未公開評価・機密は入れない。
-4. 更新後は `ranbird` リポジトリへ push。
+## ルール
 
-## 元資料
-
-`経営戦略/マネージャー研修資料_強い幹部層を作る.md`（Ver.2 用に改訂する場合は別ファイル推奨）
+- 1スライド1メッセージ・図解多め
+- 「勉強になった」で終わらせず「明日から行動が変わる」構成
+- 外部共有時は個人名・機密を入れない
