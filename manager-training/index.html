@@ -6,8 +6,17 @@
     <title>マネージャー研修資料 | 強い幹部層を作る</title>
     <meta name="description" content="株式会社ランバードのマネージャー・幹部候補向け研修資料を図解した外部共有ページです。">
     <link rel="stylesheet" href="styles.css">
+    <link rel="canonical" href="https://shimada-runbird.github.io/ranbird/manager-training/">
+    <meta property="og:title" content="マネージャー研修資料 | 強い幹部層を作る">
+    <meta property="og:description" content="100億を目指す会社に必要なマネージャー・幹部候補向け研修資料（図解版）">
+    <meta property="og:url" content="https://shimada-runbird.github.io/ranbird/manager-training/">
   </head>
   <body>
+    <div class="share-bar" role="note">
+      <span class="share-bar__label">外部共有URL</span>
+      <a class="share-bar__url" href="https://shimada-runbird.github.io/ranbird/manager-training/" id="public-url">https://shimada-runbird.github.io/ranbird/manager-training/</a>
+      <button type="button" class="share-bar__copy" id="copy-url-btn">URLをコピー</button>
+    </div>
     <div class="deck">
       <header class="topbar">
         <div class="brand">RANBIRD MANAGER TRAINING</div>
@@ -580,7 +589,23 @@
         </div>
       </section>
 
-      <p class="footer-note">RANBIRD Manager Training / 強い幹部層を作る</p>
+      <p class="footer-note">RANBIRD Manager Training / 強い幹部層を作る · <a href="https://shimada-runbird.github.io/ranbird/manager-training/">共有URL</a></p>
     </div>
+    <script>
+      (function () {
+        var btn = document.getElementById("copy-url-btn");
+        var url = document.getElementById("public-url");
+        if (!btn || !url) return;
+        btn.addEventListener("click", function () {
+          var text = url.href;
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(function () {
+              btn.textContent = "コピーしました";
+              setTimeout(function () { btn.textContent = "URLをコピー"; }, 2000);
+            });
+          }
+        });
+      })();
+    </script>
   </body>
 </html>

@@ -20,7 +20,50 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 118px;
+  scroll-padding-top: 158px;
+}
+
+.share-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px 14px;
+  padding: 8px 16px;
+  background: var(--navy);
+  color: #fff;
+  font-size: 0.82rem;
+}
+
+.share-bar__label {
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.share-bar__url {
+  color: #fff;
+  text-decoration: underline;
+  word-break: break-all;
+}
+
+.share-bar__copy {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.share-bar__copy:hover {
+  background: rgba(255, 255, 255, 0.22);
 }
 
 body {
@@ -40,7 +83,7 @@ a {
 .deck {
   max-width: 1180px;
   margin: 0 auto;
-  padding: 108px 22px 80px;
+  padding: 118px 22px 80px;
 }
 
 .topbar {
