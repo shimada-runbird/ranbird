@@ -1,4 +1,4 @@
-# マネージャー研修資料 Ver.2（実務型）
+# マネージャー研修資料 Ver.2 — 管理職OS
 
 ## 公開URL
 
@@ -8,9 +8,9 @@ https://shimada-runbird.github.io/ranbird/manager-training/
 
 ```
 manager-training/
-├── index.html      # 14スライド（16:9）
+├── index.html      # 15スライド（16:9）
 ├── style.css
-├── script.js       # スクロール表示・アクティブナビ
+├── script.js       # ナビ自動生成・スクロール表示
 └── assets/
     └── ranbird-logo.svg
 ```
@@ -22,11 +22,15 @@ manager-training/
 | Ver.1 確定版 | https://shimada-runbird.github.io/ranbird/manager-training-v1/ | 上書き禁止 |
 | **Ver.2** | このフォルダ | 編集可 |
 
+## スライド構成（15）
+
+1. 表紙 · 2. 冒頭メッセージ · 3. 結論 · 4. ダメ管理職が会社を壊す · 5. 比較 · 6. 6つの仕事 · 7. KPIダッシュボード · 8. プレイヤー卒業 · 9. 行動ループ · 10. AI管理職 · 11. 育成の型 · 12. NG · 13. ケースワーク · 14. チェックリスト · 15. クロージング
+
 ## デザイン
 
-- Apple風・白ベース・ネイビー・オレンジ
-- 1ページ1メッセージ・16:9スライド
-- 営業会社向け実務型（精神論のみ禁止）
+- 白×ネイビー×オレンジ（危機・NGは赤アクセント）
+- 1ページ1メッセージ・余白多め
+- KPIはダッシュボードUI · AIはテック感
 
 ## 更新
 
