@@ -1,483 +1,611 @@
 <!doctype html>
 <html lang="ja">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MANAGER TRAINING Ver.2 | 強い幹部層を作る — 株式会社ランバード</title>
-  <meta name="description" content="営業会社ランバード向け・実務型マネージャー育成研修。100億企業を作る管理職組織へ。">
-  <link rel="canonical" href="https://shimada-runbird.github.io/ranbird/manager-training/">
-  <meta property="og:title" content="MANAGER TRAINING Ver.2 | ランバード">
-  <meta property="og:url" content="https://shimada-runbird.github.io/ranbird/manager-training/">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="version-bar">
-    <span>Ver.2 実務型マネージャー研修</span>
-    <span>Ver.1固定版 → <a href="https://shimada-runbird.github.io/ranbird/manager-training-v1/">manager-training-v1</a></span>
-    <a class="share-bar__url" href="https://shimada-runbird.github.io/ranbird/manager-training/" id="public-url" style="color:#fcd34d">共有URL</a>
-    <button type="button" id="copy-url-btn" style="border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.1);color:#fff;border-radius:999px;padding:4px 10px;font-size:.7rem;font-weight:700;cursor:pointer">URLコピー</button>
-  </div>
-
-  <nav class="deck-nav" aria-label="スライド目次">
-    <span class="deck-nav__brand">RANBIRD · MANAGER TRAINING v2</span>
-    <div class="deck-nav__links">
-      <a href="#s01">表紙</a>
-      <a href="#s02">結論</a>
-      <a href="#s03">重要性</a>
-      <a href="#s04">比較</a>
-      <a href="#s05">役割</a>
-      <a href="#s06">KPI</a>
-      <a href="#s07">卒業</a>
-      <a href="#s08">ループ</a>
-      <a href="#s09">AI</a>
-      <a href="#s10">育成</a>
-      <a href="#s11">NG</a>
-      <a href="#s12">ケース</a>
-      <a href="#s13">明日</a>
-      <a href="#s14">締め</a>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>マネージャー研修資料 | 強い幹部層を作る</title>
+    <meta name="description" content="株式会社ランバードのマネージャー・幹部候補向け研修資料を図解した外部共有ページです。">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="canonical" href="https://shimada-runbird.github.io/ranbird/manager-training/">
+    <meta property="og:title" content="マネージャー研修資料 | 強い幹部層を作る">
+    <meta property="og:description" content="100億を目指す会社に必要なマネージャー・幹部候補向け研修資料（図解版）">
+    <meta property="og:url" content="https://shimada-runbird.github.io/ranbird/manager-training/">
+  </head>
+  <body>
+    <div class="share-bar" role="note">
+      <span class="share-bar__label">外部共有URL</span>
+      <a class="share-bar__url" href="https://shimada-runbird.github.io/ranbird/manager-training/" id="public-url">https://shimada-runbird.github.io/ranbird/manager-training/</a>
+      <button type="button" class="share-bar__copy" id="copy-url-btn">URLをコピー</button>
     </div>
-    <span class="deck-nav__progress" id="slide-progress">1 / 14</span>
-  </nav>
+    <div class="deck">
+      <header class="topbar">
+        <div class="brand">RANBIRD MANAGER TRAINING</div>
+        <nav class="nav" aria-label="目次">
+          <a href="#purpose">目的</a>
+          <a href="#definition">定義</a>
+          <a href="#standard">基準</a>
+          <a href="#growth">成長曲線</a>
+          <a href="#new-business">新規事業</a>
+          <a href="#roles">役割</a>
+          <a href="#mind">マインド</a>
+          <a href="#action">行動</a>
+          <a href="#work">ワーク</a>
+        </nav>
+      </header>
 
-  <main class="deck">
-
-    <!-- 1 表紙 -->
-    <section class="slide slide--cover" id="s01" data-slide="01">
-      <span class="slide-num">01 / 14</span>
-      <div>
-        <img class="cover-logo" src="assets/ranbird-logo.svg" alt="RANBIRD" width="180" height="48">
-        <span class="cover-tag">Ver.2 · 実務型マネージャー研修</span>
-        <h1 class="cover-title">
-          強い幹部層を作る
-          <span>MANAGER TRAINING</span>
-        </h1>
-        <p class="lead" style="margin-top:16px;font-weight:700;color:var(--navy)">100億企業を作る管理職へ</p>
-        <div class="cover-quote">
-          <p>会社の成長速度は、<br>マネージャーの質で決まる。</p>
-        </div>
-        <div class="ranbird-pills" style="margin-top:20px">
-          <span class="ranbird-pill" style="background:rgba(15,29,63,.06);color:var(--navy);border:1px solid var(--line)">IT</span>
-          <span class="ranbird-pill" style="background:rgba(15,29,63,.06);color:var(--navy);border:1px solid var(--line)">福祉FC</span>
-          <span class="ranbird-pill" style="background:rgba(15,29,63,.06);color:var(--navy);border:1px solid var(--line)">AI</span>
-          <span class="ranbird-pill" style="background:rgba(15,29,63,.06);color:var(--navy);border:1px solid var(--line)">約40名 → 全国展開</span>
-        </div>
-      </div>
-      <aside class="cover-visual">
-        <strong>100億</strong>
-        <span>プレイヤー依存 → 管理者が再現性高く成果を作る会社へ</span>
-      </aside>
-    </section>
-
-    <!-- 2 結論 -->
-    <section class="slide" id="s02" data-slide="02">
-      <span class="slide-num">02 / 14</span>
-      <div class="slide-inner">
-        <div class="slide-head">
-          <p class="eyebrow">Conclusion</p>
-          <h2>この研修で伝える結論 — 3つだけ</h2>
-          <p class="lead">感想で終わらせない。明日から管理の仕方が変わる前提で話す。</p>
-        </div>
-        <div class="pill-grid">
-          <article class="pill-card">
-            <span class="pill-card__num">01</span>
-            <h3>プレイヤーの延長ではダメ</h3>
-            <p>自分が売れる＝組織が強い、ではない。管理職は「勝たせる」仕事。</p>
-          </article>
-          <article class="pill-card">
-            <span class="pill-card__num">02</span>
-            <h3>管理とは数字と育成</h3>
-            <p>頑張りではなくKPI。数字を見て、人を育て、仕組みに落とす。</p>
-          </article>
-          <article class="pill-card">
-            <span class="pill-card__num">03</span>
-            <h3>再現性を作れる人が幹部</h3>
-            <p>属人化をなくし、誰が入っても一定品質の成果が出る状態を作る。</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- 3 重要性 -->
-    <section class="slide" id="s03" data-slide="03">
-      <span class="slide-num">03 / 14</span>
-      <div class="slide-inner">
-        <div class="slide-head">
-          <p class="eyebrow">Why Managers</p>
-          <h2>なぜ管理職が重要なのか</h2>
-          <p class="lead">100億企業になるには、社長依存では不可能。ランバードは今、進化の分岐点にいる。</p>
-        </div>
-        <div class="evolution">
-          <div class="evolution-step">
-            <h3>社長依存</h3>
-            <p>約40名・テレアポ中心。社長が全部見る限界。</p>
+      <section class="slide hero" id="cover">
+        <div>
+          <span class="eyebrow">Manager Training</span>
+          <h1>強い幹部層を作る</h1>
+          <p class="lead">100億を目指す会社に必要なのは、社長の機嫌を取る人ではなく、会社の成長課題を解決し、社長が次の意思決定に集中できる状態を作る人。</p>
+          <div class="pill-row">
+            <span class="pill">マネージャー育成</span>
+            <span class="pill">幹部候補育成</span>
+            <span class="pill">100億企業の基準</span>
           </div>
-          <span class="evolution-arrow">→</span>
-          <div class="evolution-step evolution-step--active">
-            <h3>管理職依存</h3>
-            <p>支店展開・福岡・全国。数字と育成を持つ管理職が要る。</p>
-          </div>
-          <span class="evolution-arrow">→</span>
-          <div class="evolution-step evolution-step--goal">
-            <h3>仕組み依存</h3>
-            <p>M&A・FC・AI運用。100億は「型」で回す。</p>
+          <div class="hero-metrics" aria-label="研修の重点">
+            <div>
+              <strong>3</strong>
+              <span>持ち帰る行動</span>
+            </div>
+            <div>
+              <strong>6</strong>
+              <span>求める役割</span>
+            </div>
+            <div>
+              <strong>10年</strong>
+              <span>100億への視点</span>
+            </div>
           </div>
         </div>
-        <p style="margin-top:14px;font-size:.78rem;color:var(--muted)">事業：IT（HP/LP/動画/MEO）・福祉（GH FC）・AI（AIO/LLMO/コンサル） — 3事業を同時に伸ばすには幹部の厚みが必須</p>
-      </div>
-    </section>
+        <aside class="hero-panel">
+          <p>Training Goal</p>
+          <div class="hero-number">100億</div>
+          <p>社長一人で見る会社から、幹部が会社の成長課題を解決する会社へ。</p>
+        </aside>
+      </section>
 
-    <!-- 4 比較 -->
-    <section class="slide" id="s04" data-slide="04">
-      <span class="slide-num">04 / 14</span>
-      <div class="slide-inner">
-        <div class="slide-head">
-          <p class="eyebrow">Compare</p>
-          <h2>ダメ管理職 vs 強い管理職</h2>
-          <p class="lead">見た瞬間、自分がどちらか分かるようにする。</p>
-        </div>
-        <div class="compare">
-          <div class="compare-col compare-col--bad">
-            <div class="compare-head">ダメ管理職</div>
-            <ul class="compare-list">
-              <li>自分で売る（プレイヤー残留）</li>
-              <li>感情で怒る・詰めるだけ</li>
-              <li>部下を放置</li>
-              <li>数字を見ない</li>
-              <li>属人化・お気に入り</li>
-              <li>指示が曖昧</li>
-              <li>空気を悪くするのに放置</li>
-            </ul>
-          </div>
-          <div class="compare-col compare-col--good">
-            <div class="compare-head">強い管理職</div>
-            <ul class="compare-list">
-              <li>部下を勝たせる</li>
-              <li>再現性を作る（型・SOP）</li>
-              <li>数字で見る・週次で直す</li>
-              <li>教育する（見せる→FB）</li>
-              <li>仕組み化・AI活用</li>
-              <li>組織文化を守る</li>
-              <li>採用と定着まで見る</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 5 役割6つ -->
-    <section class="slide" id="s05" data-slide="05">
-      <span class="slide-num">05 / 14</span>
-      <div class="slide-inner">
-        <div class="slide-head">
-          <p class="eyebrow">Six Roles</p>
-          <h2>マネージャーの役割 6つ</h2>
-          <p class="lead">営業会社の管理職が毎週やるべき領域を、カードで固定する。</p>
-        </div>
-        <div class="role-grid">
-          <article class="role-card">
-            <span class="role-card__tag">01</span>
-            <h3>売上責任</h3>
-            <ul><li>部署粗利</li><li>KPI・達成率</li><li>審査OK・成約</li></ul>
-          </article>
-          <article class="role-card">
-            <span class="role-card__tag">02</span>
-            <h3>人材育成</h3>
-            <ul><li>ロープレ</li><li>同行・録音レビュー</li><li>FBの型</li></ul>
-          </article>
-          <article class="role-card">
-            <span class="role-card__tag">03</span>
-            <h3>組織文化</h3>
-            <ul><li>空気・ルール</li><li>価値観の共有</li><li>公平な評価</li></ul>
-          </article>
-          <article class="role-card">
-            <span class="role-card__tag">04</span>
-            <h3>生産性改善</h3>
-            <ul><li>無駄削減</li><li>AI活用</li><li>テンプレ整備</li></ul>
-          </article>
-          <article class="role-card">
-            <span class="role-card__tag">05</span>
-            <h3>採用</h3>
-            <ul><li>見極め</li><li>定着フォロー</li><li>戦力化速度</li></ul>
-          </article>
-          <article class="role-card">
-            <span class="role-card__tag">06</span>
-            <h3>仕組み化</h3>
-            <ul><li>属人化解消</li><li>SOP・チェックリスト</li><li>ナレッジ蓄積</li></ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- 6 KPI -->
-    <section class="slide" id="s06" data-slide="06">
-      <span class="slide-num">06 / 14</span>
-      <div class="slide-inner">
-        <div class="slide-head">
-          <p class="eyebrow">KPI</p>
-          <h2>マネージャーKPI — ランバード仕様</h2>
-          <p class="lead">管理職は「頑張り」ではなく「数字」で評価する。</p>
-        </div>
-        <div class="kpi-layout">
-          <table class="kpi-table">
-            <thead>
-              <tr><th>領域</th><th>指標（例）</th><th>管理の意味</th></tr>
-            </thead>
-            <tbody>
-              <tr><td><strong>売上</strong></td><td>部署粗利・達成率</td><td>予算の穴を週次で塞ぐ</td></tr>
-              <tr><td><strong>生産性</strong></td><td>アポ率・受注率・粗利/人</td><td>テレアポ×店舗営業の歩留まり</td></tr>
-              <tr><td><strong>育成</strong></td><td>新人戦力化・ロープレ数・録音レビュー</td><td>「見た」ではなく「直した」回数</td></tr>
-              <tr><td><strong>組織</strong></td><td>離職率・欠勤・雰囲気スコア</td><td>エースの毒を放置しない</td></tr>
-            </tbody>
-          </table>
-          <div class="chart-bars" aria-hidden="true">
-            <p style="margin:0 0 8px;font-size:.72rem;font-weight:800;color:var(--navy)">達成イメージ（部署）</p>
-            <div class="chart-row"><span>売上</span><div class="chart-track"><div class="chart-fill" style="--w:78%"></div></div><span>78%</span></div>
-            <div class="chart-row"><span>育成</span><div class="chart-track"><div class="chart-fill" style="--w:65%"></div></div><span>65%</span></div>
-            <div class="chart-row"><span>生産性</span><div class="chart-track"><div class="chart-fill" style="--w:82%"></div></div><span>82%</span></div>
-            <div class="chart-row"><span>組織</span><div class="chart-track"><div class="chart-fill" style="--w:70%"></div></div><span>70%</span></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 7 プレイヤー卒業 -->
-    <section class="slide" id="s07" data-slide="07">
-      <span class="slide-num">07 / 14</span>
-      <div class="slide-inner">
-        <div class="slide-head">
-          <p class="eyebrow">Graduation</p>
-          <h2>プレイヤー卒業</h2>
-        </div>
-        <div class="shock-box">
+      <section class="slide compact-slide" id="standard">
+        <div class="section-head">
           <div>
-            <p class="shock-title">
-              「俺がやった方が早い」
-              <em>は、組織崩壊の始まり。</em>
-            </p>
-            <p style="font-size:.85rem;color:var(--muted);margin-top:16px">IT営業・テレアポ組織では特に顕著。エースが管理を拒否すると、新人が育たず、支店が増えない。</p>
+            <span class="eyebrow">Training Standard</span>
+            <h2>この研修で伝える結論</h2>
           </div>
-          <div class="ladder">
-            <div class="ladder-rung">社長型 — 全部自分で決める</div>
-            <div class="ladder-rung">エース営業型 — 自分の数字だけ守る</div>
-            <div class="ladder-rung ladder-rung--target">育成型マネージャー — チームの粗利を伸ばす</div>
+          <p>評価されるマネージャーは、問題を減らし、プラスを増やし、未来の判断材料を作る。</p>
+        </div>
+        <div class="principle-map">
+          <div class="principle-card">
+            <span>01</span>
+            <h3>問題を減らす</h3>
+            <p>クレーム、手戻り、判断待ち、属人化、報告漏れを減らす。</p>
+          </div>
+          <div class="arrow">→</div>
+          <div class="principle-card green">
+            <span>02</span>
+            <h3>プラスを増やす</h3>
+            <p>売上、粗利、人材、再現性、顧客満足、仕組みを増やす。</p>
+          </div>
+          <div class="arrow">→</div>
+          <div class="principle-card orange">
+            <span>03</span>
+            <h3>社長の時間を作る</h3>
+            <p>判断材料を整理し、社長が未来の意思決定に集中できる状態を作る。</p>
           </div>
         </div>
-      </div>
-    </section>
+        <div class="callout">
+          <strong>研修のゴール：</strong>
+          「自分の業務をこなす人」から「会社の成長課題を解決する人」へ、視点を引き上げる。
+        </div>
+      </section>
 
-    <!-- 8 行動ループ -->
-    <section class="slide" id="s08" data-slide="08">
-      <span class="slide-num">08 / 14</span>
-      <div class="slide-inner">
-        <div class="slide-head">
-          <p class="eyebrow">Action Loop</p>
-          <h2>強い組織の行動ループ</h2>
-          <p class="lead">日次・週次・月次で、管理行動をカレンダーに落とす。</p>
+      <section class="slide" id="purpose">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Purpose</span>
+            <h2>この研修の目的</h2>
+          </div>
+          <p>マネージャー、マネージャー候補のレベルを上げ、強い幹部層を作る。</p>
         </div>
-        <div class="loop-grid">
-          <div class="loop-col">
-            <h3>毎日</h3>
-            <div class="loop-item">数字確認（朝イチ15分）</div>
-            <div class="loop-item">5〜15分ロープレ（最低1本）</div>
-            <div class="loop-item">声掛け・現場の温度チェック</div>
+        <div class="big-message">
+          <h3>目的は「社長に気に入られる人」を作ることではない。</h3>
+          <p>会社の成長課題を解決し、売上、利益、人、仕組みを増やせる人材を育てること。社長が次の意思決定に集中できる状態を作ること。</p>
+        </div>
+        <div class="grid" style="margin-top: 24px;">
+          <div class="card accent">
+            <h3>問題を減らす</h3>
+            <p>困り事、クレーム、手戻り、判断待ちを減らす。</p>
           </div>
-          <div class="loop-col">
-            <h3>毎週</h3>
-            <div class="loop-item">KPI面談（1on1 30分）</div>
-            <div class="loop-item">録音レビュー（詰め・クロージング）</div>
-            <div class="loop-item">課題整理 → 翌週の打ち手</div>
+          <div class="card accent green">
+            <h3>プラスを増やす</h3>
+            <p>売上、粗利、顧客満足、人材、仕組みを増やす。</p>
           </div>
-          <div class="loop-col">
-            <h3>毎月</h3>
-            <div class="loop-item">キャリア面談</div>
-            <div class="loop-item">改善計画（SOP更新）</div>
-            <div class="loop-item">採用・定着の振り返り</div>
+          <div class="card accent orange">
+            <h3>未来を作る</h3>
+            <p>目先の対応だけでなく、次に困らない状態を作る。</p>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- 9 AI -->
-    <section class="slide" id="s09" data-slide="09">
-      <span class="slide-num">09 / 14</span>
-      <div class="slide-inner">
-        <div class="slide-head">
-          <p class="eyebrow">AI Manager</p>
-          <h2>AI管理職になる — ランバード独自</h2>
-          <p class="lead">管理職がAIを使えない ＝ 組織の生産性損失。ツールごとに用途を固定する。</p>
+      <section class="slide" id="definition">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Definition</span>
+            <h2>100億企業のマネージャー定義</h2>
+          </div>
+          <p>マネージャーは作業者の延長ではなく、会社の成長課題を解決する人。</p>
         </div>
-        <div class="ai-grid">
-          <article class="ai-card">
-            <h3>ChatGPT</h3>
-            <ul>
-              <li>面談準備・質問設計</li>
-              <li>育成相談の壁打ち</li>
-              <li>問題社員対応の整理</li>
+        <div class="split">
+          <div class="quote">
+            <p>Key Message</p>
+            <strong>社長の問題を解決する人から、会社の成長課題を解決する人へ。</strong>
+          </div>
+          <div class="card">
+            <ul class="list">
+              <li><span class="num">1</span><span>会社の成長課題を自分ごとで捉える。</span></li>
+              <li><span class="num">2</span><span>問題を先読みして潰す。</span></li>
+              <li><span class="num">3</span><span>売上、利益、人、仕組みのどれかを増やす。</span></li>
+              <li><span class="num">4</span><span>社長に判断材料を正確に渡す。</span></li>
+              <li><span class="num">5</span><span>社長が未来の意思決定に集中できる状態を作る。</span></li>
             </ul>
-          </article>
-          <article class="ai-card">
-            <h3>Cursor</h3>
-            <ul>
-              <li>提案資料の改善</li>
-              <li>SOP・チェックリスト作成</li>
-              <li>営業資料の標準化</li>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" id="growth">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Growth Curve</span>
+            <h2>今後10年間の会社の成長曲線</h2>
+          </div>
+          <p>売上だけでなく、社員数、代理店数、ストック売上、組織課題が同時に大きくなる。</p>
+        </div>
+        <table class="table compact">
+          <thead>
+            <tr>
+              <th>時期</th>
+              <th>理想売上</th>
+              <th>社員数</th>
+              <th>代理店数</th>
+              <th>ストック売上</th>
+              <th>主な課題</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>現在</td>
+              <td>約4億円</td>
+              <td>約35名</td>
+              <td>整備前</td>
+              <td>月約650万円</td>
+              <td>商品、営業、制作、運用の型を揃える</td>
+            </tr>
+            <tr>
+              <td>1年後</td>
+              <td>5.8億円</td>
+              <td>43名</td>
+              <td>10社</td>
+              <td>月1,000万円</td>
+              <td>マネージャー3名、サブマネージャー5名体制を作る</td>
+            </tr>
+            <tr>
+              <td>3年後</td>
+              <td>9〜10億円</td>
+              <td>60名以上</td>
+              <td>30社</td>
+              <td>月2,500万円</td>
+              <td>拠点別PL、制作体制、月額運用、新規事業検証を安定させる</td>
+            </tr>
+            <tr>
+              <td>5年後</td>
+              <td>22億円</td>
+              <td>140〜170名</td>
+              <td>100社</td>
+              <td>月5,000万円</td>
+              <td>代理店網、SV、教育、品質管理、新規事業の勝ち筋を本格化する</td>
+            </tr>
+            <tr>
+              <td>7年後</td>
+              <td>60億円</td>
+              <td>200〜260名</td>
+              <td>100社以上</td>
+              <td>月1億円以上</td>
+              <td>M&amp;A、FC、事業責任者、管理部門を強化する</td>
+            </tr>
+            <tr>
+              <td>10年後</td>
+              <td>100億円</td>
+              <td>280〜350名</td>
+              <td>100社以上</td>
+              <td>月2億円以上</td>
+              <td>グループ経営、複数事業PL、幹部層の厚みを作る</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="timeline">
+          <div><span>現在</span><strong>型を揃える</strong></div>
+          <div><span>1年後</span><strong>管理職を作る</strong></div>
+          <div><span>3年後</span><strong>PLを安定させる</strong></div>
+          <div><span>5年後</span><strong>代理店網を作る</strong></div>
+          <div><span>10年後</span><strong>幹部層で経営する</strong></div>
+        </div>
+        <div class="big-message" style="margin-top: 22px;">
+          <h3>この成長曲線では、社長一人で判断できる範囲を必ず超える。</h3>
+          <p>だから、強いマネージャーと幹部層が必要になる。</p>
+        </div>
+      </section>
+
+      <section class="slide" id="new-business">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Growth Engines</span>
+            <h2>100億に必要な成長エンジン</h2>
+          </div>
+          <p>既存事業を伸ばすだけでは足りない。新規事業を育てられる幹部層が必要になる。</p>
+        </div>
+        <div class="big-message">
+          <h3>既存事業で利益と人材を作り、新規事業で次の柱を作る。</h3>
+          <p>思いつきで広げるのではなく、営業力、Web集客力、管理力、人材育成力を使って、再現性がある新規事業だけを伸ばす。</p>
+        </div>
+        <div class="grid three" style="margin-top: 24px;">
+          <div class="card accent">
+            <h3>既存事業を強くする</h3>
+            <p>IT、福祉、既存収益を伸ばし、売上、粗利、営業力、マネージャー人材、月額ストック収入を作る。</p>
+            <div class="pill-row">
+              <span class="pill">売上</span>
+              <span class="pill">粗利</span>
+              <span class="pill">人材</span>
+              <span class="pill">ストック</span>
+            </div>
+          </div>
+          <div class="card accent green">
+            <h3>新規事業を育てる</h3>
+            <p>次の売上の柱、FC・代理店・ロイヤリティ収入、地域展開、M&amp;Aにつながる選択肢を作る。</p>
+            <div class="pill-row">
+              <span class="pill">FC</span>
+              <span class="pill">代理店</span>
+              <span class="pill">ロイヤリティ</span>
+              <span class="pill">M&amp;A</span>
+            </div>
+          </div>
+          <div class="card accent orange">
+            <h3>例：葬儀FC</h3>
+            <p>最初から大きく張らず、Web集客、提携先、送客、成約、品質管理、電話対応の再現性を確認してから広げる。</p>
+            <div class="pill-row">
+              <span class="pill">Web集客</span>
+              <span class="pill">送客</span>
+              <span class="pill">品質管理</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Two Values</span>
+            <h2>会社に必要な2つの価値</h2>
+          </div>
+          <p>どちらが上ではない。100億企業には両方が必要。</p>
+        </div>
+        <div class="grid two">
+          <div class="card accent green">
+            <h3>お金を作る人</h3>
+            <p>プレーヤー、執行する人、執行役。売上、粗利、契約、顧客、成果を直接持ってくる。</p>
+            <div class="pill-row">
+              <span class="pill">売上</span>
+              <span class="pill">粗利</span>
+              <span class="pill">契約</span>
+              <span class="pill">顧客</span>
+            </div>
+          </div>
+          <div class="card accent">
+            <h3>仕組みを作る人</h3>
+            <p>マネージャー、管理する人、取締役。人が成果を出せる状態、教育、管理、標準化を作る。</p>
+            <div class="pill-row">
+              <span class="pill">教育</span>
+              <span class="pill">管理</span>
+              <span class="pill">標準化</span>
+              <span class="pill">再現性</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" id="roles">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Six Roles</span>
+            <h2>マネージャーに求める6つの役割</h2>
+          </div>
+          <p>強い幹部層は、成果、人、仕組み、共有の全てを扱う。</p>
+        </div>
+        <div class="grid">
+          <div class="card accent">
+            <h3>成果責任を持つ</h3>
+            <p>担当範囲の売上、粗利、品質、納期、人の成長に責任を持つ。</p>
+          </div>
+          <div class="card accent orange">
+            <h3>問題を先読みする</h3>
+            <p>困りそうなこと、詰まりそうなこと、クレームになりそうなことを先に潰す。</p>
+          </div>
+          <div class="card accent green">
+            <h3>仕組みを作る</h3>
+            <p>誰がやっても一定品質になるよう、資料、ルール、テンプレートを整える。</p>
+          </div>
+          <div class="card accent">
+            <h3>人を育てる</h3>
+            <p>作業だけでなく、考え方、判断基準、優先順位を教える。</p>
+          </div>
+          <div class="card accent orange">
+            <h3>正確に共有する</h3>
+            <p>事実と感情を分け、良い話も悪い話も早く正確に共有する。</p>
+          </div>
+          <div class="card accent green">
+            <h3>社長の時間を作る</h3>
+            <p>判断材料を整理し、問題を先回りで解決し、社長が未来の意思決定に集中できる状態を作る。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" id="action">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Manager Action Loop</span>
+            <h2>強いマネージャーの行動ループ</h2>
+          </div>
+          <p>ただ頑張るのではなく、問題を見つけ、仕組みに変え、チームへ定着させる。</p>
+        </div>
+        <div class="loop">
+          <div class="loop-item">
+            <span>1</span>
+            <h3>見る</h3>
+            <p>数字、人、品質、納期、クレーム、雰囲気を見る。</p>
+          </div>
+          <div class="loop-item">
+            <span>2</span>
+            <h3>分ける</h3>
+            <p>事実と感情、問題と課題、緊急と重要を分ける。</p>
+          </div>
+          <div class="loop-item">
+            <span>3</span>
+            <h3>決める</h3>
+            <p>誰が、いつまでに、何を変えるかを決める。</p>
+          </div>
+          <div class="loop-item">
+            <span>4</span>
+            <h3>仕組みにする</h3>
+            <p>チェックリスト、テンプレート、教育、報告ルールに変える。</p>
+          </div>
+          <div class="loop-item">
+            <span>5</span>
+            <h3>共有する</h3>
+            <p>社長、上司、チームへ早く正確に共有する。</p>
+          </div>
+        </div>
+        <div class="big-message" style="margin-top: 24px;">
+          <h3>マネージャーの価値は「自分が動いた量」ではなく「チームが成果を出せる状態を作った量」。</h3>
+          <p>自分だけで抱えず、部下、他部署、AI、テンプレート、外部パートナーを使って成果が出る構造を作る。</p>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Kakyo J Management</span>
+            <h2>負けない組織を作るマネジメント</h2>
+          </div>
+          <p>強い組織は、1人のスーパーマンに依存しない。70%できる人材を複数育て、チーム戦で成果を出す。</p>
+        </div>
+        <div class="grid two">
+          <div class="card accent">
+            <h3>70%人材を複数育てる</h3>
+            <p>最初から100%を求めず、30%のロスを教育コストとして受け入れる。複数人が70%できれば、1人依存を超えられる。</p>
+          </div>
+          <div class="card accent orange">
+            <h3>育成の3大コストを払う</h3>
+            <p>人を育てるには、お金、時間、メンタルのコストがかかる。マネージャーはこのコストを理解して部下を育てる。</p>
+          </div>
+          <div class="card accent green">
+            <h3>道・法・術・器で見る</h3>
+            <p>成果が出ない理由を、目的、達成ルート、スキル、道具に分けて見立てる。気合いだけで片付けない。</p>
+          </div>
+          <div class="card accent">
+            <h3>1人で抱え込まない</h3>
+            <p>社長、他部署、制作、管理、AI、テンプレート、外部パートナーを使い、チーム戦で負けにくい組織を作る。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Evaluation</span>
+            <h2>レベル別に求めること</h2>
+          </div>
+          <p>役職が上がるほど、自分の成果からチーム・会社の成果へ責任範囲が広がる。</p>
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>レベル</th>
+              <th>求めること</th>
+              <th>評価される状態</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>プレーヤー</td>
+              <td>自分の売上、自分の成果、自分の顧客満足に責任を持つ。</td>
+              <td>売上と粗利を作れる。</td>
+            </tr>
+            <tr>
+              <td>サブマネージャー候補</td>
+              <td>自分の成果に加えて、後輩やチームの小さな問題にも関わる。</td>
+              <td>周囲の成果に影響を出せる。</td>
+            </tr>
+            <tr>
+              <td>マネージャー</td>
+              <td>チームの数字、人、品質、納期、雰囲気に責任を持つ。</td>
+              <td>チームで成果を出せる。</td>
+            </tr>
+            <tr>
+              <td>幹部</td>
+              <td>部署を超えて会社全体の成長課題を見つけ、仕組み、人材、数字を作る。</td>
+              <td>社長が未来の意思決定に集中できる。</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="slide" id="mind">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Mindset</span>
+            <h2>大事なマインド</h2>
+          </div>
+          <p>スキルより先に、上のマインドが組織に伝染する。</p>
+        </div>
+        <div class="grid">
+          <div class="card accent green">
+            <h3>ポジティブ思考</h3>
+            <p>できない理由ではなく、できる方法を考える。不満で止まらず、改善案まで出す。</p>
+          </div>
+          <div class="card accent">
+            <h3>自責思考</h3>
+            <p>他人や環境だけのせいにしない。自分にできたこと、次に改善できることを考える。</p>
+          </div>
+          <div class="card accent orange">
+            <h3>経営者マインド</h3>
+            <p>自分の都合だけでなく、会社、顧客、部下、未来の組織にとって何が良いかを考える。</p>
+          </div>
+        </div>
+        <div class="big-message" style="margin-top: 24px;">
+          <h3>組織は上から腐っていく</h3>
+          <p>上が感情的、他責、会社より自分優先だと、下もそうなる。上がポジティブ、自責、会社寄り、問題解決型だと、組織も強くなる。</p>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Good / Bad</span>
+            <h2>評価が上がる行動・下がる行動</h2>
+          </div>
+          <p>給与は、会社の問題を減らし、会社のプラスを増やす人に上がっていく。</p>
+        </div>
+        <div class="grid two">
+          <div class="card accent green">
+            <h3>評価が上がる</h3>
+            <ul class="list">
+              <li><span class="num">1</span><span>社長や上司の問題を減らす。</span></li>
+              <li><span class="num">2</span><span>売上、粗利、顧客、仕組みを増やす。</span></li>
+              <li><span class="num">3</span><span>感情で仕事をせず、正確に共有する。</span></li>
+              <li><span class="num">4</span><span>同僚、部下からの信頼が厚い。</span></li>
+              <li><span class="num">5</span><span>自分から考えて発信する。</span></li>
             </ul>
-          </article>
-          <article class="ai-card">
-            <h3>Claude Code</h3>
-            <ul>
-              <li>ログ・データ分析</li>
-              <li>業務自動化の設計</li>
-              <li>レポート整形</li>
+          </div>
+          <div class="card accent red">
+            <h3>評価が下がる</h3>
+            <ul class="list">
+              <li><span class="num">1</span><span>社長や上司の問題を増やす。</span></li>
+              <li><span class="num">2</span><span>同じ問題を何度も起こす。</span></li>
+              <li><span class="num">3</span><span>事実と感情を混ぜて報告する。</span></li>
+              <li><span class="num">4</span><span>他責で、できない理由ばかり探す。</span></li>
+              <li><span class="num">5</span><span>言われたことだけをやる。</span></li>
             </ul>
-          </article>
-          <article class="ai-card">
-            <h3>PLAUD</h3>
-            <ul>
-              <li>商談・面談の分析</li>
-              <li>成約・NGパターン抽出</li>
-              <li>ロープレ改善ネタ</li>
-            </ul>
-          </article>
+          </div>
         </div>
-        <p class="ai-banner">管理職の仕事 ＝ 人を育てる × 数字を見る × AIで仕組みを速く作る</p>
-      </div>
-    </section>
+      </section>
 
-    <!-- 10 育成の型 -->
-    <section class="slide" id="s10" data-slide="10">
-      <span class="slide-num">10 / 14</span>
-      <div class="slide-inner">
-        <div class="slide-head">
-          <p class="eyebrow">Coaching Model</p>
-          <h2>部下育成の型 — 実務レベル</h2>
-          <p class="lead">テレアポ・詰め・クロージングすべて同じ型。言っただけで終わらせない。</p>
+      <section class="slide compact-slide">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Tomorrow Checklist</span>
+            <h2>明日から変えるチェックリスト</h2>
+          </div>
+          <p>研修後に、各マネージャー候補がすぐ行動へ移すための確認項目。</p>
         </div>
-        <div class="coach-flow">
-          <div class="coach-step"><span>1</span>見せる</div>
-          <span class="coach-arrow">→</span>
-          <div class="coach-step"><span>2</span>やらせる</div>
-          <span class="coach-arrow">→</span>
-          <div class="coach-step"><span>3</span>FB</div>
-          <span class="coach-arrow">→</span>
-          <div class="coach-step"><span>4</span>改善</div>
-          <span class="coach-arrow">→</span>
-          <div class="coach-step"><span>5</span>再挑戦</div>
+        <div class="checklist">
+          <label><input type="checkbox"> 自分の担当範囲で、社長・上司の判断待ちを1つ減らす。</label>
+          <label><input type="checkbox"> チームの問題を1つ、事実と感情に分けて報告する。</label>
+          <label><input type="checkbox"> 後輩が迷わないチェックリストやテンプレートを1つ作る。</label>
+          <label><input type="checkbox"> 売上、粗利、品質、納期、人の成長のどれを伸ばすか決める。</label>
+          <label><input type="checkbox"> 1週間以内に改善結果を上司へ共有する。</label>
         </div>
-        <p style="margin-top:18px;font-size:.8rem;color:var(--muted);text-align:center">録音 → 具体的に1点直す → 翌日もう一度。これを週5回以上。</p>
-      </div>
-    </section>
+      </section>
 
-    <!-- 11 NG -->
-    <section class="slide" id="s11" data-slide="11">
-      <span class="slide-num">11 / 14</span>
-      <div class="slide-inner">
-        <div class="slide-head">
-          <p class="eyebrow">NG</p>
-          <h2>NGマネジメント — 営業会社あるある</h2>
+      <section class="slide" id="work">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Workshop</span>
+            <h2>研修ワーク</h2>
+          </div>
+          <p>聞いて終わりではなく、自分の行動に落とす。</p>
         </div>
-        <div class="ng-grid">
-          <article class="ng-card">
-            <h3>感情マネジメント</h3>
-            <p>怒鳴る・冷やす・無視。数字が落ちる原因を人のせいにする。</p>
-          </article>
-          <article class="ng-card">
-            <h3>詰め文化だけ</h3>
-            <p>原因分析と改善がない。同じミスが繰り返される。</p>
-          </article>
-          <article class="ng-card">
-            <h3>放置</h3>
-            <p>新人を1人で戦場に出す。ロープレゼロで戦力化を期待する。</p>
-          </article>
-          <article class="ng-card">
-            <h3>人によって態度変更</h3>
-            <p>お気に入りとそうでない人で基準が違う。組織の信頼が壊れる。</p>
-          </article>
-          <article class="ng-card">
-            <h3>指示が曖昧</h3>
-            <p>「頑張って」「なんとかして」だけ。何をいつまでにやるか不明。</p>
-          </article>
-          <article class="ng-card">
-            <h3>エース放置</h3>
-            <p>数字は出るが空気を壊す人を放置。チーム全体の生産性が下がる。</p>
-          </article>
+        <div class="work">
+          <div class="card">
+            <h3>ワーク1：自分はどちらで価値を出すか</h3>
+            <p>お金を作る人、仕組みを作る人、両方。今の自分と、今後伸ばすべき方向を書く。</p>
+            <div class="blank"></div>
+          </div>
+          <div class="card">
+            <h3>ワーク2：社長・会社の課題を3つ書く</h3>
+            <p>今困っていること、または今後困りそうなこと。そのうち自分が解決できることを1つ選ぶ。</p>
+            <div class="blank"></div>
+          </div>
+          <div class="card">
+            <h3>ワーク3：明日から変える行動</h3>
+            <p>売上を増やす行動、問題を減らす行動、人や仕組みを強くする行動を書く。</p>
+            <div class="blank"></div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- 12 ケース -->
-    <section class="slide" id="s12" data-slide="12">
-      <span class="slide-num">12 / 14</span>
-      <div class="slide-inner">
-        <div class="slide-head">
-          <p class="eyebrow">Case Work</p>
-          <h2>ケースワーク — 考えて持ち帰る</h2>
-          <p class="lead">正解は1つではない。管理職としての打ち手を言語化する。</p>
+      <section class="slide">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Closing</span>
+            <h2>最後に伝えること</h2>
+          </div>
+          <p>マネージャー候補に持ち帰ってほしい一言。</p>
         </div>
-        <div class="case-grid">
-          <article class="case-card">
-            <p class="case-card__label">CASE 01</p>
-            <h3>数字が落ちた営業</h3>
-            <p>アポは取れているが受注率が2ヶ月低下。本人は「リストが悪い」と言う。</p>
-            <p class="case-prompt">→ 何を見て、誰と、何を直す？ 1週間の行動計画は？</p>
-          </article>
-          <article class="case-card">
-            <p class="case-card__label">CASE 02</p>
-            <h3>空気を悪くするエース</h3>
-            <p>個人の数字はトップ。後輩への口は悪く、会議で発言しない人が増えた。</p>
-            <p class="case-prompt">→ 放置する？ 役割変更？ 1on1で何を伝える？</p>
-          </article>
-          <article class="case-card">
-            <p class="case-card__label">CASE 03</p>
-            <h3>新人が辞めそう</h3>
-            <p>入社2ヶ月。ロープレが少なく、一人でテレアポしている。表情が曇っている。</p>
-            <p class="case-prompt">→ 明日から変える3アクションは？</p>
-          </article>
+        <div class="quote">
+          <p>Final Message</p>
+          <strong>今日から、自分の業務だけでなく、会社の成長課題を解決する側に回る。</strong>
         </div>
-      </div>
-    </section>
-
-    <!-- 13 明日から -->
-    <section class="slide" id="s13" data-slide="13">
-      <span class="slide-num">13 / 14</span>
-      <div class="slide-inner">
-        <div class="slide-head">
-          <p class="eyebrow">Action</p>
-          <h2>明日からやること — 管理を変える</h2>
-          <p class="lead">最低10項目。研修の翌日にチェックを入れる。</p>
+        <div class="grid three" style="margin-top: 24px;">
+          <div class="card accent">
+            <h3>問題を減らす</h3>
+            <p>社長、上司、チーム、顧客の困り事を減らす。</p>
+          </div>
+          <div class="card accent green">
+            <h3>プラスを増やす</h3>
+            <p>売上、利益、人、仕組み、信頼を増やす。</p>
+          </div>
+          <div class="card accent orange">
+            <h3>未来を作る</h3>
+            <p>100億企業に必要な幹部層へ成長する。</p>
+          </div>
         </div>
-        <div class="check-grid">
-          <label class="check-item"><input type="checkbox"> 部署の週次KPIを1枚にまとめ、毎朝見る</label>
-          <label class="check-item"><input type="checkbox"> 今日のロープレ対象者を1名決める</label>
-          <label class="check-item"><input type="checkbox"> 録音を1本聴き、改善点を3つ書いて伝える</label>
-          <label class="check-item"><input type="checkbox"> 部下の1on1を30分、数字ベースで実施</label>
-          <label class="check-item"><input type="checkbox"> 自分のプレイヤー仕事を1つ手放す（委任）</label>
-          <label class="check-item"><input type="checkbox"> 曖昧な指示を「誰が・何を・いつまでに」に直す</label>
-          <label class="check-item"><input type="checkbox"> AIで面談メモ or SOPを1つ作る</label>
-          <label class="check-item"><input type="checkbox"> チームの空気問題を1件、放置せず対話する</label>
-          <label class="check-item"><input type="checkbox"> 上司に週次報告を「事実＋次の打ち手」で送る</label>
-          <label class="check-item"><input type="checkbox"> 1週間後の結果をカレンダーに入れる</label>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- 14 締め -->
-    <section class="slide slide--closing" id="s14" data-slide="14">
-      <span class="slide-num" style="color:rgba(255,255,255,.4)">14 / 14</span>
-      <p class="eyebrow" style="color:var(--orange)">Closing</p>
-      <h2>会社の未来は、<br>管理職の質で決まる。</h2>
-      <p class="closing-sub">部下を勝たせられる人が、本当のマネージャー。</p>
-      <div class="ranbird-pills" style="justify-content:center;margin-top:28px">
-        <span class="ranbird-pill">行動が変わる研修</span>
-        <span class="ranbird-pill">100億企業</span>
-        <span class="ranbird-pill">株式会社ランバード</span>
-      </div>
-    </section>
-
-  </main>
-
-  <p class="footer-note">MANAGER TRAINING Ver.2 · 実務型 · <a href="https://shimada-runbird.github.io/ranbird/manager-training/">共有URL</a> · Ver.1は<a href="https://shimada-runbird.github.io/ranbird/manager-training-v1/">こちら</a></p>
-
-  <script src="script.js"></script>
-</body>
+      <p class="footer-note">RANBIRD Manager Training / 強い幹部層を作る · <a href="https://shimada-runbird.github.io/ranbird/manager-training/">共有URL</a></p>
+    </div>
+    <script>
+      (function () {
+        var btn = document.getElementById("copy-url-btn");
+        var url = document.getElementById("public-url");
+        if (!btn || !url) return;
+        btn.addEventListener("click", function () {
+          var text = url.href;
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(function () {
+              btn.textContent = "コピーしました";
+              setTimeout(function () { btn.textContent = "URLをコピー"; }, 2000);
+            });
+          }
+        });
+      })();
+    </script>
+  </body>
 </html>
