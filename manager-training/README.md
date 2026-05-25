@@ -1,20 +1,16 @@
-# マネージャー研修資料（外部共有）
+# マネージャー研修資料（作業用）
 
-## 公開URL
+## バージョン管理
 
-https://shimada-runbird.github.io/ranbird/manager-training/
+| バージョン | フォルダ | 公開URL | 状態 |
+|---|---|---|---|
+| **Ver.1（確定）** | `../manager-training-v1/` | https://shimada-runbird.github.io/ranbird/manager-training-v1/ | **上書き禁止** |
+| **Ver.2（これから）** | `manager-training/` | https://shimada-runbird.github.io/ranbird/manager-training/ | ここで編集 |
 
-## ファイル
+## Ver.2 を作るとき
 
-- `index.html` — 図解ページ本体
-- `styles.css` — スタイル
+1. **Ver.1（`manager-training-v1/`）は触らない**
+2. このフォルダ（`manager-training/`）の `index.html` / `styles.css` を編集
+3. `git push` で GitHub Pages に反映
 
-## 元資料
-
-`経営戦略/マネージャー研修資料_強い幹部層を作る.md`
-
-## 更新手順
-
-1. `index.html` / `styles.css` を編集
-2. `ranbird` リポジトリで commit & push
-3. 1〜3分後に GitHub Pages に反映
+現時点では Ver.1 と同内容。Ver.2 着手時に差し替える。
