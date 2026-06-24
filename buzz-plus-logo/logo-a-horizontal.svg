@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 72" fill="none" role="img" aria-label="Buzz Plus Logo A horizontal">
+  <defs>
+    <linearGradient id="aUp" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#101d3f"/>
+      <stop offset="100%" stop-color="#1e3a5f"/>
+    </linearGradient>
+  </defs>
+  <!-- Symbol: B + merged with upward stroke -->
+  <g transform="translate(8 10)">
+    <path d="M0 52V0h22c12 0 20 6 20 16 0 6-3 11-9 13 8 2 14 9 14 19 0 14-10 22-26 22H0zm14-44v16h6c5 0 8-3 8-8s-3-8-8-8h-6zm0 24v18h8c7 0 12-4 12-9s-5-9-12-9h-8z" fill="url(#aUp)"/>
+    <path d="M44 52V8h12l18 28V8h12v44H74L54 22v30H44z" fill="#101d3f"/>
+    <path d="M58 0 L72 14 L58 28" stroke="#f59e0b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.9"/>
+    <circle cx="72" cy="14" r="3" fill="#f59e0b"/>
+  </g>
+  <text x="108" y="38" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif" font-size="22" font-weight="700" fill="#101d3f" letter-spacing="-0.02em">Buzz</text>
+  <text x="108" y="56" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif" font-size="13" font-weight="600" fill="#64748b" letter-spacing="0.12em">PLUS</text>
+  <text x="168" y="38" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="22" font-weight="700" fill="#101d3f">+</text>
+</svg>

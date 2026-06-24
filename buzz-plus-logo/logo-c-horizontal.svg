@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 72" fill="none" role="img" aria-label="Buzz Plus Logo C horizontal">
+  <g transform="translate(10 14)">
+    <!-- Minimal wing: two strokes only -->
+    <path d="M8 44 C8 20 28 4 48 4 C32 16 24 32 24 44 Z" fill="#101d3f"/>
+    <path d="M48 4 C68 4 88 20 88 44 C72 32 64 16 48 4 Z" fill="#101d3f" opacity="0.55"/>
+    <path d="M48 8 L48 40" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" opacity="0.85"/>
+    <circle cx="48" cy="4" r="2.5" fill="#f59e0b"/>
+  </g>
+  <text x="108" y="38" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif" font-size="22" font-weight="600" fill="#101d3f" letter-spacing="-0.02em">Buzz Plus</text>
+  <line x1="108" y1="48" x2="200" y2="48" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="108" y="58" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="10" font-weight="500" fill="#94a3b8" letter-spacing="0.1em">STORE GROWTH PARTNER</text>
+</svg>

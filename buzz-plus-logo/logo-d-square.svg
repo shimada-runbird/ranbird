@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" role="img" aria-label="Buzz Plus Logo D square">
+  <rect width="120" height="120" rx="24" fill="#101d3f"/>
+  <text x="34" y="54" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif" font-size="26" font-weight="700" fill="#ffffff" letter-spacing="-0.03em">BUZZ</text>
+  <text x="86" y="54" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="26" font-weight="300" fill="#f59e0b">+</text>
+  <rect x="28" y="62" width="64" height="2" rx="1" fill="#f59e0b" opacity="0.9"/>
+  <text x="60" y="82" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="9" font-weight="500" fill="rgba(255,255,255,0.55)" letter-spacing="0.18em">PLUS</text>
+</svg>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ランバード 組織体制図</title>
+  <style>
+    :root {
+      --navy: #0f1f4b;
+      --navy-soft: #f3f6ff;
+      --orange: #f97316;
+      --line: #dbe4f5;
+      --ink: #111827;
+      --muted: #64748b;
+      --paper: #ffffff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+      background: #eef2ff;
+      color: var(--ink);
+      padding: 18px;
+    }
+    .slide {
+      width: min(1360px, 100%);
+      aspect-ratio: 16 / 9;
+      margin: 0 auto;
+      background: var(--paper);
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      box-shadow: 0 20px 50px rgba(15, 31, 75, 0.12);
+      padding: 26px 36px 22px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      margin-bottom: 14px;
+      flex-shrink: 0;
+    }
+    .label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--orange);
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--navy);
+      margin-top: 4px;
+    }
+    .subtitle {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .chart {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      min-height: 0;
+    }
+    .ceo-card {
+      border-radius: 14px;
+      background: linear-gradient(135deg, #14285c, #0f1f4b);
+      color: #fff;
+      border: 2px solid #2d4fa0;
+      text-align: center;
+      padding: 14px 40px;
+      box-shadow: 0 10px 25px rgba(15, 31, 75, 0.22);
+      flex-shrink: 0;
+    }
+    .ceo-card .role {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      opacity: 0.95;
+    }
+    .ceo-card .name {
+      font-size: 32px;
+      font-weight: 800;
+      margin-top: 4px;
+      letter-spacing: 0.06em;
+    }
+    .v-line {
+      width: 2px;
+      height: 18px;
+      background: var(--line);
+      flex-shrink: 0;
+    }
+    .h-line {
+      width: min(920px, 88%);
+      height: 2px;
+      background: var(--line);
+      flex-shrink: 0;
+    }
+    .tier {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+    .tier--exec {
+      max-width: 100%;
+      padding: 0 8px;
+    }
+    .tier--staff {
+      max-width: 520px;
+      margin-top: 12px;
+    }
+    .tier--biz {
+      max-width: 100%;
+      margin-top: 14px;
+      padding: 0 8px;
+    }
+    .tier-gap {
+      height: 10px;
+      flex-shrink: 0;
+    }
+    .person-card {
+      flex: 1;
+      min-width: 0;
+      max-width: 220px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px 10px;
+      text-align: center;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 96px;
+    }
+    .person-card--wide {
+      max-width: 280px;
+    }
+    .person-card .role {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+      line-height: 1.45;
+      letter-spacing: 0.02em;
+    }
+    .person-card .name {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-top: 6px;
+      letter-spacing: 0.04em;
+    }
+    .person-card--staff {
+      background: var(--navy-soft);
+      border-color: #c7d6f5;
+    }
+    .person-card--biz {
+      background: #fff;
+      min-height: 88px;
+    }
+    .person-card--biz .role {
+      font-size: 11.5px;
+      color: #334155;
+    }
+    .person-card--external .role::after {
+      content: "";
+    }
+    .footnote {
+      position: absolute;
+      right: 26px;
+      bottom: 12px;
+      font-size: 10px;
+      color: #94a3b8;
+      font-weight: 600;
+    }
+    @media print {
+      body { background: white; padding: 0; }
+      .slide { box-shadow: none; border: none; width: 100%; height: 100vh; }
+    }
+  </style>
+</head>
+<body>
+  <main class="slide">
+    <header class="header">
+      <div>
+        <div class="label">RUNBIRD ORGANIZATION</div>
+        <h1>組織体制図</h1>
+      </div>
+      <div class="subtitle">2026年6月</div>
+    </header>
+
+    <div class="chart">
+      <article class="ceo-card">
+        <div class="role">代表取締役 CEO</div>
+        <div class="name">嶋田</div>
+      </article>
+
+      <div class="v-line"></div>
+      <div class="h-line"></div>
+      <div class="v-line"></div>
+
+      <div class="tier tier--exec">
+        <article class="person-card">
+          <div class="role">執行役員<br>営業統括マネージャー</div>
+          <div class="name">江口</div>
+        </article>
+        <article class="person-card">
+          <div class="role">執行役員<br>管理統括マネージャー</div>
+          <div class="name">前田</div>
+        </article>
+        <article class="person-card person-card--external">
+          <div class="role">AI戦略統括マネージャー（外部）</div>
+          <div class="name">鈴木</div>
+        </article>
+      </div>
+
+      <div class="tier-gap"></div>
+
+      <div class="tier tier--staff">
+        <article class="person-card person-card--staff">
+          <div class="role">経営企画室長 / CFO候補</div>
+          <div class="name">中村</div>
+        </article>
+        <article class="person-card person-card--staff">
+          <div class="role">制作統括責任者 / CMO候補</div>
+          <div class="name">河合</div>
+        </article>
+      </div>
+
+      <div class="tier-gap"></div>
+      <div class="h-line" style="width: min(680px, 62%);"></div>
+      <div class="v-line" style="height: 12px;"></div>
+
+      <div class="tier tier--biz">
+        <article class="person-card person-card--biz">
+          <div class="role">IT事業マネージャー</div>
+          <div class="name">吉村</div>
+        </article>
+        <article class="person-card person-card--biz person-card--wide">
+          <div class="role">IS事業マネージャー<br>兼 代理店推進責任者</div>
+          <div class="name">齋藤</div>
+        </article>
+        <article class="person-card person-card--biz">
+          <div class="role">福祉事業マネージャー</div>
+          <div class="name">平田</div>
+        </article>
+      </div>
+    </div>
+
+    <div class="footnote">株式会社ランバード</div>
+  </main>
+</body>
+</html>
