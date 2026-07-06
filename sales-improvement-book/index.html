@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>営業を、数字で強くする。| 営業利益改善プログラム — 株式会社ランバード</title>
+<style>
+:root{
+  --bg:#0f172a; --navy:#0f172a; --navy-soft:#1e293b;
+  --orange:#f97316; --orange-soft:#fff7ed;
+  --ink:#111827; --muted:#4b5563; --line:#e2e8f0; --paper:#fff; --soft:#f8fafc;
+  --radius:28px; --shadow:0 28px 90px rgba(2,6,23,0.18);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",sans-serif;
+  color:var(--ink); -webkit-font-smoothing:antialiased;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(249,115,22,0.18), transparent 30rem),
+    radial-gradient(circle at 86% 5%, rgba(255,255,255,0.12), transparent 28rem),
+    linear-gradient(180deg,#0f172a 0%,#111827 42%,#0b1120 100%);
+  background-attachment:fixed;
+}
+.page{width:min(100% - 40px,1180px);margin:0 auto;padding:20px 0 80px}
+p{line-height:1.75;color:var(--muted);font-weight:600}
+
+/* topbar */
+.topbar{position:sticky;top:14px;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:13px 16px;background:rgba(255,255,255,0.95);border:1px solid rgba(255,255,255,0.72);
+  border-radius:999px;backdrop-filter:blur(18px);box-shadow:0 16px 44px rgba(15,23,42,0.18)}
+.brand{padding:8px 16px;color:#fff;font-weight:800;letter-spacing:.08em;font-size:13px;
+  background:linear-gradient(135deg,var(--navy),var(--navy-soft));border-radius:999px;text-decoration:none}
+.nav{display:flex;gap:4px;flex-wrap:wrap}
+.nav a{padding:8px 12px;border-radius:999px;font-size:13px;font-weight:700;color:var(--muted);text-decoration:none;transition:.15s}
+.nav a:hover{color:var(--orange);background:var(--orange-soft)}
+.mobile-cta-strip{display:none}
+
+main{display:flex;flex-direction:column;gap:22px;margin-top:22px}
+.section{background:rgba(255,255,255,0.98);border:1px solid rgba(255,255,255,0.88);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:clamp(28px,4vw,52px)}
+
+/* typography */
+.eyebrow{font-size:12px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin-bottom:12px}
+h1{font-size:clamp(42px,7vw,88px);line-height:1.02;letter-spacing:-.06em;color:var(--navy)}
+h2{font-size:clamp(28px,4vw,50px);line-height:1.16;letter-spacing:-.04em;color:var(--navy)}
+h3{font-size:19px;line-height:1.35;color:var(--navy)}
+.lead{font-size:clamp(17px,2vw,22px);font-weight:700;line-height:1.8;color:var(--muted)}
+
+.section-head{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(260px,.65fr);gap:28px;align-items:end;margin-bottom:30px}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.35fr .65fr;gap:28px;min-height:560px;padding:clamp(34px,6vw,64px);
+  background:rgba(255,255,255,0.98);border-radius:var(--radius);box-shadow:var(--shadow);align-items:center}
+.hero-copy .pill-row{margin-top:24px}
+.hero-cta{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap}
+.hero-panel{background:radial-gradient(circle at 86% 8%,rgba(249,115,22,0.28),transparent 12rem),
+  linear-gradient(145deg,#0f172a,#1e293b 58%,#111827);border:1px solid rgba(249,115,22,0.28);
+  border-radius:28px;color:#fff;padding:34px;display:flex;flex-direction:column;gap:22px}
+.hero-panel .stat span{font-size:12px;font-weight:800;letter-spacing:.1em;color:#fbbf24;text-transform:uppercase}
+.hero-panel .stat strong{display:block;font-size:clamp(40px,6vw,64px);letter-spacing:-.06em;line-height:1}
+.hero-panel .stat p{color:rgba(255,255,255,0.72);font-size:13px;font-weight:600;margin-top:4px}
+.hero-panel hr{border:none;border-top:1px solid rgba(255,255,255,0.14)}
+
+.pill-row{display:flex;flex-wrap:wrap;gap:10px}
+.pill-row span{display:inline-flex;align-items:center;padding:10px 16px;color:var(--navy);font-weight:800;font-size:13px;
+  background:var(--orange-soft);border:1px solid #fed7aa;border-radius:999px}
+
+.btn-primary{padding:16px 28px;color:#fff;font-size:15px;font-weight:900;text-decoration:none;
+  background:linear-gradient(135deg,#f97316,#fb923c);border-radius:999px;box-shadow:0 12px 32px rgba(249,115,22,0.34);transition:.18s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 42px rgba(249,115,22,0.42)}
+.btn-secondary{padding:16px 28px;background:#fff;color:var(--navy);border:1.5px solid var(--line);border-radius:999px;font-weight:900;font-size:15px;text-decoration:none}
+
+/* grids */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.grid-3 article{padding:26px 24px;background:var(--soft);border:1px solid var(--line);border-radius:22px}
+.card-num{display:inline-flex;align-items:center;justify-content:center;min-width:42px;height:32px;color:#fff;
+  font-size:13px;font-weight:900;background:var(--navy);border-radius:999px;margin-bottom:14px}
+.grid-3 article h3{margin-bottom:8px}
+.grid-3 article p{font-size:14px}
+
+/* money model */
+.money{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:8px}
+.money article{padding:26px 22px;background:linear-gradient(180deg,#fff,#fff7ed);border:1px solid #fed7aa;border-radius:22px;text-align:center}
+.money .metric{font-size:13px;font-weight:800;color:var(--muted)}
+.money .arrow{font-size:28px;font-weight:900;color:var(--orange);margin:10px 0;letter-spacing:-.05em}
+.money .result{font-size:clamp(22px,3vw,30px);font-weight:900;letter-spacing:-.04em;color:var(--navy)}
+.note{margin-top:16px;font-size:13px;color:var(--muted);font-weight:600}
+
+/* flow */
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.flow article{position:relative;padding:22px 18px;background:var(--soft);border:1px solid var(--line);border-radius:22px;text-align:center}
+.flow article strong{display:block;font-size:14px;color:var(--navy);font-weight:900}
+.flow article:not(:last-child)::after{position:absolute;top:50%;right:-13px;transform:translateY(-50%);z-index:2;
+  width:26px;height:26px;line-height:26px;content:"→";color:#fff;font-weight:900;text-align:center;background:var(--orange);border-radius:50%;font-size:14px}
+
+/* proof panel */
+.proof{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}
+.proof article{padding:24px;background:linear-gradient(145deg,#0f172a,#1e293b);border:1px solid rgba(249,115,22,0.28);border-radius:22px;color:#fff;text-align:center}
+.proof span{font-size:12px;font-weight:800;letter-spacing:.08em;color:#fbbf24}
+.proof strong{display:block;font-size:clamp(26px,4vw,40px);letter-spacing:-.05em;margin:8px 0}
+.proof small{color:rgba(255,255,255,0.7);font-size:12px;font-weight:600}
+
+/* monitor placeholder */
+.section-warm{background:linear-gradient(135deg,#fff,#fff7ed);border-color:#fed7aa}
+.todo-badge{display:inline-flex;padding:6px 14px;background:var(--orange);color:#fff;font-size:12px;font-weight:900;border-radius:999px;margin-bottom:14px;letter-spacing:.05em}
+.ba-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:center;margin-top:8px}
+.ba-box{padding:26px;background:#fff;border:1.5px dashed #fdba74;border-radius:22px}
+.ba-box h4{font-size:12px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.ba-box .big{font-size:clamp(24px,3vw,34px);font-weight:900;letter-spacing:-.04em;color:var(--navy)}
+.ba-arrow{font-size:34px;font-weight:900;color:var(--orange)}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.step-card{padding:28px 24px;background:var(--soft);border:1px solid var(--line);border-radius:24px;border-top:5px solid var(--orange)}
+.step-card .st{display:inline-flex;align-items:center;padding:5px 12px;background:var(--navy);color:#fff;font-size:12px;font-weight:900;border-radius:999px;margin-bottom:14px}
+.step-card h3{margin-bottom:10px}
+.step-card p{font-size:14px}
+.step-card .price{margin-top:14px;font-size:20px;font-weight:900;color:var(--orange);letter-spacing:-.03em}
+
+/* plans */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.plans article{display:flex;flex-direction:column;padding:28px 24px;border:1px solid var(--line);border-radius:22px;background:#fff}
+.plans .badge-recommend{display:inline-flex;align-self:flex-start;padding:5px 12px;background:var(--orange);color:#fff;font-size:12px;font-weight:900;border-radius:999px;margin-bottom:12px}
+.plans h3{margin-bottom:6px}
+.plans .amount{font-size:clamp(26px,3vw,36px);font-weight:900;letter-spacing:-.05em;color:var(--navy);margin:10px 0 6px}
+.plans .featured{background:linear-gradient(145deg,var(--navy),#1e293b);color:#fff;border-color:rgba(249,115,22,0.4)}
+.plans .featured h3,.plans .featured .amount{color:#fff}
+.plans .featured .sub{color:rgba(255,255,255,0.7)}
+.plans .sub{font-size:13px;color:var(--muted);font-weight:600}
+.plans ul{margin-top:14px;padding-left:1.1em}
+.plans li{font-size:13px;font-weight:600;color:var(--muted);margin-bottom:6px}
+.plans .featured li{color:rgba(255,255,255,0.85)}
+
+/* faq */
+.faq{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.faq article{padding:24px;background:var(--soft);border:1px solid var(--line);border-radius:22px}
+.faq h3{color:var(--orange);font-size:15px;margin-bottom:8px}
+.faq p{font-size:14px}
+
+/* closing */
+.section-closing{background:linear-gradient(145deg,#0f172a,#1e293b);border:1px solid rgba(249,115,22,0.3);color:#fff;text-align:center}
+.section-closing h2{color:#fff}
+.section-closing p{color:rgba(255,255,255,0.82)}
+.section-closing .btn-primary{margin-top:26px;display:inline-block}
+
+footer{margin-top:26px;text-align:center;color:rgba(255,255,255,0.5);font-size:12px;font-weight:600}
+
+@media(max-width:980px){
+  .hero,.section-head{grid-template-columns:1fr}
+  .grid-3,.flow,.proof,.money,.steps,.plans,.faq{grid-template-columns:repeat(2,1fr)}
+  .ba-grid{grid-template-columns:1fr}
+  .ba-arrow{transform:rotate(90deg)}
+}
+@media(max-width:680px){
+  .topbar{position:static;border-radius:22px}
+  .nav{display:none}
+  .grid-3,.flow,.proof,.money,.steps,.plans,.faq{grid-template-columns:1fr}
+  .flow article:not(:last-child)::after{display:none}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="topbar">
+    <a class="brand" href="#cover">RANBIRD 営業利益改善</a>
+    <nav class="nav">
+      <a href="#issue">課題</a>
+      <a href="#loss">損失</a>
+      <a href="#proof">実証</a>
+      <a href="#case">事例</a>
+      <a href="#program">流れ</a>
+      <a href="#price">料金</a>
+      <a href="#closing">相談</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" id="cover">
+      <div class="hero-copy">
+        <p class="eyebrow">Sales Profit Improvement Program</p>
+        <h1>営業を、<br>数字で強くする。</h1>
+        <p class="lead">研修会社でも、コンサル会社でもありません。<br>私たちも毎日テレアポと商談で戦う「営業会社」です。<br>だから、御社の営業を"数字"で見える化できます。</p>
+        <div class="pill-row">
+          <span>成約率のばらつき</span><span>新人の立ち上がり</span><span>ノウハウの属人化</span>
+        </div>
+        <div class="hero-cta">
+          <a class="btn-primary" href="#closing">まず営業診断を相談する →</a>
+          <a class="btn-secondary" href="#program">プログラムを見る</a>
+        </div>
+      </div>
+      <aside class="hero-panel">
+        <div class="stat">
+          <span>Point 01</span>
+          <strong>当事者</strong>
+          <p>ランバード自身が営業組織。悩みを実体験で理解</p>
+        </div>
+        <hr>
+        <div class="stat">
+          <span>Point 02</span>
+          <strong>数字</strong>
+          <p>勘と根性ではなく、数字と型で営業を回す</p>
+        </div>
+        <hr>
+        <div class="stat">
+          <span>Point 03</span>
+          <strong>1ヶ月</strong>
+          <p>まずは営業の"健康診断"から。低リスクで始める</p>
+        </div>
+      </aside>
+    </section>
+
+    <!-- P2 課題 -->
+    <section class="section" id="issue">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Common Issues</p>
+          <h2>営業会社の"あるある"、<br>御社にもありませんか？</h2>
+        </div>
+        <p>多くの営業会社が、この3つで利益を取りこぼしています。共通点は「見えていないだけ」ということです。</p>
+      </div>
+      <div class="grid-3">
+        <article>
+          <span class="card-num">01</span>
+          <h3>型が伝わらない</h3>
+          <p>トップは売れる。でもその勝ちトークが他の人に移らず、成約率にばらつきが出続ける。</p>
+        </article>
+        <article>
+          <span class="card-num">02</span>
+          <h3>新人が育つのに3ヶ月</h3>
+          <p>独り立ちまで時間がかかり、その間の人件費が重い。立ち上がる前に辞める人も。</p>
+        </article>
+        <article>
+          <span class="card-num">03</span>
+          <h3>辞めるとノウハウごと消える</h3>
+          <p>勝ちトークが個人の頭の中にしかなく、退職と一緒に営業資産が失われる。</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- P3 損失 -->
+    <section class="section" id="loss">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Hidden Loss</p>
+          <h2>その課題、<br>"見えていない"だけです</h2>
+        </div>
+        <p>営業の数字は、見えていない期間がそのまま損失になります。金額に換算すると、放置コストが見えてきます。</p>
+      </div>
+      <div class="money">
+        <article>
+          <p class="metric">平均営業が<br>トップに +5% 近づく</p>
+          <div class="arrow">↓</div>
+          <p class="result">月商 +◯◯万円</p>
+        </article>
+        <article>
+          <p class="metric">新人の立ち上がり<br>3ヶ月 → 1.5ヶ月</p>
+          <div class="arrow">↓</div>
+          <p class="result">人件費 ◯◯万円<br>削減 / 人</p>
+        </article>
+        <article>
+          <p class="metric">離職1名で<br>消えるトーク資産</p>
+          <div class="arrow">↓</div>
+          <p class="result">採用・教育<br>◯◯万円 損失</p>
+        </article>
+      </div>
+      <p class="note">※ 商談時に御社の実数字を入れて、その場で「放置している損失額」を算出します。</p>
+    </section>
+
+    <!-- P4 実証 -->
+    <section class="section" id="proof">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Our Proof</p>
+          <h2>ランバードが<br>自社でやっていること</h2>
+        </div>
+        <p>他社は「研修して終わり」。私たちは自分が営業会社だから、"数字が変わるまで"見ます。これを御社の数字でやります。</p>
+      </div>
+      <div class="flow">
+        <article><strong>① 録音</strong><p style="font-size:13px;margin-top:6px">通話・商談を蓄積</p></article>
+        <article><strong>② AI分析</strong><p style="font-size:13px;margin-top:6px">全ログを解析</p></article>
+        <article><strong>③ 差の抽出</strong><p style="font-size:13px;margin-top:6px">売れる人との差</p></article>
+        <article><strong>④ 改善トーク</strong><p style="font-size:13px;margin-top:6px">型に落とす</p></article>
+        <article><strong>⑤ 毎週回す</strong><p style="font-size:13px;margin-top:6px">数字で検証</p></article>
+      </div>
+      <div class="proof">
+        <article><span>自社実績</span><strong>◯% → ◯%</strong><small>アポ率</small></article>
+        <article><span>自社実績</span><strong>◯ヶ月 → ◯ヶ月</strong><small>新人の初成約まで</small></article>
+        <article><span>自社実績</span><strong>◯pt 縮小</strong><small>トップと平均の成約率差</small></article>
+      </div>
+    </section>
+
+    <!-- P5 モニター事例（要作成） -->
+    <section class="section section-warm" id="case">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Case Study</p>
+          <h2>同じ業種で、<br>実際にこう変わりました</h2>
+        </div>
+        <p>御社と同じSランク業種のモニター1社の90日実測。導入前の課題から、数字がどう動いたかを1枚で。</p>
+      </div>
+      <span class="todo-badge">実測データ差し込み待ち（モニター1社の90日実績）</span>
+      <div class="ba-grid">
+        <div class="ba-box">
+          <h4>Before（導入前）</h4>
+          <p style="margin-bottom:12px">アポ率 <span class="big">◯%</span></p>
+          <p>成約率のばらつき大／新人立ち上がり◯ヶ月／トーク属人化</p>
+        </div>
+        <div class="ba-arrow">→</div>
+        <div class="ba-box" style="border-color:var(--orange);border-style:solid">
+          <h4 style="color:var(--orange)">After（90日後）</h4>
+          <p style="margin-bottom:12px">アポ率 <span class="big">◯%</span></p>
+          <p>勝ちトーク標準化／新人◯ヶ月で独り立ち／社長コメント「◯◯」</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- P6 プログラム -->
+    <section class="section" id="program">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Program</p>
+          <h2>まずは1ヶ月の<br>"健康診断"から</h2>
+        </div>
+        <p>いきなり大きく始めません。診断で数字を見える化し、効果を確認してから伴走・自動化へ広げます。</p>
+      </div>
+      <div class="steps">
+        <div class="step-card">
+          <span class="st">STEP 1</span>
+          <h3>営業診断</h3>
+          <p>KPI棚卸し → 通話・商談ログをAI分析 → 改善ロードマップ（金額換算）→ 御社専用の改善トーク集 初版。</p>
+          <div class="price">初期 30〜50万 / 1ヶ月</div>
+        </div>
+        <div class="step-card">
+          <span class="st">STEP 2</span>
+          <h3>月額伴走</h3>
+          <p>毎週ログ分析して"翌日使う改善トーク"を3つ提供。月次でKPIレポート＋経営者MTG60分。</p>
+          <div class="price">月 15〜30万</div>
+        </div>
+        <div class="step-card">
+          <span class="st">STEP 3</span>
+          <h3>AI営業分析（AXT）</h3>
+          <p>通話を自動でAI分析。分析の精度と対象範囲が上がり、改善サイクルが加速する。</p>
+          <div class="price">月 5〜20万</div>
+        </div>
+      </div>
+      <p class="note">※ 入口は診断です。月額・AXTは診断結果を見てからご判断いただけます。</p>
+    </section>
+
+    <!-- P7 料金 -->
+    <section class="section" id="price">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Pricing</p>
+          <h2>料金</h2>
+        </div>
+        <p>金額は単体ではなく、"放置している損失額"と比べてご判断ください。年間一括・複数商材のセット割も相談可能です。</p>
+      </div>
+      <div class="plans">
+        <article class="featured">
+          <span class="badge-recommend">まずはここから</span>
+          <h3>営業診断</h3>
+          <div class="amount">30〜50万</div>
+          <p class="sub">初期・1ヶ月</p>
+          <ul>
+            <li>営業KPIの全棚卸し</li>
+            <li>通話・商談ログのAI分析</li>
+            <li>改善ロードマップ（金額換算）</li>
+            <li>専用改善トーク集 初版</li>
+          </ul>
+        </article>
+        <article>
+          <h3>月額伴走</h3>
+          <div class="amount">月 15〜30万</div>
+          <p class="sub">診断後に判断</p>
+          <ul>
+            <li>週次トーク改善（3つ / 週）</li>
+            <li>月次KPIレポート</li>
+            <li>経営者MTG 60分 / 月</li>
+            <li>ロープレ課題の更新</li>
+          </ul>
+        </article>
+        <article>
+          <h3>AXT（AI営業分析）</h3>
+          <div class="amount">月 5〜20万</div>
+          <p class="sub">別途・3ヶ月目〜</p>
+          <ul>
+            <li>通話の自動AI分析</li>
+            <li>トップ営業との比較</li>
+            <li>改善ポイントの自動提示</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">FAQ</p>
+          <h2>よくあるご質問</h2>
+        </div>
+        <p>営業会社の社長・責任者から実際にいただく質問です。</p>
+      </div>
+      <div class="faq">
+        <article><h3>Q. 今CTIを使っています</h3><p>その録音を活かして分析できます。むしろ相性は良いです。既存の環境を捨てる必要はありません。</p></article>
+        <article><h3>Q. 教育は自社でやっています</h3><p>それが一番強いです。ただ、その"教える中身"を型に残せば、社長・部長が毎回張り付かなくても回せます。</p></article>
+        <article><h3>Q. うちの業種で効果ある？</h3><p>インセン文化・教育課題・離職が大きい業種ほど効きます。営業会社はまさに一番刺さる領域です。</p></article>
+        <article><h3>Q. 効果が出なかったら？</h3><p>まず診断で数字を出してから月額を判断できます。数字が動かなければ、継続は白紙で構いません。</p></article>
+      </div>
+    </section>
+
+    <!-- CLOSING -->
+    <section class="section section-closing" id="closing">
+      <p class="eyebrow" style="color:#fbbf24">Let's Start</p>
+      <h2>見えていない損失は、<br>毎月出続けます。</h2>
+      <p style="max-width:640px;margin:16px auto 0">やるかやらないかは御社の自由です。ただ、まずは"御社の数字"を見えるようにするところから始めませんか。1ヶ月の営業診断からスタートできます。</p>
+      <a class="btn-primary" href="#cover">営業診断を相談する →</a>
+    </section>
+
+  </main>
+
+  <footer>株式会社ランバード｜営業利益改善プログラム ／ 社内・商談用資料（対外的にAIコンサル・M&A等の表現は使用しない）</footer>
+
+</div>
+</body>
+</html>

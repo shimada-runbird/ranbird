@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>株式会社ランバード｜コーポレートサイト（試作）</title>
+<style>
+:root{
+  --bg:#0f172a; --navy:#0f172a; --navy-soft:#1e293b;
+  --orange:#f97316; --orange-soft:#fff7ed;
+  --blue:#2563eb; --blue-soft:#eff6ff;
+  --green:#0f9f6e; --green-soft:#ecfdf5;
+  --ink:#111827; --muted:#4b5563; --line:#dbe3ef;
+  --paper:#fff; --soft:#f6f8fc; --radius:26px;
+  --shadow:0 24px 70px rgba(16,31,63,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  color:var(--ink); line-height:1.6;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(249,115,22,.16), transparent 30rem),
+    radial-gradient(circle at 86% 5%, rgba(255,255,255,.10), transparent 28rem),
+    linear-gradient(180deg,#0f172a 0%,#111827 40%,#0b1120 100%);
+  min-height:100vh;
+}
+.page{width:min(100% - 32px,1180px);margin:0 auto;padding:16px 0 60px}
+p{color:var(--muted);font-weight:600;line-height:1.75}
+
+/* topbar */
+.topbar{position:sticky;top:14px;z-index:20;display:flex;align-items:center;
+  justify-content:space-between;gap:16px;padding:12px 18px;
+  background:rgba(255,255,255,.95);border:1px solid rgba(255,255,255,.72);
+  border-radius:999px;backdrop-filter:blur(18px);box-shadow:0 16px 44px rgba(15,23,42,.10)}
+.brand{padding:9px 16px;color:#fff;font-weight:800;letter-spacing:.10em;font-size:15px;
+  background:linear-gradient(135deg,var(--navy),var(--navy-soft));border-radius:999px;text-decoration:none}
+.nav{display:flex;gap:4px;align-items:center}
+.nav a{padding:9px 12px;border-radius:999px;font-size:13px;font-weight:700;color:var(--muted);text-decoration:none}
+.nav a:hover{color:var(--orange);background:var(--orange-soft)}
+.nav .cta{color:#fff;background:linear-gradient(135deg,#f97316,#fb923c)}
+.nav .cta:hover{color:#fff}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.35fr .65fr;gap:26px;align-items:stretch;
+  margin-top:22px;padding:clamp(30px,5vw,60px) clamp(24px,4vw,52px);
+  background:rgba(255,255,255,.015);border-radius:32px}
+.eyebrow{font-size:12px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--orange);margin-bottom:18px}
+.hero h1{color:#fff;font-size:clamp(40px,6.4vw,84px);line-height:1.04;letter-spacing:-.05em;font-weight:900}
+.hero h1 .accent{color:var(--orange)}
+.hero .lead{color:#cbd5e1;font-size:clamp(16px,1.9vw,21px);font-weight:700;line-height:1.85;margin-top:22px;max-width:34em}
+.pill-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.pill-row span{padding:9px 15px;color:#fff;font-weight:800;font-size:13px;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:999px}
+.hero-panel{background:radial-gradient(circle at 86% 8%,rgba(249,115,22,.30),transparent 12rem),
+  linear-gradient(145deg,#0f172a,#1e293b 58%,#111827);
+  border:1px solid rgba(249,115,22,.28);border-radius:26px;color:#fff;padding:30px;
+  display:flex;flex-direction:column;justify-content:center;gap:22px}
+.stat span{display:block;font-size:12px;letter-spacing:.12em;color:#94a3b8;font-weight:800;text-transform:uppercase}
+.stat strong{font-size:clamp(38px,5vw,60px);letter-spacing:-.05em;font-weight:900;line-height:1}
+.stat strong em{font-size:.42em;font-style:normal;color:var(--orange);margin-left:4px}
+.stat p{color:#cbd5e1;font-size:13px;margin-top:2px}
+.stat+.stat{border-top:1px solid rgba(255,255,255,.12);padding-top:20px}
+
+/* white sections */
+.section{background:rgba(255,255,255,.98);border:1px solid rgba(255,255,255,.88);
+  border-radius:28px;box-shadow:0 28px 90px rgba(2,6,23,.18);
+  margin-top:26px;padding:clamp(30px,4vw,52px)}
+.section .eyebrow{color:var(--blue)}
+.section-head{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(240px,.6fr);
+  gap:26px;align-items:end;margin-bottom:32px}
+.section-head h2{font-size:clamp(26px,3.6vw,44px);line-height:1.16;letter-spacing:-.04em;color:var(--ink);font-weight:900}
+
+/* 3 business cards */
+.biz-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.biz{display:flex;flex-direction:column;padding:30px;border-radius:24px;
+  border:1px solid var(--line);background:var(--soft);transition:transform .2s,box-shadow .2s;
+  text-decoration:none;color:inherit}
+.biz:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.biz .tag{align-self:flex-start;padding:6px 13px;border-radius:999px;font-size:12px;font-weight:900;letter-spacing:.05em;color:#fff;margin-bottom:18px}
+.biz h3{font-size:23px;font-weight:900;letter-spacing:-.02em;margin-bottom:6px;color:var(--ink)}
+.biz .en{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#94a3b8;margin-bottom:14px}
+.biz ul{list-style:none;margin:14px 0 20px}
+.biz li{font-size:14px;font-weight:700;color:var(--muted);padding-left:18px;position:relative;margin-top:8px}
+.biz li::before{content:"";position:absolute;left:0;top:8px;width:7px;height:7px;border-radius:50%}
+.biz .more{margin-top:auto;font-weight:900;font-size:14px}
+.biz-ai .tag{background:linear-gradient(135deg,#f97316,#fb923c)}
+.biz-ai li::before{background:var(--orange)} .biz-ai .more{color:var(--orange)}
+.biz-it .tag{background:linear-gradient(135deg,#2563eb,#3b82f6)}
+.biz-it li::before{background:var(--blue)} .biz-it .more{color:var(--blue)}
+.biz-fk{background:linear-gradient(180deg,#ecfdf5,#fff)}
+.biz-fk .tag{background:linear-gradient(135deg,#0f9f6e,#34d399)}
+.biz-fk li::before{background:var(--green)} .biz-fk .more{color:var(--green)}
+
+/* strength */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.grid-3 article{padding:26px;background:var(--soft);border:1px solid var(--line);border-radius:22px}
+.card-num{display:inline-flex;align-items:center;justify-content:center;min-width:42px;height:32px;
+  color:#fff;font-size:13px;font-weight:900;background:var(--navy);border-radius:999px;margin-bottom:16px}
+.grid-3 h3{font-size:19px;font-weight:900;margin-bottom:10px;color:var(--ink)}
+
+/* message */
+.message{display:grid;grid-template-columns:.85fr 1.15fr;gap:34px;align-items:center}
+.msg-photo{aspect-ratio:4/5;border-radius:24px;background:linear-gradient(145deg,#1e293b,#0f172a);
+  display:flex;align-items:center;justify-content:center;color:#475569;font-weight:800;font-size:14px;border:1px solid var(--line)}
+.message blockquote{font-size:clamp(20px,2.4vw,30px);font-weight:900;line-height:1.5;letter-spacing:-.02em;color:var(--ink);margin-bottom:22px}
+.message .sign{font-weight:800;color:var(--muted)}
+.message .sign strong{color:var(--ink);font-size:18px}
+
+/* recruit CTA */
+.recruit{background:radial-gradient(circle at 88% 10%,rgba(249,115,22,.26),transparent 14rem),
+  linear-gradient(145deg,#0f172a,#1e293b);color:#fff;border:1px solid rgba(249,115,22,.3);
+  border-radius:28px;margin-top:26px;padding:clamp(34px,5vw,60px);
+  display:grid;grid-template-columns:1.3fr .7fr;gap:28px;align-items:center}
+.recruit .eyebrow{color:var(--orange)}
+.recruit h2{color:#fff;font-size:clamp(28px,4vw,50px);letter-spacing:-.04em;line-height:1.1;font-weight:900}
+.recruit p{color:#cbd5e1;margin-top:16px;font-size:17px}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:17px 30px;color:#fff;font-size:16px;font-weight:900;
+  background:linear-gradient(135deg,#f97316,#fb923c);border-radius:999px;text-decoration:none;
+  box-shadow:0 12px 32px rgba(249,115,22,.34);transition:transform .18s,box-shadow .18s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 42px rgba(249,115,22,.42)}
+.recruit-cta{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.btn-ghost{color:#fff;font-weight:800;text-decoration:none;font-size:14px;opacity:.85}
+
+/* footer */
+.footer{margin-top:26px;padding:34px clamp(24px,4vw,52px);color:#94a3b8;
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;font-size:13px}
+.footer .fbrand{color:#fff;font-weight:900;letter-spacing:.10em;font-size:18px}
+.footer a{color:#cbd5e1;text-decoration:none}
+.footer .cols{display:flex;gap:40px;flex-wrap:wrap}
+.footer .col span{display:block;color:#64748b;font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+.footer .col a{display:block;margin-top:6px;font-weight:700}
+
+.note{margin-top:30px;padding:16px 20px;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.2);
+  border-radius:16px;color:#94a3b8;font-size:12px;font-weight:700}
+
+@media(max-width:980px){
+  .hero,.section-head,.message,.recruit{grid-template-columns:1fr}
+  .biz-grid,.grid-3{grid-template-columns:1fr}
+  .nav a:not(.cta){display:none}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="topbar">
+    <a class="brand" href="#">RANBIRD</a>
+    <nav class="nav">
+      <a href="#business">事業</a>
+      <a href="#strength">強み</a>
+      <a href="#message">代表挨拶</a>
+      <a href="#recruit">採用</a>
+      <a class="cta" href="#contact">お問い合わせ</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="cover">
+    <div class="hero-copy">
+      <p class="eyebrow">RANBIRD GROUP</p>
+      <h1>人と技術で、<br>地域の"次"を<br><span class="accent">つくり続ける。</span></h1>
+      <p class="lead">AIとITで中小企業の成長を支え、福祉で人の暮らしを支える。ランバードは、必要とされる事業を生み出し続ける会社です。</p>
+      <div class="pill-row">
+        <span>AI事業</span><span>IT事業</span><span>福祉事業</span>
+      </div>
+    </div>
+    <aside class="hero-panel">
+      <div class="stat"><span>Business</span><strong>3<em>領域</em></strong><p>AI・IT・福祉の多角経営</p></div>
+      <div class="stat"><span>Support</span><strong>100<em>社+</em></strong><p>支援した企業数</p></div>
+      <div class="stat"><span>Growth</span><strong>拡大中</strong><p>事業承継 × 事業創出</p></div>
+    </aside>
+  </section>
+
+  <!-- BUSINESS -->
+  <section class="section" id="business">
+    <div class="section-head">
+      <div><p class="eyebrow">Our Business</p><h2>3つの事業</h2></div>
+      <p>成長を支えるテクノロジーと、暮らしを支える福祉。異なる領域で「地域に必要とされる」を追求します。</p>
+    </div>
+    <div class="biz-grid">
+      <a class="biz biz-ai" href="#">
+        <span class="tag">AI</span>
+        <div class="en">AI Solution</div>
+        <h3>AI事業</h3>
+        <ul><li>AIコンサルティング</li><li>サブスクAI・業務効率化</li><li>AI導入・活用支援</li></ul>
+        <span class="more">くわしく見る →</span>
+      </a>
+      <a class="biz biz-it" href="#">
+        <span class="tag">IT</span>
+        <div class="en">Web & Marketing</div>
+        <h3>IT事業</h3>
+        <ul><li>HP制作・サブスクHP</li><li>MEO・動画・LINE集客</li><li>AXT（営業コールシステム）</li></ul>
+        <span class="more">くわしく見る →</span>
+      </a>
+      <a class="biz biz-fk" href="#">
+        <span class="tag">WELFARE</span>
+        <div class="en">Welfare / OWL</div>
+        <h3>福祉事業</h3>
+        <ul><li>障がい者グループホーム</li><li>安心の生活支援体制</li><li>地域と共に歩む運営</li></ul>
+        <span class="more">くわしく見る →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- STRENGTH -->
+  <section class="section" id="strength">
+    <div class="section-head">
+      <div><p class="eyebrow">Our Strength</p><h2>ランバードらしさ</h2></div>
+      <p>0→1で事業を立ち上げ、仕組みで伸ばす。スピードと再現性が私たちの武器です。</p>
+    </div>
+    <div class="grid-3">
+      <article><span class="card-num">01</span><h3>スピードと決断</h3><p>市場の変化に合わせ、必要な事業を素早く立ち上げる。考えるより先に動き、動きながら磨きます。</p></article>
+      <article><span class="card-num">02</span><h3>仕組み化する力</h3><p>属人化せず、誰でも回せる型に落とす。だからこそ、一つの事業を複数へ広げられます。</p></article>
+      <article><span class="card-num">03</span><h3>領域を越える多角経営</h3><p>IT・AI・福祉。異なる領域を持つことで、景気にも変化にも強い経営基盤を築いています。</p></article>
+    </div>
+  </section>
+
+  <!-- MESSAGE -->
+  <section class="section" id="message">
+    <div class="message">
+      <div class="msg-photo">代表写真（差し込み予定）</div>
+      <div>
+        <p class="eyebrow">Message</p>
+        <blockquote>「変わり続けることが、いちばんの安定だと思っています。」</blockquote>
+        <p>受け継いだ事業を守るだけでなく、時代に合わせて新しい事業を生み出す。人が育ち、地域から必要とされる会社であり続けるために、ランバードは挑戦を止めません。</p>
+        <p class="sign" style="margin-top:20px">代表取締役　<strong>嶋田</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECRUIT -->
+  <section class="recruit" id="recruit">
+    <div>
+      <p class="eyebrow">Recruit</p>
+      <h2>伸びる会社で、<br>自分も伸びる。</h2>
+      <p>拡大フェーズのランバードは、任せる仕事も、任せる範囲もどんどん広がっています。挑戦したい人を待っています。</p>
+    </div>
+    <div class="recruit-cta">
+      <a class="btn-primary" href="#">採用情報を見る →</a>
+      <a class="btn-ghost" href="#">社員インタビューを読む</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="contact">
+    <div>
+      <div class="fbrand">RANBIRD</div>
+      <p style="margin-top:12px;color:#94a3b8">株式会社ランバード</p>
+    </div>
+    <div class="cols">
+      <div class="col"><span>Business</span><a href="#">AI事業</a><a href="#">IT事業</a><a href="#">福祉事業</a></div>
+      <div class="col"><span>Company</span><a href="#">会社概要</a><a href="#">代表挨拶</a><a href="#">採用情報</a></div>
+      <div class="col"><span>Contact</span><a href="#">お問い合わせ</a></div>
+    </div>
+  </footer>
+
+  <p class="note">※ これは方向性を確認するための試作トップページです。数値・文言・写真はすべて仮置きです。事業別ページ（AI／IT／福祉）は、このトップから遷移する専用ページとして別途制作します。</p>
+
+</div>
+</body>
+</html>
