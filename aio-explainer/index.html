@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIO（AI検索最適化）入門 ｜ RANBIRD</title>
+<style>
+:root{
+  --bg:#0f172a; --navy:#0f172a; --navy-soft:#1e293b;
+  --orange:#f97316; --orange-soft:#fff7ed;
+  --ink:#111827; --muted:#4b5563; --line:#dbe3ef; --paper:#fff; --soft:#f6f8fc;
+  --blue:#2563eb; --green:#0f9f6e; --red:#d92d20;
+  --radius:28px; --shadow:0 28px 90px rgba(2,6,23,0.18);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 12% 0%, rgba(249,115,22,0.18), transparent 30rem),
+    radial-gradient(circle at 86% 5%, rgba(255,255,255,0.12), transparent 28rem),
+    linear-gradient(180deg,#0f172a 0%,#111827 42%,#0b1120 100%);
+  min-height:100vh; padding:0 18px 80px;
+}
+.wrap{max-width:1080px;margin:0 auto}
+
+/* topbar */
+.topbar{
+  position:sticky;top:14px;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:13px 16px;margin:18px auto 34px;
+  background:rgba(255,255,255,0.95);border:1px solid rgba(255,255,255,0.72);
+  border-radius:999px;backdrop-filter:blur(18px);box-shadow:0 16px 44px rgba(15,23,42,0.08);
+}
+.brand{padding:8px 14px;color:#fff;font-weight:800;letter-spacing:0.08em;
+  background:linear-gradient(135deg,var(--navy),var(--navy-soft));border-radius:999px;font-size:14px}
+.nav{display:flex;gap:4px;flex-wrap:wrap}
+.nav a{padding:8px 12px;border-radius:999px;font-size:13px;font-weight:700;color:var(--muted);text-decoration:none}
+.nav a:hover{color:var(--orange);background:var(--orange-soft)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.35fr 1fr;gap:26px;margin-bottom:30px;align-items:stretch}
+.hero-main{background:rgba(255,255,255,0.98);border:1px solid rgba(255,255,255,0.88);
+  border-radius:var(--radius);box-shadow:var(--shadow);padding:44px 40px}
+.eyebrow{font-size:12px;font-weight:900;letter-spacing:0.16em;text-transform:uppercase;color:var(--orange);margin-bottom:14px}
+.eyebrow::before{content:"";display:inline-block;width:30px;height:2px;background:var(--orange);margin-right:10px;vertical-align:middle}
+h1{font-size:clamp(40px,6.5vw,78px);line-height:1.02;letter-spacing:-0.05em;color:var(--navy)}
+h1 span{color:var(--orange)}
+.lead{font-size:clamp(16px,1.7vw,20px);font-weight:700;line-height:1.8;color:var(--muted);margin-top:18px}
+.hero-panel{background:linear-gradient(160deg,var(--navy),var(--navy-soft));border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:34px 30px;color:#fff;display:flex;flex-direction:column;justify-content:center;gap:20px}
+.hero-panel .pnum{font-size:40px;font-weight:900;color:var(--orange);line-height:1}
+.hero-panel .plabel{font-size:14px;font-weight:600;color:rgba(255,255,255,0.82);margin-top:6px;line-height:1.5}
+.hero-panel .divline{height:1px;background:rgba(255,255,255,0.14)}
+
+/* section */
+.section{background:rgba(255,255,255,0.98);border:1px solid rgba(255,255,255,0.88);
+  border-radius:var(--radius);box-shadow:var(--shadow);padding:40px 40px;margin-bottom:26px}
+h2{font-size:clamp(26px,3.4vw,42px);line-height:1.16;letter-spacing:-0.04em;color:var(--navy);margin-bottom:6px}
+h3{font-size:19px;line-height:1.4;color:var(--navy);margin-bottom:8px}
+p{line-height:1.75;color:var(--muted);font-weight:600}
+.sub{font-size:15px;color:var(--muted);font-weight:700;margin-bottom:24px}
+
+/* cards grid */
+.grid{display:grid;gap:16px;margin-top:22px}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--soft);border:1px solid var(--line);border-radius:18px;padding:22px}
+.card .big{font-size:30px;font-weight:900;color:var(--orange);line-height:1}
+.card .cl{font-size:14px;font-weight:700;color:var(--muted);margin-top:8px;line-height:1.55}
+.card p{font-size:14px;margin-top:6px}
+
+/* numbered steps */
+.step{display:flex;gap:16px;padding:18px 0;border-bottom:1px dashed var(--line)}
+.step:last-child{border-bottom:none}
+.stepno{flex:0 0 42px;height:42px;border-radius:12px;background:var(--navy);color:#fff;
+  font-weight:900;font-size:18px;display:flex;align-items:center;justify-content:center}
+.step .txt{flex:1}
+.step .txt .t{font-weight:800;color:var(--navy);font-size:16px}
+.step .txt .d{font-size:14px;color:var(--muted);font-weight:600;margin-top:4px;line-height:1.6}
+.tag{display:inline-block;font-size:11px;font-weight:800;color:var(--orange);
+  background:var(--orange-soft);border-radius:999px;padding:3px 10px;margin-left:8px}
+
+/* audience banner */
+.aud{display:inline-block;font-size:12px;font-weight:900;letter-spacing:0.1em;color:#fff;
+  padding:6px 16px;border-radius:999px;margin-bottom:14px}
+.aud.suzuki{background:linear-gradient(135deg,#2563eb,#1e40af)}
+.aud.sales{background:linear-gradient(135deg,#f97316,#ea580c)}
+
+/* table */
+table{width:100%;border-collapse:collapse;margin-top:18px;font-size:14px}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line)}
+th{background:var(--soft);font-weight:800;color:var(--navy)}
+td{color:var(--muted);font-weight:600}
+td strong{color:var(--navy)}
+
+/* talk box */
+.talk{background:var(--navy);border-radius:16px;padding:20px 22px;margin-top:14px}
+.talk .role{font-size:12px;font-weight:800;color:var(--orange);margin-bottom:6px;letter-spacing:0.08em}
+.talk .line{color:#fff;font-weight:700;line-height:1.75;font-size:15px}
+.talk .line.q{color:rgba(255,255,255,0.72);margin-bottom:12px}
+
+/* callout */
+.callout{border-left:4px solid var(--orange);background:var(--orange-soft);border-radius:0 14px 14px 0;padding:16px 20px;margin-top:18px}
+.callout p{color:#7c2d12;font-weight:700}
+
+/* closing */
+.closing{background:linear-gradient(160deg,var(--navy),#0b1120);border-radius:var(--radius);
+  padding:52px 44px;text-align:center;box-shadow:var(--shadow);margin-top:8px}
+.closing h2{color:#fff}
+.closing p{color:rgba(255,255,255,0.8);font-weight:600;margin-top:14px;font-size:16px}
+.footer{text-align:center;color:rgba(255,255,255,0.5);font-size:12px;margin-top:30px;font-weight:600}
+
+/* ===== 図解パーツ ===== */
+/* 横フロー図（RAG） */
+.flow{display:flex;align-items:stretch;gap:0;margin-top:24px;flex-wrap:wrap}
+.flowbox{flex:1;min-width:150px;background:var(--soft);border:1px solid var(--line);border-radius:16px;padding:20px 16px;text-align:center}
+.flowbox .fico{width:46px;height:46px;margin:0 auto 10px;border-radius:12px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900}
+.flowbox.hot{border-color:var(--orange);background:var(--orange-soft);box-shadow:0 10px 30px rgba(249,115,22,0.18)}
+.flowbox.hot .fico{background:var(--orange)}
+.flowbox .ft{font-weight:800;color:var(--navy);font-size:15px}
+.flowbox .fd{font-size:13px;color:var(--muted);font-weight:600;margin-top:4px;line-height:1.5}
+.flowarrow{display:flex;align-items:center;justify-content:center;padding:0 6px;color:var(--orange);font-size:26px;font-weight:900}
+
+/* 比較図（従来 vs AI） */
+.compare{display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:stretch;margin-top:24px}
+.cpanel{border-radius:18px;padding:26px 22px}
+.cpanel.old{background:var(--soft);border:1px solid var(--line)}
+.cpanel.new{background:linear-gradient(160deg,var(--navy),var(--navy-soft));color:#fff}
+.cpanel .clab{font-size:12px;font-weight:900;letter-spacing:0.1em;margin-bottom:14px;display:inline-block;padding:4px 12px;border-radius:999px}
+.cpanel.old .clab{background:#e2e8f0;color:var(--muted)}
+.cpanel.new .clab{background:var(--orange);color:#fff}
+.cpanel h3{color:inherit;font-size:18px;margin-bottom:12px}
+.cpanel.new h3{color:#fff}
+.linklist{list-style:none;display:flex;flex-direction:column;gap:7px;margin-top:6px}
+.linklist li{background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 12px;font-size:13px;font-weight:600;color:var(--muted)}
+.linklist li.dim{opacity:0.45}
+.aibubble{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:12px;padding:14px 16px;font-size:14px;font-weight:600;line-height:1.7;color:rgba(255,255,255,0.92)}
+.aibubble b{color:var(--orange)}
+.cpanel .cnote{font-size:13px;font-weight:700;margin-top:14px}
+.cpanel.old .cnote{color:var(--red)}
+.cpanel.new .cnote{color:var(--orange)}
+.cvs{display:flex;align-items:center;justify-content:center;padding:0 14px;font-weight:900;color:var(--muted);font-size:18px}
+
+/* 数式図（足すだけ） */
+.equation{display:flex;align-items:stretch;gap:0;margin-top:24px;flex-wrap:wrap}
+.eqbox{flex:1;min-width:140px;border-radius:16px;padding:22px 16px;text-align:center;border:1px solid var(--line);background:var(--soft)}
+.eqbox.result{background:linear-gradient(160deg,var(--orange),#ea580c);color:#fff;border:none;box-shadow:0 14px 40px rgba(249,115,22,0.3)}
+.eqbox .eqt{font-weight:900;font-size:16px;color:var(--navy);line-height:1.4}
+.eqbox.result .eqt{color:#fff}
+.eqbox .eqd{font-size:12px;font-weight:600;color:var(--muted);margin-top:6px;line-height:1.5}
+.eqbox.result .eqd{color:rgba(255,255,255,0.9)}
+.eqop{display:flex;align-items:center;justify-content:center;padding:0 10px;font-size:30px;font-weight:900;color:var(--muted)}
+
+@media(max-width:820px){
+  .hero{grid-template-columns:1fr}
+  .g3,.g2{grid-template-columns:1fr}
+  .section,.hero-main{padding:30px 24px}
+  .nav{display:none}
+  .flow,.equation{flex-direction:column}
+  .flowarrow,.eqop{transform:rotate(90deg);padding:6px 0}
+  .compare{grid-template-columns:1fr}
+  .cvs{transform:rotate(90deg);padding:10px 0}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <div class="brand">RANBIRD ｜ IT事業部</div>
+    <nav class="nav">
+      <a href="#what">AIOとは</a>
+      <a href="#how">仕組み</a>
+      <a href="#rival">競合</a>
+      <a href="#skill">ノウハウ</a>
+      <a href="#suzuki">商品化(鈴木)</a>
+      <a href="#sales">営業トーク</a>
+    </nav>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-main">
+      <div class="eyebrow">AI SEARCH OPTIMIZATION</div>
+      <h1>検索で上位より<br><span>AIに選ばれる</span>時代へ</h1>
+      <p class="lead">「AIO（AI検索最適化）」は、ChatGPTやGoogleのAI要約が答えを作るときに、<strong>自社の情報を"引用・おすすめ"させる</strong>ための対策です。上場企業ファインズが新商材「AIOナビ」で参入。うちのMEO・サブスクAIに"追い足す"だけで作れる、次の月額商材です。</p>
+    </div>
+    <div class="hero-panel">
+      <div>
+        <div class="pnum">48%<span style="font-size:20px">+</span></div>
+        <div class="plabel">Google検索でAI要約が表示される割合（2026年3月）</div>
+      </div>
+      <div class="divline"></div>
+      <div>
+        <div class="pnum">6.5倍</div>
+        <div class="plabel">第三者からの言及（サイテーション）で上がる引用確率</div>
+      </div>
+      <div class="divline"></div>
+      <div>
+        <div class="pnum">月25万〜</div>
+        <div class="plabel">他社AIOサービスの月額相場（ストック商材）</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT -->
+  <div class="section" id="what">
+    <div class="eyebrow">まず結論</div>
+    <h2>AIOとは何か</h2>
+    <p class="sub">3行で言うと。</p>
+    <p style="font-size:17px;color:var(--ink);font-weight:700;line-height:1.9">
+      ① お客さんはこれから「検索」より<strong>ChatGPTやGoogleのAIに直接質問</strong>して答えをもらう。<br>
+      ② そのAIの答えの中で「◯◯なら△△社がおすすめ」と<strong>自社を引用・推薦させる</strong>のがAIO。<br>
+      ③ 従来のSEO（検索上位）／MEO（地図上位）の"次の一手"であり、<strong>やることの7割はMEO・口コミ運用と共通</strong>。だから今の商材に足しやすい。
+    </p>
+    <div class="compare">
+      <div class="cpanel old">
+        <span class="clab">これまで：検索</span>
+        <h3>10個のリンクから選ぶ</h3>
+        <ul class="linklist">
+          <li>1位　◯◯店</li>
+          <li>2位　△△店</li>
+          <li class="dim">3位　□□店</li>
+          <li class="dim">4位〜10位 …</li>
+        </ul>
+        <div class="cnote">▲ お客さんが自分でクリックして比較</div>
+      </div>
+      <div class="cvs">VS</div>
+      <div class="cpanel new">
+        <span class="clab">これから：AI検索</span>
+        <h3>AIが1つの答えを作る</h3>
+        <div class="aibubble">「この辺で◯◯なら、<b>△△店</b>がおすすめです。」<br><span style="font-size:12px;opacity:0.7">— 出典：△△店サイト、外部掲載メディア</span></div>
+        <div class="cnote">▲ AIの答えに"載るか載らないか"の勝負</div>
+      </div>
+    </div>
+    <div class="callout">
+      <p>⚡ なぜ今か：2025年9月にGoogleが「AI Overviews（AIによる検索要約）」を本格展開。2026年3月時点で検索の48%以上でAI要約が出る。＝「検索10位以内」を取っても、その上のAI要約に載らなければクリックされない時代が来た。</p>
+    </div>
+  </div>
+
+  <!-- HOW -->
+  <div class="section" id="how">
+    <div class="eyebrow">仕組み</div>
+    <h2>AIはどうやって「引用先」を選ぶか</h2>
+    <p class="sub">AIは "RAG（検索拡張生成）" という3ステップで答えを作る。この③で選ばれる設計をするのがAIO。</p>
+    <div class="flow">
+      <div class="flowbox"><div class="fico">?</div><div class="ft">① 質問</div><div class="fd">ユーザーがAIに質問する</div></div>
+      <div class="flowarrow">→</div>
+      <div class="flowbox"><div class="fico">⚲</div><div class="ft">② 検索・取得</div><div class="fd">関連ページをAIが集める</div></div>
+      <div class="flowarrow">→</div>
+      <div class="flowbox hot"><div class="fico">★</div><div class="ft">③ 引用・推薦</div><div class="fd">信頼できる情報を選んで答えに使う<br><b style="color:var(--orange)">＝ここがAIOの戦場</b></div></div>
+    </div>
+    <h3 style="margin-top:30px">AIに選ばれる基準（数字が効く順）</h3>
+    <div class="grid g3">
+      <div class="card"><div class="big">6.5倍</div><div class="cl">第三者言及（サイテーション）</div><p>外部サイトに載っているほど引用されやすい</p></div>
+      <div class="card"><div class="big">1.8倍</div><div class="cl">構造化データ</div><p>AIが読みやすい形にマークアップ</p></div>
+      <div class="card"><div class="big">3倍</div><div class="cl">表示速度（FCP0.4秒未満）</div><p>速いページが優遇される</p></div>
+      <div class="card"><div class="big">13週</div><div class="cl">鮮度</div><p>直近13週以内に更新された情報が優先</p></div>
+      <div class="card"><div class="big">150語</div><div class="cl">事実密度</div><p>150〜200語ごとに統計・数値を入れる</p></div>
+      <div class="card"><div class="big">網羅</div><div class="cl">トピック権威性</div><p>テーマを深く広くカバーしている</p></div>
+    </div>
+  </div>
+
+  <!-- RIVAL -->
+  <div class="section" id="rival">
+    <div class="eyebrow">競合ベンチ</div>
+    <h2>ファインズ「AIOナビ」の中身</h2>
+    <p class="sub">上場企業ファインズ（東証グロース5125）が2026年3月にローンチ。実態は "MEO・口コミ運用代行" に "サイテーション代行" を足したパッケージ。ゼロから新しいわけではない。</p>
+    <div class="grid g3">
+      <div class="card">
+        <h3>① サイテーション代行掲載</h3>
+        <p><strong>約100媒体</strong>に外部掲載し、AIが参照する情報量と信頼性を底上げ→AI推薦を獲得。<strong>ここが差別化の肝。</strong></p>
+      </div>
+      <div class="card">
+        <h3>② 運用効率化</h3>
+        <p>口コミ管理・AI返信・SNS連携（Googleビジネス⇔Instagram）・投稿生成AI。</p>
+      </div>
+      <div class="card">
+        <h3>③ セキュリティ</h3>
+        <p>Googleマップ情報の改ざん防止プロテクト。</p>
+      </div>
+    </div>
+    <div class="callout">
+      <p>💡 見立て：AIOナビの正体は「MEOのAI時代アップデート版」。＝うちも既存のMEO・サブスクAIに"サイテーション代行＋AIO設計"を足せば同等の商材が作れる。</p>
+    </div>
+  </div>
+
+  <!-- SKILL -->
+  <div class="section" id="skill">
+    <div class="eyebrow">実装ノウハウ</div>
+    <h2>AIO対策の具体的な5ステップ</h2>
+    <p class="sub">すぐやれる順。主力ページ3〜5本に絞って始めるのがセオリー。</p>
+    <div class="step"><div class="stepno">1</div><div class="txt"><div class="t">アンサーカプセル<span class="tag">10分/ページ</span></div><div class="d">見出しの直下に「120〜150字の直接回答」を置く。AIが最も引用しやすい形。最も簡単で効果大。</div></div></div>
+    <div class="step"><div class="stepno">2</div><div class="txt"><div class="t">ハードデータ挿入<span class="tag">20分/ページ</span></div><div class="d">150〜200語ごとに数値を追加。無料ソース＝総務省 情報通信白書・経産省 DXレポート・自社データ。</div></div></div>
+    <div class="step"><div class="stepno">3</div><div class="txt"><div class="t">構造化データ（JSON-LD）<span class="tag">初回1〜2h</span></div><div class="d">Article＋FAQPage＋ItemListの"トリプルスタック"で引用率1.8倍。WordPressならプラグインで実装可。</div></div></div>
+    <div class="step"><div class="stepno">4</div><div class="txt"><div class="t">FAQセクション追加<span class="tag">15分/ページ</span></div><div class="d">ChatGPTで検索されそうな質問を5問以上。各回答100〜150字＋具体数値を1つ以上。</div></div></div>
+    <div class="step"><div class="stepno">5</div><div class="txt"><div class="t">四半期ごとの鮮度更新<span class="tag">月30分</span></div><div class="d">統計を最新版に差し替え・FAQ追加・「更新日」を表示。鮮度を保つ＝継続課金の根拠になる。</div></div></div>
+    <div class="callout">
+      <p>📈 効果目安：構造改善だけで2〜4週間で変化。本格施策で「AI引用 5件→45件（9倍）」の事例あり。</p>
+    </div>
+  </div>
+
+  <!-- SUZUKI -->
+  <div class="section" id="suzuki">
+    <span class="aud suzuki">鈴木さん向け ｜ 商品化・技術</span>
+    <h2>うちで商品化するなら</h2>
+    <p class="sub">既存資産に"足す"発想。ゼロ開発は不要。</p>
+    <div class="equation">
+      <div class="eqbox"><div class="eqt">既存MEO<br>／サブスクAI</div><div class="eqd">運用ノウハウ・AI生成機能</div></div>
+      <div class="eqop">+</div>
+      <div class="eqbox"><div class="eqt">サイテーション<br>代行掲載</div><div class="eqd">アウトバウンド網を活用</div></div>
+      <div class="eqop">+</div>
+      <div class="eqbox"><div class="eqt">構造化データ<br>自動生成</div><div class="eqd">AIに読ませる設定</div></div>
+      <div class="eqop">=</div>
+      <div class="eqbox result"><div class="eqt">AIO対策パック</div><div class="eqd">月額+2〜5万円の新商材</div></div>
+    </div>
+    <div class="grid g2" style="margin-top:26px">
+      <div class="card">
+        <h3>技術要件（作るもの）</h3>
+        <p>・JSON-LD構造化データの自動生成（Article/FAQPage/ItemList）<br>・サイテーション掲載先リスト＆掲載オペレーション<br>・口コミ→AI返信生成（既存サブスクAI流用可）<br>・鮮度更新の月次バッチ＋簡易レポート</p>
+      </div>
+      <div class="card">
+        <h3>既存資産の流用ポイント</h3>
+        <p>・MEO運用ノウハウ → そのまま土台<br>・サブスクAIのAI生成機能 → 口コミ返信/FAQ生成に転用<br>・アウトバウンド網 → サイテーション掲載＆営業に活用<br>・CTI/リスト基盤 → 掲載先管理に転用</p>
+      </div>
+    </div>
+    <div class="callout">
+      <p>🛠 鈴木さんへの相談ポイント：①構造化データ自動生成と②サイテーション掲載の仕組み化、この2つを最小構成でMVP化できるか。ここが作れれば「AIO対策パック」を月額商材にできる。</p>
+    </div>
+  </div>
+
+  <!-- SALES -->
+  <div class="section" id="sales">
+    <span class="aud sales">営業向け ｜ 売り方・トーク</span>
+    <h2>誰に・どう売るか</h2>
+    <p class="sub">今のMEO・HP・サブスクAIのお客さんへの"アップセル"が最短。</p>
+
+    <table>
+      <tr><th>項目</th><th>内容</th></tr>
+      <tr><td><strong>誰に</strong></td><td>店舗・中小（飲食・美容・クリニック・不動産・リフォーム等）。既にMEO/HPを入れている既存客が最優先。</td></tr>
+      <tr><td><strong>刺さる課題</strong></td><td>「最近、お客さんがGoogleじゃなくChatGPTで探してる」「検索順位を上げても問い合わせが増えない」</td></tr>
+      <tr><td><strong>売り方</strong></td><td>単品より"MEO＋AIO"のセットで月額を+2〜5万円乗せる。相場は月25万〜なので価格の根拠十分。</td></tr>
+      <tr><td><strong>強み</strong></td><td>サイテーション代行（外部掲載）＝うちのアウトバウンド網と相性◎。他社が真似しにくい。</td></tr>
+    </table>
+
+    <h3 style="margin-top:30px">そのまま使えるトーク例</h3>
+    <div class="talk">
+      <div class="role">つかみ</div>
+      <div class="line q">「社長、最近ご自身でも "ChatGPTに聞く" こと増えてませんか？」</div>
+      <div class="line">「今、お客さんが検索じゃなくAIに『この辺で◯◯なら？』って聞く時代に変わってます。そのAIの答えに<strong>御社が"おすすめ"として出てくるか</strong>で、来月からの集客が変わります。それを対策するのがAIOです。」</div>
+    </div>
+    <div class="talk">
+      <div class="role">切り返し：「SEO/MEOやってるからいい」</div>
+      <div class="line q">お客：「もうMEOやってるよ」</div>
+      <div class="line">「はい、その土台があるから今がチャンスなんです。MEOで作った情報を<strong>AIにも拾わせる設定</strong>を足すだけ。ゼロからじゃないので費用も抑えられて、今やる会社が先に"AIのおすすめ枠"を取れます。」</div>
+    </div>
+    <div class="talk">
+      <div class="role">切り返し：「効果あるの？」</div>
+      <div class="line q">お客：「それ効果あるの？」</div>
+      <div class="line">「基準は数字で出てます。外部掲載を増やすと引用されやすさが<strong>6.5倍</strong>、AIが読みやすい設定で<strong>1.8倍</strong>。実際にAI引用が<strong>5件→45件</strong>になった事例もあります。まず主力ページ3本から2〜4週間でテストできます。」</div>
+    </div>
+
+    <div class="callout">
+      <p>🗣 営業の合言葉：「<strong>検索で1位より、AIのおすすめに載る。</strong>」 難しい技術の話はしない。"お客さんがAIに聞く時代→そこで選ばれる対策"だけ伝えればOK。</p>
+    </div>
+  </div>
+
+  <!-- CLOSING -->
+  <div class="closing">
+    <div class="eyebrow" style="color:var(--orange);justify-content:center">NEXT ACTION</div>
+    <h2>やることは"足す"だけ</h2>
+    <p>鈴木さん：構造化データ自動生成＋サイテーション掲載のMVP化を検討<br>営業：既存MEO/HP客へ「MEO＋AIO」セットでアップセル提案を開始</p>
+  </div>
+
+  <div class="footer">RANBIRD IT事業部 ｜ AIO（AI検索最適化）入門資料 ｜ 2026年7月　※競合ベンチ：ファインズ「AIOナビ」</div>
+
+</div>
+</body>
+</html>
